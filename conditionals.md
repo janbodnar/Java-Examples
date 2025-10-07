@@ -7,6 +7,7 @@ using compact source files and Java 25 features.
 
 ```java
 void main() {
+
     var temperature = 25;
     if (temperature > 20) {
         IO.println("It's a warm day!");
@@ -20,6 +21,7 @@ Demonstrates a simple if statement that checks a numeric condition.
 
 ```java
 void main() {
+
     var age = 16;
     if (age >= 18) {
         IO.println("You are an adult");
@@ -35,6 +37,7 @@ Shows basic if-else branching based on a boolean condition.
 
 ```java
 void main() {
+
     var score = 85;
     if (score >= 90) {
         IO.println("Grade: A");
@@ -54,6 +57,7 @@ Demonstrates multiple conditional branches with else if for range checking.
 
 ```java
 void main() {
+
     var age = 25;
     var hasLicense = true;
     
@@ -71,6 +75,7 @@ Shows the use of logical AND operator in conditional expressions.
 
 ```java
 void main() {
+
     var day = "Saturday";
     
     if (day.equals("Saturday") || day.equals("Sunday")) {
@@ -87,6 +92,7 @@ Demonstrates the logical OR operator for checking multiple conditions.
 
 ```java
 void main() {
+
     var dayNumber = 3;
     
     switch (dayNumber) {
@@ -107,6 +113,7 @@ Shows modern switch statement with arrow syntax and multiple case values.
 
 ```java
 void main() {
+
     var month = 4;
     
     var season = switch (month) {
@@ -127,6 +134,7 @@ Demonstrates switch expression that returns a value directly.
 
 ```java
 void main() {
+
     var score = 85;
     
     var grade = switch (score / 10) {
@@ -153,6 +161,7 @@ Shows switch expression with yield keyword for complex cases.
 
 ```java
 void main() {
+
     var fruit = "apple";
     
     var color = switch (fruit) {
@@ -173,6 +182,7 @@ Demonstrates switch statement working with string values.
 
 ```java
 void main() {
+
     String value = null;
     
     var result = switch (value) {
@@ -192,6 +202,7 @@ Shows modern switch handling null values explicitly.
 
 ```java
 void main() {
+
     var number = 15;
     var result = (number % 2 == 0) ? "even" : "odd";
     IO.println(number + " is " + result);
@@ -204,6 +215,7 @@ Demonstrates the ternary conditional operator for concise if-else logic.
 
 ```java
 void main() {
+
     var score = 85;
     var grade = score >= 90 ? "A" : 
                 score >= 80 ? "B" : 
@@ -218,6 +230,7 @@ Shows nested ternary operators for multiple conditions (use sparingly).
 
 ```java
 void main() {
+
     var isRaining = false;
     
     if (!isRaining) {
@@ -234,6 +247,7 @@ Demonstrates the logical NOT operator in conditional expressions.
 
 ```java
 void main() {
+
     var temperature = 25;
     var humidity = 60;
     var isSunny = true;
@@ -253,6 +267,7 @@ Shows combining multiple boolean conditions with proper grouping.
 
 ```java
 void main() {
+
     String text = null;
     
     if (text != null && text.length() > 0) {
@@ -269,6 +284,7 @@ Demonstrates short-circuit evaluation to avoid NullPointerException.
 
 ```java
 void main() {
+
     Object obj = "Hello, World!";
     
     if (obj instanceof String s) {
@@ -286,6 +302,7 @@ Shows pattern matching with instanceof and type pattern variable.
 
 ```java
 void main() {
+
     Object value = 42;
     
     if (value instanceof Integer i) {
@@ -306,6 +323,7 @@ Demonstrates pattern matching across multiple type checks.
 
 ```java
 void main() {
+
     Object obj = 100;
     
     var result = switch (obj) {
@@ -326,6 +344,7 @@ Shows pattern matching integrated with switch expressions.
 
 ```java
 void main() {
+
     Object obj = 15;
     
     var result = switch (obj) {
@@ -347,6 +366,7 @@ Demonstrates guarded patterns with when clause in switch expressions.
 record Point(int x, int y) {}
 
 void main() {
+
     Object obj = new Point(5, 10);
     
     if (obj instanceof Point(int x, int y)) {
@@ -362,6 +382,7 @@ Shows pattern matching with record patterns for deconstruction.
 
 ```java
 void main() {
+
     var numbers = List.of(1, 2, 3, 4, 5);
     
     if (numbers.isEmpty()) {
@@ -380,6 +401,7 @@ Demonstrates conditional logic based on collection properties.
 
 ```java
 void main() {
+
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     
     var evens = numbers.stream()
@@ -401,6 +423,7 @@ Shows using conditional logic with stream filtering operations.
 
 ```java
 void main() {
+
     var scores = Map.of("Alice", 85, "Bob", 92, "Charlie", 78);
     
     scores.forEach((name, score) -> {
@@ -418,6 +441,7 @@ Demonstrates conditional logic within map iteration and processing.
 
 ```java
 void main() {
+
     var age = -5;
     
     if (age < 0) {
@@ -440,6 +464,7 @@ Shows guard clause pattern for early returns and cleaner code flow.
 
 ```java
 void main() {
+
     var hasAccount = true;
     var isVerified = true;
     var balance = 100;
@@ -466,6 +491,7 @@ Demonstrates nested conditional structures (prefer flattening when possible).
 
 ```java
 void main() {
+
     var values = List.of(1, 2, 3, 4, 5);
     
     var max = values.stream()
@@ -485,6 +511,7 @@ Shows conditional handling of Optional values from stream operations.
 
 ```java
 void main() {
+
     var temperature = 18;
     
     var clothing = if (temperature < 10) {
@@ -505,6 +532,7 @@ Demonstrates using conditionals for variable initialization with yield.
 
 ```java
 void main() {
+
     var value = 50;
     
     if (value >= 0 && value <= 25) {
@@ -525,6 +553,7 @@ Shows conditional logic for checking numeric ranges effectively.
 
 ```java
 void main() {
+
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     
     for (var num : numbers) {
@@ -548,6 +577,7 @@ Demonstrates conditional logic within loops with break statements.
 
 ```java
 void main() {
+
     Object[] values = {42, "hello", 3.14, true, null};
     
     for (var value : values) {
