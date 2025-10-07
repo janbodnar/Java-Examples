@@ -9,6 +9,7 @@ various record features and patterns using modern Java 25 syntax.
 record Point(int x, int y) {}
 
 void main() {
+
     var p = new Point(3, 4);
     IO.println("Point: (" + p.x() + ", " + p.y() + ")");
 }
@@ -22,6 +23,7 @@ Defines a simple record `Point` with two components and prints them.
 record Temperature(double celsius) {}
 
 void main() {
+
     var temp = new Temperature(23.5);
     IO.println("Temperature: " + temp.celsius() + "°C");
 }
@@ -35,6 +37,7 @@ Creates a record with a single component to represent temperature data.
 record Person(String name) {}
 
 void main() {
+
     var person = new Person("Alice");
     IO.println("Name: " + person.name());
 }
@@ -48,6 +51,7 @@ Demonstrates a record with a String component for storing text data.
 record Product(String name, double price, int quantity) {}
 
 void main() {
+
     var product = new Product("Laptop", 999.99, 5);
     IO.println(product.name() + ": $" + product.price());
 }
@@ -61,6 +65,7 @@ Shows a record with different component types: String, double, and int.
 record Book(String title, String author) {}
 
 void main() {
+
     var book = new Book("1984", "George Orwell");
     IO.println(book);
 }
@@ -74,6 +79,7 @@ Records automatically generate a `toString` method for easy output.
 record Coordinate(int x, int y) {}
 
 void main() {
+
     var c1 = new Coordinate(1, 2);
     var c2 = new Coordinate(1, 2);
     IO.println("Equal: " + c1.equals(c2));
@@ -88,6 +94,7 @@ Records implement `equals` method based on component values automatically.
 record User(String username, int id) {}
 
 void main() {
+
     var user = new User("alice", 101);
     IO.println("Hash: " + user.hashCode());
 }
@@ -101,6 +108,7 @@ Records generate consistent `hashCode` implementations based on components.
 record City(String name, int population) {}
 
 void main() {
+
     var cities = List.of(
         new City("Tokyo", 13960000),
         new City("Delhi", 32900000)
@@ -117,6 +125,7 @@ Demonstrates storing record instances in a List collection.
 record Color(int r, int g, int b) {}
 
 void main() {
+
     var colors = List.of(
         new Color(255, 0, 0),
         new Color(0, 255, 0)
@@ -135,6 +144,7 @@ Shows iteration over a collection of records with component access.
 record Position(int row, int col) {}
 
 void main() {
+
     var grid = Map.of(
         new Position(0, 0), "Start",
         new Position(5, 5), "End"
@@ -151,6 +161,7 @@ Records work well as Map keys due to proper `equals` and `hashCode`.
 record Score(int value, String grade) {}
 
 void main() {
+
     var scores = Map.of(
         "Alice", new Score(95, "A"),
         "Bob", new Score(87, "B")
@@ -168,6 +179,7 @@ record Address(String street, String city) {}
 record Employee(String name, Address address) {}
 
 void main() {
+
     var addr = new Address("Main St", "Springfield");
     var emp = new Employee("John", addr);
     IO.println(emp.name() + " lives in " + emp.address().city());
@@ -182,6 +194,7 @@ Demonstrates records containing other records as components.
 record Team(String name, List<String> members) {}
 
 void main() {
+
     var team = new Team("Alpha", List.of("Alice", "Bob", "Charlie"));
     IO.println(team.name() + ": " + team.members().size() + " members");
 }
@@ -195,6 +208,7 @@ Shows a record component that holds a collection of values.
 record Matrix(int[][] values) {}
 
 void main() {
+
     var matrix = new Matrix(new int[][]{{1, 2}, {3, 4}});
     IO.println("First element: " + matrix.values()[0][0]);
 }
@@ -208,6 +222,7 @@ Records can have array components for structured data storage.
 record Account(String username, boolean active) {}
 
 void main() {
+
     var account = new Account("alice", true);
     IO.println(account.username() + " active: " + account.active());
 }
@@ -227,6 +242,7 @@ record Age(int years) {
 }
 
 void main() {
+
     var age = new Age(25);
     IO.println("Age: " + age.years());
 }
@@ -244,6 +260,7 @@ record Email(String address) {
 }
 
 void main() {
+
     var email = new Email("  USER@EXAMPLE.COM  ");
     IO.println(email.address());
 }
@@ -265,6 +282,7 @@ record Rectangle(double width, double height) {
 }
 
 void main() {
+
     var rect = new Rectangle(10, 5);
     IO.println("Width: " + rect.width());
 }
@@ -282,6 +300,7 @@ record Circle(double radius) {
 }
 
 void main() {
+
     var c1 = new Circle(10.0, true);
     IO.println("Radius from diameter: " + c1.radius());
 }
@@ -299,6 +318,7 @@ record Point(int x, int y) {
 }
 
 void main() {
+
     var p = new Point(3, 4);
     IO.println("Distance: " + p.distanceFromOrigin());
 }
@@ -316,6 +336,7 @@ record Temperature(double celsius) {
 }
 
 void main() {
+
     var temp = Temperature.fromFahrenheit(98.6);
     IO.println("Body temp: " + temp.celsius() + "°C");
 }
@@ -340,6 +361,7 @@ record Money(double amount, String currency) {
 }
 
 void main() {
+
     var m1 = new Money(100.50, "USD");
     var m2 = new Money(50.25, "USD");
     IO.println(m1.add(m2).formatted());
@@ -360,6 +382,7 @@ record Config(String value) {
 }
 
 void main() {
+
     var config = Config.getDefault();
     IO.println("Config: " + config.value());
 }
@@ -373,6 +396,7 @@ Records can have static fields and methods for shared constants.
 record Point(int x, int y) {}
 
 void main() {
+
     Object obj = new Point(5, 10);
     
     if (obj instanceof Point p) {
@@ -389,6 +413,7 @@ Pattern matching extracts record reference with type checking in one step.
 record Point(int x, int y) {}
 
 void main() {
+
     Object obj = new Point(5, 10);
     
     if (obj instanceof Point(int x, int y)) {
@@ -407,6 +432,7 @@ record Point(int x, int y) {}
 record Circle(Point center, double radius) {}
 
 void main() {
+
     Object obj = new Circle(new Point(0, 0), 5.0);
     
     if (obj instanceof Circle(Point(int x, int y), double r)) {
@@ -424,6 +450,7 @@ record Point(int x, int y) {}
 record Circle(double radius) {}
 
 void main() {
+
     Object shape = new Circle(5.0);
     
     var description = switch (shape) {
@@ -443,6 +470,7 @@ Uses record patterns in switch expressions for type-based dispatch.
 record Point(int x, int y) {}
 
 void main() {
+
     Object obj = new Point(5, 10);
     
     var quadrant = switch (obj) {
@@ -465,6 +493,7 @@ record Success(String message) {}
 record Error(String message) {}
 
 void main() {
+
     Object result = new Success("Operation completed");
     
     var output = switch (result) {
@@ -488,6 +517,7 @@ Uses yield in switch branches when working with record patterns.
 record Box<T>(T value) {}
 
 void main() {
+
     var intBox = new Box<>(42);
     var strBox = new Box<>("Hello");
     IO.println("Int: " + intBox.value());
@@ -503,6 +533,7 @@ Records support type parameters for generic data containers.
 record Pair<K, V>(K key, V value) {}
 
 void main() {
+
     var pair = new Pair<>("age", 25);
     IO.println(pair.key() + " = " + pair.value());
 }
@@ -520,6 +551,7 @@ record NumberBox<T extends Number>(T value) {
 }
 
 void main() {
+
     var box = new NumberBox<>(42);
     IO.println("As double: " + box.asDouble());
 }
@@ -533,6 +565,7 @@ Uses bounded type parameters to restrict generic record components.
 record Profile(String name, java.util.Optional<String> email) {}
 
 void main() {
+
     var p1 = new Profile("Alice", java.util.Optional.of("alice@example.com"));
     var p2 = new Profile("Bob", java.util.Optional.empty());
     p1.email().ifPresent(e -> IO.println("Email: " + e));
@@ -548,6 +581,7 @@ Optional components model nullable or missing values in records.
 record Product(String name, double price) {}
 
 void main() {
+
     var products = List.of(
         new Product("Apple", 1.5),
         new Product("Banana", 0.8),
@@ -569,6 +603,7 @@ Process record collections using stream operations and method references.
 record Employee(String name, int age, double salary) {}
 
 void main() {
+
     var employees = List.of(
         new Employee("Alice", 30, 75000),
         new Employee("Bob", 25, 65000),
@@ -589,6 +624,7 @@ Filters record streams based on component values and predicates.
 record Student(String name, int grade) {}
 
 void main() {
+
     var students = List.of(
         new Student("Charlie", 85),
         new Student("Alice", 95),
@@ -609,6 +645,7 @@ Sorts records using comparators based on component values.
 record Order(String product, String category) {}
 
 void main() {
+
     var orders = List.of(
         new Order("Apple", "Fruit"),
         new Order("Carrot", "Vegetable"),
@@ -634,6 +671,7 @@ record Circle(double radius) implements Shape {}
 record Square(double side) implements Shape {}
 
 void main() {
+
     Shape shape = new Circle(5.0);
     var area = switch (shape) {
         case Circle(double r) -> Math.PI * r * r;
@@ -651,6 +689,7 @@ Combines sealed interfaces with records for exhaustive type hierarchies.
 record Node(int value, Node next) {}
 
 void main() {
+
     var list = new Node(1, new Node(2, new Node(3, null)));
     var current = list;
     while (current != null) {
@@ -676,6 +715,7 @@ record Rectangle(double width, double height) {
 }
 
 void main() {
+
     var rect = new Rectangle(5, 3);
     IO.println("Area: " + rect.area());
     IO.println("Perimeter: " + rect.perimeter());
@@ -719,6 +759,7 @@ record Person(String name, int age, String email) {
 }
 
 void main() {
+
     var person = Person.builder()
         .name("Alice")
         .age(30)
@@ -749,6 +790,7 @@ record CaseInsensitiveString(String value) {
 }
 
 void main() {
+
     var s1 = new CaseInsensitiveString("Hello");
     var s2 = new CaseInsensitiveString("HELLO");
     IO.println("Equal: " + s1.equals(s2));
@@ -763,6 +805,7 @@ Overrides equals and hashCode for custom equality semantics in records.
 record Data(String name, int value) implements java.io.Serializable {}
 
 void main() {
+
     var data = new Data("test", 42);
     IO.println("Record: " + data);
     IO.println("Serializable: " + (data instanceof java.io.Serializable));
@@ -780,6 +823,7 @@ record User(
 ) {}
 
 void main() {
+
     var user = new User("old_user", "user@example.com");
     IO.println("User: " + user.username());
 }
@@ -801,6 +845,7 @@ record Point(int x, int y) {
 }
 
 void main() {
+
     var p1 = new Point(3, 4);
     var p2 = p1.withX(10);
     IO.println("Original: " + p1);
@@ -820,6 +865,7 @@ record Email(String address) {
 }
 
 void main() {
+
     var email1 = new Email("user@example.com");
     var email2 = new Email("invalid");
     IO.println(email1.address() + " valid: " + email1.isValid());
@@ -849,6 +895,7 @@ record Version(int major, int minor, int patch)
 }
 
 void main() {
+
     var v1 = new Version(1, 2, 3);
     var v2 = new Version(1, 3, 0);
     IO.println("v1 < v2: " + (v1.compareTo(v2) < 0));
@@ -871,6 +918,7 @@ record Config(String host, int port) {
 }
 
 void main() {
+
     var c1 = new Config();
     var c2 = new Config("example.com");
     IO.println("Default: " + c1);
@@ -917,6 +965,7 @@ class ClassPerson {
 }
 
 void main() {
+
     var r = new RecordPerson("Alice", 30);
     var c = new ClassPerson("Alice", 30);
     
@@ -944,6 +993,7 @@ record Circle(int x, int y, double radius) implements Drawable {
 }
 
 void main() {
+
     var circle = new Circle(10, 20, 5.0);
     circle.draw();
 }
@@ -957,6 +1007,7 @@ Records can implement interfaces with custom method implementations.
 record Event(String type, long timestamp) {}
 
 void main() {
+
     var events = new java.util.concurrent.ConcurrentLinkedQueue<Event>();
     events.add(new Event("login", System.currentTimeMillis()));
     events.add(new Event("logout", System.currentTimeMillis()));
@@ -988,6 +1039,7 @@ record Range(int min, int max) {
 }
 
 void main() {
+
     var range = new Range(1, 10);
     IO.println("Contains 5: " + range.contains(5));
     IO.println("Contains 15: " + range.contains(15));
@@ -1018,6 +1070,7 @@ record Color(int r, int g, int b) {
 }
 
 void main() {
+
     var red = Color.red();
     var custom = Color.rgb(128, 128, 128);
     IO.println("Red: " + red);
@@ -1035,6 +1088,7 @@ record Success<T>(T value) implements Result<T> {}
 record Failure<T>(String error) implements Result<T> {}
 
 void main() {
+
     Result<Integer> r1 = new Success<>(42);
     Result<Integer> r2 = new Failure<>("Error occurred");
     
@@ -1062,6 +1116,7 @@ record Temperature(double celsius) {
 }
 
 void main() {
+
     var celsius = new Temperature(25);
     var fahrenheit = celsius.toFahrenheit();
     IO.println("25°C = " + fahrenheit.celsius() + "°F");
@@ -1076,6 +1131,7 @@ Transformation methods create new record instances with converted values.
 record Person(String name, int age) {}
 
 void main() {
+
     var people = List.of(
         new Person("Alice", 30),
         new Person("Bob", 25)
@@ -1099,6 +1155,7 @@ Transforms record collections into maps using stream collectors.
 record Transaction(String id, double amount) {}
 
 void main() {
+
     var transactions = List.of(
         new Transaction("T1", 100.50),
         new Transaction("T2", 250.75),
@@ -1121,6 +1178,7 @@ Uses reduce operations to aggregate values from record components.
 record Department(String name, List<String> employees) {}
 
 void main() {
+
     var departments = List.of(
         new Department("IT", List.of("Alice", "Bob")),
         new Department("HR", List.of("Charlie", "Diana"))
@@ -1140,6 +1198,7 @@ FlatMaps nested collections from record components into single stream.
 record Score(String name, int points) {}
 
 void main() {
+
     var scores = List.of(
         new Score("Alice", 85),
         new Score("Bob", 92),
@@ -1164,6 +1223,7 @@ Partitions record streams into groups based on predicate conditions.
 record Data(String name, int value) {}
 
 void main() {
+
     var data = new Data("test", 42);
     var components = data.getClass().getRecordComponents();
     
