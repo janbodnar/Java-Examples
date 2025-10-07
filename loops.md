@@ -10,6 +10,7 @@ increment.
 
 ```java
 void main() {
+
     for (var i = 0; i < 5; i++) {
         IO.println("Count: " + i);
     }
@@ -24,6 +25,8 @@ Shows iteration over a collection using the enhanced for-each syntax.
 
 ```java
 void main() {
+
+
     var fruits = List.of("apple", "banana", "cherry");
     
     for (var fruit : fruits) {
@@ -41,6 +44,7 @@ Demonstrates a while loop with a condition checked before each iteration.
 
 ```java
 void main() {
+
     var count = 0;
     
     while (count < 5) {
@@ -59,6 +63,7 @@ condition.
 
 ```java
 void main() {
+
     var count = 0;
     
     do {
@@ -77,6 +82,7 @@ Demonstrates using break to exit a loop early.
 
 ```java
 void main() {
+
     for (var i = 0; i < 10; i++) {
         if (i == 5) {
             break;
@@ -94,6 +100,7 @@ Shows using continue to skip the current iteration.
 
 ```java
 void main() {
+
     for (var i = 0; i < 5; i++) {
         if (i == 2) {
             continue;
@@ -112,6 +119,7 @@ Demonstrates nested loops for multi-dimensional iteration.
 
 ```java
 void main() {
+
     for (var i = 1; i <= 3; i++) {
         for (var j = 1; j <= 3; j++) {
             IO.println("i=" + i + ", j=" + j);
@@ -128,6 +136,7 @@ Shows iteration over a List using different approaches.
 
 ```java
 void main() {
+
     var numbers = List.of(10, 20, 30, 40, 50);
     
     for (var i = 0; i < numbers.size(); i++) {
@@ -144,6 +153,7 @@ Demonstrates iteration over a Set using for-each loop.
 
 ```java
 void main() {
+
     var colors = Set.of("red", "green", "blue");
     
     for (var color : colors) {
@@ -161,6 +171,7 @@ Shows iteration over Map entries using for-each loop.
 
 ```java
 void main() {
+
     var scores = Map.of("Alice", 95, "Bob", 87, "Charlie", 92);
     
     for (var entry : scores.entrySet()) {
@@ -177,6 +188,7 @@ Demonstrates using labeled break to exit from nested loops.
 
 ```java
 void main() {
+
     outer: for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
             if (i == 1 && j == 1) {
@@ -197,6 +209,7 @@ Shows using labeled continue to skip to the next iteration of an outer loop.
 
 ```java
 void main() {
+
     outer: for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
             if (j == 1) {
@@ -216,6 +229,7 @@ Demonstrates iterating in reverse order.
 
 ```java
 void main() {
+
     for (var i = 5; i > 0; i--) {
         IO.println("Countdown: " + i);
     }
@@ -230,6 +244,7 @@ Shows an infinite loop with an explicit exit condition.
 
 ```java
 void main() {
+
     var count = 0;
     
     while (true) {
@@ -251,6 +266,7 @@ Demonstrates looping with custom step increments.
 
 ```java
 void main() {
+
     for (var i = 0; i <= 20; i += 5) {
         IO.println("Number: " + i);
     }
@@ -265,6 +281,7 @@ Shows calculating factorial using a loop.
 
 ```java
 void main() {
+
     var n = 5;
     var factorial = 1;
     
@@ -284,6 +301,7 @@ Demonstrates generating Fibonacci numbers using a loop.
 
 ```java
 void main() {
+
     var n = 10;
     var a = 0;
     var b = 1;
@@ -306,6 +324,7 @@ Shows calculating the sum of array elements.
 
 ```java
 void main() {
+
     var numbers = List.of(5, 10, 15, 20, 25);
     var sum = 0;
     
@@ -325,6 +344,7 @@ Demonstrates finding the maximum value in a collection.
 
 ```java
 void main() {
+
     var numbers = List.of(23, 45, 12, 67, 34);
     var max = numbers.get(0);
     
@@ -347,6 +367,7 @@ Shows generating a multiplication table using nested loops.
 
 ```java
 void main() {
+
     var n = 5;
     
     for (var i = 1; i <= n; i++) {
@@ -366,6 +387,7 @@ Demonstrates checking if a number is prime using a loop.
 
 ```java
 void main() {
+
     var number = 17;
     var isPrime = number > 1;
     
@@ -388,6 +410,7 @@ Shows modifying a mutable list during iteration.
 
 ```java
 void main() {
+
     var numbers = new ArrayList<Integer>();
     
     for (var i = 1; i <= 5; i++) {
@@ -408,6 +431,7 @@ Demonstrates using pattern matching with instanceof in a loop.
 
 ```java
 void main() {
+
     var items = List.of("hello", 42, 3.14, "world", 100);
     
     for (var item : items) {
@@ -431,6 +455,7 @@ Shows using enhanced switch expressions within a loop.
 
 ```java
 void main() {
+
     var days = List.of("Monday", "Saturday", "Wednesday", "Sunday");
     
     for (var day : days) {
@@ -452,6 +477,7 @@ Demonstrates explicit iterator usage for collection traversal.
 
 ```java
 void main() {
+
     var fruits = List.of("apple", "banana", "cherry");
     var iterator = fruits.iterator();
     
