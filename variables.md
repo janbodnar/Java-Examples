@@ -8,6 +8,7 @@ modern Java 25 features.
 
 ```java
 void main() {
+
     var count = 42;
     IO.println("Count: " + count);
 }
@@ -19,6 +20,7 @@ Declares an integer variable using type inference with `var`.
 
 ```java
 void main() {
+
     var price = 19.99;
     IO.println("Price: $" + price);
 }
@@ -30,6 +32,7 @@ Shows a double variable for decimal numbers with type inference.
 
 ```java
 void main() {
+
     var isActive = true;
     IO.println("Active: " + isActive);
 }
@@ -41,6 +44,7 @@ Demonstrates a boolean variable for true/false values.
 
 ```java
 void main() {
+
     var initial = 'J';
     IO.println("Initial: " + initial);
 }
@@ -52,6 +56,7 @@ Shows a character variable storing a single character.
 
 ```java
 void main() {
+
     var name = "Java";
     IO.println("Language: " + name);
 }
@@ -63,6 +68,7 @@ Declares a String variable to store text data.
 
 ```java
 void main() {
+
     var x = 10;
     var y = 20;
     var z = 30;
@@ -76,6 +82,7 @@ Demonstrates declaring multiple variables of the same type.
 
 ```java
 void main() {
+
     var counter = 0;
     IO.println("Initial: " + counter);
     counter = 10;
@@ -89,6 +96,7 @@ Shows how mutable variables can be reassigned new values.
 
 ```java
 void main() {
+
     final var maxAttempts = 3;
     IO.println("Maximum attempts: " + maxAttempts);
 }
@@ -100,6 +108,7 @@ Demonstrates a constant variable using `final` that cannot be reassigned.
 
 ```java
 void main() {
+
     var total = 100;
     total += 50;
     total -= 20;
@@ -114,6 +123,7 @@ Shows compound assignment operators for concise value updates.
 
 ```java
 void main() {
+
     var numbers = List.of(1, 2, 3, 4, 5);
     IO.println("Numbers: " + numbers);
 }
@@ -125,6 +135,7 @@ Demonstrates `var` with collection types using implicit imports.
 
 ```java
 void main() {
+
     var scores = Map.of("Alice", 95, "Bob", 87, "Carol", 92);
     IO.println("Scores: " + scores);
 }
@@ -136,6 +147,7 @@ Shows a Map variable storing key-value pairs with type inference.
 
 ```java
 void main() {
+
     var outer = "outer scope";
     {
         var inner = "inner scope";
@@ -151,6 +163,7 @@ Demonstrates block-level scope where inner variables are isolated.
 
 ```java
 void main() {
+
     var value = 10;
     IO.println("Outer: " + value);
     {
@@ -167,6 +180,7 @@ Shows variable shadowing where inner scope variables hide outer ones.
 
 ```java
 void main() {
+
     for (var i = 0; i < 3; i++) {
         var loopVar = i * 10;
         IO.println("Loop var: " + loopVar);
@@ -180,6 +194,7 @@ Demonstrates loop variable scope where variables exist only within the loop.
 
 ```java
 void main() {
+
     var temperature = 25;
     var status = (temperature > 20) ? "warm" : "cold";
     IO.println("Status: " + status);
@@ -192,6 +207,7 @@ Shows conditional (ternary) operator for variable initialization.
 
 ```java
 void main() {
+
     Object obj = "Hello";
     if (obj instanceof String s) {
         IO.println("String length: " + s.length());
@@ -206,6 +222,7 @@ variable.
 
 ```java
 void main() {
+
     var text = "Java";
     var number = 25;
     var decimal = 3.14;
@@ -220,6 +237,7 @@ Shows `var` used with different types in the same scope.
 
 ```java
 void main() {
+
     var items = new ArrayList<String>();
     items.add("first");
     items.add("second");
@@ -233,6 +251,7 @@ Demonstrates a mutable ArrayList variable that can be modified.
 
 ```java
 void main() {
+
     var colors = List.of("red", "green", "blue");
     IO.println("Colors: " + colors);
 }
@@ -244,6 +263,7 @@ Shows an immutable collection created with `List.of`.
 
 ```java
 void main() {
+
     var day = "Monday";
     var type = switch (day) {
         case "Saturday", "Sunday" -> "Weekend";
@@ -259,6 +279,7 @@ Demonstrates variable assignment from a switch expression.
 
 ```java
 void main() {
+
     var byteVal = (byte) 127;
     var shortVal = (short) 32000;
     var longVal = 9876543210L;
@@ -272,6 +293,7 @@ Shows different numeric primitive types with explicit casting where needed.
 
 ```java
 void main() {
+
     var name = "Alice";
     var age = 30;
     var message = "Name: " + name + ", Age: " + age;
@@ -285,6 +307,7 @@ Demonstrates building formatted strings with multiple variables.
 
 ```java
 void main() {
+
     var counter = 5;
     IO.println("Original: " + counter);
     IO.println("Post-increment: " + counter++);
@@ -299,6 +322,7 @@ Shows increment and decrement operators with pre and post variations.
 
 ```java
 void main() {
+
     var initialized = 10;
     var defaultInt = 0;
     var defaultBool = false;
@@ -314,6 +338,7 @@ Demonstrates explicit initialization versus default values.
 
 ```java
 void main() {
+
     var radius = 5.0;
     var area = Math.PI * radius * radius;
     IO.println("Circle area: " + area);
@@ -326,6 +351,7 @@ Shows variables used with Math operations and constants.
 
 ```java
 void main() {
+
     var map = new HashMap<String, Integer>();
     map.put("apple", 1);
     map.put("banana", 2);
@@ -340,6 +366,7 @@ Demonstrates a mutable HashMap variable with dynamic additions.
 
 ```java
 void main() {
+
     var doubleVal = 3.14;
     var intVal = (int) doubleVal;
     IO.println("Double: " + doubleVal + ", Int: " + intVal);
@@ -352,6 +379,7 @@ Shows explicit type casting when assigning between numeric types.
 
 ```java
 void main() {
+
     var a = 5;
     var b = 10;
     IO.println("Before: a=" + a + ", b=" + b);
@@ -368,6 +396,7 @@ Demonstrates swapping variable values using a temporary variable.
 
 ```java
 void main() {
+
     var base = 10;
     var exponent = 3;
     var result = Math.pow(base, exponent);
@@ -383,6 +412,7 @@ Shows variables computed from other variables using methods.
 record Point(int x, int y) {}
 
 void main() {
+
     var point = new Point(10, 20);
     if (point instanceof Point(var x, var y)) {
         IO.println("Coordinates: x=" + x + ", y=" + y);
