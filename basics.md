@@ -1,82 +1,13 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Java basics - variables, constants, data types, console</title>
-<link rel="stylesheet" href="/cfg/style.css" type="text/css">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="Java, basics, tutorial, programming language,">
-<meta name="description" content="Java basics tutorial shows some basics of
-Java: variables, constans, data types, string formatting, and reading and
-writing to the console.">
-<meta name="author" content="Jan Bodnar">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9706709751191532"
-     crossorigin="anonymous"></script>
-</head>
-
-<body>
-
-<header>
-
-<div>
-<a href="/" title="Home">ZetCode</a>
-</div>
-
-<nav>
-    <a title="All tutorials" href="/all/">All</a>
-    <a title="Go tutorials" href="/golang/">Golang</a>
-    <a title="Python tutorials" href="/python/">Python</a>
-    <a title="C# tutorials" href="/csharp/">C#</a>
-    <a title="Java tutorials" href="/java/">Java</a>
-    <a title="JavaScript tutorials" href="/javascript/">JavaScript</a>
-    <a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&id=6556210f80">Subscribe</a>
-</nav>
-
-</header>
-
-<div class="container">
-
-<div class="ltow">
-    
-<div id="ebooks">
-
-<h2 class="blu">Ebooks</h2>
-
-<ul>
-<li><a href="/ebooks/advancedpyqt5/">PyQt5 ebook</a></li>
-<li><a href="/ebooks/tkinter/">Tkinter ebook</a></li>
-<li><a href="/ebooks/sqlitepython/">SQLite Python</a></li>
-<li><a href="/ebooks/advancedwxpython/">wxPython ebook</a></li>
-<li><a href="/ebooks/windowsapi/">Windows API ebook</a></li>
-<li><a href="/ebooks/advancedjavaswing/">Java Swing ebook</a></li>
-<li><a href="/ebooks/javagames/">Java games ebook</a></li>
-<li><a href="/ebooks/mysqljava/">MySQL Java ebook</a></li>
-</ul>
-
-</div>
-
-</div>
-
-
-<div class="content">
-
-
 <h1>Java basics</h1>
 
-<p class="last_mod">
-last modified January 27, 2024
-</p>
+
  
 <p>
 In this article we cover some basic programming concepts of the Java language.
 We begin with some simple programs. We work with variables, constants, and basic
 data types. We read and write to console and we also mention string formatting.
 </p>
-
-
 
 
 <h2>Java simple example</h2>
@@ -646,63 +577,8 @@ evaluated. The <code>%s</code> accepts string values, the <code>%d</code>
 integer values.
 </p>
 
-<pre class="compact">
-$ java StringFormatting.java
-William is 34 years old.
-</pre>
-
-
-<h2>Source</h2>
-
-<p>
-<a href="https://docs.oracle.com/javase/tutorial/getStarted/index.html">Java Getting Started tutorial</a>
-</p>
-
-<p>
-This article covered some basics of the Java language.
-</p>
 
 
 
-<h2 id="author">Author</h2>
-
-<p class="author">
-My name is Jan Bodnar, and I am a passionate programmer with extensive
-programming experience. I have been writing programming articles since 2007.
-To date, I have authored over 1,400 articles and 8 e-books. I possess more
-than ten years of experience in teaching programming.
-</p>
-
-<p>
-List <a href="/java/">all Java tutorials</a>.
-</p>
-
-</div> <!-- content -->
-
-
-
-</div> <!-- container -->
-
-<footer>
-
-<nav>
-<a title="Home page" href="/">Home</a> 
-<a title="Follow on Twitter" href="https://twitter.com/janbodnar">Twitter</a>
-<a title="Visit Github" href="https://github.com/janbodnar">Github</a>
-<a title="Subscribe to ZetCode news" href="http://zetcode.us13.list-manage.com/subscribe?u=9def9ccd4c70dbbaf691f90fc&id=6556210f80">Subscribe</a>
-<a title="Privacy policy" href="/privacy">Privacy</a> 
-<a title="About" href="/about/">About</a>
-</nav>
-
-<div>
-<span>&copy; 2007 - 2025 Jan Bodnar</span>
-<span>admin(at)zetcode.com</span>
-</div>
-
-</footer>
-
-<script src="/cfg/utils.js"></script>
-</body>
-</html>
 
 
