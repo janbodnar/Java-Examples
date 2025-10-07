@@ -44,6 +44,23 @@ void main() {
 The minus operator changes the sign of a value. Double negation returns  
 the original positive value.  
 
+## Multiple assignment
+
+Variables can be assigned values in a single statement.  
+
+```java
+void main() {
+    var x = 10;
+    var y = 20;
+    var z = 30;
+    var sum = x + y + z;
+    IO.println("Sum: " + sum);
+}
+```
+
+Multiple variables can be declared and initialized separately or together.  
+
+
 ## Assignment operator
 
 The assignment operator `=` assigns a value to a variable. A **variable**  
@@ -358,6 +375,25 @@ void main() {
 Relational operators can be combined with logical operators for complex  
 conditions.  
 
+## String equality with operators
+
+Comparing strings requires special attention in Java.  
+
+```java
+void main() {
+    var str1 = "hello";
+    var str2 = "hello";
+    var str3 = new String("hello");
+    
+    IO.println("str1 == str2: " + (str1 == str2));
+    IO.println("str1 == str3: " + (str1 == str3));
+    IO.println("str1.equals(str3): " + str1.equals(str3));
+}
+```
+
+The `==` operator compares references, while `equals` compares content.  
+For strings, use `equals` to compare values.  
+
 ## Bitwise operators
 
 Bitwise operators work with individual bits of binary numbers. These  
@@ -394,6 +430,28 @@ void main() {
 
 Bitwise AND: result is 1 only if both bits are 1. Bitwise OR: result is  
 1 if either bit is 1. Bitwise XOR: result is 1 if bits differ.  
+
+## Bit shifting operators
+
+Bit shifting moves bits left or right, effectively multiplying or dividing  
+by powers of 2.  
+
+```java
+void main() {
+    var num = 8;
+    var leftShift = num << 1;   // multiply by 2
+    var rightShift = num >> 1;  // divide by 2
+    
+    IO.println("8 << 1 = " + leftShift);
+    IO.println("8 >> 1 = " + rightShift);
+    IO.println("-8 >> 1 = " + (-8 >> 1));
+    IO.println("-8 >>> 1 = " + (-8 >>> 1));
+}
+```
+
+The `<<` operator shifts bits left (multiplies by 2^n). The `>>` operator  
+shifts right with sign extension. The `>>>` operator shifts right with  
+zero fill, useful for unsigned operations.  
 
 ## Compound assignment operators
 
@@ -685,6 +743,25 @@ void main() {
 Ternary operators can be nested for multiple conditions, though readability  
 may suffer with complex nesting.  
 
+## Null coalescing with ternary
+
+The ternary operator can provide default values for null references.  
+
+```java
+void main() {
+    String name = null;
+    var displayName = name != null ? name : "Anonymous";
+    IO.println("User: " + displayName);
+    
+    var score = 0;
+    var message = score > 0 ? "Positive" : score < 0 ? "Negative" : "Zero";
+    IO.println("Score status: " + message);
+}
+```
+
+This pattern provides fallback values when a variable might be null or  
+needs conditional selection based on multiple criteria.  
+
 ## Prime number calculation
 
 This example demonstrates multiple operators working together to calculate  
@@ -731,3 +808,74 @@ by numbers up to the square root of the candidate number. The remainder
 operator `%` checks divisibility. Values 0 and 1 are not prime. Numbers 2  
 and 3 are prime by definition. The `==` operator has higher precedence than  
 `||`, so no parentheses are needed in `num == 2 || num == 3`.  
+
+## Combining multiple operators
+
+Complex expressions combine various operators following precedence rules.  
+
+```java
+void main() {
+    var a = 5;
+    var b = 10;
+    var c = 15;
+    
+    var result1 = a + b * c;
+    var result2 = (a + b) * c;
+    var result3 = a++ + ++b * c--;
+    
+    IO.println("5 + 10 * 15 = " + result1);
+    IO.println("(5 + 10) * 15 = " + result2);
+    IO.println("After complex expression:");
+    IO.println("a = " + a + ", b = " + b + ", c = " + c);
+}
+```
+
+Understanding operator precedence and side effects is crucial when working  
+with complex expressions. Post-increment returns the old value; pre-  
+increment returns the new value.  
+
+## Operators with collections
+
+Operators work seamlessly with modern Java collections.  
+
+```java
+void main() {
+    var numbers = List.of(1, 2, 3, 4, 5);
+    var sum = 0;
+    var product = 1;
+    
+    for (var num : numbers) {
+        sum += num;
+        product *= num;
+    }
+    
+    IO.println("Sum: " + sum);
+    IO.println("Product: " + product);
+    IO.println("Average: " + (sum / (double) numbers.size()));
+}
+```
+
+Compound operators like `+=` and `*=` are frequently used with loops to  
+accumulate values from collections.  
+
+## Logical operators with predicates
+
+Logical operators combine conditions for filtering and validation.  
+
+```java
+void main() {
+    var age = 25;
+    var hasLicense = true;
+    var hasInsurance = true;
+    
+    var canDrive = age >= 18 && hasLicense && hasInsurance;
+    IO.println("Can drive: " + canDrive);
+    
+    var needsAttention = !hasLicense || !hasInsurance;
+    IO.println("Needs attention: " + needsAttention);
+}
+```
+
+Combining boolean operators creates complex validation logic. The `&&`  
+operator ensures all conditions are met, while `||` checks if any condition  
+is true.  
