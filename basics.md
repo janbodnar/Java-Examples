@@ -4,6 +4,7 @@ This document demonstrates Java fundamentals using modern Java 25 syntax,
 including compact source files, instance main methods, and implicit imports.  
 
 ## Simple console output
+This example shows how to print a line of text to the console.
 
 ```java
 void main() {
@@ -11,9 +12,12 @@ void main() {
 }
 ```
 
-Prints a message to the console using the simplified `IO` class from Java 25.  
+The `main` function serves as the entry point of the program.
+It uses the `IO.println` method, a simplified way to print output,
+which is available in Java 25 through implicit imports.
 
 ## String variable
+This example demonstrates declaring and initializing a string variable.
 
 ```java
 void main() {
@@ -22,9 +26,12 @@ void main() {
 }
 ```
 
-Declares a string variable using type inference with the `var` keyword.  
+The `var` keyword allows the compiler to infer the type of the variable,
+making the code more concise. Here, `message` is inferred as a `String`
+and its value is printed to the console.
 
 ## Integer variable
+This example shows how to declare an integer variable and print its value.
 
 ```java
 void main() {
@@ -33,9 +40,12 @@ void main() {
 }
 ```
 
-Shows an integer variable with type inference and string concatenation.  
+The `var` keyword infers the type of `count` as an `int`.
+The program then prints the integer value concatenated with a string label,
+demonstrating basic string and number combination.
 
 ## Multiple variables
+This example illustrates declaring multiple variables of different types.
 
 ```java
 void main() {
@@ -51,9 +61,12 @@ void main() {
 }
 ```
 
-Demonstrates declaring multiple variables of different types.  
+This code declares four variables using `var` for different data types:
+`String` and `int`. Each variable's value is then printed on a new line,
+showcasing how multiple pieces of data can be managed.
 
 ## Variable reassignment
+This example demonstrates how to change the value of a mutable variable.
 
 ```java
 void main() {
@@ -65,9 +78,12 @@ void main() {
 }
 ```
 
-Shows how mutable variables can be reassigned to new values.  
+The `city` variable is first initialized to "New York" and printed.
+It is then reassigned a new value, "London", which is also printed,
+showing that variables declared with `var` are mutable by default.
 
 ## Type inference with var
+This example highlights how `var` infers different data types automatically.
 
 ```java
 void main() {
@@ -78,9 +94,12 @@ void main() {
 }
 ```
 
-The `var` keyword infers types from the initializer expressions.  
+The compiler infers that `name` is a `String` and `age` is an `int`.
+This allows developers to write less boilerplate code while maintaining
+strong typing, as shown by the combined output string.
 
 ## Final constants
+This example shows how to declare constants that cannot be changed.
 
 ```java
 void main() {
@@ -95,9 +114,12 @@ void main() {
 }
 ```
 
-Constants declared with `final` cannot be reassigned after initialization.  
+The `final` keyword makes a variable immutable, so its value cannot be
+reassigned after initialization. The example contrasts this with a regular
+mutable variable that can be changed.
 
 ## String formatting
+This example demonstrates creating formatted strings using placeholders.
 
 ```java
 void main() {
@@ -109,9 +131,12 @@ void main() {
 }
 ```
 
-The `String.format` method creates formatted strings with placeholders.  
+The `String.format` method allows for creating complex strings by inserting
+variables into a template. `%s` is a placeholder for a string, and `%d` is
+for an integer, making the code readable and maintainable.
 
 ## Console input with Scanner
+This example shows how to read input from the user in the console.
 
 ```java
 void main() {
@@ -124,9 +149,12 @@ void main() {
 }
 ```
 
-Reads user input from the console using Scanner class.  
+The `Scanner` class is used to handle user input from `System.in`.
+This program prompts the user to enter their name and then reads the
+entire line of text, greeting them with their input.
 
 ## Command line arguments
+This example demonstrates how to access command-line arguments.
 
 ```java
 void main(String[] args) {
@@ -136,9 +164,12 @@ void main(String[] args) {
 }
 ```
 
-Processes command line arguments passed to the program.  
+The `main` function can accept an array of strings, which represent
+arguments passed when running the program from the command line.
+This code iterates through the arguments and prints each one.
 
 ## Boolean variable
+This example shows how to declare and use boolean variables.
 
 ```java
 void main() {
@@ -150,9 +181,12 @@ void main() {
 }
 ```
 
-Boolean variables store true or false values.  
+Boolean variables can only hold two values: `true` or `false`.
+They are fundamental for controlling program flow and making decisions
+in conditional statements.
 
 ## Character variable
+This example demonstrates the use of character variables.
 
 ```java
 void main() {
@@ -164,9 +198,12 @@ void main() {
 }
 ```
 
-Character variables store single characters enclosed in single quotes.  
+A `char` variable stores a single character, enclosed in single quotes.
+This is useful for handling individual letters or symbols, distinct from
+multi-character strings.
 
 ## Double precision numbers
+This example shows how to work with floating-point numbers.
 
 ```java
 void main() {
@@ -178,9 +215,12 @@ void main() {
 }
 ```
 
-Double variables store decimal numbers with floating-point precision.  
+The `double` type is used for decimal numbers that require high precision.
+This example calculates the total cost by adding tax to a price,
+demonstrating basic arithmetic with `double` values.
 
 ## Long integer values
+This example demonstrates how to use integers that exceed the normal range.
 
 ```java
 void main() {
@@ -192,9 +232,12 @@ void main() {
 }
 ```
 
-Long integers store larger whole numbers using the `L` suffix.  
+The `long` type stores 64-bit integers, indicated by the `L` suffix.
+It is necessary for numbers larger than what a standard `int` can hold,
+such as timestamps or large counters.
 
 ## Basic arithmetic
+This example covers fundamental arithmetic operations.
 
 ```java
 void main() {
@@ -209,9 +252,12 @@ void main() {
 }
 ```
 
-Demonstrates basic arithmetic operations on numeric values.  
+This code performs addition, subtraction, multiplication, division, and
+modulo operations. The results show how Java handles integer arithmetic,
+including truncation in division.
 
 ## String concatenation
+This example shows how to combine strings and other data types.
 
 ```java
 void main() {
@@ -224,9 +270,12 @@ void main() {
 }
 ```
 
-Combines multiple strings and values using the concatenation operator.  
+The `+` operator can be used to concatenate strings with other strings or
+variables. Java automatically converts the non-string types to their
+string representation to create a single combined string.
 
 ## Increment and decrement
+This example demonstrates operators for increasing or decreasing a value by one.
 
 ```java
 void main() {
@@ -240,9 +289,12 @@ void main() {
 }
 ```
 
-Shows increment and decrement operators for numeric variables.  
+The `++` operator increments a numeric variable by one, while `--`
+decrements it. These are common shortcuts for modifying counters
+or iterating through values.
 
 ## Compound assignment
+This example shows shorthand operators for arithmetic and assignment.
 
 ```java
 void main() {
@@ -259,9 +311,12 @@ void main() {
 }
 ```
 
-Compound assignment operators combine arithmetic with assignment.  
+Compound assignment operators like `+=`, `-=`, and `*=` combine an
+arithmetic operation with an assignment. They provide a more concise way
+to modify a variable's value in place.
 
 ## Type casting
+This example demonstrates how to convert a value from one type to another.
 
 ```java
 void main() {
@@ -273,9 +328,12 @@ void main() {
 }
 ```
 
-Explicit type casting converts values between compatible types.  
+Explicit type casting is required when converting a value to a type that
+might lose information, such as from `double` to `int`. The fractional part
+is truncated during the conversion.
 
 ## Math operations
+This example shows how to use common mathematical functions from the `Math` class.
 
 ```java
 void main() {
@@ -288,9 +346,12 @@ void main() {
 }
 ```
 
-The `Math` class provides common mathematical functions.  
+The `Math` class provides a wide range of static methods for operations
+like square root, exponentiation, and finding the maximum of two numbers.
+These are essential for scientific and mathematical calculations.
 
 ## String template-like formatting
+This example shows how to build formatted strings by concatenating values.
 
 ```java
 void main() {
@@ -305,9 +366,12 @@ void main() {
 }
 ```
 
-Builds formatted strings by concatenating multiple values together.  
+This code demonstrates creating a descriptive string by joining multiple
+variables and literals. While simple, for more complex formatting,
+`String.format` or templates are often preferred.
 
 ## Implicit collection types
+This example demonstrates creating immutable lists with implicit imports.
 
 ```java
 void main() {
@@ -319,9 +383,12 @@ void main() {
 }
 ```
 
-Creates immutable lists using `List.of` with implicit imports.  
+Java 25 allows for implicit imports of common collection types like `List`.
+The `List.of` factory method creates a compact, unmodifiable list, which is
+useful for defining fixed collections of data.
 
 ## Working with arrays
+This example demonstrates array creation, element access, and iteration.
 
 ```java
 void main() {
@@ -336,9 +403,12 @@ void main() {
 }
 ```
 
-Demonstrates array creation, access, and iteration.  
+Arrays provide a way to store a fixed-size sequence of elements of the
+same type. This code shows how to access elements by index and loop
+through all elements using an enhanced for-loop.
 
 ## String methods
+This example showcases common methods for string manipulation.
 
 ```java
 void main() {
@@ -351,6 +421,6 @@ void main() {
 }
 ```
 
-Shows common string manipulation methods for text processing.  
-
-
+The `String` class offers many useful methods for text processing.
+This example demonstrates removing whitespace, changing case, and getting
+the length of a string.

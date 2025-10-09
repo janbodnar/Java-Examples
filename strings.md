@@ -4,29 +4,29 @@ This document contains 60 progressively complex Java examples demonstrating
 various String operations, methods, and patterns using modern Java 25 syntax.  
 
 ## Basic string creation
-
+This example shows the most common way to create a string.
 ```java
 void main() {
     var greeting = "Hello, world!";
     IO.println(greeting);
 }
 ```
-
-Creates a simple string literal and prints it to the console.  
+A string literal, enclosed in double quotes, is used to create a `String` object.
+This is the simplest and most direct method for defining a string in Java.
 
 ## String length
-
+This example demonstrates how to find the number of characters in a string.
 ```java
 void main() {
     var text = "Java";
     IO.println("Length: " + text.length());
 }
 ```
-
-The `length` method returns the number of characters in a string.  
+The `length()` method is called on a `String` object to get its length.
+It returns an integer representing the total number of characters in the string.
 
 ## String concatenation
-
+This example shows how to combine multiple strings into one.
 ```java
 void main() {
     var first = "Hello";
@@ -35,44 +35,44 @@ void main() {
     IO.println(result);
 }
 ```
-
-Combines multiple strings using the concatenation operator `+`.  
+The `+` operator is used to concatenate strings. In this case, it joins two string
+variables and a space literal to form a single, complete sentence.
 
 ## String uppercase
-
+This example demonstrates converting a string to all uppercase letters.
 ```java
 void main() {
     var message = "hello world";
     IO.println(message.toUpperCase());
 }
 ```
-
-Converts all characters in a string to uppercase using `toUpperCase`.  
+The `toUpperCase()` method returns a new string where all characters from the
+original string have been converted to their uppercase equivalents.
 
 ## String lowercase
-
+This example shows how to convert a string to all lowercase letters.
 ```java
 void main() {
     var message = "HELLO WORLD";
     IO.println(message.toLowerCase());
 }
 ```
-
-Converts all characters in a string to lowercase using `toLowerCase`.  
+The `toLowerCase()` method creates a new string with all characters converted
+to their lowercase form. This is useful for case-insensitive comparisons.
 
 ## String trimming
-
+This example demonstrates removing leading and trailing whitespace from a string.
 ```java
 void main() {
     var text = "   spaces   ";
     IO.println("[" + text.trim() + "]");
 }
 ```
-
-Removes leading and trailing whitespace from a string using `trim`.  
+The `trim()` method returns a new string with any whitespace at the beginning or
+end of the original string removed. It does not affect whitespace in the middle.
 
 ## String equality
-
+This example shows how to compare two strings for exact equality.
 ```java
 void main() {
     var str1 = "apple";
@@ -82,11 +82,11 @@ void main() {
     IO.println(str1.equals(str3));
 }
 ```
-
-Compares strings for exact equality using the `equals` method.  
+The `equals()` method is used for case-sensitive comparison of string content.
+It returns `true` if the strings are identical, and `false` otherwise.
 
 ## Case-insensitive comparison
-
+This example demonstrates comparing two strings while ignoring their case.
 ```java
 void main() {
     var str1 = "Apple";
@@ -94,11 +94,11 @@ void main() {
     IO.println(str1.equalsIgnoreCase(str2));
 }
 ```
-
-Compares strings ignoring case differences using `equalsIgnoreCase`.  
+The `equalsIgnoreCase()` method compares the content of two strings without regard
+to whether the characters are uppercase or lowercase.
 
 ## String contains
-
+This example shows how to check if a string contains a specific sequence of characters.
 ```java
 void main() {
     var text = "The quick brown fox";
@@ -106,11 +106,11 @@ void main() {
     IO.println(text.contains("slow"));
 }
 ```
-
-Checks if a string contains a specific substring using `contains`.  
+The `contains()` method returns `true` if the specified substring is found anywhere
+within the string, and `false` otherwise.
 
 ## String starts with
-
+This example demonstrates checking if a string begins with a certain prefix.
 ```java
 void main() {
     var url = "https://example.com";
@@ -118,11 +118,11 @@ void main() {
     IO.println(url.startsWith("http://"));
 }
 ```
-
-Determines if a string begins with a specified prefix using `startsWith`.  
+The `startsWith()` method is useful for validating input or identifying the type
+of data a string represents based on its beginning.
 
 ## String ends with
-
+This example shows how to check if a string ends with a particular suffix.
 ```java
 void main() {
     var filename = "document.pdf";
@@ -130,11 +130,11 @@ void main() {
     IO.println(filename.endsWith(".doc"));
 }
 ```
-
-Checks if a string ends with a specified suffix using `endsWith`.  
+The `endsWith()` method is often used to check file extensions or other patterns
+that are expected at the end of a string.
 
 ## Character at index
-
+This example demonstrates retrieving a character at a specific position in a string.
 ```java
 void main() {
     var word = "Java";
@@ -142,11 +142,11 @@ void main() {
     IO.println(word.charAt(2));
 }
 ```
-
-Retrieves the character at a specific index position using `charAt`.  
+The `charAt()` method returns the character at the given index, where the first
+character is at index 0. This is useful for character-level processing.
 
 ## Index of substring
-
+This example shows how to find the starting position of a substring.
 ```java
 void main() {
     var text = "Hello World";
@@ -154,11 +154,11 @@ void main() {
     IO.println(text.indexOf("Java"));
 }
 ```
-
-Finds the first occurrence index of a substring using `indexOf`.  
+The `indexOf()` method returns the index of the first occurrence of the specified
+substring. If the substring is not found, it returns -1.
 
 ## Last index of
-
+This example demonstrates finding the last occurrence of a substring.
 ```java
 void main() {
     var text = "banana";
@@ -166,11 +166,11 @@ void main() {
     IO.println(text.lastIndexOf("n"));
 }
 ```
-
-Finds the last occurrence index of a substring using `lastIndexOf`.  
+The `lastIndexOf()` method searches for a substring from the end of the string
+and returns the index of its last occurrence.
 
 ## Substring extraction
-
+This example shows how to extract a part of a string.
 ```java
 void main() {
     var text = "Hello World";
@@ -178,11 +178,11 @@ void main() {
     IO.println(text.substring(6));
 }
 ```
-
-Extracts a portion of a string using `substring` with start and end indices.  
+The `substring()` method returns a new string that is a portion of the original.
+It can be called with a start and end index, or just a start index to go to the end.
 
 ## String replacement
-
+This example demonstrates replacing all occurrences of a substring.
 ```java
 void main() {
     var text = "Hello World";
@@ -190,33 +190,33 @@ void main() {
     IO.println(text.replace("l", "L"));
 }
 ```
-
-Replaces all occurrences of a substring with another using `replace`.  
+The `replace()` method creates a new string where all instances of a target substring
+or character are replaced with a new one.
 
 ## Replace first occurrence
-
+This example shows how to replace only the first occurrence of a pattern.
 ```java
 void main() {
     var text = "one two one three";
     IO.println(text.replaceFirst("one", "1"));
 }
 ```
-
-Replaces only the first occurrence of a pattern using `replaceFirst`.  
+The `replaceFirst()` method is useful when you only want to change the initial match
+of a substring or regular expression, leaving subsequent matches untouched.
 
 ## Replace all with regex
-
+This example demonstrates replacing all matches of a regular expression.
 ```java
 void main() {
     var text = "apple123banana456cherry";
     IO.println(text.replaceAll("\\d+", " "));
 }
 ```
-
-Replaces all matches of a regular expression pattern using `replaceAll`.  
+The `replaceAll()` method uses a regular expression to find all matching parts of the
+string and replaces them. Here, `\\d+` matches any sequence of digits.
 
 ## String splitting
-
+This example shows how to split a string into an array of substrings.
 ```java
 void main() {
     var csv = "apple,banana,cherry";
@@ -226,11 +226,11 @@ void main() {
     }
 }
 ```
-
-Splits a string into an array based on a delimiter using `split`.  
+The `split()` method breaks a string apart based on a specified delimiter. It is
+very useful for parsing structured data like comma-separated values (CSV).
 
 ## String joining
-
+This example demonstrates how to join a collection of strings into a single string.
 ```java
 void main() {
     var fruits = List.of("apple", "banana", "cherry");
@@ -238,11 +238,11 @@ void main() {
     IO.println(result);
 }
 ```
-
-Joins multiple strings with a delimiter using the static `join` method.  
+The `String.join()` static method is a convenient way to concatenate elements from a
+collection, inserting a specified delimiter between each element.
 
 ## String format
-
+This example shows how to create a formatted string using placeholders.
 ```java
 void main() {
     var name = "Alice";
@@ -251,11 +251,11 @@ void main() {
     IO.println(message);
 }
 ```
-
-Formats strings with placeholders using `String.format` method.  
+The `String.format()` method allows you to create a string from a template with
+placeholders (`%s` for string, `%d` for integer) that are filled in by variables.
 
 ## String formatted
-
+This example demonstrates the `formatted()` instance method for string formatting.
 ```java
 void main() {
     var product = "Laptop";
@@ -264,11 +264,11 @@ void main() {
     IO.println(text);
 }
 ```
-
-Instance method `formatted` provides concise string formatting in Java 15+.  
+Introduced in Java 15, the `formatted()` method provides a more concise, instance-level
+way to perform the same formatting as `String.format()`.
 
 ## String repeat
-
+This example shows how to repeat a string a specified number of times.
 ```java
 void main() {
     var star = "*";
@@ -276,11 +276,11 @@ void main() {
     IO.println("Ha".repeat(3));
 }
 ```
-
-Repeats a string multiple times using the `repeat` method from Java 11.  
+The `repeat()` method, added in Java 11, creates a new string by concatenating the
+original string with itself a given number of times.
 
 ## String is blank
-
+This example demonstrates checking if a string is empty or contains only whitespace.
 ```java
 void main() {
     var empty = "";
@@ -291,11 +291,11 @@ void main() {
     IO.println(text.isBlank());
 }
 ```
-
-Checks if a string is empty or contains only whitespace using `isBlank`.  
+The `isBlank()` method is useful for validation, as it considers strings with only
+whitespace characters (like spaces or tabs) to be "blank".
 
 ## String is empty
-
+This example shows how to check if a string has a length of zero.
 ```java
 void main() {
     var empty = "";
@@ -304,11 +304,11 @@ void main() {
     IO.println(spaces.isEmpty());
 }
 ```
-
-Checks if a string has zero length using the `isEmpty` method.  
+The `isEmpty()` method is a simple check for whether a string contains any characters
+at all. It returns `false` for a string that contains only whitespace.
 
 ## String strip
-
+This example demonstrates removing whitespace with Unicode support.
 ```java
 void main() {
     var text = "  \t Hello \n  ";
@@ -317,33 +317,34 @@ void main() {
     IO.println("[" + text.stripTrailing() + "]");
 }
 ```
-
-Removes whitespace including Unicode spaces using `strip` methods.  
+The `strip()` methods are a modern alternative to `trim()` that are aware of a wider
+range of Unicode whitespace characters. You can strip from both ends, or just the
+leading or trailing whitespace.
 
 ## String lines
-
+This example shows how to split a string into a stream of lines.
 ```java
 void main() {
     var multiline = "Line 1\nLine 2\nLine 3";
     multiline.lines().forEach(IO::println);
 }
 ```
-
-Splits a string into a stream of lines using the `lines` method.  
+The `lines()` method provides a convenient, functional way to process a multi-line
+string. It returns a `Stream<String>`, which can then be used with other stream operations.
 
 ## String indent
-
+This example demonstrates adding a specified amount of indentation to a string.
 ```java
 void main() {
     var text = "Hello\nWorld";
     IO.println(text.indent(4));
 }
 ```
-
-Adds indentation to each line of a string using the `indent` method.  
+The `indent()` method adds a given number of spaces to the beginning of each line
+in the string. A negative argument can be used to remove indentation.
 
 ## Text blocks
-
+This example introduces text blocks for creating multi-line string literals.
 ```java
 void main() {
     var json = """
@@ -355,11 +356,12 @@ void main() {
     IO.println(json);
 }
 ```
-
-Text blocks provide multi-line string literals with preserved formatting.  
+Text blocks, enclosed in triple double-quotes, make it much easier to write and read
+multi-line strings like JSON, SQL, or HTML. They preserve indentation and newlines,
+reducing the need for escape sequences.
 
 ## String compareTo
-
+This example shows how to compare two strings lexicographically.
 ```java
 void main() {
     var str1 = "apple";
@@ -369,11 +371,12 @@ void main() {
     IO.println(str1.compareTo(str3));
 }
 ```
-
-Compares strings lexicographically using `compareTo` method.  
+The `compareTo()` method returns a negative integer, zero, or a positive integer if the
+string is less than, equal to, or greater than the other string. This is fundamental
+for sorting strings.
 
 ## String intern
-
+This example demonstrates using the `intern()` method to get a string from the string pool.
 ```java
 void main() {
     var s1 = new String("hello");
@@ -382,11 +385,12 @@ void main() {
     IO.println(s2 == s3);
 }
 ```
-
-The `intern` method returns canonical string from the string pool.  
+The `intern()` method returns the canonical representation of the string from a shared pool.
+This allows for reference comparison (`==`) of interned strings, which can be faster than
+`equals()`, though its use is generally discouraged in modern code.
 
 ## String to char array
-
+This example shows how to convert a string into an array of characters.
 ```java
 void main() {
     var word = "Java";
@@ -396,11 +400,11 @@ void main() {
     }
 }
 ```
-
-Converts a string to a character array using `toCharArray` method.  
+The `toCharArray()` method is useful when you need to perform operations on the individual
+characters of a string, such as iterating through them or modifying them in an array.
 
 ## String from char array
-
+This example demonstrates creating a new string from an array of characters.
 ```java
 void main() {
     var chars = new char[]{'J', 'a', 'v', 'a'};
@@ -408,11 +412,11 @@ void main() {
     IO.println(word);
 }
 ```
-
-Creates a string from a character array using String constructor.  
+The `String` class provides a constructor that accepts a `char` array, which is a common
+way to build a string after manipulating its individual characters.
 
 ## String codePoints
-
+This example shows how to iterate over the Unicode code points of a string.
 ```java
 void main() {
     var emoji = "Hello 👋";
@@ -421,11 +425,11 @@ void main() {
     );
 }
 ```
-
-Iterates over Unicode code points in a string using `codePoints`.  
+The `codePoints()` method returns a stream of integer code points, which correctly handles
+Unicode characters that are represented by more than one `char`, like many emojis.
 
 ## String matches regex
-
+This example demonstrates testing if a string matches a regular expression.
 ```java
 void main() {
     var email = "user@example.com";
@@ -433,11 +437,11 @@ void main() {
     IO.println(email.matches(pattern));
 }
 ```
-
-Tests if a string matches a regular expression using `matches`.  
+The `matches()` method is a simple way to validate a string against a regex pattern. It
+returns `true` only if the entire string matches the pattern.
 
 ## StringBuilder basics
-
+This example introduces `StringBuilder` for efficient, mutable string construction.
 ```java
 void main() {
     var sb = new StringBuilder();
@@ -447,11 +451,12 @@ void main() {
     IO.println(sb.toString());
 }
 ```
-
-StringBuilder provides mutable string construction for better performance.  
+When you need to build a string through many concatenations, `StringBuilder` is much more
+performant than using the `+` operator. It modifies an internal buffer instead of creating
+a new `String` object for each operation.
 
 ## StringBuilder insert
-
+This example shows how to insert text into a `StringBuilder` at a specific position.
 ```java
 void main() {
     var sb = new StringBuilder("Hello World");
@@ -459,11 +464,11 @@ void main() {
     IO.println(sb.toString());
 }
 ```
-
-Inserts text at a specific position using StringBuilder's `insert` method.  
+The `insert()` method allows you to add characters at any point within the `StringBuilder`,
+shifting the existing characters to make room.
 
 ## StringBuilder delete
-
+This example demonstrates deleting a range of characters from a `StringBuilder`.
 ```java
 void main() {
     var sb = new StringBuilder("Hello Beautiful World");
@@ -471,11 +476,11 @@ void main() {
     IO.println(sb.toString());
 }
 ```
-
-Removes a range of characters using StringBuilder's `delete` method.  
+The `delete()` method removes the characters in a specified range. This is another example
+of the powerful in-place modifications that `StringBuilder` allows.
 
 ## StringBuilder reverse
-
+This example shows how to reverse the contents of a `StringBuilder`.
 ```java
 void main() {
     var sb = new StringBuilder("Hello");
@@ -483,11 +488,11 @@ void main() {
     IO.println(sb.toString());
 }
 ```
-
-Reverses the character sequence using StringBuilder's `reverse` method.  
+The `reverse()` method provides a simple way to reverse the entire sequence of characters
+in the `StringBuilder`, which can be useful for certain algorithms.
 
 ## StringBuffer thread-safe
-
+This example introduces `StringBuffer`, a thread-safe alternative to `StringBuilder`.
 ```java
 void main() {
     var buffer = new StringBuffer();
@@ -497,11 +502,11 @@ void main() {
     IO.println(buffer.toString());
 }
 ```
-
-StringBuffer is synchronized for thread-safe string operations.  
+`StringBuffer` has the same API as `StringBuilder`, but its methods are synchronized. This
+makes it safe to use in multi-threaded environments, though it comes with a performance cost.
 
 ## String valueOf
-
+This example demonstrates converting various data types into their string representations.
 ```java
 void main() {
     var num = 42;
@@ -512,11 +517,12 @@ void main() {
     IO.println(String.valueOf(arr));
 }
 ```
-
-Converts various types to their string representation using `valueOf`.  
+The static `String.valueOf()` method is a versatile tool for converting primitives and
+objects into strings. It handles `null` gracefully, returning the string "null" instead
+of throwing an exception.
 
 ## String concat method
-
+This example shows the `concat()` method as an alternative to the `+` operator.
 ```java
 void main() {
     var str1 = "Hello";
@@ -525,11 +531,12 @@ void main() {
     IO.println(result);
 }
 ```
-
-Concatenates strings using the `concat` method as an alternative to `+`.  
+The `concat()` method appends one string to another, returning a new `String` object.
+While functionally similar to `+`, the operator is generally preferred for its readability
+and ability to handle non-string types.
 
 ## String regionMatches
-
+This example demonstrates comparing specific regions of two strings.
 ```java
 void main() {
     var str1 = "Hello World";
@@ -537,11 +544,12 @@ void main() {
     IO.println(str1.regionMatches(true, 6, str2, 0, 5));
 }
 ```
-
-Compares regions of two strings with optional case-insensitive matching.  
+The `regionMatches()` method is a powerful tool for checking if a substring from one string
+matches a substring from another. It allows for specifying offsets and an optional
+case-insensitive flag.
 
 ## String getBytes
-
+This example shows how to convert a string into a byte array.
 ```java
 void main() {
     var text = "Hello";
@@ -552,11 +560,11 @@ void main() {
     }
 }
 ```
-
-Converts a string to a byte array using default character encoding.  
+The `getBytes()` method encodes the string into a sequence of bytes using the platform's
+default character set. This is fundamental for file I/O and network communication.
 
 ## String with encoding
-
+This example demonstrates encoding and decoding a string with a specific character set.
 ```java
 void main() {
     var text = "Hello 世界";
@@ -566,11 +574,12 @@ void main() {
     IO.println(restored);
 }
 ```
-
-Encodes and decodes strings with specific character encoding like UTF-8.  
+To ensure consistency across different systems, it is best practice to specify an encoding
+like UTF-8 when converting strings to and from bytes. This avoids issues with international
+characters.
 
 ## Pattern and Matcher
-
+This example uses the `Pattern` and `Matcher` classes for advanced regex operations.
 ```java
 void main() {
     var pattern = java.util.regex.Pattern.compile("\\d+");
@@ -580,11 +589,12 @@ void main() {
     }
 }
 ```
-
-Uses Pattern and Matcher for advanced regex operations and extraction.  
+For complex or repeated regex operations, compiling a `Pattern` object is more efficient.
+The `Matcher` object can then be used to find multiple matches or access capture groups
+within the target string.
 
 ## String split with limit
-
+This example shows how to limit the number of splits performed on a string.
 ```java
 void main() {
     var text = "a:b:c:d:e";
@@ -594,11 +604,12 @@ void main() {
     }
 }
 ```
-
-Limits the number of splits using the limit parameter in `split`.  
+The `split()` method can take a limit parameter. When a positive limit is provided, the
+split is applied at most `limit - 1` times, and the last element of the array contains
+the rest of the unsplit string.
 
 ## String contentEquals
-
+This example demonstrates comparing a `String` with another `CharSequence`.
 ```java
 void main() {
     var str = "Hello";
@@ -606,11 +617,11 @@ void main() {
     IO.println(str.contentEquals(sb));
 }
 ```
-
-Compares string content with any CharSequence using `contentEquals`.  
+The `contentEquals()` method is useful for comparing the content of a `String` with any
+`CharSequence`, like a `StringBuilder` or `StringBuffer`, without first converting it to a `String`.
 
 ## String transform
-
+This example shows the `transform()` method for applying a function to a string.
 ```java
 void main() {
     var result = "hello"
@@ -619,11 +630,11 @@ void main() {
     IO.println(result);
 }
 ```
-
-Applies transformations using the `transform` method introduced in Java 12.  
+Introduced in Java 12, `transform()` provides a concise way to apply a function to a string,
+making it easy to chain multiple transformations in a fluent, readable style.
 
 ## String with streams
-
+This example demonstrates integrating string operations with the Stream API.
 ```java
 void main() {
     var words = List.of("apple", "banana", "cherry");
@@ -633,11 +644,11 @@ void main() {
     IO.println(upper);
 }
 ```
-
-Integrates strings with streams for functional-style transformations.  
+The Stream API allows for powerful, functional-style processing of collections. Here,
+`map()` is used to apply the `toUpperCase()` method to every string in a list.
 
 ## String filtering
-
+This example shows how to filter a collection of strings using a stream.
 ```java
 void main() {
     var words = List.of("apple", "apricot", "banana", "avocado");
@@ -646,11 +657,11 @@ void main() {
         .forEach(IO::println);
 }
 ```
-
-Filters strings based on conditions using stream operations.  
+The `filter()` operation creates a new stream containing only the elements that match a
+given predicate. This is a declarative and readable way to select data from a collection.
 
 ## String collectors joining
-
+This example demonstrates using a `Collector` to join strings from a stream.
 ```java
 void main() {
     var words = List.of("Java", "is", "awesome");
@@ -659,11 +670,11 @@ void main() {
     IO.println(sentence);
 }
 ```
-
-Joins stream elements into a string using Collectors.joining method.  
+`Collectors.joining()` is a powerful terminal operation that concatenates the elements of a
+stream into a single string, with an optional delimiter, prefix, and suffix.
 
 ## String partition
-
+This example shows how to split a string using multiple delimiters.
 ```java
 void main() {
     var text = "apple,banana;cherry,date;elderberry";
@@ -671,11 +682,11 @@ void main() {
     IO.println(String.join(" | ", result));
 }
 ```
-
-Splits strings using multiple delimiters with character class regex.  
+The `split()` method accepts a regular expression, so you can use a character class `[]`
+to specify multiple possible delimiters. This is a flexible way to parse data from various formats.
 
 ## String template literals
-
+This example demonstrates a basic way to create template-like strings.
 ```java
 void main() {
     var name = "Alice";
@@ -684,11 +695,12 @@ void main() {
     IO.println(message);
 }
 ```
-
-Demonstrates string composition with variables for template-like behavior.  
+While Java doesn't have native template literals like some other languages, string
+concatenation or formatting methods are commonly used to achieve the same result of
+embedding variables within a string.
 
 ## String case conversion
-
+This example showcases the basic case conversion methods.
 ```java
 void main() {
     var text = "hElLo WoRlD";
@@ -696,11 +708,11 @@ void main() {
     IO.println(text.toUpperCase());
 }
 ```
-
-Shows case conversion methods for mixed-case strings.  
+These methods are essential for standardizing string input for case-insensitive
+comparisons or for formatting text for display.
 
 ## String null handling
-
+This example shows a safe way to handle a potentially `null` string.
 ```java
 void main() {
     String nullStr = null;
@@ -708,11 +720,11 @@ void main() {
     IO.println("Result: " + safe);
 }
 ```
-
-Safely converts null to string "null" using `String.valueOf` method.  
+Unlike calling a method on a `null` reference, which would throw an exception,
+`String.valueOf()` safely handles `null` by returning the string "null".
 
 ## String character replacement
-
+This example demonstrates replacing individual characters in a string.
 ```java
 void main() {
     var text = "Hello World";
@@ -720,11 +732,11 @@ void main() {
     IO.println(result);
 }
 ```
-
-Replaces individual characters using the `replace` method with chars.  
+The `replace()` method can be used with `char` arguments to swap single characters.
+Multiple replacements can be chained together to perform a series of substitutions.
 
 ## Advanced pattern matching
-
+This example uses a complex regex to extract multiple types of data from a string.
 ```java
 void main() {
     var text = "Phone: 123-456-7890, Email: user@example.com";
@@ -737,11 +749,11 @@ void main() {
     }
 }
 ```
-
-Extracts multiple patterns from text using grouped regular expressions.  
+This demonstrates the power of the `Pattern` and `Matcher` classes for finding and
+extracting information that matches several different formats within a single pass.
 
 ## String formatting with locale
-
+This example shows how to format strings based on a specific locale.
 ```java
 void main() {
     var price = 1234.56;
@@ -751,11 +763,12 @@ void main() {
     IO.println(de);
 }
 ```
-
-Formats numbers with locale-specific formatting using String.format.  
+Providing a `Locale` to `String.format()` ensures that numbers, dates, and currency
+are formatted according to the conventions of a specific region, which is crucial for
+internationalization.
 
 ## String Unicode normalization
-
+This example demonstrates Unicode normalization for consistent string comparison.
 ```java
 void main() {
     var str1 = "café";
@@ -768,5 +781,6 @@ void main() {
     IO.println(norm1.equals(norm2));
 }
 ```
-
-Normalizes Unicode strings for consistent comparison and processing.  
+Some Unicode characters can be represented in multiple ways. `Normalizer.normalize()`
+converts a string to a standard canonical form, which is essential for ensuring that
+semantically identical strings are also considered equal.
