@@ -1,12 +1,16 @@
 # Instructions
 
+## Introcution
+
+At the beginning, provide a detailed, in-depth description of the topic covered. 
 
 ## Code Descriptions
 
 When asked to add a description:  
 
-- Include a brief summary directly below the section title  
-- Follow with a detailed explanation beneath the code block  
+- Include a brief summary directly below the section title
+- Follow with a detailed explanation beneath the code block, at least 2-3 sentences,
+  more for more complex examples.   
 - Limit text to **80 characters per line**, ending each line with **two spaces**  
 - Maintain consistency with existing documents in the repository  
 
