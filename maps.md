@@ -20,6 +20,7 @@ The `Map.Entry` interface represents a key-value pair within a `HashMap`. The
 `AbstractMap` and implements the `Map` interface, which provides essential  
 method signatures including `get`, `put`, `size`, `isEmpty`, and many more for  
 comprehensive map manipulation.  
+
 ## HashMap constructors
 
 The `HashMap` class provides several constructors for creating map instances:  
@@ -35,6 +36,7 @@ The `HashMap` class provides several constructors for creating map instances:
 
 In these constructors, `K` represents the type of the map keys and `V`  
 represents the type of the mapped values.  
+
 ## HashMap methods
 
 The following table lists commonly used `HashMap` methods:  
@@ -56,6 +58,7 @@ The following table lists commonly used `HashMap` methods:
 | Collection<V> | values() | Returns a Collection view of the values |
 
 This document demonstrates several of these methods with practical examples.  
+
 ## HashMap creation
 This example shows how to create a basic HashMap instance.  
 
@@ -118,6 +121,7 @@ void main() {
 This approach creates an anonymous subclass and uses an instance initializer  
 block to populate the map. While convenient, it creates an extra class and  
 should be used judiciously.  
+
 ## The size method
 This example demonstrates determining the number of entries in a HashMap.  
 
@@ -146,6 +150,7 @@ void main() {
 The `size` method returns the number of key-value mappings currently stored in  
 the map. After adding six entries, the size is 6. The `remove` method deletes  
 entries by their keys, reducing the size to 4 after removing two pairs.  
+
 ## The get method
 This example shows how to retrieve values from a HashMap using keys.  
 
@@ -171,6 +176,7 @@ void main() {
 The `get` method retrieves the value associated with a specified key. It takes  
 a key as a parameter and returns the corresponding value. If the key doesn't  
 exist in the map, the method returns `null`.  
+
 ## The clear method
 This example demonstrates removing all entries from a HashMap.  
 
@@ -198,6 +204,7 @@ void main() {
 The `clear` method removes all key-value mappings from the map, leaving it  
 empty. The `isEmpty` method checks whether the map contains any entries,  
 returning `true` if the map has no mappings and `false` otherwise.  
+
 ## The containsKey method
 This example shows how to check if a map contains a specific key.  
 
@@ -233,6 +240,7 @@ The `containsKey` method returns `true` if the map contains a mapping for the
 specified key, and `false` otherwise. This is useful for checking key existence  
 before attempting to retrieve or modify values, preventing potential `null`  
 reference issues.  
+
 ## The replace method
 This example demonstrates replacing values in a HashMap.  
 
@@ -259,6 +267,7 @@ newValue)`, replaces the entry only if the current value matches the specified
 old value. In the example, the first replacement succeeds unconditionally, the  
 second fails because "country" isn't mapped to "Russia", and the third succeeds  
 because the old value matches.  
+
 ## Convert HashMap to List
 This example shows how to convert HashMap entries into a list.  
 
@@ -282,6 +291,7 @@ The `entrySet` method returns a `Set` view of all mappings in the map. This
 set can be passed directly to the `ArrayList` constructor to create a list of  
 entries. This conversion is useful when you need list-specific operations like  
 indexed access or sorting on map entries.  
+
 ## Iteration with forEach
 This example demonstrates iterating over map entries using forEach.  
 
@@ -303,6 +313,7 @@ void main() {
 The `forEach` method accepts a `BiConsumer` that processes each key-value pair  
 in the map. The lambda expression `(k, v) -> IO.println(k + ": " + v)` is  
 executed for each entry, making it a concise way to iterate over all mappings.  
+
 ## Iteration with enhanced for loop
 This example shows iterating over a HashMap with an enhanced for loop.  
 
@@ -327,6 +338,7 @@ The enhanced for loop iterates over the entry set returned by `entrySet`. In
 each iteration, a `Map.Entry` object is assigned to the `pair` variable. The  
 `getKey` and `getValue` methods extract the key and value from each entry. The  
 `var` keyword simplifies the code by inferring the entry type automatically.  
+
 ## Iteration over keys
 This example demonstrates iterating over only the keys of a HashMap.  
 
@@ -350,6 +362,7 @@ The `keySet` method returns a `Set` view of all keys in the map. Since keys
 must be unique, they are returned as a `Set` rather than a collection that  
 allows duplicates. The `forEach` method then iterates over this set, printing  
 each key to the console.  
+
 ## Iteration over values
 This example shows how to iterate over only the values of a HashMap.  
 
@@ -373,6 +386,7 @@ The `values` method returns a `Collection` view of all values in the map.
 Unlike keys, values don't need to be unique, so they're returned as a  
 `Collection` rather than a `Set`. This allows multiple keys to map to the same  
 value without restriction.  
+
 ## Filtering HashMap
 This example demonstrates filtering a HashMap using the Stream API.  
 
@@ -401,6 +415,7 @@ The Stream API's `filter` method allows selective processing of map entries.
 First, `entrySet().stream()` creates a stream of entries. The `filter` method  
 keeps only entries whose values have a length of 6 characters. Finally,  
 `Collectors.toMap` collects the filtered entries back into a new HashMap.  
+
 ## List of maps
 This example demonstrates creating and working with a list of HashMap objects.  
 
