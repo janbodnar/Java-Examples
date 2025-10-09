@@ -4,10 +4,7 @@ This guide demonstrates various looping constructs in Java, from basic to
 advanced patterns.  
 
 ## Basic for loop
-
-Demonstrates the classic for loop with initialization, condition, and  
-increment.  
-
+This example demonstrates the classic `for` loop with an initializer, a condition, and an incrementor.
 ```java
 void main() {
 
@@ -16,13 +13,12 @@ void main() {
     }
 }
 ```
-
-The basic for loop iterates from 0 to 4, printing each value.  
+The loop initializes a counter `i` to 0, continues as long as `i` is less than 5,
+and increments `i` after each iteration. This structure is ideal for situations
+where the number of iterations is known beforehand.
 
 ## Enhanced for-each loop
-
-Shows iteration over a collection using the enhanced for-each syntax.  
-
+This example shows how to iterate over a collection using the enhanced `for-each` loop.
 ```java
 void main() {
 
@@ -34,14 +30,12 @@ void main() {
     }
 }
 ```
-
-The enhanced for-each loop simplifies iteration over collections without  
-needing explicit index management.  
+The `for-each` loop provides a simpler and more readable way to access each
+element in a collection, like a `List`. It handles the underlying iteration
+mechanics, so you don't need to manage an index variable.
 
 ## While loop
-
-Demonstrates a while loop with a condition checked before each iteration.  
-
+This example demonstrates a `while` loop that continues as long as its condition is true.
 ```java
 void main() {
 
@@ -53,14 +47,12 @@ void main() {
     }
 }
 ```
-
-The while loop continues as long as the condition remains true.  
+The loop checks the condition `count < 5` before each iteration. It is useful
+when the number of iterations is not known in advance, and the loop depends on a
+state that changes within the loop body.
 
 ## Do-while loop
-
-Shows a do-while loop that executes at least once before checking the  
-condition.  
-
+This example shows a `do-while` loop, which guarantees the loop body is executed at least once.
 ```java
 void main() {
 
@@ -72,14 +64,12 @@ void main() {
     } while (count < 5);
 }
 ```
-
-The do-while loop guarantees at least one execution before evaluating the  
-condition.  
+The condition `count < 5` is checked after the loop body runs. This makes it
+suitable for scenarios where an action must be performed at least once,
+regardless of the condition.
 
 ## Loop with break
-
-Demonstrates using break to exit a loop early.  
-
+This example demonstrates using the `break` statement to exit a loop prematurely.
 ```java
 void main() {
 
@@ -91,13 +81,12 @@ void main() {
     }
 }
 ```
-
-The break statement immediately exits the loop when the condition is met.  
+The loop is designed to run ten times, but the `break` statement causes it to
+terminate immediately when `i` equals 5. This is useful for stopping a loop
+when a specific condition has been met.
 
 ## Loop with continue
-
-Shows using continue to skip the current iteration.  
-
+This example shows using the `continue` statement to skip the current iteration of a loop.
 ```java
 void main() {
 
@@ -109,14 +98,12 @@ void main() {
     }
 }
 ```
-
-The continue statement skips the rest of the current iteration and proceeds  
-to the next one.  
+When `i` is 2, the `continue` statement is executed, and the rest of the loop
+body is skipped for that iteration. The loop then proceeds with the next value
+of `i`, which is 3.
 
 ## Nested loops
-
-Demonstrates nested loops for multi-dimensional iteration.  
-
+This example demonstrates nested `for` loops to iterate over a two-dimensional space.
 ```java
 void main() {
 
@@ -127,13 +114,12 @@ void main() {
     }
 }
 ```
-
-Nested loops allow iteration over multiple dimensions or combinations.  
+The outer loop controls the rows (`i`), and the inner loop controls the columns (`j`).
+This structure is commonly used for working with grids, matrices, or generating
+combinations of values.
 
 ## Looping over a List
-
-Shows iteration over a List using different approaches.  
-
+This example shows how to iterate over a `List` using a traditional `for` loop with an index.
 ```java
 void main() {
 
@@ -144,13 +130,12 @@ void main() {
     }
 }
 ```
-
-This example demonstrates indexed access to List elements within a loop.  
+This approach gives you access to the index of each element, which can be useful
+if you need to know the position of an item. However, for simple iteration, the
+enhanced for-each loop is often preferred.
 
 ## Looping over a Set
-
-Demonstrates iteration over a Set using for-each loop.  
-
+This example demonstrates iterating over a `Set` using an enhanced `for-each` loop.
 ```java
 void main() {
 
@@ -161,14 +146,12 @@ void main() {
     }
 }
 ```
-
-Sets are iterated using for-each loops since they don't support indexed  
-access.  
+Since a `Set` is an unordered collection and does not support index-based access,
+the `for-each` loop is the standard way to process its elements. The order of
+iteration is not guaranteed.
 
 ## Looping over a Map
-
-Shows iteration over Map entries using for-each loop.  
-
+This example shows how to iterate over the entries of a `Map`.
 ```java
 void main() {
 
@@ -179,13 +162,12 @@ void main() {
     }
 }
 ```
-
-Map iteration accesses both keys and values through entry objects.  
+The `entrySet()` method returns a `Set` of key-value pairs, which can then be
+iterated over. This approach provides access to both the key and the value for
+each entry in the map.
 
 ## Labeled break
-
-Demonstrates using labeled break to exit from nested loops.  
-
+This example demonstrates using a labeled `break` to exit from a nested loop structure.
 ```java
 void main() {
 
@@ -199,14 +181,12 @@ void main() {
     }
 }
 ```
-
-Labeled break allows breaking out of a specific outer loop from within  
-nested loops.  
+The `outer:` label identifies the outer loop. When `break outer;` is executed,
+it terminates not just the inner loop, but the labeled outer loop as well,
+providing precise control over nested loop flow.
 
 ## Labeled continue
-
-Shows using labeled continue to skip to the next iteration of an outer loop.  
-
+This example shows how a labeled `continue` can skip to the next iteration of an outer loop.
 ```java
 void main() {
 
@@ -220,13 +200,12 @@ void main() {
     }
 }
 ```
-
-Labeled continue skips to the next iteration of the specified outer loop.  
+When `j` is 1, `continue outer;` is called, causing the inner loop to terminate
+for the current `i` and execution to jump to the next iteration of the outer loop.
+This is useful for skipping entire sub-iterations.
 
 ## Reverse iteration
-
-Demonstrates iterating in reverse order.  
-
+This example demonstrates a `for` loop that counts down instead of up.
 ```java
 void main() {
 
@@ -235,13 +214,12 @@ void main() {
     }
 }
 ```
-
-Reverse iteration counts down by decrementing the loop variable.  
+By initializing the counter to a higher value and decrementing it (`i--`), the
+loop iterates in reverse order. This is useful for tasks like a countdown or
+processing elements from end to start.
 
 ## Infinite loop with break
-
-Shows an infinite loop with an explicit exit condition.  
-
+This example shows how to create an infinite loop that is terminated by a `break` statement.
 ```java
 void main() {
 
@@ -257,13 +235,12 @@ void main() {
     }
 }
 ```
-
-Infinite loops use explicit break conditions to terminate execution.  
+The `while (true)` creates a loop that would run forever on its own. An `if`
+statement inside the loop provides a condition to `break` out, ensuring the
+program does not get stuck.
 
 ## Step increment
-
-Demonstrates looping with custom step increments.  
-
+This example demonstrates a `for` loop with a custom step increment.
 ```java
 void main() {
 
@@ -272,13 +249,12 @@ void main() {
     }
 }
 ```
-
-Custom step increments allow skipping values in a predictable pattern.  
+Instead of incrementing by one, the loop variable `i` is increased by 5 in each
+iteration (`i += 5`). This is useful for processing elements at regular intervals
+within a range.
 
 ## Factorial calculation
-
-Shows calculating factorial using a loop.  
-
+This example shows how to calculate the factorial of a number using a loop.
 ```java
 void main() {
 
@@ -292,13 +268,12 @@ void main() {
     IO.println("Factorial of " + n + " is " + factorial);
 }
 ```
-
-The factorial algorithm multiplies consecutive integers from 1 to n.  
+The loop multiplies the numbers from 1 up to `n` to compute the factorial. This
+is a classic example of using a loop to accumulate a result over a series of
+iterations.
 
 ## Fibonacci sequence
-
-Demonstrates generating Fibonacci numbers using a loop.  
-
+This example demonstrates generating the Fibonacci sequence using a loop.
 ```java
 void main() {
 
@@ -315,13 +290,12 @@ void main() {
     }
 }
 ```
-
-The Fibonacci loop generates each number by summing the previous two.  
+The loop calculates each new number by summing the two preceding ones. It uses
+three variables to keep track of the current number, the next number, and their
+sum, progressively building the sequence.
 
 ## Sum of array elements
-
-Shows calculating the sum of array elements.  
-
+This example shows how to calculate the sum of elements in a collection.
 ```java
 void main() {
 
@@ -335,13 +309,12 @@ void main() {
     IO.println("Sum: " + sum);
 }
 ```
-
-This pattern accumulates values from a collection into a single result.  
+The `for-each` loop iterates through each number in the list and adds it to a
+running total. This is a fundamental looping pattern for aggregating data from
+a collection.
 
 ## Finding maximum value
-
-Demonstrates finding the maximum value in a collection.  
-
+This example demonstrates how to find the maximum value in a list.
 ```java
 void main() {
 
@@ -357,14 +330,12 @@ void main() {
     IO.println("Maximum: " + max);
 }
 ```
-
-The maximum-finding algorithm compares each element to track the largest  
-value.  
+The loop iterates through the numbers, comparing each one to the current maximum
+found so far. If a larger number is found, it becomes the new maximum, ensuring
+the largest value is identified.
 
 ## Multiplication table
-
-Shows generating a multiplication table using nested loops.  
-
+This example shows how to generate a multiplication table using nested loops.
 ```java
 void main() {
 
@@ -378,13 +349,12 @@ void main() {
     }
 }
 ```
-
-Nested loops create a two-dimensional multiplication table.  
+The outer loop iterates through the rows, and the inner loop iterates through the
+columns. The product of the row and column numbers is printed, forming a grid-like
+multiplication table.
 
 ## Prime number check
-
-Demonstrates checking if a number is prime using a loop.  
-
+This example demonstrates how to check if a number is prime using a loop.
 ```java
 void main() {
 
@@ -401,13 +371,12 @@ void main() {
     IO.println(number + " is prime: " + isPrime);
 }
 ```
-
-The prime check loop tests divisibility up to the square root of the number.  
+The loop tests for divisibility by numbers from 2 up to the square root of the
+target number. If a divisor is found, the number is not prime; otherwise, it is.
+This is an efficient algorithm for primality testing.
 
 ## Iterating with ArrayList
-
-Shows modifying a mutable list during iteration.  
-
+This example shows how to populate and then iterate over a mutable `ArrayList`.
 ```java
 void main() {
 
@@ -422,13 +391,11 @@ void main() {
     }
 }
 ```
-
-This example demonstrates populating and iterating over a mutable ArrayList.  
+First, a `for` loop is used to add elements to the `ArrayList`. Then, an enhanced
+`for-each` loop is used to read and print each of the elements that were added.
 
 ## Pattern matching in loop
-
-Demonstrates using pattern matching with instanceof in a loop.  
-
+This example demonstrates using pattern matching with `instanceof` inside a loop.
 ```java
 void main() {
 
@@ -445,14 +412,12 @@ void main() {
     }
 }
 ```
-
-Pattern matching with instanceof simplifies type-checking and casting within  
-loops.  
+The loop iterates over a list of mixed-type `Object`s. Pattern matching simplifies
+checking the type of each item and casting it to a variable of the correct type
+in a single, concise step.
 
 ## Enhanced switch in loop
-
-Shows using enhanced switch expressions within a loop.  
-
+This example shows how to use an enhanced `switch` expression inside a loop.
 ```java
 void main() {
 
@@ -467,14 +432,12 @@ void main() {
     }
 }
 ```
-
-Enhanced switch expressions provide concise value assignments based on  
-conditions.  
+For each day in the list, the `switch` expression determines whether it is a
+"Weekday" or "Weekend". This provides a clean and readable way to perform
+conditional logic on elements during iteration.
 
 ## Iterator pattern
-
-Demonstrates explicit iterator usage for collection traversal.  
-
+This example demonstrates using an explicit `Iterator` to traverse a collection.
 ```java
 void main() {
 
@@ -487,5 +450,6 @@ void main() {
     }
 }
 ```
-
-Explicit iterators provide fine-grained control over collection traversal.
+The `Iterator` pattern provides a standard way to loop through a collection's
+elements. Using `hasNext()` and `next()` gives you fine-grained control, which is
+necessary for operations like removing elements during iteration.

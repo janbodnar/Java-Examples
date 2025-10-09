@@ -19,9 +19,7 @@ operator adds numbers, concatenates strings, or indicates sign. Such
 operators are called **overloaded**.  
 
 ## Sign operators
-
-The sign operators `+` and `-` indicate or change the sign of a value.  
-
+This section demonstrates the `+` and `-` operators for indicating a value's sign.
 ```java
 void main() {
     IO.println(2);
@@ -29,10 +27,9 @@ void main() {
     IO.println(-2);
 }
 ```
-
-The `+` sign indicates a positive number but is usually omitted. The `-`  
-sign indicates a negative number.  
-
+This example shows how the `+` operator can explicitly mark a number as
+positive, though it is usually omitted. The `-` operator is used to indicate
+a negative number.
 ```java
 void main() {
     var a = 1;
@@ -40,14 +37,12 @@ void main() {
     IO.println(-(-a));
 }
 ```
-
-The minus operator changes the sign of a value. Double negation returns  
-the original positive value.  
+The unary minus operator inverts the sign of its operand. Applying it twice,
+as in `-(-a)`, returns the number to its original sign, demonstrating
+the concept of double negation.
 
 ## Multiple assignment
-
-Variables can be assigned values in a single statement.  
-
+This example shows how to declare and initialize multiple variables.
 ```java
 void main() {
     var x = 10;
@@ -57,25 +52,20 @@ void main() {
     IO.println("Sum: " + sum);
 }
 ```
-
-Multiple variables can be declared and initialized separately or together.  
-
+Three integer variables are declared and assigned values in separate statements.
+Their values are then used in an arithmetic expression to calculate their sum,
+which is subsequently printed.
 
 ## Assignment operator
-
-The assignment operator `=` assigns a value to a variable. A **variable**  
-is a placeholder for a value. In mathematics, the `=` operator represents  
-equality, but in programming it performs assignment.  
-
+This section demonstrates the basic assignment operator (`=`).
 ```java
 void main() {
     var x = 1;
     IO.println(x);
 }
 ```
-
-The value 1 is assigned to the variable `x`.  
-
+The `=` operator assigns the value on its right to the variable on its left.
+Here, the integer literal `1` is stored in the variable `x`.
 ```java
 void main() {
     var x = 1;
@@ -83,23 +73,21 @@ void main() {
     IO.println(x);
 }
 ```
-
-This expression adds 1 to the variable `x`. In programming, the right side  
-is evaluated first and then assigned to the left side.  
+In programming, an assignment is an action, not a statement of equality.
+The expression on the right (`x + 1`) is evaluated first, and its result is then
+assigned back to the `x` variable.
 
 ## String concatenation
-
-In Java, the `+` operator concatenates strings.  
-
+This section shows how the `+` operator is used to concatenate strings.
 ```java
 void main() {
     IO.println("Return " + "of " + "the king.");
     IO.println("Return".concat(" of").concat(" the king."));
 }
 ```
-
-Strings are joined using the `+` operator or the `concat` method.  
-
+The `+` operator provides a convenient way to join string literals. An alternative
+is to use the `concat()` method, which achieves the same result but can be chained
+for multiple concatenations.
 ```java
 void main() {
     var first = "Hello";
@@ -108,14 +96,11 @@ void main() {
     IO.println(result);
 }
 ```
-
-Multiple strings can be combined using the concatenation operator.  
+String variables can also be concatenated with string literals to build a new string.
+This example combines two variables and a space to form a complete greeting.
 
 ## Increment and decrement operators
-
-Incrementing or decrementing by one is common in programming. Java provides  
-the `++` and `--` operators for this purpose.  
-
+This section demonstrates the `++` and `--` operators for incrementing and decrementing values.
 ```java
 void main() {
     var x = 6;
@@ -127,34 +112,23 @@ void main() {
     IO.println(x);
 }
 ```
-
-The `x++` operator increments `x` by 1. After two increments, `x` equals 8.  
-The `x--` operator decrements `x` by 1, resulting in 7.  
-
+The `++` operator increases the value of a variable by one, and the `--` operator
+decreases it by one. These are common shortcuts for modifying counters in loops
+or other iterative processes.
 ```java
 void main() {
     var a = 5;
-    var b = a++;  // post-increment: b = 5, a = 6
-    var c = ++a;  // pre-increment: c = 7, a = 7
+    var b = a++;
+    var c = ++a;
     IO.println("a: " + a + ", b: " + b + ", c: " + c);
 }
 ```
-
-Post-increment `a++` returns the value before incrementing. Pre-increment  
-`++a` increments first, then returns the new value.  
+The post-increment `a++` uses the value of `a` first and then increments it.
+The pre-increment `++a` increments `a` first and then uses the new value. This
+distinction is important when the operation is part of a larger expression.
 
 ## Arithmetic operators
-
-Java provides the following arithmetic operators:  
-
-| Symbol | Name           |
-|--------|----------------|
-| `+`    | Addition       |
-| `-`    | Subtraction    |
-| `*`    | Multiplication |
-| `/`    | Division       |
-| `%`    | Remainder      |
-
+This section covers the basic arithmetic operators for mathematical calculations.
 ```java
 void main() {
     var a = 10;
@@ -174,24 +148,20 @@ void main() {
     IO.println("Remainder: " + rem);
 }
 ```
-
-The example demonstrates basic arithmetic operations familiar from  
-mathematics.  
-
+This example showcases the standard arithmetic operators: addition (`+`),
+subtraction (`-`), multiplication (`*`), division (`/`), and remainder (`%`).
+These operators form the basis of most numerical computations.
 ```java
 void main() {
     var result = 9 % 4;
     IO.println("9 modulo 4 = " + result);
 }
 ```
-
-The `%` operator (modulo) finds the remainder of division. For example,  
-9 modulo 4 equals 1 because 4 goes into 9 twice with a remainder of 1.  
+The modulo operator (`%`) calculates the remainder of a division. It is useful for
+tasks like checking for even or odd numbers, or for constraining values within a range.
 
 ## Integer vs floating-point division
-
-Division behaves differently for integers and floating-point numbers.  
-
+This section highlights the difference in behavior between integer and floating-point division.
 ```java
 void main() {
     var intResult = 5 / 2;
@@ -201,11 +171,9 @@ void main() {
     IO.println("Floating-point division: " + floatResult);
 }
 ```
-
-Integer division truncates the decimal part, resulting in 2. When one  
-operand is a double or float, floating-point division is performed,  
-resulting in 2.5.  
-
+When dividing two integers, Java performs integer division, which truncates any
+fractional part. To get a precise floating-point result, at least one of the
+operands must be a `double` or `float`.
 ```java
 void main() {
     var a = 7;
@@ -216,19 +184,12 @@ void main() {
     IO.println("7 / 2 (double): " + floatDiv);
 }
 ```
-
-Casting one operand to `double` ensures floating-point division.  
+Explicitly casting one of the integer operands to a `double` forces the operation
+to be treated as floating-point division. This ensures that the result includes
+any fractional part.
 
 ## Boolean operators
-
-Java has three logical (Boolean) operators:  
-
-| Symbol | Name        |
-|--------|-------------|
-| `&&`   | logical and |
-| `||`   | logical or  |
-| `!`    | negation    |
-
+This section demonstrates the logical operators used with boolean values.
 ```java
 void main() {
     var x = 3;
@@ -242,10 +203,9 @@ void main() {
     }
 }
 ```
-
-Boolean values are often used in conditional statements. Relational  
-operators like `>` and `==` always return boolean values.  
-
+Logical operators are fundamental for decision-making in programs. They are used
+with relational operators (`>`, `==`, etc.) to create conditions for `if` statements
+and other control flow structures.
 ```java
 void main() {
     var a = true && true;
@@ -259,16 +219,11 @@ void main() {
     IO.println("false && false: " + d);
 }
 ```
-
-The logical and (`&&`) operator evaluates to `true` only when both  
-operands are `true`.  
-
+The logical AND (`&&`) operator evaluates to `true` only if both of its operands are `true`.
+This is used to check if multiple conditions are met simultaneously.
 
 ## Logical OR operator
-
-The logical or (`||`) operator evaluates to `true` if either operand is  
-`true`.  
-
+This section shows the logical OR (`||`) operator.
 ```java
 void main() {
     var a = true || true;
@@ -282,15 +237,11 @@ void main() {
     IO.println("false || false: " + d);
 }
 ```
-
-Three of the four expressions evaluate to `true`. Only when both operands  
-are `false` does the result become `false`.  
+The logical OR (`||`) operator evaluates to `true` if at least one of its operands is `true`.
+It is useful for checking if any one of several conditions is satisfied.
 
 ## Negation operator
-
-The negation operator `!` reverses a boolean value: `true` becomes `false`  
-and `false` becomes `true`.  
-
+This section demonstrates the negation operator (`!`), which inverts a boolean value.
 ```java
 void main() {
     IO.println(!true);
@@ -298,16 +249,11 @@ void main() {
     IO.println(!(4 < 3));
 }
 ```
-
-The negation operator is useful for inverting conditions.  
+The `!` operator flips `true` to `false` and `false` to `true`. It is useful for
+checking for the absence of a condition, which can sometimes make logic clearer.
 
 ## Short-circuit evaluation
-
-The `||` and `&&` operators use **short-circuit evaluation**. The second  
-operand is only evaluated if needed. For `&&`, if the first operand is  
-`false`, the result is always `false`. For `||`, if the first operand is  
-`true`, the result is always `true`. This improves performance.  
-
+This section explains how logical operators use short-circuiting to improve performance.
 ```java
 boolean checkOne() {
     IO.println("Inside checkOne");
@@ -331,23 +277,12 @@ void main() {
     }
 }
 ```
-
-With `&&`, `checkTwo` is never called because `checkOne` returns `false`.  
-With `||`, `checkOne` is never called because `checkTwo` returns `true`.  
+The second operand of `&&` is only evaluated if the first is `true`, and the second
+operand of `||` is only evaluated if the first is `false`. This avoids unnecessary
+computations and can be used to prevent errors, like checking a null object.
 
 ## Relational operators
-
-Relational operators compare values and always return a boolean value.  
-
-| Symbol | Meaning                 |
-|--------|-------------------------|
-| `<`    | less than               |
-| `<=`   | less than or equal to   |
-| `>`    | greater than            |
-| `>=`   | greater than or equal to|
-| `==`   | equal to                |
-| `!=`   | not equal to            |
-
+This section covers relational operators, which compare two values.
 ```java
 void main() {
     IO.println("3 < 4: " + (3 < 4));
@@ -356,10 +291,9 @@ void main() {
     IO.println("4 != 3: " + (4 != 3));
 }
 ```
-
-These expressions compare integer values. In Java, `==` compares numerical  
-values for equality (some languages use `=` for this purpose).  
-
+Relational operators like `<`, `==`, and `!=` are used to compare operands and always
+produce a `boolean` result. They are the building blocks of conditional logic in `if`
+statements and loops.
 ```java
 void main() {
     var age = 25;
@@ -371,14 +305,11 @@ void main() {
     }
 }
 ```
-
-Relational operators can be combined with logical operators for complex  
-conditions.  
+This example combines relational and logical operators to check if a value falls
+within a specific range. This is a very common pattern for data validation.
 
 ## String equality with operators
-
-Comparing strings requires special attention in Java.  
-
+This section highlights the correct way to compare strings for equality.
 ```java
 void main() {
     var str1 = "hello";
@@ -390,57 +321,41 @@ void main() {
     IO.println("str1.equals(str3): " + str1.equals(str3));
 }
 ```
-
-The `==` operator compares references, while `equals` compares content.  
-For strings, use `equals` to compare values.  
+The `==` operator compares object references (memory addresses), not their content.
+To compare the actual character sequences of strings, the `equals()` method must be used.
 
 ## Bitwise operators
-
-Bitwise operators work with individual bits of binary numbers. These  
-operators are less commonly used in high-level programming.  
-
-| Symbol | Meaning             |
-|--------|---------------------|
-| `~`    | bitwise negation    |
-| `^`    | bitwise exclusive or|
-| `&`    | bitwise and         |
-| `|`    | bitwise or          |
-
+This section demonstrates bitwise operators that work on the individual bits of numbers.
 ```java
 void main() {
-    IO.println(~7);   // prints -8
-    IO.println(~-8);  // prints 7
+    IO.println(~7);
+    IO.println(~-8);
 }
 ```
-
-The bitwise negation operator changes each 1 to 0 and 0 to 1. One bit  
-determines the sign; negating twice returns the original value.  
-
+The bitwise NOT (`~`) operator inverts all the bits of its operand. This is a
+low-level operation that is different from logical negation.
 ```java
 void main() {
-    var result1 = 6 & 3;  // bitwise AND
-    var result2 = 6 | 3;  // bitwise OR
-    var result3 = 6 ^ 3;  // bitwise XOR
+    var result1 = 6 & 3;
+    var result2 = 6 | 3;
+    var result3 = 6 ^ 3;
     
     IO.println("6 & 3 = " + result1);
     IO.println("6 | 3 = " + result2);
     IO.println("6 ^ 3 = " + result3);
 }
 ```
-
-Bitwise AND: result is 1 only if both bits are 1. Bitwise OR: result is  
-1 if either bit is 1. Bitwise XOR: result is 1 if bits differ.  
+This example shows the bitwise AND, OR, and XOR operators. These are used for tasks
+like setting or clearing specific bits in a number, which is common in low-level
+programming and hardware control.
 
 ## Bit shifting operators
-
-Bit shifting moves bits left or right, effectively multiplying or dividing  
-by powers of 2.  
-
+This section covers bit shifting operators, which move the bits of a number left or right.
 ```java
 void main() {
     var num = 8;
-    var leftShift = num << 1;   // multiply by 2
-    var rightShift = num >> 1;  // divide by 2
+    var leftShift = num << 1;
+    var rightShift = num >> 1;
     
     IO.println("8 << 1 = " + leftShift);
     IO.println("8 >> 1 = " + rightShift);
@@ -448,55 +363,46 @@ void main() {
     IO.println("-8 >>> 1 = " + (-8 >>> 1));
 }
 ```
-
-The `<<` operator shifts bits left (multiplies by 2^n). The `>>` operator  
-shifts right with sign extension. The `>>>` operator shifts right with  
-zero fill, useful for unsigned operations.  
+Shifting bits to the left (`<<`) is equivalent to multiplying by a power of 2, while
+shifting right (`>>`) is like dividing. The `>>>` operator is an "unsigned" right shift
+that fills with zeros, which is important for handling negative numbers as bit patterns.
 
 ## Compound assignment operators
-
-**Compound assignment operators** combine an operation with assignment,  
-providing a shorthand notation.  
-
+This section shows compound assignment operators that combine an operation with an assignment.
 ```java
 void main() {
     var a = 1;
-    a = a + 1;  // longhand
+    a = a + 1;
     IO.println(a);
     
-    a += 5;  // shorthand for a = a + 5
+    a += 5;
     IO.println(a);
     
-    a *= 3;  // shorthand for a = a * 3
+    a *= 3;
     IO.println(a);
 }
 ```
-
-The `+=` operator adds a value to the variable. The `*=` operator  
-multiplies the variable by a value.  
-
+Operators like `+=` and `*=` provide a concise shorthand for modifying a variable's
+value in place. They are equivalent to performing an operation and then assigning the
+result back to the original variable.
 ```java
 void main() {
     var count = 10;
-    count -= 3;  // count = count - 3
+    count -= 3;
     IO.println("After subtraction: " + count);
     
-    count /= 2;  // count = count / 2
+    count /= 2;
     IO.println("After division: " + count);
     
-    count %= 2;  // count = count % 2
+    count %= 2;
     IO.println("Remainder: " + count);
 }
 ```
-
-Other compound operators include: `-=`, `*=`, `/=`, `%=`, `&=`, `|=`,  
-`<<=`, `>>=`.  
+This example demonstrates other common compound assignment operators. They help to make
+code more compact and can sometimes be slightly more efficient.
 
 ## instanceof operator
-
-The `instanceof` operator compares an object to a specified type, returning  
-`true` if the object is an instance of that type.  
-
+This section demonstrates the `instanceof` operator for runtime type checking.
 ```java
 class Base {}
 class Derived extends Base {}
@@ -510,11 +416,9 @@ void main() {
     IO.println("d instanceof Object: " + (d instanceof Object));
 }
 ```
-
-The `Derived` class inherits from `Base`, so `d` is also an instance of  
-`Base`. Every class inherits from `Object`, so `d` is also an instance of  
-`Object`.  
-
+The `instanceof` operator checks if an object is of a certain type, including any of its
+parent types. This is fundamental to polymorphism, allowing code to react differently
+based on an object's actual class at runtime.
 ```java
 void main() {
     Object obj = "Hello";
@@ -524,24 +428,12 @@ void main() {
     }
 }
 ```
-
-Pattern matching with `instanceof` (Java 16+) allows type checking and  
-casting in one expression.  
+Modern Java includes pattern matching for `instanceof`, which combines the type check
+and the cast into a single, safer operation. If the check succeeds, the object is
+assigned to a new, strongly-typed variable.
 
 ## Lambda operator
-
-Java 8 introduced the lambda operator `->` for creating lambda expressions.  
-
-```
-(parameters) -> expression
-(parameters) -> { statements; }
-```
-
-Lambda expressions create concise inline implementations of functional  
-interfaces. Type declaration is optional; the compiler infers types. For  
-single parameters, parentheses are optional. For single expressions, curly  
-braces and return keyword are optional.  
-
+This section introduces the lambda operator (`->`) used for creating lambda expressions.
 ```java
 void main() {
     var words = new String[]{"kind", "massive", "atom", "car", "blue"};
@@ -549,9 +441,9 @@ void main() {
     IO.println(java.util.Arrays.toString(words));
 }
 ```
-
-Lambda expressions are commonly used for sorting and filtering operations.  
-
+A lambda expression provides a concise way to implement a functional interface. In this
+example, a lambda is used to provide a custom comparison logic for sorting an array
+of strings.
 ```java
 interface GreetingService {
     void greet(String message);
@@ -563,25 +455,19 @@ void main() {
     gs.greet("Hello there");
 }
 ```
-
-Lambda expressions implement functional interfaces—interfaces with a single  
-abstract method.  
-
+This code defines a functional interface and then implements it using a lambda expression.
+This allows behavior to be treated like data, passed as an argument, and stored in a variable.
 ```java
 void main() {
     java.util.function.Function<Integer, Integer> square = x -> x * x;
     IO.println("5 squared: " + square.apply(5));
 }
 ```
-
-The `Function` interface accepts one argument and produces a result. This  
-lambda computes the square of a number.  
+The `java.util.function` package provides a set of standard functional interfaces. Here,
+a `Function` is used to create a simple lambda that calculates the square of a number.
 
 ## Method reference operator
-
-The double colon operator `::` creates a method reference, providing a  
-shorthand for lambda expressions that call a specific method.  
-
+This section demonstrates the method reference operator (`::`) as a shorthand for some lambdas.
 ```java
 static void greet(String msg) {
     IO.println(msg);
@@ -592,43 +478,34 @@ void main() {
     f.accept("Hello there");
 }
 ```
-
-`Consumer` is a functional interface accepting one argument with no return  
-value. The `::` operator creates a reference to the `greet` method.  
-
+A method reference provides a way to refer to a method without invoking it. It is often
+used as a more readable alternative to a lambda expression that does nothing but call
+an existing method.
 ```java
 void main() {
     var numbers = List.of(1, 2, 3, 4, 5);
     numbers.forEach(IO::println);
 }
 ```
-
-Method references simplify code when passing methods as arguments. This  
-example prints each number using a method reference.  
+This example uses a method reference with the `forEach` method to print each element in a
+list. This is a very common and concise pattern in modern Java for stream processing.
 
 ## Operator precedence
-
-**Operator precedence** determines which operators are evaluated first.  
-Precedence levels prevent ambiguity in expressions.  
-
+This section explains how operator precedence determines the order of operations.
 ```java
 void main() {
-    var result1 = 3 + 5 * 5;  // multiplication first
-    var result2 = (3 + 5) * 5;  // parentheses first
+    var result1 = 3 + 5 * 5;
+    var result2 = (3 + 5) * 5;
     
     IO.println("3 + 5 * 5 = " + result1);
     IO.println("(3 + 5) * 5 = " + result2);
 }
 ```
-
-Multiplication has higher precedence than addition, so `3 + 5 * 5` equals  
-28. Parentheses override precedence, so `(3 + 5) * 5` equals 40.  
+Just like in mathematics, multiplication has a higher precedence than addition, so it is
+performed first. Parentheses can be used to override the default order of operations.
 
 ## Operator precedence table
-
-The following table shows common Java operators ordered by precedence  
-(highest precedence first):  
-
+This table lists the precedence and associativity of common Java operators.
 | Operator                          | Meaning                                    | Associativity  |
 |-----------------------------------|--------------------------------------------|----------------|
 | `[] () .`                         | array access, method call, member access   | Left-to-right  |
@@ -650,10 +527,6 @@ The following table shows common Java operators ordered by precedence
 | `=`                               | simple assignment                          | Right-to-left  |
 | `+= -= *= /= %= &=`               | compound assignment                        | Right-to-left  |
 | `^= |= <<= >>= >>>=`              | compound assignment                        | Right-to-left  |
-
-Operators on the same row have equal precedence. When operators have the  
-same precedence, associativity determines evaluation order.  
-
 ```java
 void main() {
     IO.println(3 + 5 * 5);
@@ -662,30 +535,20 @@ void main() {
     IO.println(!(true | true));
 }
 ```
-
-
-Multiplication has higher precedence than addition. Negation has higher  
-precedence than bitwise OR. Use parentheses to control evaluation order.  
+This example further illustrates how precedence rules affect evaluation. Understanding
+these rules is key to writing correct and predictable code, but using parentheses to make
+the order explicit is often the clearest approach.
 
 ## Associativity rule
-
-When operators have the same precedence, **associativity** determines the  
-evaluation order.  
-
+This section explains how associativity determines the order for operators with the same precedence.
 ```java
 void main() {
     var result = 9 / 3 * 3;
     IO.println("9 / 3 * 3 = " + result);
 }
 ```
-
-Multiplication, division, and modulo are left-to-right associated. The  
-expression evaluates as `(9 / 3) * 3`, resulting in 9, not 1.  
-
-Arithmetic, boolean, relational, and bitwise operators are left-to-right.  
-Assignment, ternary, increment, decrement, unary, negation, bitwise NOT,  
-cast, and object creation operators are right-to-left.  
-
+Since division and multiplication have the same precedence and are left-associative, the
+expression is evaluated from left to right as `(9 / 3) * 3`. This results in `9`, not `1`.
 ```java
 void main() {
     var a = 0;
@@ -701,23 +564,12 @@ void main() {
     IO.println(j);
 }
 ```
-
-Assignment is right-to-left associated, allowing chained assignments.  
-Compound assignment is also right-to-left: the right side is evaluated  
-first, then the compound operator is applied.  
+Assignment operators are right-associative, which allows for chained assignments like
+`a = b = c = 0`. The rightmost assignment happens first, and its result is then assigned
+to the next variable to the left.
 
 ## Ternary operator
-
-The ternary operator `?:` is a conditional operator that selects one of two  
-values based on a condition.  
-
-```
-condition ? value_if_true : value_if_false
-```
-
-If the condition is true, the first value is returned; otherwise, the  
-second value is returned.  
-
+This section demonstrates the ternary operator (`?:`), a concise conditional expression.
 ```java
 void main() {
     var age = 31;
@@ -725,10 +577,8 @@ void main() {
     IO.println("Adult: " + adult);
 }
 ```
-
-This operator is convenient for simple conditional assignments. A person  
-is considered an adult if their age is 18 or greater.  
-
+The ternary operator is a compact alternative to a simple `if-else` statement. It evaluates
+a condition and returns one of two values based on whether the condition is true or false.
 ```java
 void main() {
     var score = 85;
@@ -739,14 +589,12 @@ void main() {
     IO.println("Grade: " + grade);
 }
 ```
-
-Ternary operators can be nested for multiple conditions, though readability  
-may suffer with complex nesting.  
+Ternary operators can be chained to create more complex conditional logic, similar to
+an `if-else if` ladder. While powerful, deep nesting can become difficult to read and
+should be used with caution.
 
 ## Null coalescing with ternary
-
-The ternary operator can provide default values for null references.  
-
+This section shows how the ternary operator can be used to provide default values.
 ```java
 void main() {
     String name = null;
@@ -758,15 +606,12 @@ void main() {
     IO.println("Score status: " + message);
 }
 ```
-
-This pattern provides fallback values when a variable might be null or  
-needs conditional selection based on multiple criteria.  
+A common use for the ternary operator is to provide a fallback value when a variable might
+be `null`. This pattern, often called null coalescing, helps to write more robust code
+that gracefully handles the absence of data.
 
 ## Prime number calculation
-
-This example demonstrates multiple operators working together to calculate  
-prime numbers.  
-
+This example combines multiple operators to find prime numbers.
 ```java
 void main() {
     var nums = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
@@ -802,17 +647,12 @@ void main() {
     IO.println();
 }
 ```
-
-A prime number has exactly two divisors: 1 and itself. We test divisibility  
-by numbers up to the square root of the candidate number. The remainder  
-operator `%` checks divisibility. Values 0 and 1 are not prime. Numbers 2  
-and 3 are prime by definition. The `==` operator has higher precedence than  
-`||`, so no parentheses are needed in `num == 2 || num == 3`.  
+This code demonstrates a practical application of various operators working together.
+It uses relational (`==`), logical (`||`), arithmetic (`%`), and assignment operators
+to implement a primality test algorithm.
 
 ## Combining multiple operators
-
-Complex expressions combine various operators following precedence rules.  
-
+This section shows a complex expression involving multiple operators.
 ```java
 void main() {
     var a = 5;
@@ -829,15 +669,12 @@ void main() {
     IO.println("a = " + a + ", b = " + b + ", c = " + c);
 }
 ```
-
-Understanding operator precedence and side effects is crucial when working  
-with complex expressions. Post-increment returns the old value; pre-  
-increment returns the new value.  
+This example underscores the importance of understanding both operator precedence and
+the side effects of operators like pre/post-increment. The final values of the variables
+depend on the precise order in which these operations are evaluated.
 
 ## Operators with collections
-
-Operators work seamlessly with modern Java collections.  
-
+This section demonstrates using operators in the context of collections.
 ```java
 void main() {
     var numbers = List.of(1, 2, 3, 4, 5);
@@ -854,14 +691,12 @@ void main() {
     IO.println("Average: " + (sum / (double) numbers.size()));
 }
 ```
-
-Compound operators like `+=` and `*=` are frequently used with loops to  
-accumulate values from collections.  
+Compound assignment operators are very convenient for accumulating values when iterating
+over a collection. This example uses them to calculate the sum and product of a list of
+numbers.
 
 ## Logical operators with predicates
-
-Logical operators combine conditions for filtering and validation.  
-
+This section shows how logical operators are used to build complex conditions.
 ```java
 void main() {
     var age = 25;
@@ -875,7 +710,6 @@ void main() {
     IO.println("Needs attention: " + needsAttention);
 }
 ```
-
-Combining boolean operators creates complex validation logic. The `&&`  
-operator ensures all conditions are met, while `||` checks if any condition  
-is true.  
+This example combines multiple boolean variables to create a predicate that represents
+a complex rule. This is a common pattern in business logic and data validation, where
+multiple criteria must be met.

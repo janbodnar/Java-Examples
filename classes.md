@@ -4,7 +4,7 @@ This document contains 60 progressively advanced Java examples demonstrating
 object-oriented programming with classes using modern Java 25 syntax.  
 
 ## Basic class definition
-
+This example defines a simple class to represent a person.
 ```java
 class Person {
     String name;
@@ -18,11 +18,12 @@ void main() {
     IO.println(p.name + " is " + p.age + " years old.");
 }
 ```
-
-Defines a simple class with fields and demonstrates object instantiation.  
+The `Person` class has two fields, `name` and `age`, for storing data.
+An instance of the class is created, its fields are populated, and the
+information is printed to the console.
 
 ## Class with method
-
+This example shows a class containing a method to perform an action.
 ```java
 class Calculator {
     int add(int a, int b) {
@@ -36,11 +37,12 @@ void main() {
     IO.println("Result: " + result);
 }
 ```
-
-Shows a class with a method that performs a calculation and returns a value.  
+The `Calculator` class includes an `add` method that takes two integers,
+sums them, and returns the result. An instance of the calculator is used to
+call the method and display the output.
 
 ## Constructor basics
-
+This example demonstrates a constructor for initializing object state.
 ```java
 class Book {
     String title;
@@ -57,11 +59,12 @@ void main() {
     IO.println(book.title + " by " + book.author);
 }
 ```
-
-Demonstrates a parameterized constructor to initialize object fields.  
+The `Book` class has a constructor that accepts a title and author,
+assigning them to the object's fields upon creation. This ensures that a
+`Book` object is always in a valid state right after instantiation.
 
 ## Multiple constructors
-
+This example shows how a class can have multiple constructors.
 ```java
 class Point {
     int x;
@@ -85,11 +88,12 @@ void main() {
     IO.println("p2: (" + p2.x + "," + p2.y + ")");
 }
 ```
-
-Demonstrates constructor overloading with default and parameterized versions.  
+The `Point` class provides two constructors: a default one that sets
+coordinates to zero and a parameterized one to set them to specific values.
+This flexibility, known as constructor overloading, allows for multiple ways to create an object.
 
 ## This keyword
-
+This example illustrates the use of the `this` keyword to reference the current object.
 ```java
 class Employee {
     String name;
@@ -110,11 +114,12 @@ void main() {
     emp.display();
 }
 ```
-
-Uses the `this` keyword to reference current object instance fields.  
+The `this` keyword is used within the `Employee` constructor to distinguish
+between the class fields and the constructor parameters. It is also used in the
+`display` method to refer to the current instance's fields.
 
 ## Return this for chaining
-
+This example demonstrates returning `this` to enable method chaining.
 ```java
 class Builder {
     String value = "";
@@ -134,11 +139,12 @@ void main() {
     b.append("Hello").append(" ").append("World").print();
 }
 ```
-
-Returns `this` from methods to enable method chaining pattern.  
+The `Builder` class has an `append` method that returns the current instance (`this`).
+This allows multiple `append` calls to be chained together in a single, fluent statement,
+making the code more readable and expressive.
 
 ## Private fields
-
+This example shows how to use private fields to encapsulate data.
 ```java
 class Account {
     private int balance;
@@ -157,11 +163,12 @@ void main() {
     IO.println("Balance: " + acc.getBalance());
 }
 ```
-
-Demonstrates private access modifier for field encapsulation.  
+The `balance` field in the `Account` class is marked as `private`, meaning
+it cannot be accessed directly from outside the class. This enforces encapsulation,
+a core principle of object-oriented programming.
 
 ## Public methods with private fields
-
+This example uses public methods to provide controlled access to private data.
 ```java
 class BankAccount {
     private int balance;
@@ -185,11 +192,12 @@ void main() {
     IO.println("Balance: " + acc.getBalance());
 }
 ```
-
-Uses public methods to provide controlled access to private fields.  
+The `BankAccount` class exposes a public `deposit` method to modify the
+private `balance` field. This ensures that the balance can only be changed
+through a well-defined and controlled interface.
 
 ## Getter and setter methods
-
+This example implements standard getter and setter methods for encapsulation.
 ```java
 class User {
     private String username;
@@ -219,11 +227,12 @@ void main() {
     IO.println(user.getUsername() + ": " + user.getEmail());
 }
 ```
-
-Implements standard getter and setter pattern for data encapsulation.  
+The `User` class provides public "getter" and "setter" methods to access and
+modify its private fields. This pattern gives full control over how the internal
+data of an object is managed.
 
 ## Static fields
-
+This example demonstrates `static` fields that are shared across all instances.
 ```java
 class Counter {
     static int count = 0;
@@ -242,11 +251,12 @@ void main() {
     IO.println("Total counters: " + Counter.count);
 }
 ```
-
-Uses static fields to share data across all instances of a class.  
+The `count` field is `static`, so it belongs to the `Counter` class itself,
+not to any individual instance. It is incremented each time a new object is
+created, effectively tracking the total number of instances.
 
 ## Static methods
-
+This example shows `static` methods that can be called on the class directly.
 ```java
 class MathUtils {
     static int square(int n) {
@@ -263,11 +273,12 @@ void main() {
     IO.println("Cube of 3: " + MathUtils.cube(3));
 }
 ```
-
-Demonstrates static methods that can be called without object instantiation.  
+The `MathUtils` class contains `static` methods that do not depend on any object's
+state. They can be called directly on the class, making them ideal for utility
+functions that operate on their inputs.
 
 ## Static and instance members
-
+This example combines static and instance members in a single class.
 ```java
 class Product {
     static int totalProducts = 0;
@@ -293,11 +304,12 @@ void main() {
     IO.println("Total products: " + Product.totalProducts);
 }
 ```
-
-Combines static and instance members to track object creation.  
+The `Product` class uses an instance field `name` for each product and a `static`
+field `totalProducts` to track the total count. This shows how static and instance
+members can work together to manage both class-level and object-level data.
 
 ## Basic inheritance
-
+This example demonstrates simple inheritance with the `extends` keyword.
 ```java
 class Animal {
     String name;
@@ -322,11 +334,12 @@ void main() {
     dog.makeSound();
 }
 ```
-
-Demonstrates basic inheritance using the `extends` keyword.  
+The `Dog` class inherits from the `Animal` class, gaining its fields and methods.
+This allows the `Dog` object to call the `makeSound` method defined in its parent,
+showcasing the "is-a" relationship.
 
 ## Method overriding
-
+This example shows how a subclass can provide its own version of a parent method.
 ```java
 class Vehicle {
     void start() {
@@ -346,11 +359,12 @@ void main() {
     car.start();
 }
 ```
-
-Shows method overriding with the `@Override` annotation.  
+The `Car` class overrides the `start` method of its `Vehicle` parent to provide a
+more specific implementation. The `@Override` annotation is used to ensure the method
+signature correctly matches the parent's method.
 
 ## Super keyword
-
+This example uses the `super` keyword to interact with the parent class.
 ```java
 class Shape {
     String color;
@@ -384,11 +398,12 @@ void main() {
     circle.display();
 }
 ```
-
-Uses `super` to call parent class constructor and methods.  
+The `Circle` class uses `super(color)` to call its parent's constructor and
+`super.display()` to invoke the parent's method. This allows a subclass to extend,
+rather than completely replace, the functionality of its parent.
 
 ## Protected members
-
+This example demonstrates `protected` members accessible within a class and its subclasses.
 ```java
 class Parent {
     protected String message = "Hello from parent";
@@ -410,11 +425,12 @@ void main() {
     child.display();
 }
 ```
-
-Demonstrates protected access modifier for inheritance hierarchies.  
+The `message` field in `Parent` is `protected`, allowing the `Child` class to access
+it directly. This access modifier is useful for sharing implementation details within an
+inheritance hierarchy without making them public.
 
 ## Abstract class
-
+This example shows an abstract class that cannot be instantiated directly.
 ```java
 abstract class AbstractShape {
     abstract double area();
@@ -444,11 +460,12 @@ void main() {
     rect.describe();
 }
 ```
-
-Shows abstract class with abstract and concrete methods.  
+The `AbstractShape` class defines an `abstract` method `area`, which must be
+implemented by any concrete subclass. This forces subclasses like `Rectangle` to
+provide their own specific logic for the abstract behavior.
 
 ## Interface basics
-
+This example demonstrates implementing an interface to define a contract.
 ```java
 interface Drawable {
     void draw();
@@ -472,11 +489,12 @@ void main() {
     square.draw();
 }
 ```
-
-Demonstrates basic interface implementation.  
+The `Drawable` interface specifies a `draw` method that any implementing class must
+provide. The `Square` class implements this interface, guaranteeing that it has a `draw`
+method as defined by the contract.
 
 ## Multiple interfaces
-
+This example shows a class that implements multiple interfaces.
 ```java
 interface Printable {
     void print();
@@ -504,11 +522,12 @@ void main() {
     printer.scan();
 }
 ```
-
-Shows a class implementing multiple interfaces.  
+The `Printer` class implements both `Printable` and `Scannable`, meaning it must
+provide implementations for the methods defined in both interfaces. This allows a
+class to adopt behaviors from several different contracts.
 
 ## Interface with default method
-
+This example demonstrates an interface with a `default` method providing a base implementation.
 ```java
 interface Logger {
     default void log(String message) {
@@ -531,11 +550,12 @@ void main() {
     logger.logError("Something went wrong");
 }
 ```
-
-Demonstrates interface default methods introduced in Java 8.  
+The `Logger` interface includes a `default` method `log`, which implementing classes
+can use without providing their own version. This allows interfaces to evolve without
+breaking existing implementations.
 
 ## Interface static method
-
+This example shows an interface containing `static` utility methods.
 ```java
 interface StringUtils {
     static String reverse(String str) {
@@ -552,11 +572,12 @@ void main() {
     IO.println("Is empty: " + StringUtils.isEmpty(""));
 }
 ```
-
-Shows static methods in interfaces for utility functions.  
+The `StringUtils` interface provides `static` methods that can be called directly
+on the interface itself. This is a common pattern for grouping related utility functions
+without needing to create a separate helper class.
 
 ## Records basics
-
+This example introduces `record` types for creating simple data carriers.
 ```java
 record Person(String name, int age) {}
 
@@ -565,11 +586,12 @@ void main() {
     IO.println(person.name() + " is " + person.age() + " years old");
 }
 ```
-
-Demonstrates Java records for immutable data carriers.  
+A `record` is a concise way to define an immutable data class, automatically
+providing a constructor, getters, `equals`, `hashCode`, and `toString`.
+This reduces boilerplate code for simple data objects.
 
 ## Records with methods
-
+This example shows how to add custom methods to a `record`.
 ```java
 record Point(int x, int y) {
     double distanceFromOrigin() {
@@ -582,11 +604,12 @@ void main() {
     IO.println("Distance: " + point.distanceFromOrigin());
 }
 ```
-
-Shows records with custom methods while maintaining immutability.  
+While records are primarily for data, you can add instance methods to them,
+such as `distanceFromOrigin`. This allows you to add behavior related to the
+data that the record holds.
 
 ## Record validation
-
+This example demonstrates adding validation logic to a `record`'s constructor.
 ```java
 record Temperature(double celsius) {
     Temperature {
@@ -605,11 +628,12 @@ void main() {
     IO.println(temp.celsius() + "C = " + temp.fahrenheit() + "F");
 }
 ```
-
-Demonstrates compact constructor validation in records.  
+A compact constructor inside the `Temperature` record is used to validate the
+input `celsius` value. This ensures that an instance of the record can never be
+created in an invalid state.
 
 ## Equals and hashCode
-
+This example shows how to override `equals` and `hashCode` for custom equality logic.
 ```java
 class Item {
     String name;
@@ -639,11 +663,12 @@ void main() {
     IO.println("Equal: " + item1.equals(item2));
 }
 ```
-
-Implements `equals` and `hashCode` for proper object comparison.  
+The `Item` class provides its own `equals` and `hashCode` methods to define object
+equality based on `name` and `code`. This is crucial for collections like `HashMap`
+and `HashSet` to work correctly.
 
 ## ToString method
-
+This example demonstrates overriding the `toString` method for a custom string representation.
 ```java
 class Movie {
     String title;
@@ -665,11 +690,12 @@ void main() {
     IO.println(movie);
 }
 ```
-
-Overrides `toString` to provide meaningful string representation.  
+The `Movie` class overrides `toString` to return a formatted string with its title
+and year. This is useful for debugging and logging, as it provides more meaningful
+output when an object is printed.
 
 ## Inner class
-
+This example shows a class defined within another class.
 ```java
 class Outer {
     private String message = "Hello";
@@ -691,11 +717,12 @@ void main() {
     outer.createInner();
 }
 ```
-
-Demonstrates inner class with access to outer class members.  
+The `Inner` class is defined inside the `Outer` class and has direct access
+to its private members, like the `message` field. An inner class is associated
+with an instance of the outer class.
 
 ## Static nested class
-
+This example demonstrates a `static` class nested within another class.
 ```java
 class Container {
     static class Node {
@@ -716,11 +743,12 @@ void main() {
     node.display();
 }
 ```
-
-Shows static nested class that doesn't require outer instance.  
+A `static` nested class like `Node` does not have access to the instance members of its
+outer class. It is essentially a regular class that is namespaced within another,
+often used for helper or implementation details.
 
 ## Anonymous class
-
+This example shows how to create a one-time class without a name.
 ```java
 interface Greeting {
     void greet(String name);
@@ -737,11 +765,12 @@ void main() {
     greeting.greet("Alice");
 }
 ```
-
-Creates an anonymous class implementing an interface inline.  
+An anonymous class is created to provide an inline implementation of the `Greeting`
+interface. This is a concise way to create an object with a specific, one-off
+implementation, often used for event listeners.
 
 ## Local class
-
+This example demonstrates a class defined inside a method.
 ```java
 void main() {
     class LocalCounter {
@@ -762,11 +791,12 @@ void main() {
     counter.display();
 }
 ```
-
-Demonstrates a local class defined within a method.  
+The `LocalCounter` class is defined within the scope of the `main` method and is only
+visible inside it. This is useful for creating a small helper class that is only needed
+for a short period within a single method.
 
 ## Pattern matching instanceof
-
+This example uses pattern matching with `instanceof` for cleaner type checks.
 ```java
 class Animal {}
 class Dog extends Animal {
@@ -790,11 +820,12 @@ void main() {
     }
 }
 ```
-
-Uses pattern matching with `instanceof` for type testing and casting.  
+Pattern matching combines the type check and the cast into a single operation.
+If `animal` is a `Dog`, it is automatically cast to the `dog` variable, making
+the code more concise and less error-prone.
 
 ## Sealed classes
-
+This example introduces `sealed` classes to restrict which other classes may extend them.
 ```java
 sealed class Result permits Success, Failure {}
 
@@ -816,11 +847,12 @@ void main() {
     }
 }
 ```
-
-Demonstrates sealed classes for restricted inheritance hierarchies.  
+The `Result` class is `sealed` and only permits `Success` and `Failure` to extend it.
+This provides more control over an inheritance hierarchy, which is especially useful
+in combination with pattern matching.
 
 ## Immutable class
-
+This example shows how to create a class whose state cannot be changed after creation.
 ```java
 final class ImmutablePoint {
     private final int x;
@@ -846,11 +878,12 @@ void main() {
     IO.println("p2: (" + p2.getX() + "," + p2.getY() + ")");
 }
 ```
-
-Creates an immutable class using final fields and defensive copying.  
+The `ImmutablePoint` class has `final` fields and its `move` method returns a new
+instance instead of modifying the existing one. Immutability makes objects inherently
+thread-safe and easier to reason about.
 
 ## Builder pattern
-
+This example implements the Builder pattern for constructing complex objects.
 ```java
 class Car {
     private String brand;
@@ -898,11 +931,12 @@ void main() {
     IO.println(car);
 }
 ```
-
-Implements the builder pattern for flexible object construction.  
+The `Builder` pattern provides a flexible way to create an object by separating the
+construction process from its representation. This is especially useful when an object
+has many optional parameters or a complex setup.
 
 ## Singleton pattern
-
+This example demonstrates the Singleton pattern to ensure only one instance of a class exists.
 ```java
 class Singleton {
     private static Singleton instance;
@@ -937,11 +971,12 @@ void main() {
     IO.println("Same instance: " + (s1 == s2));
 }
 ```
-
-Demonstrates singleton pattern ensuring single instance per class.  
+The `Singleton` class has a private constructor and a static `getInstance` method that
+returns the single, shared instance. This pattern is useful for managing resources like
+database connections or configuration settings.
 
 ## Generic class
-
+This example shows a generic class that can work with any data type.
 ```java
 class Box<T> {
     private T item;
@@ -965,11 +1000,12 @@ void main() {
     IO.println(intBox.get());
 }
 ```
-
-Shows generic class for type-safe containers.  
+The `Box<T>` class uses a type parameter `T` to create a type-safe container. This
+allows the same class to be used for storing a `String`, an `Integer`, or any other
+object type without sacrificing type safety.
 
 ## Bounded type parameters
-
+This example uses bounded type parameters to restrict the types that can be used.
 ```java
 class NumberBox<T extends Number> {
     private T number;
@@ -991,11 +1027,12 @@ void main() {
     IO.println("Double value: " + doubleBox.doubleValue());
 }
 ```
-
-Uses bounded type parameters to restrict generic types.  
+The `NumberBox` class uses `<T extends Number>` to specify that `T` must be a subclass
+of `Number`. This allows the class to call methods defined in `Number`, like `doubleValue`,
+while still maintaining generic flexibility.
 
 ## Composition over inheritance
-
+This example demonstrates using composition as a flexible alternative to inheritance.
 ```java
 class Engine {
     void start() {
@@ -1021,11 +1058,12 @@ void main() {
     car.start();
 }
 ```
-
-Demonstrates composition as an alternative to inheritance.  
+Instead of inheriting from `Engine`, the `Car` class contains an `Engine` instance.
+This "has-a" relationship is often more flexible than the "is-a" relationship of
+inheritance, allowing for greater modularity.
 
 ## Interface segregation
-
+This example applies the Interface Segregation Principle for more focused interfaces.
 ```java
 interface Readable {
     String read();
@@ -1055,11 +1093,12 @@ void main() {
     IO.println(file.read());
 }
 ```
-
-Applies interface segregation principle with focused interfaces.  
+Instead of one large interface, `Readable` and `Writable` define separate behaviors.
+This allows a class to implement only the functionalities it needs, leading to more
+decoupled and maintainable code.
 
 ## Dependency injection
-
+This example shows dependency injection to decouple components.
 ```java
 interface MessageService {
     void send(String message);
@@ -1090,11 +1129,12 @@ void main() {
     notification.notify("Hello!");
 }
 ```
-
-Shows constructor-based dependency injection for loose coupling.  
+The `Notification` class receives its `MessageService` dependency through its constructor.
+This decouples `Notification` from a specific implementation like `EmailService`, making
+the system more modular and easier to test.
 
 ## Factory pattern
-
+This example implements the Factory pattern to create objects.
 ```java
 interface Shape {
     void draw();
@@ -1131,11 +1171,12 @@ void main() {
     square.draw();
 }
 ```
-
-Implements factory pattern using enhanced switch expressions.  
+The `ShapeFactory` centralizes the logic for creating different `Shape` objects.
+This decouples the client code from the specific classes being instantiated, making it
+easier to add new shapes in the future.
 
 ## Observer pattern
-
+This example demonstrates the Observer pattern for event-driven notifications.
 ```java
 interface Observer {
     void update(String message);
@@ -1175,11 +1216,12 @@ void main() {
     subject.notifyObservers("Hello Observers!");
 }
 ```
-
-Demonstrates observer pattern for event notification system.  
+The `Subject` maintains a list of `Observer` objects and notifies them of any changes.
+This creates a one-to-many dependency where observers are automatically updated, promoting
+loose coupling between components.
 
 ## Strategy pattern
-
+This example implements the Strategy pattern to make algorithms interchangeable.
 ```java
 interface SortStrategy {
     void sort(int[] array);
@@ -1220,11 +1262,12 @@ void main() {
     sorter.sort(new int[]{5, 2, 8, 1});
 }
 ```
-
-Implements strategy pattern for interchangeable algorithms.  
+The `Sorter` class can use different sorting algorithms (`BubbleSort`, `QuickSort`) by
+swapping out its `SortStrategy` object. This pattern allows the algorithm to be selected
+at runtime, independent of the client that uses it.
 
 ## Command pattern
-
+This example shows the Command pattern to encapsulate a request as an object.
 ```java
 interface Command {
     void execute();
@@ -1275,11 +1318,12 @@ void main() {
     offCommand.execute();
 }
 ```
-
-Shows command pattern for encapsulating requests as objects.  
+The `LightOnCommand` and `LightOffCommand` objects encapsulate the action of turning a light
+on or off. This allows requests to be passed around, queued, or logged, decoupling the
+sender of a request from its receiver.
 
 ## Fluent interface
-
+This example creates a fluent interface for more readable and chainable method calls.
 ```java
 class Query {
     private String table;
@@ -1317,11 +1361,12 @@ void main() {
         .execute();
 }
 ```
-
-Creates a fluent interface for readable method chaining.  
+The `Query` class methods return the instance itself, allowing calls to be chained
+together in a natural, sentence-like way. This API style makes the code more intuitive
+and easier to read.
 
 ## Enum with methods
-
+This example demonstrates an `enum` with methods to add behavior.
 ```java
 enum Day {
     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
@@ -1341,11 +1386,12 @@ void main() {
     IO.println(today + " is weekday: " + today.isWeekday());
 }
 ```
-
-Demonstrates enums with instance methods for behavior.  
+The `Day` enum includes `isWeekend` and `isWeekday` methods, allowing it to encapsulate
+not just values but also the logic associated with them. This makes enums more powerful
+than simple collections of constants.
 
 ## Enum with fields and constructor
-
+This example shows an `enum` with fields, a constructor, and methods.
 ```java
 enum Planet {
     MERCURY(3.303e23, 2.4397e6),
@@ -1371,11 +1417,12 @@ void main() {
     IO.println("Earth gravity: " + earth.surfaceGravity());
 }
 ```
-
-Shows enums with fields, constructor, and calculated properties.  
+The `Planet` enum stores data for each constant and uses a method to calculate a value.
+This demonstrates how enums can represent a set of complex, constant objects, each with
+its own state and behavior.
 
 ## Functional interface with lambda
-
+This example uses a functional interface with a lambda expression to pass behavior.
 ```java
 @FunctionalInterface
 interface Calculator {
@@ -1393,11 +1440,12 @@ void main() {
     Operations.perform(5, 3, (a, b) -> a * b);
 }
 ```
-
-Uses functional interface with lambda expressions for behavior passing.  
+The `Calculator` interface is marked as `@FunctionalInterface`, allowing it to be
+implemented by a lambda expression. This provides a concise way to pass behavior as if
+it were data, a core concept of functional programming.
 
 ## Method reference
-
+This example demonstrates method references as a shorthand for certain lambdas.
 ```java
 class StringProcessor {
     static String toUpperCase(String str) {
@@ -1420,11 +1468,12 @@ void main() {
     words.forEach(processor::process);
 }
 ```
-
-Demonstrates method references for concise functional programming.  
+Method references like `StringProcessor::toUpperCase` and `IO::println` provide a more
+compact and readable way to write lambda expressions that simply call an existing method.
+They make functional-style code even more concise.
 
 ## Record with List field
-
+This example shows a `record` that contains a collection field.
 ```java
 record ShoppingCart(List<String> items) {
     int itemCount() {
@@ -1444,11 +1493,12 @@ void main() {
     cart.display();
 }
 ```
-
-Creates a record with collection field and custom methods.  
+The `ShoppingCart` record holds a list of items, demonstrating that records can
+manage complex data structures. Custom methods like `itemCount` can be added to provide
+behavior related to the record's state.
 
 ## Nested records
-
+This example demonstrates composition by nesting one `record` inside another.
 ```java
 record Address(String street, String city) {}
 
@@ -1464,11 +1514,12 @@ void main() {
     IO.println(person.name() + " lives at " + person.fullAddress());
 }
 ```
-
-Demonstrates composition using nested record types.  
+The `Person` record contains an `Address` record, showcasing how complex, immutable
+data structures can be built by composing smaller records. This promotes a clean and
+declarative style for modeling data.
 
 ## Class with varargs
-
+This example uses varargs to create a method that accepts a variable number of arguments.
 ```java
 class Statistics {
     static double average(int... numbers) {
@@ -1487,11 +1538,12 @@ void main() {
     IO.println("Average: " + Statistics.average(5, 15));
 }
 ```
-
-Uses varargs for methods accepting variable number of arguments.  
+The `average` method's `int... numbers` parameter allows it to be called with any
+number of integer arguments. This provides a convenient way to create flexible methods
+that can handle varying numbers of inputs.
 
 ## Exception handling in class
-
+This example demonstrates how to handle exceptions within a class method.
 ```java
 class Validator {
     static void validateAge(int age) {
@@ -1514,11 +1566,12 @@ void main() {
     }
 }
 ```
-
-Demonstrates exception handling within class methods.  
+The `validateAge` method throws an `IllegalArgumentException` if the input is invalid.
+The calling code in `main` uses a `try-catch` block to handle the potential error,
+making the program more robust.
 
 ## Polymorphism with interfaces
-
+This example shows runtime polymorphism using an interface reference.
 ```java
 interface Payment {
     void pay(double amount);
@@ -1549,11 +1602,12 @@ void main() {
     }
 }
 ```
-
-Shows runtime polymorphism through interface references.  
+A list of `Payment` objects can hold instances of both `CreditCard` and `PayPal`.
+When the `pay` method is called, the correct implementation is chosen at runtime,
+demonstrating the power of polymorphism.
 
 ## Class with static initialization block
-
+This example uses a `static` initialization block for complex setup.
 ```java
 class Configuration {
     static String environment;
@@ -1574,11 +1628,12 @@ void main() {
     Configuration.display();
 }
 ```
-
-Uses static initialization block for complex static setup.  
+The `static` block in the `Configuration` class runs once when the class is first loaded.
+It is useful for performing complex initialization for static fields that cannot be
+done in a single expression.
 
 ## Instance initialization block
-
+This example demonstrates an instance initialization block.
 ```java
 class Connection {
     private int id;
@@ -1600,11 +1655,12 @@ void main() {
     var conn2 = new Connection();
 }
 ```
-
-Demonstrates instance initialization blocks executed before constructors.  
+The code inside the `{}` block runs every time an instance of `Connection` is created,
+just before the constructor is called. It is useful for sharing setup logic between
+multiple constructors.
 
 ## Copy constructor
-
+This example implements a copy constructor to create a new object from an existing one.
 ```java
 class Point {
     int x;
@@ -1633,11 +1689,12 @@ void main() {
     IO.println("p2: " + p2);
 }
 ```
-
-Implements copy constructor for creating object duplicates.  
+The `Point(Point other)` constructor creates a new `Point` object with the same state as
+the one passed in. This is a common pattern for creating a deep copy of a mutable object,
+ensuring the two instances are independent.
 
 ## Comparable interface
-
+This example implements the `Comparable` interface to define a natural ordering.
 ```java
 class Student implements Comparable<Student> {
     String name;
@@ -1669,11 +1726,12 @@ void main() {
     students.forEach(IO::println);
 }
 ```
-
-Implements `Comparable` interface for natural ordering of objects.  
+By implementing `Comparable<Student>`, the `Student` class defines how its instances should
+be sorted, in this case by score. This allows collections of `Student` objects to be
+sorted easily using methods like `Collections.sort()`.
 
 ## Pattern matching with sealed classes
-
+This example combines `sealed` classes with pattern matching in a `switch`.
 ```java
 sealed interface Payment permits CreditCardPayment, CashPayment {}
 
@@ -1698,11 +1756,12 @@ void main() {
     PaymentProcessor.process(new CashPayment(50.0));
 }
 ```
-
-Combines sealed classes with pattern matching in switch expressions.  
+Because `Payment` is a `sealed` interface, the compiler knows all possible subtypes.
+This allows the `switch` statement to be exhaustive without a `default` case, making
+the code safer and more expressive.
 
 ## Custom annotation
-
+This example shows how to define and use a custom annotation.
 ```java
 @interface Author {
     String name();
@@ -1725,5 +1784,6 @@ void main() {
     obj.display();
 }
 ```
-
-Defines and uses custom annotations for metadata on classes.  
+A custom annotation `@Author` is created to add metadata to the `AnnotatedClass`.
+This metadata can then be read at runtime using reflection, allowing for powerful
+frameworks and tools to be built.
