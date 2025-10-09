@@ -1,442 +1,185 @@
 
+# Java List Examples
 
+This document contains progressively complex Java examples demonstrating  
+various List operations, methods, and patterns using modern Java 25 syntax.  
 
-<h1>Java ArrayList</h1>
+Lists are fundamental data structures in Java that represent ordered sequences  
+of elements. The Java Collections Framework provides several implementations,  
+with `ArrayList` being the most commonly used. Lists allow dynamic resizing,  
+provide index-based access, and support a wide range of operations for  
+managing collections of data. Unlike arrays, lists can grow and shrink as  
+needed, making them ideal for situations where the number of elements is  
+unknown or changes frequently.  
 
- 
-<p>
-In this article we show how to work with <code>ArrayList</code> collection in
-Java. Located in the <code>java.util</code> package, <code>ArrayList</code>
-is an important collection of the Java collections framework.
-</p>
-
-<p>
-<dfn>Java collections framework</dfn> is a unified architecture for representing
-and manipulating collections, enabling collections to be manipulated
-independently of implementation details. A <dfn>collection</dfn> is an object
-that represents a group of objects.
-</p>
-
-<h2>ArrayList definition</h2>
-
-<p>
-<code>ArrayList</code> is an ordered sequence of elements. It is dynamic and
-resizable. It provides random access to its elements. Random access means that
-we can grab any element at constant time. An <code>ArrayList</code>
-automatically expands as data is added. Unlike simple arrays, an
-<code>ArrayList</code> can hold data of multiple data types. It permits all
-elements, including <code>null</code>.
-</p>
-
-<p>
-Elements in the <code>ArrayList</code> are accessed via an integer index.
-Indexes are zero-based. Indexing of elements and insertion and deletion at the
-end of the <code>ArrayList</code> takes constant time.
-</p>
-
-<p>
-An <code>ArrayList</code> instance has a capacity. The capacity is the size of
-the array used to store the elements in the list. As elements are added to an
-<code>ArrayList</code>, its capacity grows automatically. Choosing a proper
-capacity can save some time.
-</p>
-
-
-<h2>The add method</h2>
-
-<p>
-Single elements can be added to an <code>ArrayList</code> with the
-<code>add</code> method.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+The `ArrayList` implementation provides fast random access with constant-time  
+positional access and amortized constant-time insertion at the end. It's  
+backed by a dynamic array that automatically expands when needed. Lists  
+maintain the insertion order of elements and allow duplicate values, including  
+`null`. Java 9 introduced convenient factory methods like `List.of()` for  
+creating immutable lists, while modern Java emphasizes type inference with  
+`var` and simplified syntax through implicit imports.  
+## Adding elements
+This example demonstrates adding elements to a list one by one.  
+```java
 void main() {
-
-    List&lt;String&gt; langs = new ArrayList&lt;&gt;();
-
+    var langs = new ArrayList<String>();
+    
     langs.add("Java");
     langs.add("Python");
     langs.add(1, "C#");
     langs.add(0, "Ruby");
-
-    for (String lang : langs) {
-
-        System.out.printf("%s ", lang);
+    
+    for (var lang : langs) {
+        IO.print(lang + " ");
     }
-
-    System.out.println();
+    IO.println();
 }
-</pre>
+```
+The `add` method appends elements to the end of the list by default. The  
+overloaded version `add(index, element)` inserts an element at a specific  
+position, shifting subsequent elements to the right. Lists maintain insertion  
+order, so elements appear in the sequence they were added.  
 
-<p>
-The example adds elements to an array list one by one.
-</p>
-
-<pre class="explanation">
-List&lt;String&gt; langs = new ArrayList&lt;&gt;();
-</pre>
-
-<p>
-An <code>ArrayList</code> is created. The data type specified inside
-the diamond brackets (&lt; &gt;) restricts the elements to this data
-type; in our case, we have a list of strings.
-</p>
-
-<pre class="explanation">
-langs.add("Java");
-</pre>
-
-<p>
-An element is appended at the end of the list with the <code>add</code>
-method.
-</p>
-
-<pre class="explanation">
-langs.add(1, "C#");
-</pre>
-
-<p>
-This time the overloaded <code>add</code> method inserts the element at the
-specified position; The "C#" string will be located at the second position of
-the list; remember, the <code>ArrayList</code> is an ordered sequence of
-elements.
-</p>
-
-<pre class="explanation">
-for (String lang : langs) {
-
-    System.out.printf("%s ", lang);
-}
-</pre>
-
-<p>
-With the <code>for</code> loop, we go through the <code>ArrayList</code>
-list and print its elements.
-</p>
-
-<pre class="compact">
-$ java Main.java
-Ruby Java C# Python
-</pre>
-
-<p>
-Note that the elements keep the order they were inserted.
-</p>
-
-
-<h2>The List.of method</h2>
-
-<p>
-Since Java 9, we have a couple of factory methods for creating lists having a
-handful of elements. The created list is immutable.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.List;
-
+## Creating immutable lists
+This example shows how to create immutable lists using factory methods.  
+```java
 void main() {
-
     var words = List.of("wood", "forest", "falcon", "eagle");
-    System.out.println(words);
-
+    IO.println(words);
+    
     var values = List.of(1, 2, 3);
-    System.out.println(values);
+    IO.println(values);
 }
-</pre>
+```
+Since Java 9, the `List.of` factory method provides a convenient way to create  
+immutable lists with a handful of elements. These lists are compact, efficient,  
+and throw `UnsupportedOperationException` if you attempt to modify them.  
 
-<p>
-In the example, we create two lists that have four and three elements.
-</p>
-
-
-<h2>The get and size methods</h2>
-
-<p>
-The <code>get</code> returns the element at the specified position
-in this list and the <code>size</code> returns the size of
-the list.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Accessing elements
+This example demonstrates retrieving elements and getting the list size.  
+```java
 void main() {
-
-    List&lt;String&gt; colours = new ArrayList&lt;&gt;();
-
+    var colours = new ArrayList<String>();
+    
     colours.add("blue");
     colours.add("orange");
     colours.add("red");
     colours.add("green");
-
-    String col = colours.get(1);
-    System.out.println(col);
-
-    int size = colours.size();
-
-    System.out.printf("The size of the ArrayList is: %d%n", size);
+    
+    var col = colours.get(1);
+    IO.println(col);
+    
+    var size = colours.size();
+    IO.println("The size of the list is: " + size);
 }
-</pre>
+```
+The `get` method retrieves an element at a specified index (zero-based), while  
+the `size` method returns the total number of elements in the list. These are  
+fundamental operations for working with list data.  
 
-<p>
-The example uses the <code>get</code> and <code>size</code> methods
-of the <code>ArrayList</code>
-</p>
-
-<pre class="explanation">
-String col = colours.get(1);
-</pre>
-
-<p>
-The <code>get</code> method returns the second element, which is "orange".
-</p>
-
-<pre class="explanation">
-int size = colours.size();
-</pre>
-
-<p>
-The <code>size</code> method determines the size of our
-<code>colours</code> list; we have four elements.
-</p>
-
-<pre class="compact">
-$ java Main.java
-orange
-The size of the ArrayList is: 4
-</pre>
-
-
-<h2>The copy method</h2>
-
-<p>
-A copy of a list can be generated with <code>List.copy</code> method.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.List;
-
+## Copying lists
+This example shows how to create a copy of a list.  
+```java
 void main() {
-
     var words = List.of("forest", "wood", "eagle", "sky", "cloud");
-    System.out.println(words);
-
+    IO.println(words);
+    
     var words2 = List.copyOf(words);
-    System.out.println(words2);
+    IO.println(words2);
 }
-</pre>
+```
+The `List.copyOf` method creates an immutable copy of the given collection.  
+This is useful when you need to protect a list from modifications while  
+sharing it across different parts of your application.  
 
-<p>
-The example creates a copy of a list with <code>List.copy</code>.
-</p>
-
-
-<h2>Raw ArrayList</h2>
-
-<p>
-An <code>ArrayList</code> can contain various data types. These are called raw
-lists.
-</p>
-
-<div class="note">
-<strong>Note:</strong> It is generally not recommended to use raw lists.
-</div>
-
-<p>
-Raw lists often require casts and they are not type safe.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Raw lists
+This example demonstrates creating lists that can hold multiple data types.  
+```java
 class Base {}
 
 enum Level {
-
     EASY,
     MEDIUM,
     HARD
 }
 
 void main() {
-
-    Level level = Level.EASY;
-
-    List da = new ArrayList();
-
+    var level = Level.EASY;
+    
+    var da = new ArrayList();
+    
     da.add("Java");
     da.add(3.5);
     da.add(55);
     da.add(new Base());
     da.add(level);
-
-    for (Object el : da) {
-
-        System.out.println(el);
+    
+    for (var el : da) {
+        IO.println(el);
     }
 }
-</pre>
+```
+Raw lists can contain various data types, but this approach is generally not  
+recommended. Without type parameters, raw lists lack type safety and often  
+require casting. Modern Java code should prefer generics for type safety.  
 
-<p>
-The example adds five different data types into an array list — a string,
-double, integer, object, and enumeration.
-</p>
-
-<pre class="explanation">
-List da = new ArrayList();
-</pre>
-
-<p>
-When we add multiple data types to a list, we omit the angle brackets.
-</p>
-
-<pre class="compact">
-$ java Main.java
-Java
-3.5
-55
-com.zetcode.Base@659e0bfd
-EASY
-</pre>
-
-
-<h2>The addAll method</h2>
-
-<p>
-The following example uses the <code>addAll</code> method to add multiple
-elements to a list in one step.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Adding multiple elements
+This example shows how to add multiple elements in one operation.  
+```java
 void main() {
-
-    List&lt;String&gt; colours1 = new ArrayList&lt;&gt;();
-
+    var colours1 = new ArrayList<String>();
     colours1.add("blue");
     colours1.add("red");
     colours1.add("green");
-
-    List&lt;String&gt; colours2 = new ArrayList&lt;&gt;();
-
+    
+    var colours2 = new ArrayList<String>();
     colours2.add("yellow");
     colours2.add("pink");
     colours2.add("brown");
-
-    List&lt;String&gt; colours3 = new ArrayList&lt;&gt;();
+    
+    var colours3 = new ArrayList<String>();
     colours3.add("white");
     colours3.add("orange");
-
+    
     colours3.addAll(colours1);
     colours3.addAll(2, colours2);
-
-    for (String col : colours3) {
-
-        System.out.println(col);
+    
+    for (var col : colours3) {
+        IO.println(col);
     }
 }
-</pre>
+```
+The `addAll` method adds all elements from a collection to the end of the list.  
+The overloaded version `addAll(index, collection)` inserts all elements at a  
+specific position, shifting existing elements to make room.  
 
-<p>
-Two lists are created. Later, the elements of the lists are added to the
-third list with the <code>addAll</code> method.
-</p>
-
-<pre class="explanation">
-colours3.addAll(colours1);
-</pre>
-
-<p>
-The <code>addAll</code> method adds all of the elements to the end of the list.
-</p>
-
-<pre class="explanation">
-colours3.addAll(2, colours2);
-</pre>
-
-<p>
-This overloaded method adds all of the elements starting at the specified
-position.
-</p>
-
-<pre class="compact">
-$ java Main.java
-white
-orange
-yellow
-pink
-brown
-blue
-red
-green
-</pre>
-
-
-<h2>Modifying elements</h2>
-
-<p>
-The next example uses methods to modify the <code>ArrayList</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Modifying elements
+This example demonstrates various methods for modifying list contents.  
+```java
 void main() {
-
-    List&lt;String&gt; items = new ArrayList&lt;&gt;();
+    var items = new ArrayList<String>();
     fillList(items);
-
+    
     items.set(3, "watch");
     items.add("bowl");
     items.remove(0);
     items.remove("pen");
-
-    for (Object el : items) {
-
-        System.out.println(el);
+    
+    for (var el : items) {
+        IO.println(el);
     }
-
+    
     items.clear();
-
+    
     if (items.isEmpty()) {
-
-        System.out.println("The list is empty");
+        IO.println("The list is empty");
     } else {
-        System.out.println("The list is not empty");
+        IO.println("The list is not empty");
     }
 }
 
-void fillList(List&lt;String&gt; data) {
-
+void fillList(ArrayList<String> data) {
     data.add("coin");
     data.add("pen");
     data.add("pencil");
@@ -445,525 +188,185 @@ void fillList(List&lt;String&gt; data) {
     data.add("spectacles");
     data.add("glass");
 }
-</pre>
+```
+The `set` method replaces an element at a given index. The `remove` method  
+can delete by index or by value, removing the first occurrence. The `clear`  
+method removes all elements, and `isEmpty` checks if the list has no elements.  
 
-<p>
-An <code>ArrayList</code> is created and modified with the <code>set</code>,
-<code>add</code>, <code>remove</code>, and <code>clear</code> methods.
-</p>
-
-<pre class="explanation">
-items.set(3, "watch");
-</pre>
-
-<p>
-The <code>set</code> method replaces the fourth element with the "watch" item.
-</p>
-
-<pre class="explanation">
-items.add("bowl");
-</pre>
-
-<p>
-The <code>add</code> method adds a new element at the end of the list.
-</p>
-
-<pre class="explanation">
-items.remove(0);
-</pre>
-
-<p>
-The <code>remove</code> method removes the first element, having index 0.
-</p>
-
-<pre class="explanation">
-items.remove("pen");
-</pre>
-
-<p>
-The overloaded <code>remove</code> method remove the first occurrence
-of the "pen" item.
-</p>
-
-<pre class="explanation">
-items.clear();
-</pre>
-
-<p>
-The <code>clear</code> method removes all elements from the list.
-</p>
-
-<pre class="explanation">
-if (items.isEmpty()) {
-</pre>
-
-<p>
-The <code>isEmpty</code> method determines if the list is empty.
-</p>
-
-<pre class="compact">
-$ java Main.java
-pencil
-watch
-book
-spectacles
-glass
-bowl
-The list is empty
-</pre>
-
-
-<h2>The removeIf method</h2>
-
-<p>
-The <code>removeIf</code> method removes all of the elements of a
-collection that satisfy the given predicate.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Removing with predicates
+This example shows how to remove elements based on a condition.  
+```java
 void main() {
-
-    List&lt;Integer&gt; values = new ArrayList&lt;&gt;();
+    var values = new ArrayList<Integer>();
     values.add(5);
     values.add(-3);
     values.add(2);
     values.add(8);
     values.add(-2);
     values.add(6);
-
-    values.removeIf(val -&gt; val &lt; 0);
-
-    System.out.println(values);
+    
+    values.removeIf(val -> val < 0);
+    
+    IO.println(values);
 }
-</pre>
+```
+The `removeIf` method removes all elements that satisfy a given predicate.  
+This is more concise and readable than manually iterating and removing  
+elements that match a condition.  
 
-<p>
-In our example, we have an <code>ArrayList</code> of integers. We use
-the <code>removeIf</code> method to delete all negative values.
-</p>
-
-<pre class="explanation">
-values.removeIf(val -&gt; val &lt; 0);
-</pre>
-
-<p>
-All negative numbers are removed from the array list.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[5, 2, 8, 6]
-</pre>
-
-
-<h2>The removeAll method</h2>
-
-<p>
-The <code>removeAll</code> method removes from this list all of its elements
-that are contained in the specified collection. Note that all elements are
-removed with <code>clear</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+## Removing all occurrences
+This example demonstrates removing all instances of specific elements.  
+```java
 void main() {
-
-    List&lt;String&gt; letters = new ArrayList&lt;&gt;();
+    var letters = new ArrayList<String>();
     letters.add("a");
     letters.add("b");
     letters.add("c");
     letters.add("a");
     letters.add("d");
-
-    System.out.println(letters);
-
-    letters.removeAll(Collections.singleton("a"));
-    System.out.println(letters);
+    
+    IO.println(letters);
+    
+    letters.removeAll(Set.of("a"));
+    IO.println(letters);
 }
-</pre>
+```
+The `removeAll` method removes all elements that are contained in the  
+specified collection. This is useful for bulk removal operations. The `clear`  
+method removes all elements, while `removeAll` removes only matching ones.  
 
-<p>
-In the example, we remove all "a" letters from the list.
-</p>
-
-
-<h2>The replaceAll method</h2>
-
-<p>
-The <code>replaceAll</code> method replaces each element of a list with the
-result of applying the operator to that element.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.UnaryOperator;
-
+## Replacing all elements
+This example shows how to transform all elements using an operator.  
+```java
 void main() {
-
-    List&lt;String&gt; items = new ArrayList&lt;&gt;();
+    var items = new ArrayList<String>();
     items.add("coin");
     items.add("pen");
     items.add("cup");
     items.add("notebook");
     items.add("class");
-
-    UnaryOperator&lt;String&gt; uo = (x) -&gt; x.toUpperCase();
-
-    items.replaceAll(uo);
-
-    System.out.println(items);
+    
+    items.replaceAll(x -> x.toUpperCase());
+    
+    IO.println(items);
 }
-</pre>
+```
+The `replaceAll` method applies a function to each element, replacing it with  
+the result. This is useful for batch transformations like case conversion,  
+string formatting, or mathematical operations on numeric lists.  
 
-<p>
-The example applies an operator on each of the list elements; the elements'
-letters are transformed to uppercase.
-</p>
-
-<pre class="explanation">
-UnaryOperator&lt;String&gt; uo = (x) -&gt; x.toUpperCase();
-</pre>
-
-<p>
-A <code>UnaryOperator</code> that transforms letters to uppercase is created.
-</p>
-
-<pre class="explanation">
-items.replaceAll(uo);
-</pre>
-
-<p>
-The operator is applied on the list elements with the <code>replaceAll</code>
-method.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[COIN, PEN, CUP, NOTEBOOK, CLASS]
-</pre>
-
-<p>
-The second example uses the <code>replaceAll</code> method to capitalize
-string items.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.UnaryOperator;
-
-class MyOperator&lt;T&gt; implements UnaryOperator&lt;String&gt; {
-
-    @Override
-    public String apply(String s) {
-
-        if (s == null || s.length() == 0) {
-            return s;
-        }
-
-        return s.substring(0, 1).toUpperCase() + s.substring(1);
-    }
-}
-
+## Capitalizing elements
+This example demonstrates capitalizing the first letter of each string.  
+```java
 void main() {
-
-    List&lt;String&gt; items = new ArrayList&lt;&gt;();
-
+    var items = new ArrayList<String>();
     items.add("coin");
     items.add("pen");
     items.add("cup");
     items.add("notebook");
     items.add("glass");
-
-    items.replaceAll(new MyOperator&lt;&gt;());
-
-    System.out.println(items);
+    
+    items.replaceAll(s -> {
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    });
+    
+    IO.println(items);
 }
-</pre>
+```
+This example uses `replaceAll` with a more complex lambda expression to  
+capitalize each string. The lambda handles edge cases like null or empty  
+strings before performing the transformation.  
 
-<p>
-We have a list of string items. These items are capitalized with the
-help of the <code>replaceAll</code> method.
-</p>
-
-<pre class="explanation">
-class MyOperator&lt;T&gt; implements UnaryOperator&lt;String&gt; {
-</pre>
-
-<p>
-A custom <code>UnaryOperator</code> is created.
-</p>
-
-<pre class="explanation">
-@Override
-public String apply(String s) {
-
-    if (s == null || s.length() == 0) {
-        return s;
-    }
-
-    return s.substring(0, 1).toUpperCase() + s.substring(1);
-}
-</pre>
-
-<p>
-Inside the <code>UnaryOperator's</code> <code>apply</code> method, we retur the
-string with its first letter in uppercase.
-</p>
-
-<pre class="explanation">
-items.replaceAll(new MyOperator&lt;&gt;());
-</pre>
-
-<p>
-The operator is applied on the list items.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[Coin, Pen, Cup, Notebook, Glass]
-</pre>
-
-
-<h2>The contains method</h2>
-
-<p>
-The <code>contains</code> method returns true if a list contains the specified
-element.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Checking for elements
+This example demonstrates checking if a list contains a specific element.  
+```java
 void main() {
-
-    List&lt;String&gt; items = new ArrayList&lt;&gt;();
-
+    var items = new ArrayList<String>();
     items.add("coin");
     items.add("pen");
     items.add("cup");
     items.add("notebook");
     items.add("class");
-
-    String item = "pen";
-
+    
+    var item = "pen";
+    
     if (items.contains(item)) {
-
-        System.out.printf("There is a %s in the list%n", item);
+        IO.println("There is a " + item + " in the list");
     }
 }
-</pre>
+```
+The `contains` method returns `true` if the list contains the specified  
+element, using the element's `equals` method for comparison. This is useful  
+for membership tests before performing operations.  
 
-<p>
-The example checks if the specified item is in the list.
-</p>
-
-<pre class="explanation">
-if (items.contains(item)) {
-
-    System.out.printf("There is a %s in the list%n", item);
-}
-</pre>
-
-<p>
-The message is printed if the item is in the list.
-</p>
-
-<pre class="compact">
-$ java Main.java
-There is a pen in the list
-</pre>
-
-
-<h2>Getting index of elements</h2>
-
-<p>
-Each of the elements in an <code>ArrayList</code> has its own index number.
-The <code>indexOf</code> returns the index of the first occurrence of the
-specified element, or -1 if the list does not contain the element.
-The <code>lasindexOf</code> returns the index of the last occurrence of the
-specified element, or -1 if the list does not contain the element.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Finding element indices
+This example shows how to find the index of elements in a list.  
+```java
 void main() {
-
-    List&lt;String&gt; colours = new ArrayList&lt;&gt;();
-
+    var colours = new ArrayList<String>();
     colours.add(0, "blue");
     colours.add(1, "orange");
     colours.add(2, "red");
     colours.add(3, "green");
     colours.add(4, "orange");
-
-    int idx1 = colours.indexOf("orange");
-    System.out.println(idx1);
-
-    int idx2 = colours.lastIndexOf("orange");
-    System.out.println(idx2);
+    
+    var idx1 = colours.indexOf("orange");
+    IO.println(idx1);
+    
+    var idx2 = colours.lastIndexOf("orange");
+    IO.println(idx2);
 }
-</pre>
+```
+The `indexOf` method returns the index of the first occurrence of an element,  
+or -1 if not found. The `lastIndexOf` method returns the index of the last  
+occurrence, useful when lists contain duplicate values.  
 
-<p>
-The example prints the first and last index of the "orange" element.
-</p>
-
-<pre class="compact">
-$ java Main.java
-1
-4
-</pre>
-
-
-<h2>List of lists</h2>
-
-<p>
-We can add other lists into a list.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Nested lists
+This example demonstrates creating and working with lists of lists.  
+```java
 void main() {
-
-    List&lt;Integer&gt; l1 = new ArrayList&lt;&gt;();
+    var l1 = new ArrayList<Integer>();
     l1.add(1);
     l1.add(2);
     l1.add(3);
-
-    List&lt;Integer&gt; l2 = new ArrayList&lt;&gt;();
+    
+    var l2 = new ArrayList<Integer>();
     l2.add(4);
     l2.add(5);
     l2.add(6);
-
-    List&lt;Integer&gt; l3 = new ArrayList&lt;&gt;();
+    
+    var l3 = new ArrayList<Integer>();
     l3.add(7);
     l3.add(8);
     l3.add(9);
-
-    List&lt;List&lt;Integer&gt;&gt; nums = new ArrayList&lt;&gt;();
+    
+    var nums = new ArrayList<ArrayList<Integer>>();
     nums.add(l1);
     nums.add(l2);
     nums.add(l3);
-
-    System.out.println(nums);
-
-    for (List&lt;Integer&gt; list : nums) {
-
-        for (Integer n : list) {
-
-            System.out.printf("%d ", n);
+    
+    IO.println(nums);
+    
+    for (var list : nums) {
+        for (var n : list) {
+            IO.print(n + " ");
         }
-
-        System.out.println();
+        IO.println();
     }
 }
-</pre>
+```
+Lists can contain other lists, creating a two-dimensional structure. This is  
+useful for representing matrices, grouped data, or hierarchical information.  
+Nested loops are typically used to traverse all elements.  
 
-<p>
-The example creates three lists of integers. Later, the lists are added into
-another fourth list.
-</p>
-
-<pre class="explanation">
-List&lt;Integer&gt; l1 = new ArrayList&lt;&gt;();
-l1.add(1);
-l1.add(2);
-l1.add(3);
-</pre>
-
-<p>
-A list of integers is created.
-</p>
-
-<pre class="explanation">
-List&lt;List&gt; nums = new ArrayList&lt;&gt;();
-nums.add(l1);
-nums.add(l2);
-nums.add(l3);
-</pre>
-
-<p>
-A list of lists is created.
-</p>
-
-<pre class="explanation">
-for (List&lt;Integer&gt; list : nums) {
-
-    for (Integer n : list) {
-
-        System.out.printf("%d ", n);
-    }
-
-    System.out.println();
-}
-</pre>
-
-<p>
-We use two for loops to go through all the elements.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-1 2 3
-4 5 6
-7 8 9
-</pre>
-
-
-<h2>The subList method</h2>
-
-<p>
-The <code>subList</code> method returns a view of the portion of a list
-between the specified fromIndex, inclusive, and toIndex, exclusive. The changes
-in a sublist are reflected in the original list.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-
+## Creating sublists
+This example shows how to create a view of a portion of a list.  
+```java
 void main() {
-
-    List&lt;String&gt; items = new ArrayList&lt;&gt;();
-
+    var items = new ArrayList<String>();
     items.add("coin");
     items.add("pen");
     items.add("cup");
@@ -972,428 +375,526 @@ void main() {
     items.add("chair");
     items.add("ball");
     items.add("bowl");
-
-    List&lt;String&gt; items2 = items.subList(2, 5);
-
-    System.out.println(items2);
-
+    
+    var items2 = items.subList(2, 5);
+    IO.println(items2);
+    
     items2.set(0, "bottle");
-
-    System.out.println(items2);
-    System.out.println(items);
+    
+    IO.println(items2);
+    IO.println(items);
 }
-</pre>
+```
+The `subList` method returns a view (not a copy) of a portion of the list  
+between specified indices. Changes to the sublist are reflected in the  
+original list and vice versa. The indices are inclusive at start, exclusive  
+at end.  
 
-<p>
-The example creates a sublist from a list of items.
-</p>
-
-<pre class="explanation">
-List&lt;String&gt; items2 = items.subList(2, 5);
-</pre>
-
-<p>
-A sublist is created with the <code>subList</code> method; it contains
-items with indexes 2, 3, and 4.
-</p>
-
-<pre class="explanation">
-items2.set(0, "bottle");
-</pre>
-
-<p>
-We replace the first item of the sublist; the modification is reflected
-in the original list, too.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[cup, notebook, glass]
-[bottle, notebook, glass]
-[coin, pen, bottle, notebook, glass, chair, ball, bowl]
-</pre>
-
-
-<h2>Traversing elements</h2>
-
-<p>
-In the following example, we show five ways to traverse an <code>ArrayList</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-
+## Iterating through lists
+This example demonstrates different ways to traverse a list.  
+```java
 void main() {
-
-    List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();
+    var nums = new ArrayList<Integer>();
     nums.add(2);
     nums.add(6);
     nums.add(7);
     nums.add(3);
     nums.add(1);
     nums.add(8);
-
-    for (int i = 0; i &lt; nums.size(); i++) {
-
-        System.out.printf("%d ", nums.get(i));
+    
+    // Classic for loop
+    for (var i = 0; i < nums.size(); i++) {
+        IO.print(nums.get(i) + " ");
     }
-
-    System.out.println();
-
-    for (int num : nums) {
-
-        System.out.printf("%d ", num);
+    IO.println();
+    
+    // Enhanced for loop
+    for (var num : nums) {
+        IO.print(num + " ");
     }
-
-    System.out.println();
-
-    int j = 0;
-    while (j &lt; nums.size()) {
-
-        System.out.printf("%d ", nums.get(j));
+    IO.println();
+    
+    // While loop
+    var j = 0;
+    while (j < nums.size()) {
+        IO.print(nums.get(j) + " ");
         j++;
     }
-
-    System.out.println();
-
-    ListIterator&lt;Integer&gt; it = nums.listIterator();
-
+    IO.println();
+    
+    // Iterator
+    var it = nums.iterator();
     while(it.hasNext()) {
-
-        System.out.printf("%d ", it.next());
+        IO.print(it.next() + " ");
     }
-
-    System.out.println();
-
-    nums.forEach(e -&gt; System.out.printf("%d ", e));
-    System.out.println();
+    IO.println();
+    
+    // forEach method
+    nums.forEach(e -> IO.print(e + " "));
+    IO.println();
 }
-</pre>
+```
+Java provides multiple ways to iterate through lists: classic for loop with  
+index, enhanced for-each loop, while loop, Iterator, and the functional  
+`forEach` method. Each approach has its use cases depending on the need for  
+index access, modification during iteration, or functional style.  
 
-<p>
-In the example, we traverse an array list of integers with for loops, while loop,
-iterator, and <code>forEach</code> construct.
-</p>
-
-<pre class="explanation">
-List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();
-nums.add(2);
-nums.add(6);
-nums.add(7);
-nums.add(3);
-nums.add(1);
-nums.add(8);
-</pre>
-
-<p>
-We have created an <code>ArrayList</code> of integers.
-</p>
-
-<pre class="explanation">
-for (int i = 0; i &lt; nums.size(); i++) {
-
-    System.out.printf("%d ", nums.get(i));
-}
-</pre>
-
-<p>
-Here, we use the classic for loop to iterate over the list.
-</p>
-
-<pre class="explanation">
-for (int num : nums) {
-
-    System.out.printf("%d ", num);
-}
-</pre>
-
-<p>
-The second way uses the enhanced-for loop, which was introduced
-int Java 5.
-</p>
-
-<pre class="explanation">
-int j = 0;
-while (j &lt; nums.size()) {
-
-    System.out.printf("%d ", nums.get(j));
-    j++;
-}
-</pre>
-
-<p>
-The third way uses the while loop.
-</p>
-
-<pre class="explanation">
-ListIterator&lt;Integer&gt; it = nums.listIterator();
-
-while(it.hasNext()) {
-
-    System.out.printf("%d ", it.next());
-}
-</pre>
-
-<p>
-Here, a <code>ListIterator</code> is used to traverse the list.
-</p>
-
-<pre class="explanation">
-nums.forEach(e -&gt; System.out.printf("%d ", e));
-</pre>
-
-<p>
-In the last way, we use the <code>forEach</code> method, which
-was introduced in Java 8.
-</p>
-
-<pre class="compact">
-$ java Main.java
-2 6 7 3 1 8
-2 6 7 3 1 8
-2 6 7 3 1 8
-2 6 7 3 1 8
-2 6 7 3 1 8
-</pre>
-
-
-<h2>Sorting elements</h2>
-
-<p>
-There are different wasy to sort an <code>ArrayList</code>.
-</p>
-
-<h3>Sorting with the sort method</h3>
-
-<p>
-The <code>ArrayList's</code> <code>sort</code> method sorts a list
-according to the order induced by the specified comparator.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
+## Sorting with comparator
+This example shows how to sort a list using a comparator.  
+```java
+record Person(int age, String name) {}
 
 void main() {
-
-    List&lt;Person&gt; persons = createList();
-    persons.sort(Comparator.comparing(Person::age).reversed());
-
-    System.out.println(persons);
-
-}
-
-List&lt;Person&gt; createList() {
-
-    List&lt;Person&gt; persons = new ArrayList&lt;&gt;();
-
+    var persons = new ArrayList<Person>();
     persons.add(new Person(17, "Jane"));
     persons.add(new Person(32, "Peter"));
     persons.add(new Person(47, "Patrick"));
     persons.add(new Person(22, "Mary"));
     persons.add(new Person(39, "Robert"));
     persons.add(new Person(54, "Greg"));
-
-    return persons;
+    
+    persons.sort((p1, p2) -> Integer.compare(p2.age(), p1.age()));
+    
+    IO.println(persons);
 }
+```
+The `sort` method sorts a list according to a provided comparator. This  
+example sorts persons by age in descending order using a lambda expression  
+that compares age values. Comparators provide flexible sorting logic.  
 
-record Person(int age, String name) {}
-</pre>
-
-<p>
-We have an <code>ArrayList</code> of custom <code>Person</code> classes.
-We sort the persons according to their age in a reversed order.
-</p>
-
-<pre class="explanation">
-persons.sort(Comparator.comparing(Person::age).reversed());
-</pre>
-
-<p>
-This line sorts the persons by their age, from the oldest to the youngest.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[Age: 54 Name: Greg, Age: 47 Name: Patrick, Age: 39 Name: Robert, Age: 32 Name: Peter,
-    Age: 22 Name: Mary, Age: 17 Name: Jane]
-</pre>
-
-
-<h3>Sorting elements using stream</h3>
-
-<p>
-In the second example, we use Java stream to sort the <code>ArrayList</code>.
-The Stream API allows a more powerful way to do sorting.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+## Sorting with streams
+This example demonstrates sorting using the Stream API.  
+```java
+record Country(String name, int population) {}
 
 void main() {
-
-    List&lt;Country&gt; countries = createList();
-
-    List&lt;Country&gt; sorted_countries = countries.stream()
-            .sorted((e1, e2) -&gt; Integer.compare(e1.population,
-                    e2.population))
-            .collect(Collectors.toList());
-
-    System.out.println(sorted_countries);
-}
-
-List&lt;Country&gt; createList() {
-
-    List&lt;Country&gt; countries = new ArrayList&lt;&gt;();
-
+    var countries = new ArrayList<Country>();
     countries.add(new Country("Slovakia", 5424000));
     countries.add(new Country("Hungary", 9845000));
     countries.add(new Country("Poland", 38485000));
     countries.add(new Country("Germany", 81084000));
     countries.add(new Country("Latvia", 1978000));
-
-    return countries;
+    
+    var sortedCountries = countries.stream()
+            .sorted((e1, e2) -> Integer.compare(e1.population(), 
+                    e2.population()))
+            .toList();
+    
+    IO.println(sortedCountries);
 }
+```
+The Stream API provides a powerful way to sort collections. The `stream`  
+method creates a stream, `sorted` applies a comparator, and `toList` collects  
+the results into a new list. This approach is functional and composable.  
 
-record Country(String name, int population) {
-}
-</pre>
-
-<p>
-In this example, we have a list of countries. Each country has a name and
-population. The countries are sorted by population.
-</p>
-
-<pre class="explanation">
-List&lt;Country&gt; sorted_countries = countries.stream()
-        .sorted((e1, e2) -&gt; Integer.compare(e1.population,
-                e2.population))
-        .collect(Collectors.toList());
-</pre>
-
-<p>
-With the <code>stream</code> method, we create a stream from a list. The
-<code>sorted</code> method sorts elements according to the provided
-comparator. With <code>Integer.compare</code> we compare the populations of
-countries. With <code>collect</code>, we transform the stream into a list of
-countries.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[Country{name=Latvia, population=1978000}, Country{name=Slovakia, population=5424000},
-Country{name=Hungary, population=9845000}, Country{name=Poland, population=38485000},
-Country{name=Germany, population=81084000}]
-</pre>
-
-<p>
-The countries are sorted by their population in ascending mode.
-</p>
-
-
-<h2>Working with ArrayList and simple Java array</h2>
-
-<p>
-The following example uses an <code>ArrayList</code> with
-a simple Java array.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-import java.util.List;
-
+## Converting between arrays and lists
+This example shows how to convert between arrays and lists.  
+```java
 void main() {
-
-    String[] a = new String[] { "Mercury", "Venus", "Earth",
+    var planets = new String[] { "Mercury", "Venus", "Earth",
             "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
-
-    List&lt;String&gt; planets = List.of(a);
-    System.out.println(planets);
-
-    String[] planets2 = planets.toArray(new String[0]);
-    System.out.println(Arrays.toString(planets2));
+    
+    var planetList = List.of(planets);
+    IO.println(planetList);
+    
+    var planets2 = planetList.toArray(new String[0]);
+    IO.println(java.util.Arrays.toString(planets2));
 }
-</pre>
+```
+The `List.of` method creates an immutable list from an array, while the  
+`toArray` method converts a list back to an array. These conversions are  
+useful when working with APIs that expect different collection types.  
 
-<p>
-An <code>ArrayList</code> is converted to an array and vice versa.
-</p>
-
-<pre class="explanation">
-String[] a = new String[] { "Mercury", "Venus", "Earth",
-        "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
-</pre>
-
-<p>
-We have an array of strings.
-</p>
-
-<pre class="explanation">
-List&lt;String&gt; planets = List.of(a);
-</pre>
-
-<p>
-We generate an immutable list from the array with <code>List.of</code>;
-</p>
-
-<pre class="explanation">
-String[] planets2 = planets.toArray(new String[0]);
-</pre>
-
-<p>
-The <code>ArrayList's</code> <code>toArray</code> is used to convert a list to
-an array.
-</p>
-
-
-<h2>Stream to list</h2>
-
-<p>
-Java streams can be converted to lists using collectors.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+## Converting streams to lists
+This example shows how to convert a stream to a list.  
+```java
 void main() {
-
-    var words = Stream.of("forest", "eagle", "river", "cloud", "sky");
-
-    List&lt;String&gt; words2 = words.collect(Collectors.toList());
-    System.out.println(words2.getClass());
+    var words = java.util.stream.Stream.of("forest", "eagle", "river", 
+            "cloud", "sky");
+    
+    var wordList = words.toList();
+    IO.println(wordList.getClass());
+    IO.println(wordList);
 }
-</pre>
+```
+Java streams can be converted to lists using the `toList` method (Java 16+).  
+This creates an immutable list from the stream elements. For mutable lists,  
+use `collect(Collectors.toCollection(ArrayList::new))` instead.  
 
-<p>
-We have a stream of strings. We convert the stream to a list with
-<code>Collectors.toList</code>.
-</p>
+## Filtering lists
+This example demonstrates filtering list elements based on a condition.  
+```java
+void main() {
+    var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    
+    var evenNumbers = numbers.stream()
+            .filter(n -> n % 2 == 0)
+            .toList();
+    
+    IO.println(evenNumbers);
+}
+```
+The `filter` method creates a stream containing only elements that match the  
+given predicate. Combined with `toList`, this provides a clean way to extract  
+matching elements from a list without modifying the original.  
 
+## Mapping list elements
+This example shows how to transform each element in a list.  
+```java
+void main() {
+    var names = List.of("alice", "bob", "charlie", "david");
+    
+    var upperNames = names.stream()
+            .map(String::toUpperCase)
+            .toList();
+    
+    IO.println(upperNames);
+}
+```
+The `map` method transforms each element using a provided function. This is  
+useful for converting data types, extracting properties, or applying  
+transformations across all elements in a functional style.  
 
+## Finding elements
+This example demonstrates finding specific elements in a list.  
+```java
+void main() {
+    var numbers = List.of(3, 7, 12, 5, 9, 15, 8);
+    
+    var first = numbers.stream()
+            .filter(n -> n > 10)
+            .findFirst();
+    
+    if (first.isPresent()) {
+        IO.println("First number > 10: " + first.get());
+    }
+    
+    var any = numbers.stream()
+            .filter(n -> n < 5)
+            .findAny();
+    
+    if (any.isPresent()) {
+        IO.println("Any number < 5: " + any.get());
+    }
+}
+```
+The `findFirst` method returns the first matching element wrapped in an  
+Optional, while `findAny` returns any matching element. These are useful for  
+searching without processing the entire collection.  
 
-<!-- TODO SplitIterator, arraylist hierarchy, reference, more sorting examples -->
+## Reducing lists
+This example shows how to reduce a list to a single value.  
+```java
+void main() {
+    var numbers = List.of(1, 2, 3, 4, 5);
+    
+    var sum = numbers.stream()
+            .reduce(0, (a, b) -> a + b);
+    
+    IO.println("Sum: " + sum);
+    
+    var product = numbers.stream()
+            .reduce(1, (a, b) -> a * b);
+    
+    IO.println("Product: " + product);
+}
+```
+The `reduce` method combines all elements into a single result using a binary  
+operator. It's commonly used for calculating sums, products, or other  
+aggregate values from collection elements.  
 
+## Checking list conditions
+This example demonstrates checking if elements satisfy conditions.  
+```java
+void main() {
+    var ages = List.of(18, 22, 17, 25, 30, 16);
+    
+    var allAdults = ages.stream().allMatch(age -> age >= 18);
+    IO.println("All adults: " + allAdults);
+    
+    var anyMinor = ages.stream().anyMatch(age -> age < 18);
+    IO.println("Any minors: " + anyMinor);
+    
+    var noneOver100 = ages.stream().noneMatch(age -> age > 100);
+    IO.println("None over 100: " + noneOver100);
+}
+```
+The `allMatch`, `anyMatch`, and `noneMatch` methods check if all, any, or no  
+elements satisfy a predicate. These are terminal operations that return  
+boolean values, useful for validation and conditional logic.  
 
+## List partitioning
+This example shows how to partition a list into groups.  
+```java
+void main() {
+    var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    
+    var partitioned = numbers.stream()
+            .collect(java.util.stream.Collectors.partitioningBy(n -> n % 2 == 0));
+    
+    IO.println("Even: " + partitioned.get(true));
+    IO.println("Odd: " + partitioned.get(false));
+}
+```
+The `partitioningBy` collector splits elements into two groups based on a  
+predicate, returning a Map with boolean keys. This is useful for binary  
+classification of data.  
+
+## List grouping
+This example demonstrates grouping list elements by a property.  
+```java
+void main() {
+    var words = List.of("apple", "apricot", "banana", "blueberry", 
+            "cherry", "cranberry");
+    
+    var grouped = words.stream()
+            .collect(java.util.stream.Collectors.groupingBy(w -> w.charAt(0)));
+    
+    grouped.forEach((letter, group) -> 
+        IO.println(letter + ": " + group));
+}
+```
+The `groupingBy` collector organizes elements into groups based on a  
+classifier function, returning a Map where keys are group identifiers and  
+values are lists of matching elements.  
+
+## Distinct elements
+This example shows how to remove duplicates from a list.  
+```java
+void main() {
+    var numbers = List.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5);
+    
+    var unique = numbers.stream()
+            .distinct()
+            .toList();
+    
+    IO.println(unique);
+}
+```
+The `distinct` method filters out duplicate elements, keeping only unique  
+values. It uses the `equals` method to determine equality and maintains the  
+encounter order of the first occurrence.  
+
+## List concatenation
+This example demonstrates combining multiple lists.  
+```java
+void main() {
+    var list1 = List.of("a", "b", "c");
+    var list2 = List.of("d", "e", "f");
+    var list3 = List.of("g", "h", "i");
+    
+    var combined = java.util.stream.Stream.of(list1, list2, list3)
+            .flatMap(List::stream)
+            .toList();
+    
+    IO.println(combined);
+}
+```
+The `flatMap` method flattens nested streams into a single stream. This is  
+useful for combining multiple collections or processing nested data structures  
+into a flat list.  
+
+## Limiting and skipping
+This example shows how to extract a portion of a list using streams.  
+```java
+void main() {
+    var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    
+    var firstThree = numbers.stream()
+            .limit(3)
+            .toList();
+    IO.println("First three: " + firstThree);
+    
+    var skipFirstFive = numbers.stream()
+            .skip(5)
+            .toList();
+    IO.println("After skipping five: " + skipFirstFive);
+    
+    var middleThree = numbers.stream()
+            .skip(3)
+            .limit(3)
+            .toList();
+    IO.println("Middle three: " + middleThree);
+}
+```
+The `limit` method restricts the stream to the first n elements, while `skip`  
+bypasses the first n elements. Combined, they provide efficient pagination and  
+slicing capabilities.  
+
+## Reversing lists
+This example demonstrates reversing the order of list elements.  
+```java
+void main() {
+    var letters = new ArrayList<>(List.of("a", "b", "c", "d", "e"));
+    
+    java.util.Collections.reverse(letters);
+    IO.println(letters);
+    
+    var numbers = List.of(1, 2, 3, 4, 5);
+    var reversed = new ArrayList<>(numbers);
+    java.util.Collections.reverse(reversed);
+    IO.println(reversed);
+}
+```
+The `Collections.reverse` method reverses the element order in place. For  
+immutable lists, create a mutable copy first. Note that this modifies the  
+list directly rather than returning a new one.  
+
+## Shuffling lists
+This example shows how to randomize the order of list elements.  
+```java
+void main() {
+    var cards = new ArrayList<>(List.of("A", "2", "3", "4", "5", "6", 
+            "7", "8", "9", "10", "J", "Q", "K"));
+    
+    java.util.Collections.shuffle(cards);
+    IO.println("Shuffled: " + cards);
+    
+    var random = new java.util.Random(42);
+    java.util.Collections.shuffle(cards, random);
+    IO.println("Seeded shuffle: " + cards);
+}
+```
+The `Collections.shuffle` method randomly permutes the list elements. An  
+optional Random instance can be provided for reproducible results. This is  
+useful for card games, randomized testing, or data sampling.  
+
+## Binary search
+This example demonstrates searching in a sorted list.  
+```java
+void main() {
+    var numbers = new ArrayList<>(List.of(2, 4, 6, 8, 10, 12, 14, 16, 18, 20));
+    
+    var index = java.util.Collections.binarySearch(numbers, 12);
+    IO.println("Index of 12: " + index);
+    
+    var notFound = java.util.Collections.binarySearch(numbers, 7);
+    IO.println("Index of 7 (not found): " + notFound);
+}
+```
+The `Collections.binarySearch` method performs an efficient O(log n) search  
+on a sorted list. It returns the index if found, or a negative value  
+indicating the insertion point if not found. The list must be sorted first.  
+
+## Frequency counting
+This example shows how to count occurrences of elements.  
+```java
+void main() {
+    var items = List.of("apple", "banana", "apple", "cherry", 
+            "banana", "apple", "date");
+    
+    var appleCount = java.util.Collections.frequency(items, "apple");
+    IO.println("Apple count: " + appleCount);
+    
+    var bananaCount = java.util.Collections.frequency(items, "banana");
+    IO.println("Banana count: " + bananaCount);
+}
+```
+The `Collections.frequency` method counts how many times a specific element  
+appears in a collection. This is useful for analyzing data distributions or  
+finding the most common elements.  
+
+## Disjoint lists
+This example demonstrates checking if two lists have no common elements.  
+```java
+void main() {
+    var set1 = List.of(1, 2, 3, 4, 5);
+    var set2 = List.of(6, 7, 8, 9, 10);
+    var set3 = List.of(4, 5, 6, 7);
+    
+    var disjoint12 = java.util.Collections.disjoint(set1, set2);
+    IO.println("Set1 and Set2 disjoint: " + disjoint12);
+    
+    var disjoint13 = java.util.Collections.disjoint(set1, set3);
+    IO.println("Set1 and Set3 disjoint: " + disjoint13);
+}
+```
+The `Collections.disjoint` method checks if two collections have no elements  
+in common. It returns true if the collections share no elements, useful for  
+set operations and validation.  
+
+## Synchronized lists
+This example shows how to create thread-safe lists.  
+```java
+void main() {
+    var list = new ArrayList<String>();
+    list.add("one");
+    list.add("two");
+    list.add("three");
+    
+    var syncList = java.util.Collections.synchronizedList(list);
+    
+    synchronized(syncList) {
+        for (var item : syncList) {
+            IO.println(item);
+        }
+    }
+}
+```
+The `Collections.synchronizedList` method wraps a list to make it thread-safe.  
+All access to the backing list should be through the synchronized wrapper.  
+Manual synchronization is still needed for iteration.  
+
+## Unmodifiable lists
+This example demonstrates creating immutable views of lists.  
+```java
+void main() {
+    var mutable = new ArrayList<String>();
+    mutable.add("alpha");
+    mutable.add("beta");
+    mutable.add("gamma");
+    
+    var readonly = java.util.Collections.unmodifiableList(mutable);
+    IO.println(readonly);
+    
+    mutable.add("delta");
+    IO.println("After modifying original: " + readonly);
+}
+```
+The `Collections.unmodifiableList` method creates a read-only view of a list.  
+Attempts to modify it throw exceptions. Note that changes to the original  
+list are reflected in the view, so it's not truly immutable.  
+
+## Maximum and minimum
+This example shows how to find the largest and smallest elements.  
+```java
+void main() {
+    var numbers = List.of(23, 7, 42, 15, 8, 91, 33, 12);
+    
+    var max = java.util.Collections.max(numbers);
+    IO.println("Maximum: " + max);
+    
+    var min = java.util.Collections.min(numbers);
+    IO.println("Minimum: " + min);
+    
+    var words = List.of("zebra", "apple", "mango", "cherry");
+    var maxWord = java.util.Collections.max(words);
+    var minWord = java.util.Collections.min(words);
+    IO.println("Max word: " + maxWord);
+    IO.println("Min word: " + minWord);
+}
+```
+The `Collections.max` and `min` methods find the maximum and minimum elements  
+according to their natural ordering or a provided comparator. They work with  
+any comparable elements, including numbers and strings.  
+
+## Filling lists
+This example demonstrates filling a list with a specific value.  
+```java
+void main() {
+    var items = new ArrayList<String>();
+    items.add("old1");
+    items.add("old2");
+    items.add("old3");
+    items.add("old4");
+    items.add("old5");
+    
+    IO.println("Before: " + items);
+    
+    java.util.Collections.fill(items, "new");
+    IO.println("After: " + items);
+}
+```
+The `Collections.fill` method replaces all elements in a list with a specified  
+value. This is useful for resetting or initializing lists with a default  
+value after creation.  
