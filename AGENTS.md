@@ -66,6 +66,7 @@ Each example should follow this structure:
 
 ```java
 void main() {
+
     // Using List (implicitly imported)
     var fruits = List.of("apple", "banana", "cherry");
 
@@ -101,8 +102,9 @@ void main() {
 }
 ```
 
-Use a simple `main` function as the entry point.  
-Avoid classes and static methods unless demonstrating specific language features.  
+Use a simple `main` function as the entry point. Avoid classes and static methods  
+unless demonstrating specific language features. Use spaces after Section headings,  
+description text and the example, and the `void main() {` method.  
 
 ## Terminology
 
