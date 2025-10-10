@@ -64,6 +64,7 @@ This example shows how to create a basic HashMap instance.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
     
     capitals.put("svk", "Bratislava");
@@ -85,6 +86,7 @@ This example demonstrates factory methods for initializing maps efficiently.
 
 ```java
 void main() {
+
     var colours = Map.of(1, "red", 2, "blue", 3, "brown");
     IO.println(colours);
 
@@ -108,6 +110,7 @@ pattern can be used:
 
 ```java
 void main() {
+
     var countries = new HashMap<String, String>() {{
         put("de", "Germany");
         put("sk", "Slovakia");
@@ -127,6 +130,7 @@ This example demonstrates determining the number of entries in a HashMap.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -156,6 +160,7 @@ This example shows how to retrieve values from a HashMap using keys.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -182,6 +187,7 @@ This example demonstrates removing all entries from a HashMap.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -210,6 +216,7 @@ This example shows how to check if a map contains a specific key.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -246,6 +253,7 @@ This example demonstrates replacing values in a HashMap.
 
 ```java
 void main() {
+
     var data = new HashMap<String, String>();
 
     data.put("day", "Monday");
@@ -273,6 +281,7 @@ This example shows how to convert HashMap entries into a list.
 
 ```java
 void main() {
+
     var colours = Map.of(
         "AliceBlue", "#f0f8ff",
         "GreenYellow", "#adff2f",
@@ -297,6 +306,7 @@ This example demonstrates iterating over map entries using forEach.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -319,6 +329,7 @@ This example shows iterating over a HashMap with an enhanced for loop.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -344,6 +355,7 @@ This example demonstrates iterating over only the keys of a HashMap.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -368,6 +380,7 @@ This example shows how to iterate over only the values of a HashMap.
 
 ```java
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -394,6 +407,7 @@ This example demonstrates filtering a HashMap using the Stream API.
 import java.util.stream.Collectors;
 
 void main() {
+
     var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
@@ -421,6 +435,7 @@ This example demonstrates creating and working with a list of HashMap objects.
 
 ```java
 void main() {
+
     var fruits1 = new HashMap<String, Integer>();
     fruits1.put("oranges", 2);
     fruits1.put("bananas", 3);
@@ -450,6 +465,7 @@ This example shows how to combine multiple maps into one.
 
 ```java
 void main() {
+
     var map1 = new HashMap<String, String>();
     map1.put("a", "apple");
     map1.put("b", "ball");
@@ -476,6 +492,7 @@ This example demonstrates safely retrieving values with a default fallback.
 
 ```java
 void main() {
+
     var scores = new HashMap<String, Integer>();
     scores.put("Alice", 95);
     scores.put("Bob", 87);
@@ -497,6 +514,7 @@ This example shows advanced value computation using compute methods.
 
 ```java
 void main() {
+
     var inventory = new HashMap<String, Integer>();
     inventory.put("apples", 10);
     inventory.put("bananas", 5);
@@ -525,6 +543,7 @@ This example demonstrates conditional removal of map entries.
 
 ```java
 void main() {
+
     var prices = new HashMap<String, Double>();
     prices.put("apple", 1.50);
     prices.put("banana", 0.75);
@@ -552,6 +571,7 @@ import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 void main() {
+
     var populations = new HashMap<String, Integer>();
     populations.put("Tokyo", 37400000);
     populations.put("Delhi", 28514000);
