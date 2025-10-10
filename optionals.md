@@ -459,50 +459,5 @@ not be present. This pattern is cleaner than using null and makes the
 optionality explicit in the type signature. The record constructor  
 automatically handles the Optional parameter.  
 
-## Optional equals and hashCode
-
-This example shows how Optional implements equality and hashing.  
-
-```java
-void main() {
-
-    var opt1 = Optional.of("test");
-    var opt2 = Optional.of("test");
-    var opt3 = Optional.of("other");
-    var opt4 = Optional.<String>empty();
-    var opt5 = Optional.<String>empty();
-
-    IO.println("opt1 equals opt2: " + opt1.equals(opt2));
-    IO.println("opt1 equals opt3: " + opt1.equals(opt3));
-    IO.println("opt4 equals opt5: " + opt4.equals(opt5));
-    IO.println("opt1 hashCode: " + opt1.hashCode());
-    IO.println("opt4 hashCode: " + opt4.hashCode());
-}
-```
-
-Optional properly implements `equals` and `hashCode`, making it safe to use in  
-collections like Sets and as Map keys. Two Optionals are equal if both are  
-empty or both contain equal values. All empty Optionals are equal to each  
-other regardless of their type parameter.  
-
-## Optional toString
-
-This example demonstrates Optional's string representation.  
-
-```java
-void main() {
-
-    var present = Optional.of("Hello World");
-    var absent = Optional.empty();
-
-    IO.println("Present: " + present);
-    IO.println("Absent: " + absent);
-}
-```
-
-The `toString` method provides a clear representation of the Optional's state.  
-For present values, it shows `Optional[value]`, making the value visible. For  
-empty Optionals, it shows `Optional.empty`, clearly indicating the absence of  
-a value. This is helpful for debugging and logging.  
 
 
