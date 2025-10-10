@@ -630,4 +630,4 @@ applying sort operations, and collecting into a `LinkedHashMap` to preserve the
 order. The `comparingByKey` and `comparingByValue` methods create comparators  
 for sorting. The `reversed` method inverts the sort order for descending  
 results. The `LinkedHashMap` maintains insertion order, preserving the sorted  
-sequence.  
+sequence.

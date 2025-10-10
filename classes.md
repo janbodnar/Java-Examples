@@ -2026,4 +2026,4 @@ void main() {
 
 A custom annotation `@Author` is created to add metadata to the `AnnotatedClass`.  
 This metadata can then be read at runtime using reflection, allowing for powerful  
-frameworks and tools to be built.  
+frameworks and tools to be built.

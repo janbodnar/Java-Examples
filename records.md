@@ -1234,5 +1234,4 @@ void main() {
 }
 ```
 
-Inspects record structure at runtime using Java reflection API.    
-
+Inspects record structure at runtime using Java reflection API.
