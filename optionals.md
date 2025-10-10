@@ -1,405 +1,508 @@
-<h1>Java Optional</h1>
+# Java Optional Examples
 
-<p>
-In this article we work with Optional type in Java.
-</p>
+`Optional` is a container object that may or may not contain a value, designed  
+to eliminate null pointer exceptions and make code more robust. It provides  
+methods to check value presence with `isPresent`, retrieve values with `get`,  
+and perform operations only when a value exists. The type was inspired by  
+similar constructs in Haskell and Scala. Other languages like C# and Groovy  
+use null-safe operators (e.g., `.?`) for similar purposes.  
 
-<p>
-<dfn>Optional</dfn> is a container object which may or may not contain a value.
-We can check if a value is present with <code>isPresent</code> and then retrive
-it with <code>get</code>. If the container does not contain a value it is then
-called empty.
-</p>
+## Empty Optional
 
-<p>
-The goal of the <code>Optional</code> type is to avoid null references and all
-the problems that are caused by them.
-</p>
+This example demonstrates creating an empty Optional container.  
 
-<p>
-The <code>Optional</code> was inspired by similar types found in Haskell and
-Scala. Other languages, such as C# or Groovy, use null-safe operators
-<code>.?</code> for the same purpose.
-</p>
-
-<pre class="compact">
-Optional&lt;String&gt; empty = Optional.empty();
-</pre>
-
-<p>
-We create an empty <code>Optional</code> with <code>Optional.empty</code>.
-It is used insted of null references.
-</p>
-
-<pre class="compact">
-Optional&lt;String&gt; word = Optional.of("falcon");
-</pre>
-
-<p>
-<code>Optional.of</code> is used when we are certain that the parameter will not 
-be null.
-</p>
-
-<pre class="compact">
-Optional&lt;String&gt; word = Optional.ofNullable(value);
-</pre>
-
-<p>
-<code>Optional.ofNullable</code> is used when we don't know if there will be 
-null.
-</p>
-
-<h2>Simple example</h2>
-
-<p>
-In the following example, we have a simple example with <code>Optional</code>
-type.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-import java.util.Optional;
-
+```java
 void main() {
 
-    var words = Arrays.asList("rock", null, "mountain",
-            null, "falcon", "sky");
+    Optional<String> empty = Optional.empty();
+    IO.println("Is empty: " + empty.isEmpty());
+}
+```
 
-    for (int i = 0; i &lt; 5; i++) {
+The `Optional.empty` method creates an empty Optional container. It is used  
+instead of null references to represent the absence of a value. Using empty  
+Optionals prevents NullPointerException errors and makes code more explicit  
+about handling missing values.  
 
-        Optional&lt;String&gt; word = Optional.ofNullable(words.get(i));
-        word.ifPresent(System.out::println);
+## Optional with value
+
+This example shows creating an Optional with a guaranteed non-null value.  
+
+```java
+void main() {
+
+    Optional<String> word = Optional.of("falcon");
+    IO.println("Value: " + word.get());
+}
+```
+
+The `Optional.of` method is used when we are certain that the parameter will  
+not be null. If a null value is passed to `Optional.of`, it throws a  
+NullPointerException. This method is ideal for scenarios where null values  
+are not expected.  
+
+## Optional ofNullable
+
+This example demonstrates creating an Optional that may or may not contain a  
+null value.  
+
+```java
+void main() {
+
+    String value = null;
+    Optional<String> word = Optional.ofNullable(value);
+    IO.println("Is present: " + word.isPresent());
+}
+```
+
+The `Optional.ofNullable` method is used when we don't know if the value will  
+be null. If the parameter is null, it returns an empty Optional; otherwise, it  
+returns an Optional containing the value. This is the safest way to create  
+Optionals from potentially null sources.  
+
+## Optional ifPresent
+
+This example demonstrates processing values only when they are present.  
+
+```java
+void main() {
+
+    var words = List.of("rock", null, "mountain", null, "falcon", "sky");
+
+    for (var word : words) {
+        Optional.ofNullable(word).ifPresent(IO::println);
     }
 }
-</pre>
+```
 
-<p>
-We have a list of words; the list also contains null values. We go through the
-list and print the elements.
-</p>
+The `ifPresent` method executes the given action only if a value is present in  
+the Optional. We wrap potentially null list elements with  
+`Optional.ofNullable` to safely handle null values. If the Optional is empty,  
+the action is simply skipped without throwing any exceptions.  
 
-<pre class="explanation">
-Optional&lt;String&gt; word = Optional.ofNullable(words.get(i));
-</pre>
+## Optional isPresent and get
 
-<p>
-We know that we can get a null value from the list; therefore, we wrap the
-element into <code>Optional</code> with <code>Optional.ofNullable</code>.
-</p>
+This example demonstrates checking for value presence before retrieval.  
 
-<pre class="explanation">
-word.ifPresent(System.out::println);
-</pre>
-
-<p>
-We check if there is some value in the <code>Optional</code> with
-<code>ifPresent</code>. If case there is one, we print it.
-</p>
-
-<p>
-In the following example, we have three methods that return an
-<code>Optional</code> type.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Optional;
-
+```java
 void main() {
 
     if (getNullMessage().isPresent()) {
-        System.out.println(getNullMessage().get());
+        IO.println(getNullMessage().get());
     } else {
-        System.out.println("n/a");
+        IO.println("n/a");
     }
 
     if (getEmptyMessage().isPresent()) {
-        System.out.println(getEmptyMessage().get());
+        IO.println(getEmptyMessage().get());
     } else {
-        System.out.println("n/a");
+        IO.println("n/a");
     }
 
     if (getCustomMessage().isPresent()) {
-        System.out.println(getCustomMessage().get());
+        IO.println(getCustomMessage().get());
     } else {
-        System.out.println("n/a");
+        IO.println("n/a");
     }
 }
 
-Optional&lt;String&gt; getNullMessage() {
+Optional<String> getNullMessage() {
     return Optional.ofNullable(null);
 }
 
-Optional&lt;String&gt; getEmptyMessage() {
+Optional<String> getEmptyMessage() {
     return Optional.empty();
 }
 
-Optional&lt;String&gt; getCustomMessage() {
+Optional<String> getCustomMessage() {
     return Optional.of("Hello there!");
 }
-</pre>
+```
 
-<p>
-The three methods return a null message, an empty message and a real message.
-</p>
+The `isPresent` method checks if the Optional contains a value. If true, we  
+retrieve the value with `get`. Otherwise, we provide an alternative action or  
+message. This pattern is safe but verbose; the `orElse` method provides a more  
+concise alternative.  
 
-<pre class="explanation">
-if (getNullMessage().isPresent()) {
-    System.out.println(getNullMessage().get());
-} else {
-    System.out.println("n/a");
-}
-</pre>
+## Optional isEmpty
 
-<p>
-First, we check if the value returned by the method contains a value with
-<code>isPresent</code>. If true, we get the value with <code>get</code>.
-Otherwise we print "n/a" message.
-</p>
+This example demonstrates checking if an Optional is empty.  
 
-
-<h2>Optional ifEmpty</h2>
-
-<p>
-The <code>ifEmpty</code> returns true, if the value is not present. 
-</p> 
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-import java.util.Optional;
-
+```java
 void main() {
 
-    var words = Arrays.asList("rock", null, "mountain",
-            null, "falcon", "sky");
+    var words = List.of("rock", null, "mountain", null, "falcon", "sky");
 
-    for (int i = 0; i &lt; 5; i++) {
-
-        Optional&lt;String&gt; word = Optional.ofNullable(words.get(i));
-
-        if (word.isEmpty()) {
-
-            System.out.println("n/a");
+    for (var word : words) {
+        var optional = Optional.ofNullable(word);
+        
+        if (optional.isEmpty()) {
+            IO.println("n/a");
+        } else {
+            IO.println(optional.get());
         }
-
-        word.ifPresent(System.out::println);
     }
 }
-</pre>
+```
 
-<p>
-In the example, we print all valid values with <code>ifPresent</code>. All empty 
-values are recognized via <code>isEmpty</code>.
-</p>
+The `isEmpty` method returns true if the Optional does not contain a value.  
+This is the opposite of `isPresent` and can make code more readable when you  
+need to handle the absence of a value explicitly. It was added in Java 11 as a  
+more intuitive alternative to `!isPresent()`.  
 
+## Optional orElse
 
-<h2>Optional orElse</h2>
+This example shows providing a default value when an Optional is empty.  
 
-<p>
-The <code>orElse</code> method allows us to quickly return a value if it is not
-present.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Optional;
-
+```java
 void main() {
 
-    System.out.println(getNullMessage().orElse("n/a"));
-    System.out.println(getEmptyMessage().orElse("n/a"));
-    System.out.println(getCustomMessage().orElse("n/a"));
+    IO.println(getNullMessage().orElse("n/a"));
+    IO.println(getEmptyMessage().orElse("n/a"));
+    IO.println(getCustomMessage().orElse("n/a"));
 }
 
-Optional&lt;String&gt; getNullMessage() {
+Optional<String> getNullMessage() {
     return Optional.ofNullable(null);
 }
 
-Optional&lt;String&gt; getEmptyMessage() {
+Optional<String> getEmptyMessage() {
     return Optional.empty();
 }
 
-Optional&lt;String&gt; getCustomMessage() {
+Optional<String> getCustomMessage() {
     return Optional.of("Hello there!");
 }
-</pre>
+```
 
-<p>
-We managed to shorten the example a bit with <code>orElse</code> method.
-</p>
+The `orElse` method provides a concise way to return a default value when the  
+Optional is empty. If the Optional contains a value, that value is returned;  
+otherwise, the specified default value is returned. This simplifies code  
+compared to the `isPresent` and `get` pattern.  
 
-<p>
-In this article we covered the <code>Optional</code> type in Java.
-</p>
+## Optional flatMap
 
+This example demonstrates applying a function that returns an Optional.  
 
-<h2>Optional flatMap</h2>
-
-<p>
-The <code>flatMap</code> method applies the provided  mapping function to a
-value if it is present. It returns that result or otherwise an empty
-<code>Optional</code>. If the result is already an <code>Optional</code>,
-<code>flatMap</code> does not wrap it within an additional
-<code>Optional</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.function.Function;
-
+```java
 void main() {
 
-    Function&lt;String, Optional&lt;String&gt;&gt; upperCase = s -&gt; Optional.of(s.toUpperCase());
+    var upperCase = (String s) -> Optional.of(s.toUpperCase());
+    
+    var words = List.of("rock", null, "mountain", null, "falcon", "sky");
 
-    var words = Arrays.asList("rock", null, "mountain",
-            null, "falcon", "sky");
-
-    for (int i = 0; i &lt; 5; i++) {
-
-        Optional&lt;String&gt; word = Optional.ofNullable(words.get(i));
-
-        var res = word.flatMap(upperCase);
-        res.ifPresent(System.out::println);
+    for (var word : words) {
+        var result = Optional.ofNullable(word).flatMap(upperCase);
+        result.ifPresent(IO::println);
     }
 }
-</pre>
+```
 
+The `flatMap` method applies a mapping function that returns an Optional. If  
+the original Optional is empty, it returns an empty Optional without invoking  
+the function. If the result is already an Optional, `flatMap` doesn't wrap it  
+in another Optional, preventing nested Optional structures.  
 
-<h2>JSoup example</h2>
+## Optional with JSoup
 
-<p>
-In the following example, we use JSoup library to parse and modify an HTML
-document. 
-</p>
+This example demonstrates using Optional with the JSoup HTML parsing library.  
 
-<p>
-For the project, we need the <code>jsoup</code> artifact. 
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-
-import java.util.Optional;
-
 
 void main() {
 
-    String htmlString = """
-            &lt;html&gt;
-            &lt;head&gt;
-            &lt;title&gt;My title&lt;/title&gt;
-            &lt;/head&gt;
-            &lt;body&gt;
-            &lt;main&gt;&lt;/main&gt;
-            &lt;/body&gt;
-            &lt;/html&gt;
+    var htmlString = """
+            <html>
+            <head>
+            <title>My title</title>
+            </head>
+            <body>
+            <main></main>
+            </body>
+            </html>
             """;
 
     var doc = Jsoup.parse(htmlString);
-    Optional&lt;Element&gt; mainEl = Optional.ofNullable(doc.select("main").first());
+    var mainEl = Optional.ofNullable(doc.select("main").first());
 
-    mainEl.ifPresent(e -&gt; {
-        e.append("&lt;p&gt;hello there!&lt;/p&gt;");
-        e.prepend("&lt;h1&gt;Heading&lt;/h1&gt;");
+    mainEl.ifPresent(e -> {
+        e.append("<p>hello there!</p>");
+        e.prepend("<h1>Heading</h1>");
     });
 
-    System.out.println(doc);
+    IO.println(doc);
 }
-</pre>
+```
 
-<p>
-We parse an HTML string and look for the <code>main</code> tag. If it is
-present, we append <code>p</code> and <code>h1</code> tags to the document.
-</p>
+We parse an HTML string and search for the `main` tag using JSoup. The `first`  
+method may return null if the element doesn't exist, so we use  
+`Optional.ofNullable` to safely wrap the result. The `ifPresent` method  
+ensures we only modify the document when the element is found.  
 
-<pre class="explanation">
-var doc = Jsoup.parse(htmlString);
-Optional&lt;Element&gt; mainEl = Optional.ofNullable(doc.select("main").first());
-</pre>
+## Optional with JDBI
 
-<p>
-The <code>main</code> tag might not be present and the <code>first</code> method 
-in this case will return <code>null</code>. Therefore, we use the 
-<code>Optional.ofNullable</code> method. 
-</p>
+This example demonstrates using Optional with database queries using JDBI.  
 
-<pre class="explanation">
-mainEl.ifPresent(e -&gt; {
-    e.append("&lt;p&gt;hello there!&lt;/p&gt;");
-    e.prepend("&lt;h1&gt;Heading&lt;/h1&gt;");
-});
-</pre>
-
-<p>
-We only call <code>append</code> and <code>prepend</code> methods if the 
-<code>Optional</code> contains the <code>main</code> tag.
-</p>
-
-
-<h2>Jdbi example</h2>
-
-<p>
-The <code>findOne</code> method returns the only row in the result set, if any.  
-It returns <code>Optional.empty()</code> if zero rows are returned, or if the  
-row itself is <code>null</code>.  
-</p>
-
-<p>
-For the example, we need the <code>jdbi3-core</code> and the
-<code>postgresql</code> artifacts.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 import org.jdbi.v3.core.Jdbi;
-
-import java.util.Optional;
 
 void main() {
 
-    String jdbcUrl = "jdbc:postgresql://localhost:5432/testdb";
-    String user = "postgres";
-    String password = "s$cret";
+    var jdbcUrl = "jdbc:postgresql://localhost:5432/testdb";
+    var user = "postgres";
+    var password = "s$cret";
 
-    Jdbi jdbi = Jdbi.create(jdbcUrl, user, password);
+    var jdbi = Jdbi.create(jdbcUrl, user, password);
+    var id = 3;
 
-    int id = 3;
-
-    String query = "SELECT name FROM cars WHERE id = ?";
-    Optional&lt;String&gt; res = jdbi.withHandle(handle -&gt; handle.select(query, id)
+    var query = "SELECT name FROM cars WHERE id = ?";
+    var result = jdbi.withHandle(handle -> 
+        handle.select(query, id)
             .mapTo(String.class)
-            .findOne());
+            .findOne()
+    );
 
-    res.ifPresentOrElse(System.out::println, () -&gt; System.out.println("N/A"));
+    result.ifPresentOrElse(IO::println, () -> IO.println("N/A"));
 }
-</pre>
+```
 
-<p>
-In the example, we select a single cell from a row in a table. We print the data  
-if it is present or <code>N/A</code> if not.
-</p>
+The JDBI `findOne` method returns an Optional containing the only row in the  
+result set, if any. It returns `Optional.empty()` if zero rows are returned or  
+if the row itself is null. The `ifPresentOrElse` method provides both success  
+and failure handlers in a single call.  
 
+## Optional orElseGet
 
+This example shows providing a computed default value using a supplier.  
 
-</html>
+```java
+void main() {
+
+    var value = Optional.<String>empty();
+    var result = value.orElseGet(() -> "Default value: " + Math.random());
+    IO.println(result);
+}
+```
+
+The `orElseGet` method accepts a Supplier function that is only invoked when  
+the Optional is empty. This is more efficient than `orElse` when the default  
+value is expensive to compute, as the computation only happens when needed.  
+
+## Optional orElseThrow
+
+This example demonstrates throwing an exception when a value is absent.  
+
+```java
+void main() {
+
+    var value = Optional.<String>empty();
+    
+    try {
+        var result = value.orElseThrow(() -> 
+            new IllegalStateException("Value not found"));
+        IO.println(result);
+    } catch (IllegalStateException e) {
+        IO.println("Error: " + e.getMessage());
+    }
+}
+```
+
+The `orElseThrow` method throws an exception if the Optional is empty. You can  
+provide a custom exception supplier to create meaningful error messages. This  
+is useful when the absence of a value represents an error condition that  
+should halt normal program flow.  
+
+## Optional filter
+
+This example shows filtering Optional values based on a predicate.  
+
+```java
+void main() {
+
+    var words = List.of("rock", "mountain", "falcon", "sky");
+
+    for (var word : words) {
+        Optional.of(word)
+            .filter(w -> w.length() > 4)
+            .ifPresent(IO::println);
+    }
+}
+```
+
+The `filter` method returns the Optional if it contains a value that matches  
+the predicate, otherwise it returns an empty Optional. This allows for  
+conditional processing of Optional values without explicitly checking the  
+condition outside the Optional chain.  
+
+## Optional map
+
+This example demonstrates transforming Optional values with a mapping  
+function.  
+
+```java
+void main() {
+
+    var words = List.of("rock", "mountain", "falcon", "sky");
+
+    for (var word : words) {
+        var length = Optional.of(word)
+            .map(String::length)
+            .orElse(0);
+        IO.println(word + " -> " + length);
+    }
+}
+```
+
+The `map` method applies a transformation function to the value if present,  
+wrapping the result in an Optional. If the original Optional is empty, it  
+returns an empty Optional without invoking the function. Unlike `flatMap`, the  
+result is automatically wrapped in an Optional.  
+
+## Optional ifPresentOrElse
+
+This example shows executing different actions based on value presence.  
+
+```java
+void main() {
+
+    var present = Optional.of("Hello");
+    var absent = Optional.<String>empty();
+
+    present.ifPresentOrElse(
+        value -> IO.println("Found: " + value),
+        () -> IO.println("Not found")
+    );
+
+    absent.ifPresentOrElse(
+        value -> IO.println("Found: " + value),
+        () -> IO.println("Not found")
+    );
+}
+```
+
+The `ifPresentOrElse` method takes two parameters: a Consumer for when the  
+value is present and a Runnable for when it's absent. This provides a cleaner  
+alternative to using separate `ifPresent` and `isEmpty` checks, handling both  
+cases in a single method call.  
+
+## Optional or
+
+This example demonstrates providing an alternative Optional when empty.  
+
+```java
+void main() {
+
+    var primary = Optional.<String>empty();
+    var secondary = Optional.of("Secondary value");
+
+    var result = primary.or(() -> secondary);
+    IO.println(result.orElse("n/a"));
+}
+```
+
+The `or` method returns the Optional if it contains a value, otherwise it  
+returns the Optional produced by the supplier. This allows chaining multiple  
+Optional sources, useful for implementing fallback logic when values might  
+come from different sources.  
+
+## Optional stream
+
+This example shows converting an Optional to a Stream.  
+
+```java
+void main() {
+
+    var values = List.of(
+        Optional.of("apple"),
+        Optional.<String>empty(),
+        Optional.of("banana"),
+        Optional.<String>empty(),
+        Optional.of("cherry")
+    );
+
+    values.stream()
+        .flatMap(Optional::stream)
+        .forEach(IO::println);
+}
+```
+
+The `stream` method, added in Java 9, converts an Optional to a Stream  
+containing either zero or one element. This is particularly useful when  
+working with collections of Optionals, as `flatMap(Optional::stream)`  
+elegantly filters out empty values while extracting present values.  
+
+## Optional with records
+
+This example demonstrates using Optional with record types.  
+
+```java
+record Person(String name, Optional<String> email) {}
+
+void main() {
+
+    var people = List.of(
+        new Person("John", Optional.of("john@example.com")),
+        new Person("Jane", Optional.empty()),
+        new Person("Bob", Optional.of("bob@example.com"))
+    );
+
+    for (var person : people) {
+        var email = person.email().orElse("no email");
+        IO.println(person.name() + ": " + email);
+    }
+}
+```
+
+Records work seamlessly with Optional fields to represent data that may or may  
+not be present. This pattern is cleaner than using null and makes the  
+optionality explicit in the type signature. The record constructor  
+automatically handles the Optional parameter.  
+
+## Optional equals and hashCode
+
+This example shows how Optional implements equality and hashing.  
+
+```java
+void main() {
+
+    var opt1 = Optional.of("test");
+    var opt2 = Optional.of("test");
+    var opt3 = Optional.of("other");
+    var opt4 = Optional.<String>empty();
+    var opt5 = Optional.<String>empty();
+
+    IO.println("opt1 equals opt2: " + opt1.equals(opt2));
+    IO.println("opt1 equals opt3: " + opt1.equals(opt3));
+    IO.println("opt4 equals opt5: " + opt4.equals(opt5));
+    IO.println("opt1 hashCode: " + opt1.hashCode());
+    IO.println("opt4 hashCode: " + opt4.hashCode());
+}
+```
+
+Optional properly implements `equals` and `hashCode`, making it safe to use in  
+collections like Sets and as Map keys. Two Optionals are equal if both are  
+empty or both contain equal values. All empty Optionals are equal to each  
+other regardless of their type parameter.  
+
+## Optional toString
+
+This example demonstrates Optional's string representation.  
+
+```java
+void main() {
+
+    var present = Optional.of("Hello World");
+    var absent = Optional.empty();
+
+    IO.println("Present: " + present);
+    IO.println("Absent: " + absent);
+}
+```
+
+The `toString` method provides a clear representation of the Optional's state.  
+For present values, it shows `Optional[value]`, making the value visible. For  
+empty Optionals, it shows `Optional.empty`, clearly indicating the absence of  
+a value. This is helpful for debugging and logging.  
+
 
