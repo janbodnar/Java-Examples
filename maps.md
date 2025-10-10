@@ -1,267 +1,133 @@
 
-<h1>Java HashMap</h1>
 
+# Java HashMap
 
-<p>
-In this article we show how to use Java HashMap collection.
-</p>
+This document demonstrates how to work with the Java `HashMap` collection,  
+providing comprehensive examples using modern Java 25 syntax with implicit  
+imports and type inference.  
 
-<p>
-<dfn>HashMap</dfn> is a container that stores key-value pairs. Each key is
-associated with one value. Keys in a <code>HashMap</code> must be unique.
-<code>HashMap</code> is called an associative array or a dictionary in other
-programming languages. <code>HashMaps</code> take more memory because for each
-value there is also a key. Deletion and insertion operations take constant time.
-<code>HashMaps</code> can store null values.
-</p>
+A **HashMap** is a hash table-based implementation of the `Map` interface that  
+stores key-value pairs. Each key in a `HashMap` must be unique and is mapped to  
+exactly one value. HashMaps are known as associative arrays or dictionaries in  
+other programming languages. They provide constant-time performance for basic  
+operations like `get` and `put`, assuming the hash function disperses elements  
+properly among the buckets. HashMaps can store `null` values and one `null`  
+key, and they do not maintain any specific ordering of elements.  
 
-<p>
-<code>HashMaps</code> do not maintain order.
-</p>
+The `Map.Entry` interface represents a key-value pair within a `HashMap`. The  
+`entrySet` method returns a `Set` view of all mappings in the map, while the  
+`keySet` method retrieves a `Set` of all keys. The `HashMap` class extends  
+`AbstractMap` and implements the `Map` interface, which provides essential  
+method signatures including `get`, `put`, `size`, `isEmpty`, and many more for  
+comprehensive map manipulation.  
 
-<p>
-<dfn>Map.Entry</dfn> represents a key-value pair in  <code>HashMap</code>.
-<code>HashMap's</code> <code>entrySet</code> returns a <code>Set</code> view of
-the mappings contained in the map. A set of keys is retrieved with the
-<code>keySet</code>
-method.
-</p>
+## HashMap constructors
 
-<p>
-<code>HashMap</code> extends <code>AbstractMap</code> and implements
-<code>Map</code>. The <code>Map</code> provides method signatures including
-<code>get</code>, <code>put</code>, <code>size</code>, or <code>isEmpty</code>.
-</p>
+The `HashMap` class provides several constructors for creating map instances:  
 
+- `HashMap()` — constructs an empty `HashMap` with the default initial capacity  
+  (16) and the default load factor (0.75)  
+- `HashMap(int initialCapacity)` — constructs an empty `HashMap` with the given  
+  initial capacity and the default load factor (0.75)  
+- `HashMap(int initialCapacity, float loadFactor)` — constructs an empty  
+  `HashMap` with the given initial capacity and load factor  
+- `HashMap(Map<? extends K,? extends V> m)` — constructs a new `HashMap` with  
+  the same mappings as the given `Map`  
 
-<h2>HashMap Constructors</h2>
+In these constructors, `K` represents the type of the map keys and `V`  
+represents the type of the mapped values.  
 
-<ul>
-<li><code>HashMap</code> — constructs an empty <code>HashMap</code> with the default initial capacity (16)
-and the default load factor (0.75).</li>
-<li><code>HashMap(int initialCapacity)</code> — constructs an empty <code>HashMap</code> with the given initial capacity and the default load factor (0.75).
-<li><code>HashMap(int initialCapacity, float loadFactor)</code> — constructs an empty <code>HashMap</code> with the given initial capacity and load factor.</li>
-<li><code>HashMap(Map<? extends K,? extends V> m)</code> — constructs a new <code>HashMap</code> with the same mappings as the given <code>Map</code>.</li>
-</ul>
+## HashMap methods
 
-<p>
-<code>K</code> is the type of the map keys and <code>V</code> is the type of
-mapped values.
-</p>
+The following table lists commonly used `HashMap` methods:  
 
+| Modifier and type | Method | Description |
+|-------------------|--------|-------------|
+| void | clear() | Removes all mappings from the map |
+| Object | clone() | Returns a shallow copy of the HashMap instance |
+| boolean | containsKey(Object key) | Returns true if map contains the specified key |
+| Set<Map.Entry<K,V>> | entrySet() | Returns a Set view of the mappings |
+| boolean | isEmpty() | Returns true if this map is empty |
+| Set<K> | keySet() | Returns a Set view of the keys |
+| V | put(K key, V value) | Adds new mapping to the map |
+| V | remove(Object key) | Removes the mapping for the specified key |
+| V | get(Object key) | Returns the value mapped to the specified key |
+| void | forEach(BiConsumer<K,V> action) | Performs action for each entry |
+| V | replace(K key, V value) | Replaces entry for the specified key |
+| int | size() | Returns the number of key-value mappings |
+| Collection<V> | values() | Returns a Collection view of the values |
 
-<h2>HashMap methods</h2>
+This document demonstrates several of these methods with practical examples.  
 
-<p>
-The following table provides a few <code>HashMap</code> methods.
-</p>
+## HashMap creation
+This example shows how to create a basic HashMap instance.  
 
-<table>
-<tbody>
-<tr>
-<th>Modifier and type</th>
-<th>Method</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>void</td>
-<td>clear()</td>
-<td>Removes all mappings from the map.</td>
-</tr>
-<tr>
-<td>Object</td>
-<td>clone()</td>
-<td>Returns a shallow copy of the HashMap instance: the keys and values themselves are not cloned.</td>
-</tr>
-<tr>
-<td>V boolean</td>
-<td>containsKey(Object key)</td>
-<td>Returns true if this map contains a mapping for the specified key.</td>
-</tr>
-<tr>
-<td>Set<Map.Entry<K,V></td>
-<td>entrySet()</td>
-<td>Returns a Set view of the mappings contained in this map.</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>isEmpty()</td>
-<td>Returns true if this map is empty.</td>
-</tr>
-<tr>
-<td>Set<K></td>
-<td>keySet()</td>
-<td>Returns a Set view of the keys contained in this map.</td>
-</tr>
-<tr>
-<td>V</td>
-<td>put(K key, V value)</td>
-<td>Adds new mapping to the map.</td>
-</tr>
-<tr>
-<td>V</td>
-<td>remove(Object key)</td>
-<td>Removes the mapping for the specified key from this map if present.</td>
-</tr>
-<tr>
-<td>V</td>
-<td>get(Object key)</td>
-<td>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</td>
-</tr>
-<tr>
-<td>void</td>
-<td>forEach(BiConsumer<? super K,? super V> action)</td>
-<td>Performs the given action for each entry in this map until
-all entries have been processed or the action throws an exception.</td>
-</tr>
-<tr>
-<td>V</td>
-<td>replace(K key, V value)</td>
-<td>Replaces the entry for the specified key only if it is currently mapped to some value.</td>
-</tr>
-<tr>
-<td>int</td>
-<td>size()</td>
-<td>Returns the number of key-value mappings in this map.</td>
-</tr>
-<tr>
-<td>Collection<V></td>
-<td>values()</td>
-<td>Returns a Collection view of the values contained in this map.</td>
-</tr>
-
-</tbody>
-</table>
-
-<p>
-In this article we work with several of these methods.
-</p>
-
-
-<h2>HashMap creation</h2>
-
-<p>
-<code>HashMap</code> is created with <code>new</code> keyword.
-</p>
-
-<pre class="compact">
-Map<String, String> capitals = new HashMap<>();
-</pre>
-
-<p>
-We specify the types of keys and values between angle brackets.
-Thanks to <em>type inference</em>, it is not necessary to provide
-types on the right side of the declaration.
-</p>
-
-
-<h2>The put method</h2>
-
-<p>
-The <code>put</code> method is used to add a new mapping to the map.
-</p>
-
-<pre class="compact">
-capitals.put("svk", "Bratislava");
-</pre>
-
-<p>
-The first parameter is the key, the second is the value.
-</p>
-
-
-<h2>The remove method</h2>
-
-<p>
-The <code>remove</code> method is used to delete a pair from the map.
-</p>
-
-<pre class="compact">
-capitals.remove("pol");
-</pre>
-
-<p>
-The parameter is the key whose mapping is to be removed from the map.
-</p>
-
-<h2>HashMap initialization</h2>
-
-<p>
-Since Java 9, we have factory methods for <code>HashMap</code> initialization.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Map;
-import static java.util.Map.entry;
-
+```java
 void main() {
-
-    Map<Integer, String> colours = Map.of(1, "red", 2, "blue", 3, "brown");
-    System.out.println(colours);
-
-    Map<String, String> countries = Map.ofEntries(
-            entry("de", "Germany"),
-            entry("sk", "Slovakia"),
-            entry("ru", "Russia"));
-
-    System.out.println(countries);
+    var capitals = new HashMap<String, String>();
+    
+    capitals.put("svk", "Bratislava");
+    capitals.put("ger", "Berlin");
+    capitals.put("hun", "Budapest");
+    
+    IO.println(capitals);
 }
-</pre>
+```
 
-<p>
-The example uses <code>Map.of</code> and <code>Map.ofEntries</code>
-to initialize hashmaps. These two factory methods return <em>unmodifiable</em>
-maps.
-</p>
+A `HashMap` is created using the `new` keyword with type parameters specifying  
+key and value types. Thanks to type inference with `var`, we don't need to  
+repeat the type parameters on the left side of the declaration. The `put`  
+method adds key-value pairs to the map, where the first parameter is the key  
+and the second is the value.  
 
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
+## HashMap initialization
+This example demonstrates factory methods for initializing maps efficiently.  
 
-// up to Java 8
+```java
 void main() {
+    var colours = Map.of(1, "red", 2, "blue", 3, "brown");
+    IO.println(colours);
 
-    Map<String, String> countries = new HashMap<>() {
-        {
-            put("de", "Germany");
-            put("sk", "Slovakia");
-            put("ru", "Russia");
-        }
-    };
+    var countries = Map.ofEntries(
+        Map.entry("de", "Germany"),
+        Map.entry("sk", "Slovakia"),
+        Map.entry("ru", "Russia")
+    );
 
-    System.out.println(countries);
+    IO.println(countries);
 }
-</pre>
+```
 
-<p>
-In this example we create a modifiable hashmap. This way of initialization
-is dubbed double-braced hashmap initialization.
-</p>
+Since Java 9, the `Map.of` and `Map.ofEntries` factory methods provide a  
+convenient way to create immutable maps. The `Map.of` method works well for up  
+to 10 key-value pairs, while `Map.ofEntries` is useful for larger maps. Both  
+methods return unmodifiable maps that cannot be changed after creation.  
 
+For cases where a modifiable map is needed, the double-brace initialization  
+pattern can be used:  
 
-<h2>The size method</h2>
-
-<p>
-The size of the <code>HashMap</code> is determined with the <code>size</code>
-method.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
+    var countries = new HashMap<String, String>() {{
+        put("de", "Germany");
+        put("sk", "Slovakia");
+        put("ru", "Russia");
+    }};
 
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    IO.println(countries);
+}
+```
+
+This approach creates an anonymous subclass and uses an instance initializer  
+block to populate the map. While convenient, it creates an extra class and  
+should be used judiciously.  
+
+## The size method
+This example demonstrates determining the number of entries in a HashMap.  
+
+```java
+void main() {
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -270,74 +136,27 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    int size = capitals.size();
-
-    System.out.printf("The size of the HashMap is %d%n", size);
+    var size = capitals.size();
+    IO.println("The size of the HashMap is " + size);
 
     capitals.remove("pol");
     capitals.remove("ita");
 
     size = capitals.size();
-
-    System.out.printf("The size of the HashMap is %d%n", size);
+    IO.println("The size of the HashMap is " + size);
 }
-</pre>
+```
 
-<p>
-In the code example, we create a <code>HashMap</code> and determine its size
-with <code>size</code>. Then we remove some pairs and determine its size again.
-We print the findings to the console.
-</p>
+The `size` method returns the number of key-value mappings currently stored in  
+the map. After adding six entries, the size is 6. The `remove` method deletes  
+entries by their keys, reducing the size to 4 after removing two pairs.  
 
-<pre class="explanation">
-capitals.put("svk", "Bratislava");
-capitals.put("ger", "Berlin");
-</pre>
+## The get method
+This example shows how to retrieve values from a HashMap using keys.  
 
-<p>
-With <code>put</code>, we add new pairs into the <code>HashMap</code>.
-</p>
-
-<pre class="explanation">
-int size = capitals.size();
-</pre>
-
-<p>
-Here we get the size of the map.
-</p>
-
-<pre class="explanation">
-capitals.remove("pol");
-capitals.remove("ita");
-</pre>
-
-<p>
-With <code>remove</code>, we delete two pairs from the map.
-</p>
-
-<pre class="compact">
-The size of the HashMap is 6
-The size of the HashMap is 4
-</pre>
-
-
-<h2>The get method</h2>
-
-<p>
-To retrieve a value from a <code>HashMap</code>, we use the <code>get</code>
-method. It takes a key as a parameter.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -346,43 +165,24 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    String cap1 = capitals.get("ita");
-    String cap2 = capitals.get("svk");
+    var cap1 = capitals.get("ita");
+    var cap2 = capitals.get("svk");
 
-    System.out.println(cap1);
-    System.out.println(cap2);
+    IO.println(cap1);
+    IO.println(cap2);
 }
-</pre>
+```
 
-<p>
-In the example, we retrieve two values from the map.
-</p>
+The `get` method retrieves the value associated with a specified key. It takes  
+a key as a parameter and returns the corresponding value. If the key doesn't  
+exist in the map, the method returns `null`.  
 
-<pre class="explanation">
-String cap2 = capitals.get("svk");
-</pre>
+## The clear method
+This example demonstrates removing all entries from a HashMap.  
 
-<p>
-Here we get a value which has <code>"svk"</code> key.
-</p>
-
-
-<h2>The clear method</h2>
-
-<p>
-The <code>clear</code> method removes all pairs from the <code>HashMap</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -394,61 +194,23 @@ void main() {
     capitals.clear();
 
     if (capitals.isEmpty()) {
-
-        System.out.println("The map is empty");
+        IO.println("The map is empty");
     } else {
-
-        System.out.println("The map is not empty");
+        IO.println("The map is not empty");
     }
 }
-</pre>
+```
 
-<p>
-In the example, we remove all elements and print the size of the map to the
-console.
-</p>
+The `clear` method removes all key-value mappings from the map, leaving it  
+empty. The `isEmpty` method checks whether the map contains any entries,  
+returning `true` if the map has no mappings and `false` otherwise.  
 
-<pre class="explanation">
-capitals.clear();
-</pre>
+## The containsKey method
+This example shows how to check if a map contains a specific key.  
 
-<p>
-We remove all pairs with <code>clear</code>.
-</p>
-
-<pre class="explanation">
-if (capitals.isEmpty()) {
-
-    System.out.println("The map is empty");
-} else {
-
-    System.out.println("The map is not empty");
-}
-</pre>
-
-<p>
-With the <code>isEmpty</code> method, we check if the map
-is empty.
-</p>
-
-
-<h2>The containsKey method</h2>
-
-<p>
-The <code>containsKey</code> method returns true if the map contains a mapping
-for the specified key.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -457,193 +219,85 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    String key1 = "ger";
-    String key2 = "rus";
+    var key1 = "ger";
+    var key2 = "rus";
 
     if (capitals.containsKey(key1)) {
-
-        System.out.printf("HashMap contains %s key%n", key1);
+        IO.println("HashMap contains " + key1 + " key");
     } else {
-
-        System.out.printf("HashMap does not contain %s key%n", key1);
+        IO.println("HashMap does not contain " + key1 + " key");
     }
 
     if (capitals.containsKey(key2)) {
-
-        System.out.printf("HashMap contains %s key%n", key2);
+        IO.println("HashMap contains " + key2 + " key");
     } else {
-
-        System.out.printf("HashMap does not contain %s key%n", key2);
+        IO.println("HashMap does not contain " + key2 + " key");
     }
 }
-</pre>
+```
 
-<p>
-In the example, we check if the map contains two keys.
-</p>
+The `containsKey` method returns `true` if the map contains a mapping for the  
+specified key, and `false` otherwise. This is useful for checking key existence  
+before attempting to retrieve or modify values, preventing potential `null`  
+reference issues.  
 
-<pre class="explanation">
-if (capitals.containsKey(key1)) {
+## The replace method
+This example demonstrates replacing values in a HashMap.  
 
-    System.out.printf("HashMap contains %s key%n", key1);
-} else {
-
-    System.out.printf("HashMap does not contain %s key%n", key1);
-}
-</pre>
-
-<p>
-This if statement prints a message depending on whether the map
-contains the given key.
-</p>
-
-<pre class="compact">
-HashMap contains ger key
-HashMap does not contain rus key
-</pre>
-
-
-<h2>The replace method</h2>
-
-<p>
-There are <code>replace</code> methods which enable programmers to replace
-entries.
-</p>
-
-<pre class="compact">
-replace(K key, V value)
-</pre>
-
-<p>
-This method replaces the entry for the specified key only if it is currently
-mapped to some value.
-</p>
-
-<pre class="compact">
-replace(K key, V oldValue, V newValue)
-</pre>
-
-<p>
-This method replaces the entry for the specified key only if it is currently
-mapped to the specified value.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
+    var data = new HashMap<String, String>();
 
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    data.put("day", "Monday");
+    data.put("country", "Poland");
+    data.put("colour", "blue");
 
-    capitals.put("day", "Monday");
-    capitals.put("country", "Poland");
-    capitals.put("colour", "blue");
+    data.replace("day", "Sunday");
+    data.replace("country", "Russia", "Great Britain");
+    data.replace("colour", "blue", "green");
 
-    capitals.replace("day", "Sunday");
-    capitals.replace("country", "Russia", "Great Britain");
-    capitals.replace("colour", "blue", "green");
-
-    capitals.entrySet().forEach(System.out::println);
+    data.entrySet().forEach(IO::println);
 }
-</pre>
+```
 
-<p>
-In the example, we replace pairs in the map with <code>replace</code>.
-</p>
+The `replace` method comes in two forms. The first form, `replace(K key, V  
+value)`, replaces the entry for the specified key only if it's currently  
+mapped to some value. The second form, `replace(K key, V oldValue, V  
+newValue)`, replaces the entry only if the current value matches the specified  
+old value. In the example, the first replacement succeeds unconditionally, the  
+second fails because "country" isn't mapped to "Russia", and the third succeeds  
+because the old value matches.  
 
-<pre class="explanation">
-capitals.replace("day", "Sunday");
-</pre>
+## Convert HashMap to List
+This example shows how to convert HashMap entries into a list.  
 
-<p>
-Here we replace a value for the <code>"day"</code> key.
-</p>
-
-<pre class="explanation">
-capitals.replace("country", "Russia", "Great Britain");
-</pre>
-
-<p>
-In this case, the value is not replaced because the key
-is not currently set to <code>"Russia"</code>.
-</p>
-
-<pre class="explanation">
-capitals.replace("colour", "blue", "green");
-</pre>
-
-<p>
-Because the old value is correct, the value is replaced.
-</p>
-
-<pre class="compact">
-country=Poland
-colour=green
-day=Sunday
-</pre>
-
-
-<h2>Convert HashMap to List</h2>
-
-<p>
-In the next example we convert <code>HashMap</code> entries to a list of
-entries.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; colours = Map.of(
-            "AliceBlue", "#f0f8ff",
-            "GreenYellow", "#adff2f",
-            "IndianRed", "#cd5c5c",
-            "khaki", "#f0e68c"
+    var colours = Map.of(
+        "AliceBlue", "#f0f8ff",
+        "GreenYellow", "#adff2f",
+        "IndianRed", "#cd5c5c",
+        "khaki", "#f0e68c"
     );
 
-    Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = colours.entrySet();
-    List&lt;Map.Entry&lt;String, String&gt;&gt; mylist = new ArrayList&lt;&gt;(entries);
+    var entries = colours.entrySet();
+    var mylist = new ArrayList<>(entries);
 
-    System.out.println(mylist);
+    IO.println(mylist);
 }
-</pre>
+```
 
-<p>
-The <code>entrySet</code> returns a set view of mappings, which is later 
-passed to the constructor of the <code>ArrayList</code>.
-</p>
+The `entrySet` method returns a `Set` view of all mappings in the map. This  
+set can be passed directly to the `ArrayList` constructor to create a list of  
+entries. This conversion is useful when you need list-specific operations like  
+indexed access or sorting on map entries.  
 
+## Iteration with forEach
+This example demonstrates iterating over map entries using forEach.  
 
-<h2>Iteration with forEach</h2>
-
-<p>
-We use the <code>forEach</code> method to iterate over the key-value pairs of
-the <code>HashMap</code>. The <code>forEach</code> method performs the given
-action for each element of the map until all elements have been processed or the
-action throws an exception.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -652,40 +306,20 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    capitals.forEach((k, v) -&gt; System.out.format("%s: %s%n", k, v));
+    capitals.forEach((k, v) -> IO.println(k + ": " + v));
 }
-</pre>
+```
 
-<p>
-In the code example, we iterate over a <code>HashMap</code> with
-<code>forEach</code> using a lambda expression.
-</p>
+The `forEach` method accepts a `BiConsumer` that processes each key-value pair  
+in the map. The lambda expression `(k, v) -> IO.println(k + ": " + v)` is  
+executed for each entry, making it a concise way to iterate over all mappings.  
 
-<pre class="explanation">
-capitals.forEach((k, v) -&gt; System.out.format("%s: %s%n", k, v));
-</pre>
+## Iteration with enhanced for loop
+This example shows iterating over a HashMap with an enhanced for loop.  
 
-<p>
-With <code>forEach</code> we iterate over all pairs of the map.
-</p>
-
-
-<h2>Iteration with enhanced for loop</h2>
-
-<p>
-The enhanced for loop can be used to iterate over a <code>HashMap</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -694,45 +328,23 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    for (Map.Entry&lt;String, String&gt; pair: capitals.entrySet()) {
-
-        System.out.format("%s: %s%n", pair.getKey(), pair.getValue());
+    for (var pair : capitals.entrySet()) {
+        IO.println(pair.getKey() + ": " + pair.getValue());
     }
 }
-</pre>
+```
 
-<p>
-In the example we iterate over a <code>HashMap</code> with enhanced for loop.
-</p>
+The enhanced for loop iterates over the entry set returned by `entrySet`. In  
+each iteration, a `Map.Entry` object is assigned to the `pair` variable. The  
+`getKey` and `getValue` methods extract the key and value from each entry. The  
+`var` keyword simplifies the code by inferring the entry type automatically.  
 
-<pre class="explanation">
-for (Map.Entry&lt;String, String&gt; pair: capitals.entrySet()) {
+## Iteration over keys
+This example demonstrates iterating over only the keys of a HashMap.  
 
-    System.out.format("%s: %s%n", pair.getKey(), pair.getValue());
-}
-</pre>
-
-<p>
-In each for cycle, a new key-value couple is assigned to the <code>pair</code>
-variable.
-</p>
-
-<hr>
-
-<p>
-With type inference, we can shorten the code a bit. 
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -741,35 +353,22 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    for (var pair: capitals.entrySet()) {
-
-        System.out.format("%s: %s%n", pair.getKey(), pair.getValue());
-    }
+    var keys = capitals.keySet();
+    keys.forEach(IO::println);
 }
-</pre>
+```
 
-<p>
-We shorten the code by using a <code>var</code> keyword in the for loop.
-</p>
+The `keySet` method returns a `Set` view of all keys in the map. Since keys  
+must be unique, they are returned as a `Set` rather than a collection that  
+allows duplicates. The `forEach` method then iterates over this set, printing  
+each key to the console.  
 
+## Iteration over values
+This example shows how to iterate over only the values of a HashMap.  
 
-<h2>Iteration over keys</h2>
-
-<p>
-We might want to iterate only over keys of a <code>HashMap</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
+```java
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -778,107 +377,24 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    Set&lt;String&gt; keys = capitals.keySet();
-
-    keys.forEach(System.out::println);
+    var vals = capitals.values();
+    vals.forEach(IO::println);
 }
-</pre>
+```
 
-<p>
-The example iterates over keys of the <code>capitals</code> map.
-</p>
+The `values` method returns a `Collection` view of all values in the map.  
+Unlike keys, values don't need to be unique, so they're returned as a  
+`Collection` rather than a `Set`. This allows multiple keys to map to the same  
+value without restriction.  
 
-<pre class="explanation">
-Set<String> keys = capitals.keySet();
-</pre>
+## Filtering HashMap
+This example demonstrates filtering a HashMap using the Stream API.  
 
-<p>
-The keys of a <code>HashMap</code> are retrieved with the <code>keySet</code>
-method, which returns a <code>Set</code> of keys. Keys must be unique; therefore,
-we have a <code>Set</code>. <code>Set</code> is a collection that contains no
-duplicate elements.
-</p>
-
-<pre class="explanation">
-keys.forEach(System.out::println);
-</pre>
-
-<p>
-We go over the set of keys with <code>forEach</code>.
-</p>
-
-
-<h2>Iteration over values</h2>
-
-<p>
-We might want to iterate only over values of a <code>HashMap</code>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
-
-    capitals.put("svk", "Bratislava");
-    capitals.put("ger", "Berlin");
-    capitals.put("hun", "Budapest");
-    capitals.put("czk", "Prague");
-    capitals.put("pol", "Warsaw");
-    capitals.put("ita", "Rome");
-
-    Collection&lt;String&gt; vals = capitals.values();
-
-    vals.forEach(System.out::println);
-}
-</pre>
-
-<p>
-The example iterates over values of a <code>HashMap</code>.
-</p>
-
-<pre class="explanation">
-Collection<String> vals = capitals.values();
-</pre>
-
-<p>
-The values of a <code>HashMap</code> are retrieved with the <code>values</code>
-method.
-</p>
-
-<pre class="explanation">
-vals.forEach(System.out::println);
-</pre>
-
-<p>
-We go over the collection with <code>forEach</code>.
-</p>
-
-
-<h2>Filtering HashMap</h2>
-
-<p>
-<code>HashMap</code> can be filtered with the <code>filter</code> method
-of the Java Stream API.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.HashMap;
-import java.util.Map;
+```java
 import java.util.stream.Collectors;
 
 void main() {
-
-    Map&lt;String, String&gt; capitals = new HashMap&lt;&gt;();
+    var capitals = new HashMap<String, String>();
 
     capitals.put("svk", "Bratislava");
     capitals.put("ger", "Berlin");
@@ -887,66 +403,192 @@ void main() {
     capitals.put("pol", "Warsaw");
     capitals.put("ita", "Rome");
 
-    Map&lt;String, String&gt; filteredCapitals = capitals.entrySet().stream()
-            .filter(e -&gt; e.getValue().length() == 6)
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    var filteredCapitals = capitals.entrySet().stream()
+        .filter(e -> e.getValue().length() == 6)
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-    filteredCapitals.entrySet().forEach(System.out::println);
+    filteredCapitals.entrySet().forEach(IO::println);
 }
-</pre>
+```
 
-<p>
-In the example, we filter the map to contain only pairs whose values' size is
-equal to six.
-</p>
+The Stream API's `filter` method allows selective processing of map entries.  
+First, `entrySet().stream()` creates a stream of entries. The `filter` method  
+keeps only entries whose values have a length of 6 characters. Finally,  
+`Collectors.toMap` collects the filtered entries back into a new HashMap.  
 
-<pre class="compact">
-czk=Prague
-ger=Berlin
-pol=Warsaw
-</pre>
+## List of maps
+This example demonstrates creating and working with a list of HashMap objects.  
 
-
-<h2>List of maps</h2>
-
-<p>
-In the next example, we have a list of maps. 
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+```java
 void main() {
-
-    Map&lt;String,Integer&gt; fruits1 = new HashMap&lt;&gt;();
+    var fruits1 = new HashMap<String, Integer>();
     fruits1.put("oranges", 2);
     fruits1.put("bananas", 3);
 
-    Map&lt;String,Integer&gt; fruits2 = new HashMap&lt;&gt;();
+    var fruits2 = new HashMap<String, Integer>();
     fruits2.put("plums", 6);
     fruits2.put("apples", 7);
 
-    List&lt;Map&lt;String,Integer&gt;&gt; all = new ArrayList&lt;&gt;();
-    all.add(fruits1);
-    all.add(fruits2);
+    var allFruits = new ArrayList<Map<String, Integer>>();
+    allFruits.add(fruits1);
+    allFruits.add(fruits2);
 
-    all.forEach(e -&gt; e.forEach((k, v) -&gt; System.out.printf("k: %s v %d%n", k, v)));
+    allFruits.forEach(map -> 
+        map.forEach((k, v) -> IO.println("key: " + k + " value: " + v))
+    );
 }
-</pre>
+```
 
-<p>
-We define two maps and insert them into a list. Then we interate over the list 
-with two <code>forEach</code> loops.
-</p>
+A list can contain multiple maps, enabling organization of related data groups.  
+The example creates two separate fruit maps and adds them to an ArrayList. The  
+nested `forEach` loops iterate first over each map in the list, then over each  
+key-value pair within those maps, demonstrating how to work with collections of  
+maps effectively.  
 
+## Merging maps
+This example shows how to combine multiple maps into one.  
 
+```java
+void main() {
+    var map1 = new HashMap<String, String>();
+    map1.put("a", "apple");
+    map1.put("b", "ball");
+    
+    var map2 = new HashMap<String, String>();
+    map2.put("c", "cat");
+    map2.put("d", "dog");
+    
+    var merged = new HashMap<String, String>();
+    merged.putAll(map1);
+    merged.putAll(map2);
+    
+    IO.println("Merged map:");
+    merged.forEach((k, v) -> IO.println(k + " = " + v));
+}
+```
 
+The `putAll` method copies all mappings from one map to another. This is useful  
+for combining multiple maps into a single map. If both maps contain the same  
+key, the value from the second map overwrites the value from the first map.  
 
+## The getOrDefault method
+This example demonstrates safely retrieving values with a default fallback.  
 
+```java
+void main() {
+    var scores = new HashMap<String, Integer>();
+    scores.put("Alice", 95);
+    scores.put("Bob", 87);
+    scores.put("Charlie", 92);
+    
+    IO.println("Alice's score: " + scores.getOrDefault("Alice", 0));
+    IO.println("David's score: " + scores.getOrDefault("David", 0));
+    IO.println("Eve's score: " + scores.getOrDefault("Eve", -1));
+}
+```
 
+The `getOrDefault` method returns the value associated with a key if it exists,  
+or a specified default value if the key is not found. This prevents `null`  
+pointer issues and provides a cleaner alternative to checking key existence  
+before retrieval. Different default values can be used based on the context.  
+
+## Compute methods
+This example shows advanced value computation using compute methods.  
+
+```java
+void main() {
+    var inventory = new HashMap<String, Integer>();
+    inventory.put("apples", 10);
+    inventory.put("bananas", 5);
+    
+    // Add 3 to existing value or set to 3 if absent
+    inventory.computeIfAbsent("oranges", k -> 3);
+    
+    // Double the value if present
+    inventory.computeIfPresent("apples", (k, v) -> v * 2);
+    
+    // Compute new value based on key and existing value
+    inventory.compute("bananas", (k, v) -> v == null ? 1 : v + 5);
+    
+    inventory.forEach((k, v) -> IO.println(k + ": " + v));
+}
+```
+
+The compute methods provide powerful ways to update map values. The  
+`computeIfAbsent` method adds a mapping only if the key is absent. The  
+`computeIfPresent` method updates a value only if the key exists. The `compute`  
+method handles both cases, allowing conditional logic based on the current  
+value and key.  
+
+## Removing entries with removeIf
+This example demonstrates conditional removal of map entries.  
+
+```java
+void main() {
+    var prices = new HashMap<String, Double>();
+    prices.put("apple", 1.50);
+    prices.put("banana", 0.75);
+    prices.put("orange", 2.00);
+    prices.put("grape", 3.50);
+    
+    // Remove entries with price greater than 2.0
+    prices.entrySet().removeIf(entry -> entry.getValue() > 2.0);
+    
+    IO.println("Items under $2.00:");
+    prices.forEach((k, v) -> IO.println(k + ": $" + v));
+}
+```
+
+The `removeIf` method on the entry set allows removal of entries based on a  
+predicate condition. The predicate receives each entry and returns `true` for  
+entries to remove. This is more concise than manually iterating and removing  
+entries, and it's safer than modifying the map during iteration.  
+
+## Sorting HashMap
+This example shows how to sort HashMap entries by keys or values.  
+
+```java
+import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
+
+void main() {
+    var populations = new HashMap<String, Integer>();
+    populations.put("Tokyo", 37400000);
+    populations.put("Delhi", 28514000);
+    populations.put("Shanghai", 25582000);
+    populations.put("São Paulo", 21650000);
+    
+    // Sort by key
+    var sortedByKey = populations.entrySet().stream()
+        .sorted(Map.Entry.comparingByKey())
+        .collect(Collectors.toMap(
+            Map.Entry::getKey,
+            Map.Entry::getValue,
+            (e1, e2) -> e1,
+            LinkedHashMap::new
+        ));
+    
+    IO.println("Sorted by city name:");
+    sortedByKey.forEach((k, v) -> IO.println(k + ": " + v));
+    
+    // Sort by value (descending)
+    var sortedByValue = populations.entrySet().stream()
+        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+        .collect(Collectors.toMap(
+            Map.Entry::getKey,
+            Map.Entry::getValue,
+            (e1, e2) -> e1,
+            LinkedHashMap::new
+        ));
+    
+    IO.println("\nSorted by population (descending):");
+    sortedByValue.forEach((k, v) -> IO.println(k + ": " + v));
+}
+```
+
+HashMaps don't maintain order, so sorting requires converting to a stream,  
+applying sort operations, and collecting into a `LinkedHashMap` to preserve the  
+order. The `comparingByKey` and `comparingByValue` methods create comparators  
+for sorting. The `reversed` method inverts the sort order for descending  
+results. The `LinkedHashMap` maintains insertion order, preserving the sorted  
+sequence.  
