@@ -103,7 +103,7 @@ enum Coin {
     TAILS;
 
     static Coin toss() {
-        var rand = new java.util.Random();
+        var rand = new Random();
         var values = Coin.values();
         return values[rand.nextInt(values.length)];
     }
@@ -136,7 +136,7 @@ enum Season {
     WINTER;
 
     static Season randomSeason() {
-        var random = new java.util.Random();
+        var random = new Random();
         var values = Season.values();
         return values[random.nextInt(values.length)];
     }
@@ -294,9 +294,9 @@ enum Weekday {
 
 void main() {
 
-    var workdays = java.util.EnumSet.range(Weekday.MONDAY, Weekday.FRIDAY);
-    var weekend = java.util.EnumSet.of(Weekday.SATURDAY, Weekday.SUNDAY);
-    var allDays = java.util.EnumSet.allOf(Weekday.class);
+    var workdays = EnumSet.range(Weekday.MONDAY, Weekday.FRIDAY);
+    var weekend = EnumSet.of(Weekday.SATURDAY, Weekday.SUNDAY);
+    var allDays = EnumSet.allOf(Weekday.class);
 
     IO.println("Workdays: " + workdays);
     IO.println("Weekend: " + weekend);
@@ -322,7 +322,7 @@ enum Size {
 
 void main() {
 
-    var prices = new java.util.EnumMap<Size, Double>(Size.class);
+    var prices = new EnumMap<Size, Double>(Size.class);
     prices.put(Size.SMALL, 9.99);
     prices.put(Size.MEDIUM, 12.99);
     prices.put(Size.LARGE, 15.99);
