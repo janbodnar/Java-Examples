@@ -21,9 +21,10 @@ void main() {
     IO.println(p.name + " is " + p.age + " years old.");
 }
 ```
-The `Person` class has two fields, `name` and `age`, for storing data.
-An instance of the class is created, its fields are populated, and the
-information is printed to the console.
+
+The `Person` class has two fields, `name` and `age`, for storing data.  
+An instance of the class is created, its fields are populated, and the  
+information is printed to the console.  
 
 ## Class with method
 
@@ -43,6 +44,7 @@ void main() {
     IO.println("Result: " + result);
 }
 ```
+
 The `Calculator` class includes an `add` method that takes two integers,
 sums them, and returns the result. An instance of the calculator is used to
 call the method and display the output.
@@ -68,6 +70,7 @@ void main() {
     IO.println(book.title + " by " + book.author);
 }
 ```
+
 The `Book` class has a constructor that accepts a title and author,
 assigning them to the object's fields upon creation. This ensures that a
 `Book` object is always in a valid state right after instantiation.
@@ -100,6 +103,7 @@ void main() {
     IO.println("p2: (" + p2.x + "," + p2.y + ")");
 }
 ```
+
 The `Point` class provides two constructors: a default one that sets
 coordinates to zero and a parameterized one to set them to specific values.
 This flexibility, known as constructor overloading, allows for multiple ways to create an object.
@@ -129,6 +133,7 @@ void main() {
     emp.display();
 }
 ```
+
 The `this` keyword is used within the `Employee` constructor to distinguish
 between the class fields and the constructor parameters. It is also used in the
 `display` method to refer to the current instance's fields.
@@ -157,6 +162,7 @@ void main() {
     b.append("Hello").append(" ").append("World").print();
 }
 ```
+
 The `Builder` class has an `append` method that returns the current instance (`this`).
 This allows multiple `append` calls to be chained together in a single, fluent statement,
 making the code more readable and expressive.
@@ -184,6 +190,7 @@ void main() {
     IO.println("Balance: " + acc.getBalance());
 }
 ```
+
 The `balance` field in the `Account` class is marked as `private`, meaning
 it cannot be accessed directly from outside the class. This enforces encapsulation,
 a core principle of object-oriented programming.
@@ -216,6 +223,7 @@ void main() {
     IO.println("Balance: " + acc.getBalance());
 }
 ```
+
 The `BankAccount` class exposes a public `deposit` method to modify the
 private `balance` field. This ensures that the balance can only be changed
 through a well-defined and controlled interface.
@@ -254,6 +262,7 @@ void main() {
     IO.println(user.getUsername() + ": " + user.getEmail());
 }
 ```
+
 The `User` class provides public "getter" and "setter" methods to access and
 modify its private fields. This pattern gives full control over how the internal
 data of an object is managed.
@@ -281,6 +290,7 @@ void main() {
     IO.println("Total counters: " + Counter.count);
 }
 ```
+
 The `count` field is `static`, so it belongs to the `Counter` class itself,
 not to any individual instance. It is incremented each time a new object is
 created, effectively tracking the total number of instances.
@@ -306,6 +316,7 @@ void main() {
     IO.println("Cube of 3: " + MathUtils.cube(3));
 }
 ```
+
 The `MathUtils` class contains `static` methods that do not depend on any object's
 state. They can be called directly on the class, making them ideal for utility
 functions that operate on their inputs.
@@ -340,6 +351,7 @@ void main() {
     IO.println("Total products: " + Product.totalProducts);
 }
 ```
+
 The `Product` class uses an instance field `name` for each product and a `static`
 field `totalProducts` to track the total count. This shows how static and instance
 members can work together to manage both class-level and object-level data.
@@ -373,6 +385,7 @@ void main() {
     dog.makeSound();
 }
 ```
+
 The `Dog` class inherits from the `Animal` class, gaining its fields and methods.
 This allows the `Dog` object to call the `makeSound` method defined in its parent,
 showcasing the "is-a" relationship.
@@ -401,6 +414,7 @@ void main() {
     car.start();
 }
 ```
+
 The `Car` class overrides the `start` method of its `Vehicle` parent to provide a
 more specific implementation. The `@Override` annotation is used to ensure the method
 signature correctly matches the parent's method.
@@ -443,6 +457,7 @@ void main() {
     circle.display();
 }
 ```
+
 The `Circle` class uses `super(color)` to call its parent's constructor and
 `super.display()` to invoke the parent's method. This allows a subclass to extend,
 rather than completely replace, the functionality of its parent.
@@ -473,6 +488,7 @@ void main() {
     child.display();
 }
 ```
+
 The `message` field in `Parent` is `protected`, allowing the `Child` class to access
 it directly. This access modifier is useful for sharing implementation details within an
 inheritance hierarchy without making them public.
@@ -511,6 +527,7 @@ void main() {
     rect.describe();
 }
 ```
+
 The `AbstractShape` class defines an `abstract` method `area`, which must be
 implemented by any concrete subclass. This forces subclasses like `Rectangle` to
 provide their own specific logic for the abstract behavior.
@@ -543,6 +560,7 @@ void main() {
     square.draw();
 }
 ```
+
 The `Drawable` interface specifies a `draw` method that any implementing class must
 provide. The `Square` class implements this interface, guaranteeing that it has a `draw`
 method as defined by the contract.
@@ -579,6 +597,7 @@ void main() {
     printer.scan();
 }
 ```
+
 The `Printer` class implements both `Printable` and `Scannable`, meaning it must
 provide implementations for the methods defined in both interfaces. This allows a
 class to adopt behaviors from several different contracts.
@@ -610,6 +629,7 @@ void main() {
     logger.logError("Something went wrong");
 }
 ```
+
 The `Logger` interface includes a `default` method `log`, which implementing classes
 can use without providing their own version. This allows interfaces to evolve without
 breaking existing implementations.
@@ -635,6 +655,7 @@ void main() {
     IO.println("Is empty: " + StringUtils.isEmpty(""));
 }
 ```
+
 The `StringUtils` interface provides `static` methods that can be called directly
 on the interface itself. This is a common pattern for grouping related utility functions
 without needing to create a separate helper class.
@@ -652,6 +673,7 @@ void main() {
     IO.println(person.name() + " is " + person.age() + " years old");
 }
 ```
+
 A `record` is a concise way to define an immutable data class, automatically
 providing a constructor, getters, `equals`, `hashCode`, and `toString`.
 This reduces boilerplate code for simple data objects.
@@ -673,6 +695,7 @@ void main() {
     IO.println("Distance: " + point.distanceFromOrigin());
 }
 ```
+
 While records are primarily for data, you can add instance methods to them,
 such as `distanceFromOrigin`. This allows you to add behavior related to the
 data that the record holds.
@@ -700,6 +723,7 @@ void main() {
     IO.println(temp.celsius() + "C = " + temp.fahrenheit() + "F");
 }
 ```
+
 A compact constructor inside the `Temperature` record is used to validate the
 input `celsius` value. This ensures that an instance of the record can never be
 created in an invalid state.
@@ -738,6 +762,7 @@ void main() {
     IO.println("Equal: " + item1.equals(item2));
 }
 ```
+
 The `Item` class provides its own `equals` and `hashCode` methods to define object
 equality based on `name` and `code`. This is crucial for collections like `HashMap`
 and `HashSet` to work correctly.
@@ -768,6 +793,7 @@ void main() {
     IO.println(movie);
 }
 ```
+
 The `Movie` class overrides `toString` to return a formatted string with its title
 and year. This is useful for debugging and logging, as it provides more meaningful
 output when an object is printed.
@@ -798,6 +824,7 @@ void main() {
     outer.createInner();
 }
 ```
+
 The `Inner` class is defined inside the `Outer` class and has direct access
 to its private members, like the `message` field. An inner class is associated
 with an instance of the outer class.
@@ -827,6 +854,7 @@ void main() {
     node.display();
 }
 ```
+
 A `static` nested class like `Node` does not have access to the instance members of its
 outer class. It is essentially a regular class that is namespaced within another,
 often used for helper or implementation details.
@@ -852,6 +880,7 @@ void main() {
     greeting.greet("Alice");
 }
 ```
+
 An anonymous class is created to provide an inline implementation of the `Greeting`
 interface. This is a concise way to create an object with a specific, one-off
 implementation, often used for event listeners.
@@ -881,6 +910,7 @@ void main() {
     counter.display();
 }
 ```
+
 The `LocalCounter` class is defined within the scope of the `main` method and is only
 visible inside it. This is useful for creating a small helper class that is only needed
 for a short period within a single method.
@@ -913,6 +943,7 @@ void main() {
     }
 }
 ```
+
 Pattern matching combines the type check and the cast into a single operation.
 If `animal` is a `Dog`, it is automatically cast to the `dog` variable, making
 the code more concise and less error-prone.
@@ -943,6 +974,7 @@ void main() {
     }
 }
 ```
+
 The `Result` class is `sealed` and only permits `Success` and `Failure` to extend it.
 This provides more control over an inheritance hierarchy, which is especially useful
 in combination with pattern matching.
@@ -977,6 +1009,7 @@ void main() {
     IO.println("p2: (" + p2.getX() + "," + p2.getY() + ")");
 }
 ```
+
 The `ImmutablePoint` class has `final` fields and its `move` method returns a new
 instance instead of modifying the existing one. Immutability makes objects inherently
 thread-safe and easier to reason about.
@@ -1033,6 +1066,7 @@ void main() {
     IO.println(car);
 }
 ```
+
 The `Builder` pattern provides a flexible way to create an object by separating the
 construction process from its representation. This is especially useful when an object
 has many optional parameters or a complex setup.
@@ -1076,6 +1110,7 @@ void main() {
     IO.println("Same instance: " + (s1 == s2));
 }
 ```
+
 The `Singleton` class has a private constructor and a static `getInstance` method that
 returns the single, shared instance. This pattern is useful for managing resources like
 database connections or configuration settings.
@@ -1108,6 +1143,7 @@ void main() {
     IO.println(intBox.get());
 }
 ```
+
 The `Box<T>` class uses a type parameter `T` to create a type-safe container. This
 allows the same class to be used for storing a `String`, an `Integer`, or any other
 object type without sacrificing type safety.
@@ -1138,6 +1174,7 @@ void main() {
     IO.println("Double value: " + doubleBox.doubleValue());
 }
 ```
+
 The `NumberBox` class uses `<T extends Number>` to specify that `T` must be a subclass
 of `Number`. This allows the class to call methods defined in `Number`, like `doubleValue`,
 while still maintaining generic flexibility.
@@ -1172,6 +1209,7 @@ void main() {
     car.start();
 }
 ```
+
 Instead of inheriting from `Engine`, the `Car` class contains an `Engine` instance.
 This "has-a" relationship is often more flexible than the "is-a" relationship of
 inheritance, allowing for greater modularity.
@@ -1210,6 +1248,7 @@ void main() {
     IO.println(file.read());
 }
 ```
+
 Instead of one large interface, `Readable` and `Writable` define separate behaviors.
 This allows a class to implement only the functionalities it needs, leading to more
 decoupled and maintainable code.
@@ -1249,6 +1288,7 @@ void main() {
     notification.notify("Hello!");
 }
 ```
+
 The `Notification` class receives its `MessageService` dependency through its constructor.
 This decouples `Notification` from a specific implementation like `EmailService`, making
 the system more modular and easier to test.
@@ -1294,6 +1334,7 @@ void main() {
     square.draw();
 }
 ```
+
 The `ShapeFactory` centralizes the logic for creating different `Shape` objects.
 This decouples the client code from the specific classes being instantiated, making it
 easier to add new shapes in the future.
@@ -1342,6 +1383,7 @@ void main() {
     subject.notifyObservers("Hello Observers!");
 }
 ```
+
 The `Subject` maintains a list of `Observer` objects and notifies them of any changes.
 This creates a one-to-many dependency where observers are automatically updated, promoting
 loose coupling between components.
@@ -1391,6 +1433,7 @@ void main() {
     sorter.sort(new int[]{5, 2, 8, 1});
 }
 ```
+
 The `Sorter` class can use different sorting algorithms (`BubbleSort`, `QuickSort`) by
 swapping out its `SortStrategy` object. This pattern allows the algorithm to be selected
 at runtime, independent of the client that uses it.
@@ -1450,6 +1493,7 @@ void main() {
     offCommand.execute();
 }
 ```
+
 The `LightOnCommand` and `LightOffCommand` objects encapsulate the action of turning a light
 on or off. This allows requests to be passed around, queued, or logged, decoupling the
 sender of a request from its receiver.
@@ -1496,6 +1540,7 @@ void main() {
         .execute();
 }
 ```
+
 The `Query` class methods return the instance itself, allowing calls to be chained
 together in a natural, sentence-like way. This API style makes the code more intuitive
 and easier to read.
@@ -1524,6 +1569,7 @@ void main() {
     IO.println(today + " is weekday: " + today.isWeekday());
 }
 ```
+
 The `Day` enum includes `isWeekend` and `isWeekday` methods, allowing it to encapsulate
 not just values but also the logic associated with them. This makes enums more powerful
 than simple collections of constants.
@@ -1558,6 +1604,7 @@ void main() {
     IO.println("Earth gravity: " + earth.surfaceGravity());
 }
 ```
+
 The `Planet` enum stores data for each constant and uses a method to calculate a value.
 This demonstrates how enums can represent a set of complex, constant objects, each with
 its own state and behavior.
@@ -1584,6 +1631,7 @@ void main() {
     Operations.perform(5, 3, (a, b) -> a * b);
 }
 ```
+
 The `Calculator` interface is marked as `@FunctionalInterface`, allowing it to be
 implemented by a lambda expression. This provides a concise way to pass behavior as if
 it were data, a core concept of functional programming.
@@ -1615,6 +1663,7 @@ void main() {
     words.forEach(processor::process);
 }
 ```
+
 Method references like `StringProcessor::toUpperCase` and `IO::println` provide a more
 compact and readable way to write lambda expressions that simply call an existing method.
 They make functional-style code even more concise.
@@ -1643,6 +1692,7 @@ void main() {
     cart.display();
 }
 ```
+
 The `ShoppingCart` record holds a list of items, demonstrating that records can
 manage complex data structures. Custom methods like `itemCount` can be added to provide
 behavior related to the record's state.
@@ -1667,6 +1717,7 @@ void main() {
     IO.println(person.name() + " lives at " + person.fullAddress());
 }
 ```
+
 The `Person` record contains an `Address` record, showcasing how complex, immutable
 data structures can be built by composing smaller records. This promotes a clean and
 declarative style for modeling data.
@@ -1694,6 +1745,7 @@ void main() {
     IO.println("Average: " + Statistics.average(5, 15));
 }
 ```
+
 The `average` method's `int... numbers` parameter allows it to be called with any
 number of integer arguments. This provides a convenient way to create flexible methods
 that can handle varying numbers of inputs.
@@ -1725,6 +1777,7 @@ void main() {
     }
 }
 ```
+
 The `validateAge` method throws an `IllegalArgumentException` if the input is invalid.
 The calling code in `main` uses a `try-catch` block to handle the potential error,
 making the program more robust.
@@ -1764,6 +1817,7 @@ void main() {
     }
 }
 ```
+
 A list of `Payment` objects can hold instances of both `CreditCard` and `PayPal`.
 When the `pay` method is called, the correct implementation is chosen at runtime,
 demonstrating the power of polymorphism.
@@ -1793,6 +1847,7 @@ void main() {
     Configuration.display();
 }
 ```
+
 The `static` block in the `Configuration` class runs once when the class is first loaded.
 It is useful for performing complex initialization for static fields that cannot be
 done in a single expression.
@@ -1823,6 +1878,7 @@ void main() {
     var conn2 = new Connection();
 }
 ```
+
 The code inside the `{}` block runs every time an instance of `Connection` is created,
 just before the constructor is called. It is useful for sharing setup logic between
 multiple constructors.
@@ -1860,9 +1916,10 @@ void main() {
     IO.println("p2: " + p2);
 }
 ```
-The `Point(Point other)` constructor creates a new `Point` object with the same state as
-the one passed in. This is a common pattern for creating a deep copy of a mutable object,
-ensuring the two instances are independent.
+
+The `Point(Point other)` constructor creates a new `Point` object with the same state as  
+the one passed in. This is a common pattern for creating a deep copy of a mutable object,  
+ensuring the two instances are independent.  
 
 ## Comparable interface
 
@@ -1900,9 +1957,10 @@ void main() {
     students.forEach(IO::println);
 }
 ```
-By implementing `Comparable<Student>`, the `Student` class defines how its instances should
-be sorted, in this case by score. This allows collections of `Student` objects to be
-sorted easily using methods like `Collections.sort()`.
+
+By implementing `Comparable<Student>`, the `Student` class defines how its instances should  
+be sorted, in this case by score. This allows collections of `Student` objects to be  
+sorted easily using methods like `Collections.sort()`.  
 
 ## Pattern matching with sealed classes
 
@@ -1933,8 +1991,9 @@ void main() {
     PaymentProcessor.process(new CashPayment(50.0));
 }
 ```
-Because `Payment` is a `sealed` interface, the compiler knows all possible subtypes.
-This allows the `switch` statement to be exhaustive without a `default` case, making
+
+Because `Payment` is a `sealed` interface, the compiler knows all possible subtypes.  
+This allows the `switch` statement to be exhaustive without a `default` case, making  
 the code safer and more expressive.
 
 ## Custom annotation
@@ -1964,6 +2023,7 @@ void main() {
     obj.display();
 }
 ```
-A custom annotation `@Author` is created to add metadata to the `AnnotatedClass`.
-This metadata can then be read at runtime using reflection, allowing for powerful
-frameworks and tools to be built.
+
+A custom annotation `@Author` is created to add metadata to the `AnnotatedClass`.  
+This metadata can then be read at runtime using reflection, allowing for powerful  
+frameworks and tools to be built.  
