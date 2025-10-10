@@ -1780,5 +1780,4 @@ void main() {
 
 The overloaded `plus` method accepts a long value and a `TemporalUnit`,  
 providing an alternative to dedicated methods like `plusWeeks`. This approach  
-is useful when the unit is determined dynamically at runtime.  
-
+is useful when the unit is determined dynamically at runtime.

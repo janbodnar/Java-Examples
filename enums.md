@@ -1,4 +1,3 @@
-
 # Java Enum Type
 
 This document provides comprehensive examples demonstrating the use of enum  
@@ -383,4 +382,4 @@ This example shows how enums can contain multiple fields and methods that
 perform calculations using those fields. Each constant stores its own mass  
 and radius, and the methods compute gravity and weight based on these values.  
 This demonstrates how enums can represent complex, constant objects with both  
-state and behavior, making them powerful tools for domain modeling.  
+state and behavior, making them powerful tools for domain modeling.

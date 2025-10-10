@@ -36,7 +36,7 @@ Optional&lt;String&gt; word = Optional.of("falcon");
 </pre>
 
 <p>
-<code>Optional.of</code> is used when we are certain that the parameter will not 
+<code>Optional.of</code> is used when we are certain that the parameter will not
 be null.
 </p>
 
@@ -45,7 +45,7 @@ Optional&lt;String&gt; word = Optional.ofNullable(value);
 </pre>
 
 <p>
-<code>Optional.ofNullable</code> is used when we don't know if there will be 
+<code>Optional.ofNullable</code> is used when we don't know if there will be
 null.
 </p>
 
@@ -166,7 +166,7 @@ Otherwise we print "n/a" message.
 <h2>Optional ifEmpty</h2>
 
 <p>
-The <code>ifEmpty</code> returns true, if the value is not present. 
+The <code>ifEmpty</code> returns true, if the value is not present.
 </p> 
 
 <div class="codehead">Main.java
@@ -196,7 +196,7 @@ void main() {
 </pre>
 
 <p>
-In the example, we print all valid values with <code>ifPresent</code>. All empty 
+In the example, we print all valid values with <code>ifPresent</code>. All empty
 values are recognized via <code>isEmpty</code>.
 </p>
 
@@ -283,11 +283,11 @@ void main() {
 
 <p>
 In the following example, we use JSoup library to parse and modify an HTML
-document. 
+document.
 </p>
 
 <p>
-For the project, we need the <code>jsoup</code> artifact. 
+For the project, we need the <code>jsoup</code> artifact.
 </p>
 
 <div class="codehead">Main.java
@@ -336,9 +336,9 @@ Optional&lt;Element&gt; mainEl = Optional.ofNullable(doc.select("main").first())
 </pre>
 
 <p>
-The <code>main</code> tag might not be present and the <code>first</code> method 
-in this case will return <code>null</code>. Therefore, we use the 
-<code>Optional.ofNullable</code> method. 
+The <code>main</code> tag might not be present and the <code>first</code> method
+in this case will return <code>null</code>. Therefore, we use the
+<code>Optional.ofNullable</code> method.
 </p>
 
 <pre class="explanation">
@@ -349,7 +349,7 @@ mainEl.ifPresent(e -&gt; {
 </pre>
 
 <p>
-We only call <code>append</code> and <code>prepend</code> methods if the 
+We only call <code>append</code> and <code>prepend</code> methods if the
 <code>Optional</code> contains the <code>main</code> tag.
 </p>
 
@@ -402,4 +402,3 @@ if it is present or <code>N/A</code> if not.
 
 
 </html>
-
