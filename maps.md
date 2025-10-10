@@ -1,5 +1,3 @@
-
-
 # Java HashMap
 
 This document demonstrates how to work with the Java `HashMap` collection,  
@@ -21,7 +19,8 @@ The `Map.Entry` interface represents a key-value pair within a `HashMap`. The
 method signatures including `get`, `put`, `size`, `isEmpty`, and many more for  
 comprehensive map manipulation.  
 
-## HashMap constructors
+## HashMap constructors 
+
 
 The `HashMap` class provides several constructors for creating map instances:  
 
@@ -37,7 +36,8 @@ The `HashMap` class provides several constructors for creating map instances:
 In these constructors, `K` represents the type of the map keys and `V`  
 represents the type of the mapped values.  
 
-## HashMap methods
+## HashMap methods 
+
 
 The following table lists commonly used `HashMap` methods:  
 
@@ -59,7 +59,8 @@ The following table lists commonly used `HashMap` methods:
 
 This document demonstrates several of these methods with practical examples.  
 
-## HashMap creation
+## HashMap creation 
+
 This example shows how to create a basic HashMap instance.  
 
 ```java
@@ -81,7 +82,8 @@ repeat the type parameters on the left side of the declaration. The `put`
 method adds key-value pairs to the map, where the first parameter is the key  
 and the second is the value.  
 
-## HashMap initialization
+## HashMap initialization 
+
 This example demonstrates factory methods for initializing maps efficiently.  
 
 ```java
@@ -125,7 +127,8 @@ This approach creates an anonymous subclass and uses an instance initializer
 block to populate the map. While convenient, it creates an extra class and  
 should be used judiciously.  
 
-## The size method
+## The size method 
+
 This example demonstrates determining the number of entries in a HashMap.  
 
 ```java
@@ -155,7 +158,8 @@ The `size` method returns the number of key-value mappings currently stored in
 the map. After adding six entries, the size is 6. The `remove` method deletes  
 entries by their keys, reducing the size to 4 after removing two pairs.  
 
-## The get method
+## The get method 
+
 This example shows how to retrieve values from a HashMap using keys.  
 
 ```java
@@ -182,7 +186,8 @@ The `get` method retrieves the value associated with a specified key. It takes
 a key as a parameter and returns the corresponding value. If the key doesn't  
 exist in the map, the method returns `null`.  
 
-## The clear method
+## The clear method 
+
 This example demonstrates removing all entries from a HashMap.  
 
 ```java
@@ -211,7 +216,8 @@ The `clear` method removes all key-value mappings from the map, leaving it
 empty. The `isEmpty` method checks whether the map contains any entries,  
 returning `true` if the map has no mappings and `false` otherwise.  
 
-## The containsKey method
+## The containsKey method 
+
 This example shows how to check if a map contains a specific key.  
 
 ```java
@@ -248,7 +254,8 @@ specified key, and `false` otherwise. This is useful for checking key existence
 before attempting to retrieve or modify values, preventing potential `null`  
 reference issues.  
 
-## The replace method
+## The replace method 
+
 This example demonstrates replacing values in a HashMap.  
 
 ```java
@@ -268,15 +275,16 @@ void main() {
 }
 ```
 
-The `replace` method comes in two forms. The first form, `replace(K key, V  
-value)`, replaces the entry for the specified key only if it's currently  
-mapped to some value. The second form, `replace(K key, V oldValue, V  
-newValue)`, replaces the entry only if the current value matches the specified  
+The `replace` method comes in two forms. The first form, `replace(K key, V  value)`,  
+replaces the entry for the specified key only if it's currently  
+mapped to some value. The second form, `replace(K key, V oldValue, V  newValue)`,  
+replaces the entry only if the current value matches the specified  
 old value. In the example, the first replacement succeeds unconditionally, the  
 second fails because "country" isn't mapped to "Russia", and the third succeeds  
 because the old value matches.  
 
-## Convert HashMap to List
+## Convert HashMap to List 
+
 This example shows how to convert HashMap entries into a list.  
 
 ```java
@@ -301,7 +309,8 @@ set can be passed directly to the `ArrayList` constructor to create a list of
 entries. This conversion is useful when you need list-specific operations like  
 indexed access or sorting on map entries.  
 
-## Iteration with forEach
+## Iteration with forEach 
+
 This example demonstrates iterating over map entries using forEach.  
 
 ```java
@@ -324,7 +333,8 @@ The `forEach` method accepts a `BiConsumer` that processes each key-value pair
 in the map. The lambda expression `(k, v) -> IO.println(k + ": " + v)` is  
 executed for each entry, making it a concise way to iterate over all mappings.  
 
-## Iteration with enhanced for loop
+## Iteration with enhanced for loop 
+
 This example shows iterating over a HashMap with an enhanced for loop.  
 
 ```java
@@ -350,7 +360,8 @@ each iteration, a `Map.Entry` object is assigned to the `pair` variable. The
 `getKey` and `getValue` methods extract the key and value from each entry. The  
 `var` keyword simplifies the code by inferring the entry type automatically.  
 
-## Iteration over keys
+## Iteration over keys 
+
 This example demonstrates iterating over only the keys of a HashMap.  
 
 ```java
@@ -375,7 +386,8 @@ must be unique, they are returned as a `Set` rather than a collection that
 allows duplicates. The `forEach` method then iterates over this set, printing  
 each key to the console.  
 
-## Iteration over values
+## Iteration over values 
+
 This example shows how to iterate over only the values of a HashMap.  
 
 ```java
@@ -400,7 +412,8 @@ Unlike keys, values don't need to be unique, so they're returned as a
 `Collection` rather than a `Set`. This allows multiple keys to map to the same  
 value without restriction.  
 
-## Filtering HashMap
+## Filtering HashMap 
+
 This example demonstrates filtering a HashMap using the Stream API.  
 
 ```java
@@ -430,7 +443,8 @@ First, `entrySet().stream()` creates a stream of entries. The `filter` method
 keeps only entries whose values have a length of 6 characters. Finally,  
 `Collectors.toMap` collects the filtered entries back into a new HashMap.  
 
-## List of maps
+## List of maps 
+
 This example demonstrates creating and working with a list of HashMap objects.  
 
 ```java
@@ -460,7 +474,8 @@ nested `forEach` loops iterate first over each map in the list, then over each
 key-value pair within those maps, demonstrating how to work with collections of  
 maps effectively.  
 
-## Merging maps
+## Merging maps 
+
 This example shows how to combine multiple maps into one.  
 
 ```java
@@ -487,7 +502,8 @@ The `putAll` method copies all mappings from one map to another. This is useful
 for combining multiple maps into a single map. If both maps contain the same  
 key, the value from the second map overwrites the value from the first map.  
 
-## The getOrDefault method
+## The getOrDefault method 
+
 This example demonstrates safely retrieving values with a default fallback.  
 
 ```java
@@ -509,7 +525,8 @@ or a specified default value if the key is not found. This prevents `null`
 pointer issues and provides a cleaner alternative to checking key existence  
 before retrieval. Different default values can be used based on the context.  
 
-## Compute methods
+## Compute methods 
+
 This example shows advanced value computation using compute methods.  
 
 ```java
@@ -538,7 +555,8 @@ The compute methods provide powerful ways to update map values. The
 method handles both cases, allowing conditional logic based on the current  
 value and key.  
 
-## Removing entries with removeIf
+## Removing entries with removeIf 
+
 This example demonstrates conditional removal of map entries.  
 
 ```java
@@ -563,7 +581,8 @@ predicate condition. The predicate receives each entry and returns `true` for
 entries to remove. This is more concise than manually iterating and removing  
 entries, and it's safer than modifying the map during iteration.  
 
-## Sorting HashMap
+## Sorting HashMap 
+
 This example shows how to sort HashMap entries by keys or values.  
 
 ```java
