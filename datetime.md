@@ -12,7 +12,7 @@ This example shows how to get the current date using LocalDate.
 ```java
 void main() {
 
-    var today = java.time.LocalDate.now();
+    var today = LocalDate.now();
     IO.println("Today: " + today);
 }
 ```
@@ -27,7 +27,7 @@ This example demonstrates creating a date with specific year, month, and day.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 12, 25);
+    var date = LocalDate.of(2024, 12, 25);
     IO.println("Date: " + date);
 }
 ```
@@ -42,7 +42,7 @@ This example shows how to parse a date from a string.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.parse("2024-03-15");
+    var date = LocalDate.parse("2024-03-15");
     IO.println("Parsed date: " + date);
 }
 ```
@@ -57,7 +57,7 @@ This example demonstrates getting the current time.
 ```java
 void main() {
 
-    var now = java.time.LocalTime.now();
+    var now = LocalTime.now();
     IO.println("Current time: " + now);
 }
 ```
@@ -72,7 +72,7 @@ This example shows creating a time with specific hour, minute, and second.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(14, 30, 45);
+    var time = LocalTime.of(14, 30, 45);
     IO.println("Time: " + time);
 }
 ```
@@ -87,7 +87,7 @@ This example demonstrates parsing time from a string.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.parse("09:30:00");
+    var time = LocalTime.parse("09:30:00");
     IO.println("Parsed time: " + time);
 }
 ```
@@ -102,7 +102,7 @@ This example shows getting the current date and time.
 ```java
 void main() {
 
-    var now = java.time.LocalDateTime.now();
+    var now = LocalDateTime.now();
     IO.println("Now: " + now);
 }
 ```
@@ -117,7 +117,7 @@ This example demonstrates creating a specific date and time.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 10, 30, 0);
+    var datetime = LocalDateTime.of(2024, 6, 15, 10, 30, 0);
     IO.println("DateTime: " + datetime);
 }
 ```
@@ -132,7 +132,7 @@ This example shows parsing datetime from a string.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.parse("2024-03-15T14:30:00");
+    var datetime = LocalDateTime.parse("2024-03-15T14:30:00");
     IO.println("Parsed: " + datetime);
 }
 ```
@@ -147,7 +147,7 @@ This example demonstrates adding days to a date.
 ```java
 void main() {
 
-    var today = java.time.LocalDate.now();
+    var today = LocalDate.now();
     var nextWeek = today.plusDays(7);
     IO.println("Today: " + today);
     IO.println("Next week: " + nextWeek);
@@ -164,7 +164,7 @@ This example shows subtracting days from a date.
 ```java
 void main() {
 
-    var today = java.time.LocalDate.now();
+    var today = LocalDate.now();
     var lastWeek = today.minusDays(7);
     IO.println("Today: " + today);
     IO.println("Last week: " + lastWeek);
@@ -181,7 +181,7 @@ This example demonstrates adding months to a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 1, 31);
+    var date = LocalDate.of(2024, 1, 31);
     var nextMonth = date.plusMonths(1);
     IO.println("Original: " + date);
     IO.println("Plus 1 month: " + nextMonth);
@@ -198,7 +198,7 @@ This example shows adding years to a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 2, 29);
+    var date = LocalDate.of(2024, 2, 29);
     var nextYear = date.plusYears(1);
     IO.println("Original: " + date);
     IO.println("Plus 1 year: " + nextYear);
@@ -215,7 +215,7 @@ This example demonstrates adding hours to a time.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(14, 30);
+    var time = LocalTime.of(14, 30);
     var later = time.plusHours(3);
     IO.println("Original: " + time);
     IO.println("Plus 3 hours: " + later);
@@ -232,7 +232,7 @@ This example shows adding minutes to a time.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(10, 15);
+    var time = LocalTime.of(10, 15);
     var later = time.plusMinutes(45);
     IO.println("Original: " + time);
     IO.println("Plus 45 minutes: " + later);
@@ -249,8 +249,8 @@ This example demonstrates comparing two dates.
 ```java
 void main() {
 
-    var date1 = java.time.LocalDate.of(2024, 6, 15);
-    var date2 = java.time.LocalDate.of(2024, 8, 20);
+    var date1 = LocalDate.of(2024, 6, 15);
+    var date2 = LocalDate.of(2024, 8, 20);
     
     IO.println("date1 before date2: " + date1.isBefore(date2));
     IO.println("date1 after date2: " + date1.isAfter(date2));
@@ -268,8 +268,8 @@ This example shows checking if a date is in the past.
 ```java
 void main() {
 
-    var past = java.time.LocalDate.of(2020, 1, 1);
-    var today = java.time.LocalDate.now();
+    var past = LocalDate.of(2020, 1, 1);
+    var today = LocalDate.now();
     
     IO.println("Date is in past: " + past.isBefore(today));
 }
@@ -285,8 +285,8 @@ This example demonstrates checking if a date is in the future.
 ```java
 void main() {
 
-    var future = java.time.LocalDate.of(2030, 12, 31);
-    var today = java.time.LocalDate.now();
+    var future = LocalDate.of(2030, 12, 31);
+    var today = LocalDate.now();
     
     IO.println("Date is in future: " + future.isAfter(today));
 }
@@ -302,7 +302,7 @@ This example shows extracting the year from a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var year = date.getYear();
     IO.println("Year: " + year);
 }
@@ -318,7 +318,7 @@ This example demonstrates extracting the month from a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var month = date.getMonth();
     var monthValue = date.getMonthValue();
     
@@ -337,7 +337,7 @@ This example shows getting the day of the month.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var day = date.getDayOfMonth();
     IO.println("Day of month: " + day);
 }
@@ -353,7 +353,7 @@ This example demonstrates getting the day of the week.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var dayOfWeek = date.getDayOfWeek();
     IO.println("Day of week: " + dayOfWeek);
 }
@@ -369,7 +369,7 @@ This example shows getting the day number within the year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var dayOfYear = date.getDayOfYear();
     IO.println("Day of year: " + dayOfYear);
 }
@@ -385,7 +385,7 @@ This example demonstrates checking if a year is a leap year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 1, 1);
+    var date = LocalDate.of(2024, 1, 1);
     var isLeap = date.isLeapYear();
     IO.println("2024 is leap year: " + isLeap);
 }
@@ -401,7 +401,7 @@ This example shows getting the number of days in a month.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 2, 15);
+    var date = LocalDate.of(2024, 2, 15);
     var length = date.lengthOfMonth();
     IO.println("Days in February 2024: " + length);
 }
@@ -417,7 +417,7 @@ This example demonstrates getting the number of days in a year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 1, 1);
+    var date = LocalDate.of(2024, 1, 1);
     var length = date.lengthOfYear();
     IO.println("Days in 2024: " + length);
 }
@@ -433,8 +433,8 @@ This example shows formatting a date with a custom pattern.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    var date = LocalDate.of(2024, 6, 15);
+    var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
     var formatted = date.format(formatter);
     IO.println("Formatted: " + formatted);
 }
@@ -450,13 +450,13 @@ This example demonstrates formatting a date with predefined styles.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var short = date.format(java.time.format.DateTimeFormatter.ofLocalizedDate(
-        java.time.format.FormatStyle.SHORT));
-    var medium = date.format(java.time.format.DateTimeFormatter.ofLocalizedDate(
-        java.time.format.FormatStyle.MEDIUM));
-    var long = date.format(java.time.format.DateTimeFormatter.ofLocalizedDate(
-        java.time.format.FormatStyle.LONG));
+    var date = LocalDate.of(2024, 6, 15);
+    var short = date.format(format.DateTimeFormatter.ofLocalizedDate(
+        format.FormatStyle.SHORT));
+    var medium = date.format(format.DateTimeFormatter.ofLocalizedDate(
+        format.FormatStyle.MEDIUM));
+    var long = date.format(format.DateTimeFormatter.ofLocalizedDate(
+        format.FormatStyle.LONG));
     
     IO.println("Short: " + short);
     IO.println("Medium: " + medium);
@@ -474,8 +474,8 @@ This example shows formatting time with a custom pattern.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(14, 30, 45);
-    var formatter = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss");
+    var time = LocalTime.of(14, 30, 45);
+    var formatter = format.DateTimeFormatter.ofPattern("HH:mm:ss");
     var formatted = time.format(formatter);
     IO.println("Formatted: " + formatted);
 }
@@ -492,8 +492,8 @@ This example demonstrates parsing a date using a custom pattern.
 void main() {
 
     var dateString = "15/06/2024";
-    var formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    var date = java.time.LocalDate.parse(dateString, formatter);
+    var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    var date = LocalDate.parse(dateString, formatter);
     IO.println("Parsed date: " + date);
 }
 ```
@@ -509,8 +509,8 @@ This example shows parsing time using a custom pattern.
 void main() {
 
     var timeString = "02:30:45 PM";
-    var formatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm:ss a");
-    var time = java.time.LocalTime.parse(timeString, formatter);
+    var formatter = format.DateTimeFormatter.ofPattern("hh:mm:ss a");
+    var time = LocalTime.parse(timeString, formatter);
     IO.println("Parsed time: " + time);
 }
 ```
@@ -525,7 +525,7 @@ This example demonstrates using with methods to change date components.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var newDate = date.withYear(2025).withMonth(12).withDayOfMonth(25);
     
     IO.println("Original: " + date);
@@ -543,7 +543,7 @@ This example shows using with methods to change time components.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(10, 30, 45);
+    var time = LocalTime.of(10, 30, 45);
     var newTime = time.withHour(14).withMinute(0).withSecond(0);
     
     IO.println("Original: " + time);
@@ -561,7 +561,7 @@ This example demonstrates getting the start of a day as a datetime.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var startOfDay = date.atStartOfDay();
     IO.println("Start of day: " + startOfDay);
 }
@@ -577,7 +577,7 @@ This example shows creating the end of a day as a datetime.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var endOfDay = date.atTime(23, 59, 59, 999999999);
     IO.println("End of day: " + endOfDay);
 }
@@ -593,8 +593,8 @@ This example demonstrates combining a date and time.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var time = java.time.LocalTime.of(14, 30);
+    var date = LocalDate.of(2024, 6, 15);
+    var time = LocalTime.of(14, 30);
     var datetime = date.atTime(time);
     
     IO.println("DateTime: " + datetime);
@@ -611,7 +611,7 @@ This example shows extracting the date part from a datetime.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30);
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
     var date = datetime.toLocalDate();
     IO.println("Date: " + date);
 }
@@ -627,7 +627,7 @@ This example demonstrates extracting the time part from a datetime.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30);
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
     var time = datetime.toLocalTime();
     IO.println("Time: " + time);
 }
@@ -643,9 +643,9 @@ This example shows calculating duration between two times.
 ```java
 void main() {
 
-    var start = java.time.LocalTime.of(9, 0);
-    var end = java.time.LocalTime.of(17, 30);
-    var duration = java.time.Duration.between(start, end);
+    var start = LocalTime.of(9, 0);
+    var end = LocalTime.of(17, 30);
+    var duration = Duration.between(start, end);
     
     IO.println("Duration: " + duration);
     IO.println("Hours: " + duration.toHours());
@@ -663,9 +663,9 @@ This example demonstrates calculating duration between two datetimes.
 ```java
 void main() {
 
-    var start = java.time.LocalDateTime.of(2024, 6, 15, 9, 0);
-    var end = java.time.LocalDateTime.of(2024, 6, 15, 17, 30);
-    var duration = java.time.Duration.between(start, end);
+    var start = LocalDateTime.of(2024, 6, 15, 9, 0);
+    var end = LocalDateTime.of(2024, 6, 15, 17, 30);
+    var duration = Duration.between(start, end);
     
     IO.println("Duration: " + duration);
     IO.println("Minutes: " + duration.toMinutes());
@@ -682,9 +682,9 @@ This example shows calculating the period between two dates.
 ```java
 void main() {
 
-    var start = java.time.LocalDate.of(2024, 1, 15);
-    var end = java.time.LocalDate.of(2024, 6, 20);
-    var period = java.time.Period.between(start, end);
+    var start = LocalDate.of(2024, 1, 15);
+    var end = LocalDate.of(2024, 6, 20);
+    var period = Period.between(start, end);
     
     IO.println("Period: " + period);
     IO.println("Months: " + period.getMonths());
@@ -702,9 +702,9 @@ This example demonstrates calculating the number of days between dates.
 ```java
 void main() {
 
-    var start = java.time.LocalDate.of(2024, 1, 1);
-    var end = java.time.LocalDate.of(2024, 12, 31);
-    var days = java.time.temporal.ChronoUnit.DAYS.between(start, end);
+    var start = LocalDate.of(2024, 1, 1);
+    var end = LocalDate.of(2024, 12, 31);
+    var days = temporal.ChronoUnit.DAYS.between(start, end);
     
     IO.println("Days between: " + days);
 }
@@ -720,9 +720,9 @@ This example shows creating a duration with specific values.
 ```java
 void main() {
 
-    var duration1 = java.time.Duration.ofHours(2);
-    var duration2 = java.time.Duration.ofMinutes(90);
-    var duration3 = java.time.Duration.ofSeconds(3600);
+    var duration1 = Duration.ofHours(2);
+    var duration2 = Duration.ofMinutes(90);
+    var duration3 = Duration.ofSeconds(3600);
     
     IO.println("2 hours: " + duration1);
     IO.println("90 minutes: " + duration2);
@@ -740,9 +740,9 @@ This example demonstrates creating a period with specific values.
 ```java
 void main() {
 
-    var period1 = java.time.Period.ofDays(10);
-    var period2 = java.time.Period.ofWeeks(2);
-    var period3 = java.time.Period.of(1, 6, 15);
+    var period1 = Period.ofDays(10);
+    var period2 = Period.ofWeeks(2);
+    var period3 = Period.of(1, 6, 15);
     
     IO.println("10 days: " + period1);
     IO.println("2 weeks: " + period2);
@@ -760,8 +760,8 @@ This example shows adding a duration to a time.
 ```java
 void main() {
 
-    var time = java.time.LocalTime.of(10, 30);
-    var duration = java.time.Duration.ofMinutes(45);
+    var time = LocalTime.of(10, 30);
+    var duration = Duration.ofMinutes(45);
     var newTime = time.plus(duration);
     
     IO.println("Original: " + time);
@@ -779,8 +779,8 @@ This example demonstrates adding a period to a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 1, 15);
-    var period = java.time.Period.ofMonths(3);
+    var date = LocalDate.of(2024, 1, 15);
+    var period = Period.ofMonths(3);
     var newDate = date.plus(period);
     
     IO.println("Original: " + date);
@@ -798,8 +798,8 @@ This example shows creating a datetime with timezone information.
 ```java
 void main() {
 
-    var zoneId = java.time.ZoneId.of("America/New_York");
-    var zonedDateTime = java.time.ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0, zoneId);
+    var zoneId = ZoneId.of("America/New_York");
+    var zonedDateTime = ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0, zoneId);
     
     IO.println("Zoned DateTime: " + zonedDateTime);
 }
@@ -815,8 +815,8 @@ This example demonstrates getting the current datetime with timezone.
 ```java
 void main() {
 
-    var now = java.time.ZonedDateTime.now();
-    var nyc = java.time.ZonedDateTime.now(java.time.ZoneId.of("America/New_York"));
+    var now = ZonedDateTime.now();
+    var nyc = ZonedDateTime.now(ZoneId.of("America/New_York"));
     
     IO.println("Local: " + now);
     IO.println("NYC: " + nyc);
@@ -833,9 +833,9 @@ This example shows converting a datetime between timezones.
 ```java
 void main() {
 
-    var paris = java.time.ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0,
-        java.time.ZoneId.of("Europe/Paris"));
-    var tokyo = paris.withZoneSameInstant(java.time.ZoneId.of("Asia/Tokyo"));
+    var paris = ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0,
+        ZoneId.of("Europe/Paris"));
+    var tokyo = paris.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
     
     IO.println("Paris: " + paris);
     IO.println("Tokyo: " + tokyo);
@@ -852,8 +852,8 @@ This example demonstrates getting the UTC offset for a timezone.
 ```java
 void main() {
 
-    var zonedDateTime = java.time.ZonedDateTime.now(
-        java.time.ZoneId.of("America/New_York"));
+    var zonedDateTime = ZonedDateTime.now(
+        ZoneId.of("America/New_York"));
     var offset = zonedDateTime.getOffset();
     
     IO.println("Offset: " + offset);
@@ -870,7 +870,7 @@ This example shows getting all available timezone IDs.
 ```java
 void main() {
 
-    var zones = java.time.ZoneId.getAvailableZoneIds();
+    var zones = ZoneId.getAvailableZoneIds();
     var count = 0;
     
     for (var zone : zones) {
@@ -892,7 +892,7 @@ This example demonstrates creating an instant representing a point in time.
 ```java
 void main() {
 
-    var instant = java.time.Instant.now();
+    var instant = Instant.now();
     IO.println("Current instant: " + instant);
 }
 ```
@@ -907,7 +907,7 @@ This example shows creating an instant from epoch seconds.
 ```java
 void main() {
 
-    var instant = java.time.Instant.ofEpochSecond(1717257600);
+    var instant = Instant.ofEpochSecond(1717257600);
     IO.println("Instant: " + instant);
 }
 ```
@@ -922,9 +922,9 @@ This example demonstrates converting an instant to a local datetime.
 ```java
 void main() {
 
-    var instant = java.time.Instant.now();
-    var zoneId = java.time.ZoneId.systemDefault();
-    var datetime = java.time.LocalDateTime.ofInstant(instant, zoneId);
+    var instant = Instant.now();
+    var zoneId = ZoneId.systemDefault();
+    var datetime = LocalDateTime.ofInstant(instant, zoneId);
     
     IO.println("Instant: " + instant);
     IO.println("LocalDateTime: " + datetime);
@@ -941,8 +941,8 @@ This example shows converting a datetime to an instant.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30);
-    var zoneId = java.time.ZoneId.systemDefault();
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
+    var zoneId = ZoneId.systemDefault();
     var instant = datetime.atZone(zoneId).toInstant();
     
     IO.println("LocalDateTime: " + datetime);
@@ -960,8 +960,8 @@ This example demonstrates adding duration to an instant.
 ```java
 void main() {
 
-    var instant = java.time.Instant.now();
-    var later = instant.plus(java.time.Duration.ofHours(2));
+    var instant = Instant.now();
+    var later = instant.plus(Duration.ofHours(2));
     
     IO.println("Now: " + instant);
     IO.println("2 hours later: " + later);
@@ -978,8 +978,8 @@ This example shows comparing two instants.
 ```java
 void main() {
 
-    var instant1 = java.time.Instant.now();
-    var instant2 = instant1.plus(java.time.Duration.ofSeconds(1));
+    var instant1 = Instant.now();
+    var instant2 = instant1.plus(Duration.ofSeconds(1));
     
     IO.println("instant1 before instant2: " + instant1.isBefore(instant2));
     IO.println("instant1 after instant2: " + instant1.isAfter(instant2));
@@ -996,7 +996,7 @@ This example demonstrates getting milliseconds since the epoch.
 ```java
 void main() {
 
-    var instant = java.time.Instant.now();
+    var instant = Instant.now();
     var millis = instant.toEpochMilli();
     IO.println("Epoch milliseconds: " + millis);
 }
@@ -1012,7 +1012,7 @@ This example shows getting seconds since the epoch.
 ```java
 void main() {
 
-    var instant = java.time.Instant.now();
+    var instant = Instant.now();
     var seconds = instant.getEpochSecond();
     IO.println("Epoch seconds: " + seconds);
 }
@@ -1028,8 +1028,8 @@ This example demonstrates using an adjuster to get the first day of a month.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var firstDay = date.with(java.time.temporal.TemporalAdjusters.firstDayOfMonth());
+    var date = LocalDate.of(2024, 6, 15);
+    var firstDay = date.with(temporal.TemporalAdjusters.firstDayOfMonth());
     IO.println("First day of month: " + firstDay);
 }
 ```
@@ -1044,8 +1044,8 @@ This example shows using an adjuster to get the last day of a month.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var lastDay = date.with(java.time.temporal.TemporalAdjusters.lastDayOfMonth());
+    var date = LocalDate.of(2024, 6, 15);
+    var lastDay = date.with(temporal.TemporalAdjusters.lastDayOfMonth());
     IO.println("Last day of month: " + lastDay);
 }
 ```
@@ -1060,9 +1060,9 @@ This example demonstrates finding the next occurrence of a weekday.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var nextMonday = date.with(
-        java.time.temporal.TemporalAdjusters.next(java.time.DayOfWeek.MONDAY));
+        temporal.TemporalAdjusters.next(DayOfWeek.MONDAY));
     IO.println("Next Monday: " + nextMonday);
 }
 ```
@@ -1077,8 +1077,8 @@ This example shows getting the first day of the year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var firstDay = date.with(java.time.temporal.TemporalAdjusters.firstDayOfYear());
+    var date = LocalDate.of(2024, 6, 15);
+    var firstDay = date.with(temporal.TemporalAdjusters.firstDayOfYear());
     IO.println("First day of year: " + firstDay);
 }
 ```
@@ -1093,8 +1093,8 @@ This example demonstrates getting the last day of the year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var lastDay = date.with(java.time.temporal.TemporalAdjusters.lastDayOfYear());
+    var date = LocalDate.of(2024, 6, 15);
+    var lastDay = date.with(temporal.TemporalAdjusters.lastDayOfYear());
     IO.println("Last day of year: " + lastDay);
 }
 ```
@@ -1109,10 +1109,10 @@ This example shows using Clock for testable time-based code.
 ```java
 void main() {
 
-    var fixedClock = java.time.Clock.fixed(
-        java.time.Instant.parse("2024-06-15T10:30:00Z"),
-        java.time.ZoneId.of("UTC"));
-    var date = java.time.LocalDate.now(fixedClock);
+    var fixedClock = Clock.fixed(
+        Instant.parse("2024-06-15T10:30:00Z"),
+        ZoneId.of("UTC"));
+    var date = LocalDate.now(fixedClock);
     
     IO.println("Fixed date: " + date);
 }
@@ -1128,12 +1128,12 @@ This example demonstrates creating a clock with an offset.
 ```java
 void main() {
 
-    var systemClock = java.time.Clock.systemDefaultZone();
-    var offsetClock = java.time.Clock.offset(systemClock, 
-        java.time.Duration.ofHours(2));
+    var systemClock = Clock.systemDefaultZone();
+    var offsetClock = Clock.offset(systemClock, 
+        Duration.ofHours(2));
     
-    var normalTime = java.time.LocalDateTime.now(systemClock);
-    var offsetTime = java.time.LocalDateTime.now(offsetClock);
+    var normalTime = LocalDateTime.now(systemClock);
+    var offsetTime = LocalDateTime.now(offsetClock);
     
     IO.println("Normal: " + normalTime);
     IO.println("Offset: " + offsetTime);
@@ -1150,7 +1150,7 @@ This example shows working with year-month combinations.
 ```java
 void main() {
 
-    var yearMonth = java.time.YearMonth.of(2024, 6);
+    var yearMonth = YearMonth.of(2024, 6);
     IO.println("Year-Month: " + yearMonth);
     IO.println("Length: " + yearMonth.lengthOfMonth() + " days");
 }
@@ -1166,8 +1166,8 @@ This example demonstrates working with month-day combinations.
 ```java
 void main() {
 
-    var birthday = java.time.MonthDay.of(6, 15);
-    var today = java.time.MonthDay.now();
+    var birthday = MonthDay.of(6, 15);
+    var today = MonthDay.now();
     
     IO.println("Birthday: " + birthday);
     IO.println("Is today the birthday: " + birthday.equals(today));
@@ -1184,7 +1184,7 @@ This example shows working with just a year.
 ```java
 void main() {
 
-    var year = java.time.Year.of(2024);
+    var year = Year.of(2024);
     IO.println("Year: " + year);
     IO.println("Is leap: " + year.isLeap());
     IO.println("Length: " + year.length() + " days");
@@ -1201,11 +1201,11 @@ This example demonstrates formatting dates with different locales.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var usFormat = date.format(java.time.format.DateTimeFormatter.ofLocalizedDate(
-        java.time.format.FormatStyle.LONG).withLocale(java.util.Locale.US));
-    var frFormat = date.format(java.time.format.DateTimeFormatter.ofLocalizedDate(
-        java.time.format.FormatStyle.LONG).withLocale(java.util.Locale.FRANCE));
+    var date = LocalDate.of(2024, 6, 15);
+    var usFormat = date.format(format.DateTimeFormatter.ofLocalizedDate(
+        format.FormatStyle.LONG).withLocale(java.util.Locale.US));
+    var frFormat = date.format(format.DateTimeFormatter.ofLocalizedDate(
+        format.FormatStyle.LONG).withLocale(java.util.Locale.FRANCE));
     
     IO.println("US: " + usFormat);
     IO.println("France: " + frFormat);
@@ -1222,8 +1222,8 @@ This example shows creating formatters with custom symbols.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30, 45);
-    var formatter = java.time.format.DateTimeFormatter.ofPattern(
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30, 45);
+    var formatter = format.DateTimeFormatter.ofPattern(
         "yyyy-MM-dd'T'HH:mm:ss");
     var formatted = datetime.format(formatter);
     
@@ -1241,14 +1241,14 @@ This example demonstrates using predefined ISO formatters.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30, 45);
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30, 45);
     
     IO.println("ISO_DATE: " + datetime.format(
-        java.time.format.DateTimeFormatter.ISO_DATE));
+        format.DateTimeFormatter.ISO_DATE));
     IO.println("ISO_TIME: " + datetime.format(
-        java.time.format.DateTimeFormatter.ISO_TIME));
+        format.DateTimeFormatter.ISO_TIME));
     IO.println("ISO_DATE_TIME: " + datetime.format(
-        java.time.format.DateTimeFormatter.ISO_DATE_TIME));
+        format.DateTimeFormatter.ISO_DATE_TIME));
 }
 ```
 
@@ -1263,9 +1263,9 @@ This example shows using strict date parsing.
 void main() {
 
     try {
-        var formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            .withResolverStyle(java.time.format.ResolverStyle.STRICT);
-        var date = java.time.LocalDate.parse("31/02/2024", formatter);
+        var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            .withResolverStyle(format.ResolverStyle.STRICT);
+        var date = LocalDate.parse("31/02/2024", formatter);
         IO.println("Date: " + date);
     } catch (Exception e) {
         IO.println("Parse error: " + e.getMessage());
@@ -1283,8 +1283,8 @@ This example demonstrates truncating datetime to a specific unit.
 ```java
 void main() {
 
-    var now = java.time.LocalDateTime.now();
-    var truncated = now.truncatedTo(java.time.temporal.ChronoUnit.HOURS);
+    var now = LocalDateTime.now();
+    var truncated = now.truncatedTo(temporal.ChronoUnit.HOURS);
     
     IO.println("Original: " + now);
     IO.println("Truncated to hours: " + truncated);
@@ -1301,12 +1301,12 @@ This example shows calculating differences using ChronoUnit.
 ```java
 void main() {
 
-    var start = java.time.LocalDate.of(2024, 1, 1);
-    var end = java.time.LocalDate.of(2024, 12, 31);
+    var start = LocalDate.of(2024, 1, 1);
+    var end = LocalDate.of(2024, 12, 31);
     
-    var days = java.time.temporal.ChronoUnit.DAYS.between(start, end);
-    var weeks = java.time.temporal.ChronoUnit.WEEKS.between(start, end);
-    var months = java.time.temporal.ChronoUnit.MONTHS.between(start, end);
+    var days = temporal.ChronoUnit.DAYS.between(start, end);
+    var weeks = temporal.ChronoUnit.WEEKS.between(start, end);
+    var months = temporal.ChronoUnit.MONTHS.between(start, end);
     
     IO.println("Days: " + days);
     IO.println("Weeks: " + weeks);
@@ -1324,8 +1324,8 @@ This example demonstrates creating a datetime with UTC offset.
 ```java
 void main() {
 
-    var offset = java.time.ZoneOffset.ofHours(-5);
-    var offsetDateTime = java.time.OffsetDateTime.of(
+    var offset = ZoneOffset.ofHours(-5);
+    var offsetDateTime = OffsetDateTime.of(
         2024, 6, 15, 14, 30, 0, 0, offset);
     
     IO.println("OffsetDateTime: " + offsetDateTime);
@@ -1342,8 +1342,8 @@ This example shows creating a time with UTC offset.
 ```java
 void main() {
 
-    var offset = java.time.ZoneOffset.ofHours(9);
-    var offsetTime = java.time.OffsetTime.of(14, 30, 0, 0, offset);
+    var offset = ZoneOffset.ofHours(9);
+    var offsetTime = OffsetTime.of(14, 30, 0, 0, offset);
     
     IO.println("OffsetTime: " + offsetTime);
 }
@@ -1359,9 +1359,9 @@ This example demonstrates checking if a date falls within a range.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var start = java.time.LocalDate.of(2024, 6, 1);
-    var end = java.time.LocalDate.of(2024, 6, 30);
+    var date = LocalDate.of(2024, 6, 15);
+    var start = LocalDate.of(2024, 6, 1);
+    var end = LocalDate.of(2024, 6, 30);
     
     var inRange = !date.isBefore(start) && !date.isAfter(end);
     IO.println("Date in range: " + inRange);
@@ -1378,8 +1378,8 @@ This example shows getting the week number of the year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var weekOfYear = date.get(java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+    var date = LocalDate.of(2024, 6, 15);
+    var weekOfYear = date.get(temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR);
     IO.println("Week of year: " + weekOfYear);
 }
 ```
@@ -1394,8 +1394,8 @@ This example demonstrates getting the quarter of the year.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var quarter = date.get(java.time.temporal.IsoFields.QUARTER_OF_YEAR);
+    var date = LocalDate.of(2024, 6, 15);
+    var quarter = date.get(temporal.IsoFields.QUARTER_OF_YEAR);
     IO.println("Quarter: " + quarter);
 }
 ```
@@ -1410,8 +1410,8 @@ This example shows getting the day number within the quarter.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var dayOfQuarter = date.get(java.time.temporal.IsoFields.DAY_OF_QUARTER);
+    var date = LocalDate.of(2024, 6, 15);
+    var dayOfQuarter = date.get(temporal.IsoFields.DAY_OF_QUARTER);
     IO.println("Day of quarter: " + dayOfQuarter);
 }
 ```
@@ -1426,8 +1426,8 @@ This example demonstrates using temporal queries for custom extractions.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var precision = date.query(java.time.temporal.TemporalQueries.precision());
+    var date = LocalDate.of(2024, 6, 15);
+    var precision = date.query(temporal.TemporalQueries.precision());
     
     IO.println("Precision: " + precision);
 }
@@ -1443,13 +1443,13 @@ This example shows creating a custom temporal adjuster.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var nextWorkday = date.with(temporal -> {
-        var result = (java.time.LocalDate) temporal;
+        var result = (LocalDate) temporal;
         do {
             result = result.plusDays(1);
-        } while (result.getDayOfWeek() == java.time.DayOfWeek.SATURDAY || 
-                 result.getDayOfWeek() == java.time.DayOfWeek.SUNDAY);
+        } while (result.getDayOfWeek() == DayOfWeek.SATURDAY || 
+                 result.getDayOfWeek() == DayOfWeek.SUNDAY);
         return result;
     });
     
@@ -1467,9 +1467,9 @@ This example demonstrates finding the minimum and maximum of multiple dates.
 ```java
 void main() {
 
-    var date1 = java.time.LocalDate.of(2024, 6, 15);
-    var date2 = java.time.LocalDate.of(2024, 3, 20);
-    var date3 = java.time.LocalDate.of(2024, 9, 10);
+    var date1 = LocalDate.of(2024, 6, 15);
+    var date2 = LocalDate.of(2024, 3, 20);
+    var date3 = LocalDate.of(2024, 9, 10);
     
     var min = date1;
     if (date2.isBefore(min)) min = date2;
@@ -1494,13 +1494,13 @@ This example shows using until to calculate temporal amounts.
 ```java
 void main() {
 
-    var start = java.time.LocalDate.of(2024, 1, 1);
-    var end = java.time.LocalDate.of(2024, 12, 31);
+    var start = LocalDate.of(2024, 1, 1);
+    var end = LocalDate.of(2024, 12, 31);
     
     var period = start.until(end);
     IO.println("Period: " + period);
     
-    var days = start.until(end, java.time.temporal.ChronoUnit.DAYS);
+    var days = start.until(end, temporal.ChronoUnit.DAYS);
     IO.println("Days: " + days);
 }
 ```
@@ -1515,11 +1515,11 @@ This example demonstrates working with negative temporal amounts.
 ```java
 void main() {
 
-    var negativeDuration = java.time.Duration.ofHours(-5);
-    var negativePeriod = java.time.Period.ofDays(-10);
+    var negativeDuration = Duration.ofHours(-5);
+    var negativePeriod = Period.ofDays(-10);
     
-    var time = java.time.LocalTime.of(12, 0);
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var time = LocalTime.of(12, 0);
+    var date = LocalDate.of(2024, 6, 15);
     
     IO.println("Time minus 5 hours: " + time.plus(negativeDuration));
     IO.println("Date minus 10 days: " + date.plus(negativePeriod));
@@ -1536,8 +1536,8 @@ This example shows converting between timezone-aware types.
 ```java
 void main() {
 
-    var zonedDateTime = java.time.ZonedDateTime.now(
-        java.time.ZoneId.of("America/New_York"));
+    var zonedDateTime = ZonedDateTime.now(
+        ZoneId.of("America/New_York"));
     var offsetDateTime = zonedDateTime.toOffsetDateTime();
     
     IO.println("ZonedDateTime: " + zonedDateTime);
@@ -1555,8 +1555,8 @@ This example demonstrates checking if a time is midnight.
 ```java
 void main() {
 
-    var midnight = java.time.LocalTime.MIDNIGHT;
-    var time = java.time.LocalTime.of(0, 0, 0);
+    var midnight = LocalTime.MIDNIGHT;
+    var time = LocalTime.of(0, 0, 0);
     
     IO.println("Is midnight: " + time.equals(midnight));
     IO.println("Midnight: " + midnight);
@@ -1573,8 +1573,8 @@ This example shows checking if a time is noon.
 ```java
 void main() {
 
-    var noon = java.time.LocalTime.NOON;
-    var time = java.time.LocalTime.of(12, 0, 0);
+    var noon = LocalTime.NOON;
+    var time = LocalTime.of(12, 0, 0);
     
     IO.println("Is noon: " + time.equals(noon));
     IO.println("Noon: " + noon);
@@ -1591,7 +1591,7 @@ This example demonstrates working with calendar eras.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
+    var date = LocalDate.of(2024, 6, 15);
     var era = date.getEra();
     IO.println("Era: " + era);
 }
@@ -1607,8 +1607,8 @@ This example shows using non-ISO calendar systems.
 ```java
 void main() {
 
-    var isoDate = java.time.LocalDate.of(2024, 6, 15);
-    var hijrahDate = java.time.chrono.HijrahDate.from(isoDate);
+    var isoDate = LocalDate.of(2024, 6, 15);
+    var hijrahDate = chrono.HijrahDate.from(isoDate);
     
     IO.println("ISO date: " + isoDate);
     IO.println("Hijrah date: " + hijrahDate);
@@ -1625,8 +1625,8 @@ This example demonstrates comparing dates across temporal types.
 ```java
 void main() {
 
-    var localDate = java.time.LocalDate.of(2024, 6, 15);
-    var localDateTime = java.time.LocalDateTime.of(2024, 6, 15, 0, 0);
+    var localDate = LocalDate.of(2024, 6, 15);
+    var localDateTime = LocalDateTime.of(2024, 6, 15, 0, 0);
     var dateFromDateTime = localDateTime.toLocalDate();
     
     IO.println("Dates equal: " + localDate.equals(dateFromDateTime));
@@ -1644,7 +1644,7 @@ This example shows parsing an instant from an ISO-8601 string.
 void main() {
 
     var instantString = "2024-06-15T14:30:00Z";
-    var instant = java.time.Instant.parse(instantString);
+    var instant = Instant.parse(instantString);
     IO.println("Parsed instant: " + instant);
 }
 ```
@@ -1659,7 +1659,7 @@ This example demonstrates parsing a zoned datetime from a string.
 ```java
 void main() {
 
-    var zdt = java.time.ZonedDateTime.parse("2024-06-15T14:30:00+02:00[Europe/Paris]");
+    var zdt = ZonedDateTime.parse("2024-06-15T14:30:00+02:00[Europe/Paris]");
     IO.println("Parsed ZonedDateTime: " + zdt);
 }
 ```
@@ -1674,8 +1674,8 @@ This example shows adding a temporal amount to a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var period = java.time.Period.ofMonths(3);
+    var date = LocalDate.of(2024, 6, 15);
+    var period = Period.ofMonths(3);
     var newDate = date.plus(period);
     
     IO.println("Original: " + date);
@@ -1693,8 +1693,8 @@ This example demonstrates subtracting a temporal amount from a datetime.
 ```java
 void main() {
 
-    var datetime = java.time.LocalDateTime.of(2024, 6, 15, 14, 30);
-    var duration = java.time.Duration.ofHours(2);
+    var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
+    var duration = Duration.ofHours(2);
     var earlier = datetime.minus(duration);
     
     IO.println("Original: " + datetime);
@@ -1712,8 +1712,8 @@ This example shows getting the valid range for a date field.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var dayOfMonthRange = date.range(java.time.temporal.ChronoField.DAY_OF_MONTH);
+    var date = LocalDate.of(2024, 6, 15);
+    var dayOfMonthRange = date.range(temporal.ChronoField.DAY_OF_MONTH);
     
     IO.println("Day of month range: " + dayOfMonthRange);
 }
@@ -1729,13 +1729,13 @@ This example demonstrates checking if a temporal field is supported.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var time = java.time.LocalTime.of(14, 30);
+    var date = LocalDate.of(2024, 6, 15);
+    var time = LocalTime.of(14, 30);
     
     IO.println("Date supports HOUR_OF_DAY: " + 
-        date.isSupported(java.time.temporal.ChronoField.HOUR_OF_DAY));
+        date.isSupported(temporal.ChronoField.HOUR_OF_DAY));
     IO.println("Time supports HOUR_OF_DAY: " + 
-        time.isSupported(java.time.temporal.ChronoField.HOUR_OF_DAY));
+        time.isSupported(temporal.ChronoField.HOUR_OF_DAY));
 }
 ```
 
@@ -1749,9 +1749,9 @@ This example shows creating temporal objects from TemporalAccessor.
 ```java
 void main() {
 
-    var accessor = java.time.LocalDateTime.now();
-    var date = java.time.LocalDate.from(accessor);
-    var time = java.time.LocalTime.from(accessor);
+    var accessor = LocalDateTime.now();
+    var date = LocalDate.from(accessor);
+    var time = LocalTime.from(accessor);
     
     IO.println("Date: " + date);
     IO.println("Time: " + time);
@@ -1768,9 +1768,9 @@ This example demonstrates adding temporal units to a date.
 ```java
 void main() {
 
-    var date = java.time.LocalDate.of(2024, 6, 15);
-    var plusWeeks = date.plus(2, java.time.temporal.ChronoUnit.WEEKS);
-    var plusYears = date.plus(5, java.time.temporal.ChronoUnit.YEARS);
+    var date = LocalDate.of(2024, 6, 15);
+    var plusWeeks = date.plus(2, temporal.ChronoUnit.WEEKS);
+    var plusYears = date.plus(5, temporal.ChronoUnit.YEARS);
     
     IO.println("Original: " + date);
     IO.println("Plus 2 weeks: " + plusWeeks);
