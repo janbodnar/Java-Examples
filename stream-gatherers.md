@@ -21,7 +21,7 @@ Gatherers are particularly useful for operations that require looking at
 multiple elements together, maintaining running state across elements, or  
 implementing custom data transformations. They can be combined with other  
 stream operations and gatherers, making them composable building blocks for  
-complex data processing pipelines. The `java.util.stream.Gatherers` class  
+complex data processing pipelines. The `Gatherers` class  
 provides several built-in gatherers for common patterns like fixed-size  
 windows, sliding windows, and custom scanning operations.  
 
@@ -35,7 +35,7 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
     
     var windows = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .toList();
     
     windows.forEach(IO::println);
@@ -56,7 +56,7 @@ void main() {
     var data = List.of(1, 2, 3, 4, 5, 6, 7);
     
     var sliding = data.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .toList();
     
     sliding.forEach(IO::println);
@@ -77,7 +77,7 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5);
     
     var result = numbers.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> 0,
                     (sum, num) -> sum + num))
             .toList();
@@ -100,7 +100,7 @@ void main() {
     var values = List.of(1, 2, 3, 4, 5);
     
     var runningSum = values.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 0,
                     (acc, val) -> acc + val))
             .toList();
@@ -123,7 +123,7 @@ void main() {
     var words = List.of("a", "b", "c", "d", "e", "f");
     
     var batches = words.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .map(window -> String.join("-", window))
             .toList();
     
@@ -145,7 +145,7 @@ void main() {
     var prices = List.of(10.0, 12.0, 11.0, 13.0, 15.0, 14.0);
     
     var movingAvg = prices.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .map(window -> window.stream()
                     .mapToDouble(Double::doubleValue)
                     .average()
@@ -171,7 +171,7 @@ void main() {
     
     var evenWindows = numbers.stream()
             .filter(n -> n % 2 == 0)
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .toList();
     
     evenWindows.forEach(IO::println);
@@ -192,7 +192,7 @@ void main() {
     var items = List.of("item1", "item2", "item3", "item4", "item5");
     
     var batches = items.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .peek(batch -> IO.println("Processing batch: " + batch))
             .flatMap(List::stream)
             .toList();
@@ -215,7 +215,7 @@ void main() {
     var transactions = List.of(100, -50, 200, -30, 150);
     
     var balance = transactions.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 0,
                     (sum, amount) -> sum + amount))
             .toList();
@@ -238,7 +238,7 @@ void main() {
     var data = List.of(1, 2, 3, 4, 5, 6, 7);
     
     var windows = data.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .toList();
     
     windows.forEach(window -> 
@@ -260,11 +260,11 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
     
     var result = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .map(window -> window.stream()
                     .mapToInt(Integer::intValue)
                     .sum())
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .toList();
     
     result.forEach(IO::println);
@@ -285,7 +285,7 @@ void main() {
     var letters = List.of("A", "B", "C", "D", "E");
     
     var windows = letters.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .toList();
     
     IO.println("Sliding windows of size 2:");
@@ -307,7 +307,7 @@ void main() {
     var words = List.of("Java", "Stream", "Gatherers", "Example");
     
     var accumulated = words.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> "",
                     (acc, word) -> acc.isEmpty() ? word : acc + " " + word))
             .toList();
@@ -330,7 +330,7 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6);
     
     var transformed = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> window.stream()
                     .map(n -> n * n)
                     .toList())
@@ -354,7 +354,7 @@ void main() {
     var factors = List.of(2, 3, 4, 5);
     
     var products = factors.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 1,
                     (product, factor) -> product * factor))
             .toList();
@@ -377,7 +377,7 @@ void main() {
     var sequence = List.of(10, 20, 30, 40, 50);
     
     var pairs = sequence.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> "(" + window.get(0) + ", " + 
                     window.get(1) + ")")
             .toList();
@@ -406,7 +406,7 @@ void main() {
             new Temperature("Miami", 30.0));
     
     var batches = temps.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .toList();
     
     batches.forEach(batch -> IO.println("Batch: " + batch));
@@ -427,7 +427,7 @@ void main() {
     var values = List.of(3, 1, 4, 1, 5, 9, 2, 6);
     
     var runningMax = values.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> Integer.MIN_VALUE,
                     (max, val) -> Math.max(max, val)))
             .toList();
@@ -450,7 +450,7 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7);
     
     var fullWindows = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .filter(window -> window.size() == 3)
             .toList();
     
@@ -472,7 +472,7 @@ void main() {
     var chars = List.of("J", "a", "v", "a");
     
     var progressive = chars.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> "",
                     (str, ch) -> str + ch))
             .toList();
@@ -495,7 +495,7 @@ void main() {
     var prices = List.of(100, 105, 103, 108, 110);
     
     var changes = prices.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> window.get(1) - window.get(0))
             .toList();
     
@@ -517,7 +517,7 @@ void main() {
     var scores = List.of(85, 90, 78, 92, 88, 95, 82, 87);
     
     var avgPerBatch = scores.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(4))
+            .gather(Gatherers.windowFixed(4))
             .map(window -> window.stream()
                     .mapToInt(Integer::intValue)
                     .average()
@@ -542,7 +542,7 @@ void main() {
     var items = List.of("apple", "banana", "cherry");
     
     var growing = items.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new ArrayList<String>(),
                     (list, item) -> {
                         list.add(item);
@@ -568,7 +568,7 @@ void main() {
     var sequence = List.of(1, 2, 3, 4, 5);
     
     var triplets = sequence.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .map(window -> "[" + window.get(0) + ", " + 
                     window.get(1) + ", " + window.get(2) + "]")
             .toList();
@@ -591,7 +591,7 @@ void main() {
     var numbers = List.of(2, 4, 6, 8, 10, 12);
     
     var results = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> {
                 var sum = window.stream().mapToInt(Integer::intValue).sum();
                 var avg = sum / window.size();
@@ -617,7 +617,7 @@ void main() {
     var numbers = List.of(5, -3, 7, -2, 4, -1);
     
     var positiveSum = numbers.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 0,
                     (sum, num) -> num > 0 ? sum + num : sum))
             .toList();
@@ -640,7 +640,7 @@ void main() {
     var empty = List.<Integer>of();
     
     var windows = empty.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .toList();
     
     IO.println("Windows from empty stream: " + windows);
@@ -662,7 +662,7 @@ void main() {
     var values = List.of(1, 3, 2, 4, 5, 6, 4, 7);
     
     var increasing = values.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> window.get(1) > window.get(0))
             .toList();
     
@@ -693,7 +693,7 @@ void main() {
     var numbers = List.of(10, 20, 30, 40, 50);
     
     var runningStats = numbers.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new Stats(0, 0),
                     (stats, num) -> stats.add(num)))
             .map(Stats::average)
@@ -717,7 +717,7 @@ void main() {
     var data = List.of(1, 2, 3, 4, 5, 6);
     
     var processed = data.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .flatMap(window -> window.stream()
                     .map(n -> n * 10))
             .toList();
@@ -740,7 +740,7 @@ void main() {
     var numbers = List.of(10, 5, 8, 3, 12);
     
     var result = numbers.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> new int[]{0, 0},
                     (state, num) -> {
                         state[1]++;
@@ -769,7 +769,7 @@ void main() {
     var numbers = List.of(1, 5, 3, 8, 2, 9, 4);
     
     var highWindows = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .filter(window -> window.stream()
                     .mapToInt(Integer::intValue)
                     .average()
@@ -794,7 +794,7 @@ void main() {
     var items = List.of("a", "b", "c", "d", "e", "f", "g");
     
     var counts = items.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> "Window size: " + window.size() + 
                     " - " + window)
             .toList();
@@ -817,7 +817,7 @@ void main() {
     var temperatures = List.of(25, 22, 28, 19, 30, 18);
     
     var runningMin = temperatures.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> Integer.MAX_VALUE,
                     (min, temp) -> Math.min(min, temp)))
             .toList();
@@ -840,7 +840,7 @@ void main() {
     var sales = List.of(100, 150, 120, 180, 200);
     
     var windowSums = sales.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> window.stream()
                     .mapToInt(Integer::intValue)
                     .sum())
@@ -870,7 +870,7 @@ void main() {
             new Sale("Gadget", 12));
     
     var batches = sales.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .map(window -> window.stream()
                     .mapToInt(Sale::quantity)
                     .sum())
@@ -894,7 +894,7 @@ void main() {
     var events = List.of("click", "click", "click", "click");
     
     var states = events.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> false,
                     (state, event) -> !state))
             .toList();
@@ -917,7 +917,7 @@ void main() {
     var numbers = List.of(1, 1, 2, 3, 3, 4, 5, 5, 6);
     
     var distinctPerWindow = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> window.stream()
                     .distinct()
                     .toList())
@@ -941,7 +941,7 @@ void main() {
     var sequence = List.of(1, 2, 3, 2, 3, 4, 3, 4, 5);
     
     var ascending = sequence.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .filter(window -> window.get(0) < window.get(1) && 
                     window.get(1) < window.get(2))
             .toList();
@@ -967,7 +967,7 @@ void main() {
             new String[]{"c", "3"});
     
     var maps = pairs.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new HashMap<String, String>(),
                     (map, pair) -> {
                         map.put(pair[0], pair[1]);
@@ -993,7 +993,7 @@ void main() {
     var numbers = List.of(3, 1, 4, 1, 5, 9, 2, 6);
     
     var sortedWindows = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(4))
+            .gather(Gatherers.windowFixed(4))
             .map(window -> window.stream()
                     .sorted()
                     .toList())
@@ -1017,7 +1017,7 @@ void main() {
     var items = List.of("apple", "banana", "cherry", "date");
     
     var positions = items.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 0,
                     (count, item) -> count + 1))
             .toList();
@@ -1040,7 +1040,7 @@ void main() {
     var grades = List.of(85, 90, 78, 92, 88);
     
     var comparisons = grades.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> {
                 var first = window.get(0);
                 var second = window.get(1);
@@ -1068,7 +1068,7 @@ void main() {
             "giraffe", "hippo");
     
     var longWordBatches = words.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .filter(window -> window.stream()
                     .allMatch(w -> w.length() > 3))
             .toList();
@@ -1100,7 +1100,7 @@ void main() {
     var scores = List.of(85.0, 90.0, 78.0, 92.0, 88.0);
     
     var runningAvg = scores.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new Average(0.0, 0),
                     (avg, score) -> avg.add(score)))
             .map(Average::value)
@@ -1124,7 +1124,7 @@ void main() {
     var measurements = List.of(15, 20, 25, 18, 22, 30);
     
     var inRange = measurements.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(2))
+            .gather(Gatherers.windowSliding(2))
             .map(window -> {
                 var diff = Math.abs(window.get(1) - window.get(0));
                 return diff <= 5 ? "stable" : "volatile";
@@ -1149,9 +1149,9 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
     
     var grouped = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> window.stream()
-                    .collect(java.util.stream.Collectors.groupingBy(
+                    .collect(Collectors.groupingBy(
                             n -> n % 2 == 0 ? "even" : "odd")))
             .toList();
     
@@ -1173,7 +1173,7 @@ void main() {
     var values = List.of(1, 2, 3, -1, 4, 5, -1, 6);
     
     var segments = values.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> 0,
                     (sum, val) -> val < 0 ? 0 : sum + val))
             .toList();
@@ -1196,7 +1196,7 @@ void main() {
     var data = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     
     var results = data.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> {
                 var sum = window.stream()
                         .mapToInt(Integer::intValue)
@@ -1223,7 +1223,7 @@ void main() {
     var values = List.of(10.0, 12.0, 11.0, 15.0, 13.0);
     
     var variances = values.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .map(window -> {
                 var avg = window.stream()
                         .mapToDouble(Double::doubleValue)
@@ -1265,7 +1265,7 @@ void main() {
     var numbers = List.of(5, 3, 8, 1, 9, 2);
     
     var stats = numbers.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new MultiStats(0, Integer.MIN_VALUE, 
                             Integer.MAX_VALUE, 0),
                     (s, n) -> s.update(n)))
@@ -1289,7 +1289,7 @@ void main() {
     var matrix = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
     
     var processed = matrix.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(row -> row.stream()
                     .filter(n -> n % 2 == 0)
                     .map(n -> n * n)
@@ -1314,7 +1314,7 @@ void main() {
     var triggers = List.of(1, 1, 1, 1, 1, 1, 1, 1);
     
     var fibonacci = triggers.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> new int[]{0, 1},
                     (state, trigger) -> {
                         var next = state[0] + state[1];
@@ -1341,7 +1341,7 @@ void main() {
     var sequence = List.of(5, 3, 8, 2, 9, 1, 7);
     
     var analysis = sequence.stream()
-            .gather(java.util.stream.Gatherers.windowSliding(3))
+            .gather(Gatherers.windowSliding(3))
             .map(window -> {
                 var first = window.get(0);
                 var middle = window.get(1);
@@ -1375,7 +1375,7 @@ void main() {
             new Event("login", 4000L, "user2"));
     
     var batches = events.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(2))
+            .gather(Gatherers.windowFixed(2))
             .map(batch -> batch.stream()
                     .map(Event::type)
                     .toList())
@@ -1399,7 +1399,7 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     
     var windowSums = numbers.parallelStream()
-            .gather(java.util.stream.Gatherers.windowFixed(3))
+            .gather(Gatherers.windowFixed(3))
             .map(window -> window.stream()
                     .mapToInt(Integer::intValue)
                     .sum())
@@ -1433,7 +1433,7 @@ void main() {
     var metrics = List.of(10, 12, 30, 15, 50, 20);
     
     var analysis = metrics.stream()
-            .gather(java.util.stream.Gatherers.fold(
+            .gather(Gatherers.fold(
                     () -> new State(-1, new ArrayList<>()),
                     (state, value) -> state.process(value)))
             .map(State::results)
@@ -1457,9 +1457,9 @@ void main() {
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
     
     var partitioned = numbers.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(4))
+            .gather(Gatherers.windowFixed(4))
             .map(window -> window.stream()
-                    .collect(java.util.stream.Collectors.partitioningBy(
+                    .collect(Collectors.partitioningBy(
                             n -> n % 2 == 0)))
             .toList();
     
@@ -1481,7 +1481,7 @@ void main() {
     var baseline = List.of(100, 105, 98, 110, 95);
     
     var differences = baseline.stream()
-            .gather(java.util.stream.Gatherers.scan(
+            .gather(Gatherers.scan(
                     () -> new int[]{-1, 0},
                     (state, value) -> {
                         if (state[0] == -1) {
@@ -1512,7 +1512,7 @@ void main() {
     var values = List.of(10, 20, 15, 25, 30, 18, 22, 28);
     
     var stats = values.stream()
-            .gather(java.util.stream.Gatherers.windowFixed(4))
+            .gather(Gatherers.windowFixed(4))
             .map(window -> {
                 var count = window.size();
                 var sum = window.stream().mapToInt(Integer::intValue).sum();
