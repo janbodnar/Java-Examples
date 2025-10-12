@@ -1566,11 +1566,11 @@ This example shows creating streams from pattern matches.
 void main() {
 
     var text = "The quick brown fox jumps over the lazy dog";
-    var pattern = regex.Pattern.compile("\\w+");
+    var pattern = Pattern.compile("\\w+");
     
     var words = pattern.matcher(text)
             .results()
-            .map(regex.MatchResult::group)
+            .map(MatchResult::group)
             .toList();
     
     IO.println(words);
