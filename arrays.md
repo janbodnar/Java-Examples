@@ -778,7 +778,7 @@ void main() {
             "9", "10", "J", "Q", "K" };
     
     var list = Arrays.asList(cards);
-    java.util.Collections.shuffle(list);
+    Collections.shuffle(list);
     
     IO.println(Arrays.toString(cards));
 }
