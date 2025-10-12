@@ -57,7 +57,7 @@ This example shows how to create a stream from an array.
 void main() {
 
     var letters = new String[]{"a", "b", "c", "d", "e"};
-    var count = java.util.Arrays.stream(letters).count();
+    var count = Arrays.stream(letters).count();
     
     IO.println("There are " + count + " letters");
 }
@@ -99,15 +99,15 @@ This example demonstrates the three primitive stream specializations.
 ```java
 void main() {
 
-    var integers = java.util.stream.IntStream.rangeClosed(1, 16);
+    var integers = IntStream.rangeClosed(1, 16);
     var res = integers.average();
     
     res.ifPresent(IO::println);
     
-    var doubles = java.util.stream.DoubleStream.of(2.3, 33.1, 45.3);
+    var doubles = DoubleStream.of(2.3, 33.1, 45.3);
     doubles.forEachOrdered(IO::println);
     
-    var longs = java.util.stream.LongStream.range(6, 25);
+    var longs = LongStream.range(6, 25);
     IO.println("Count: " + longs.count());
 }
 ```
@@ -125,13 +125,13 @@ This example shows using `Stream.of` to create streams with specific values.
 ```java
 void main() {
 
-    var colours = java.util.stream.Stream.of("red", "green", "blue");
+    var colours = Stream.of("red", "green", "blue");
     var col = colours.skip(2).findFirst();
     
     col.ifPresent(IO::println);
     
-    var nums = java.util.stream.Stream.of(3, 4, 5, 6, 7);
-    var maxVal = nums.max(java.util.Comparator.naturalOrder());
+    var nums = Stream.of(3, 4, 5, 6, 7);
+    var maxVal = nums.max(Comparator.naturalOrder());
     
     maxVal.ifPresent(IO::println);
 }
@@ -149,7 +149,7 @@ This example demonstrates creating infinite streams using iteration.
 ```java
 void main() {
 
-    var s1 = java.util.stream.Stream.iterate(5, n -> n * 2).limit(10);
+    var s1 = Stream.iterate(5, n -> n * 2).limit(10);
     s1.forEach(IO::println);
 }
 ```
@@ -167,7 +167,7 @@ This example shows generating random values in a stream.
 ```java
 void main() {
 
-    java.util.stream.Stream.generate(new java.util.Random()::nextDouble)
+    Stream.generate(new Random()::nextDouble)
             .map(e -> e * 10)
             .limit(5)
             .forEach(IO::println);
@@ -246,10 +246,10 @@ This example demonstrates filtering elements based on a condition.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.rangeClosed(0, 25);
+    var nums = IntStream.rangeClosed(0, 25);
     var vals = nums.filter(e -> e > 15).toArray();
     
-    IO.println(java.util.Arrays.toString(vals));
+    IO.println(Arrays.toString(vals));
 }
 ```
 
@@ -265,7 +265,7 @@ This example shows filtering using a custom method.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.rangeClosed(0, 30);
+    var nums = IntStream.rangeClosed(0, 30);
     nums.filter(this::isEven).forEach(IO::println);
 }
 
@@ -287,7 +287,7 @@ This example demonstrates skipping the first n elements of a stream.
 ```java
 void main() {
 
-    var s = java.util.stream.IntStream.range(0, 15);
+    var s = IntStream.range(0, 15);
     s.skip(3).limit(5).forEach(IO::println);
 }
 ```
@@ -304,10 +304,10 @@ This example shows sorting a stream of integers.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.of(4, 3, 2, 1, 8, 6, 7, 5);
+    var nums = IntStream.of(4, 3, 2, 1, 8, 6, 7, 5);
     var sorted = nums.sorted().toArray();
     
-    IO.println("Sorted: " + java.util.Arrays.toString(sorted));
+    IO.println("Sorted: " + Arrays.toString(sorted));
 }
 ```
 
@@ -334,7 +334,7 @@ void main() {
     );
     
     cars.stream()
-            .sorted(java.util.Comparator.comparing(Car::price))
+            .sorted(Comparator.comparing(Car::price))
             .forEach(IO::println);
 }
 ```
@@ -351,10 +351,10 @@ This example shows removing duplicate elements from a stream.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.of(1, 1, 3, 4, 4, 6, 7, 7);
+    var nums = IntStream.of(1, 1, 3, 4, 4, 6, 7, 7);
     var unique = nums.distinct().toArray();
     
-    IO.println(java.util.Arrays.toString(unique));
+    IO.println(Arrays.toString(unique));
 }
 ```
 
@@ -370,10 +370,10 @@ This example demonstrates transforming stream elements.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
+    var nums = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
     var squares = nums.map(e -> e * e).toArray();
     
-    IO.println(java.util.Arrays.toString(squares));
+    IO.println(Arrays.toString(squares));
 }
 ```
 
@@ -389,7 +389,7 @@ This example shows transforming string elements.
 ```java
 void main() {
 
-    var words = java.util.stream.Stream.of("cardinal", "pen", "coin", "globe");
+    var words = Stream.of("cardinal", "pen", "coin", "globe");
     words.map(this::capitalize).forEach(IO::println);
 }
 
@@ -412,7 +412,7 @@ This example demonstrates finding the maximum element in a stream.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
+    var nums = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
     var maxValue = nums.max();
     
     maxValue.ifPresent(val -> 
@@ -432,7 +432,7 @@ This example shows creating a custom reduction operation.
 ```java
 void main() {
 
-    var nums = java.util.stream.IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
+    var nums = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8);
     var product = nums.reduce((a, b) -> a * b);
     
     product.ifPresent(val -> 
@@ -487,9 +487,9 @@ void main() {
             "book", "desk", "book", "pen", "book", "coin");
     
     var result = items.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
-                    java.util.function.Function.identity(),
-                    java.util.stream.Collectors.counting()
+            .collect(Collectors.groupingBy(
+                    function.Function.identity(),
+                    Collectors.counting()
             ));
     
     result.forEach((key, value) -> 
@@ -511,7 +511,7 @@ This example demonstrates using parallel processing.
 ```java
 void main() {
 
-    var result = java.util.stream.IntStream.rangeClosed(1, 100)
+    var result = IntStream.rangeClosed(1, 100)
             .parallel()
             .filter(n -> n % 2 == 0)
             .sum();
@@ -611,7 +611,7 @@ This example shows calculating the sum of stream elements.
 ```java
 void main() {
 
-    var numbers = java.util.stream.IntStream.rangeClosed(1, 10);
+    var numbers = IntStream.rangeClosed(1, 10);
     var sum = numbers.sum();
     
     IO.println("Sum: " + sum);
@@ -630,7 +630,7 @@ This example demonstrates computing the average of numbers.
 ```java
 void main() {
 
-    var numbers = java.util.stream.IntStream.of(10, 20, 30, 40, 50);
+    var numbers = IntStream.of(10, 20, 30, 40, 50);
     var avg = numbers.average();
     
     avg.ifPresent(val -> IO.println("Average: " + val));
@@ -648,7 +648,7 @@ This example shows collecting comprehensive statistics.
 ```java
 void main() {
 
-    var numbers = java.util.stream.IntStream.rangeClosed(1, 100);
+    var numbers = IntStream.rangeClosed(1, 100);
     var stats = numbers.summaryStatistics();
     
     IO.println("Count: " + stats.getCount());
@@ -696,7 +696,7 @@ This example shows inspecting elements during stream processing.
 ```java
 void main() {
 
-    var result = java.util.stream.IntStream.rangeClosed(1, 5)
+    var result = IntStream.rangeClosed(1, 5)
             .peek(n -> IO.println("Processing: " + n))
             .map(n -> n * 2)
             .peek(n -> IO.println("After mapping: " + n))
@@ -720,7 +720,7 @@ void main() {
 
     var numbers = List.of(5, 2, 8, 1, 9, 3);
     var sorted = numbers.stream()
-            .sorted(java.util.Comparator.reverseOrder())
+            .sorted(Comparator.reverseOrder())
             .toList();
     
     IO.println(sorted);
@@ -748,7 +748,7 @@ void main() {
     );
     
     var sorted = people.stream()
-            .sorted(java.util.Comparator
+            .sorted(Comparator
                     .comparing(Person::name)
                     .thenComparing(Person::age))
             .toList();
@@ -771,7 +771,7 @@ void main() {
 
     var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     var partitioned = numbers.stream()
-            .collect(java.util.stream.Collectors.partitioningBy(
+            .collect(Collectors.partitioningBy(
                     n -> n % 2 == 0));
     
     IO.println("Even: " + partitioned.get(true));
@@ -792,7 +792,7 @@ void main() {
 
     var words = List.of("Java", "is", "powerful", "and", "expressive");
     var sentence = words.stream()
-            .collect(java.util.stream.Collectors.joining(" "));
+            .collect(Collectors.joining(" "));
     
     IO.println(sentence);
 }
@@ -811,7 +811,7 @@ void main() {
 
     var numbers = List.of(1, 2, 2, 3, 3, 3, 4, 4, 5);
     var uniqueNumbers = numbers.stream()
-            .collect(java.util.stream.Collectors.toSet());
+            .collect(Collectors.toSet());
     
     IO.println(uniqueNumbers);
 }
@@ -831,7 +831,7 @@ void main() {
 
     var words = List.of("apple", "banana", "cherry");
     var lengthMap = words.stream()
-            .collect(java.util.stream.Collectors.toMap(
+            .collect(Collectors.toMap(
                     word -> word,
                     word -> word.length()
             ));
@@ -874,7 +874,7 @@ void main() {
 
     var words = List.of("apple", "pie", "banana", "cherry");
     var shortest = words.stream()
-            .min(java.util.Comparator.comparing(String::length));
+            .min(Comparator.comparing(String::length));
     
     shortest.ifPresent(word -> 
             IO.println("Shortest word: " + word));
@@ -894,9 +894,9 @@ void main() {
 
     var numbers = List.of(1, 2, 3, 4, 5);
     var result = numbers.stream()
-            .collect(java.util.stream.Collectors.teeing(
-                    java.util.stream.Collectors.summingInt(n -> n),
-                    java.util.stream.Collectors.counting(),
+            .collect(Collectors.teeing(
+                    Collectors.summingInt(n -> n),
+                    Collectors.counting(),
                     (sum, count) -> "Sum: " + sum + ", Count: " + count
             ));
     
@@ -957,7 +957,7 @@ This example shows boxing primitive streams to object streams.
 ```java
 void main() {
 
-    var intStream = java.util.stream.IntStream.rangeClosed(1, 5);
+    var intStream = IntStream.rangeClosed(1, 5);
     var boxed = intStream.boxed()
             .map(n -> n * 10)
             .toList();
@@ -978,7 +978,7 @@ This example demonstrates bounded iteration with a condition.
 ```java
 void main() {
 
-    var fibonacci = java.util.stream.Stream
+    var fibonacci = Stream
             .iterate(new int[]{0, 1}, f -> new int[]{f[1], f[0] + f[1]})
             .limit(10)
             .map(f -> f[0])
@@ -1003,8 +1003,8 @@ void main() {
     String value1 = "Hello";
     String value2 = null;
     
-    var count = java.util.stream.Stream.of(value1, value2)
-            .flatMap(java.util.stream.Stream::ofNullable)
+    var count = Stream.of(value1, value2)
+            .flatMap(Stream::ofNullable)
             .count();
     
     IO.println("Non-null count: " + count);
@@ -1075,7 +1075,7 @@ void main() {
             .mapToLong(java.time.Instant::getEpochSecond)
             .toArray();
     
-    IO.println(java.util.Arrays.toString(epochSeconds));
+    IO.println(Arrays.toString(epochSeconds));
 }
 ```
 
@@ -1172,9 +1172,9 @@ void main() {
     );
     
     var avgPricesByCategory = products.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     Product::category,
-                    java.util.stream.Collectors.averagingDouble(Product::price)
+                    Collectors.averagingDouble(Product::price)
             ));
     
     avgPricesByCategory.forEach((cat, avg) -> 
@@ -1197,11 +1197,11 @@ void main() {
                         "cherry", "almond");
     
     var grouped = items.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     s -> s.charAt(0),
-                    java.util.stream.Collectors.filtering(
+                    Collectors.filtering(
                             s -> s.length() > 5,
-                            java.util.stream.Collectors.toList()
+                            Collectors.toList()
                     )
             ));
     
@@ -1225,11 +1225,11 @@ void main() {
     var words = List.of("apple", "apricot", "banana", "cherry");
     
     var grouped = words.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     s -> s.length(),
-                    java.util.stream.Collectors.mapping(
+                    Collectors.mapping(
                             String::toUpperCase,
-                            java.util.stream.Collectors.toList()
+                            Collectors.toList()
                     )
             ));
     
@@ -1257,11 +1257,11 @@ void main() {
     );
     
     var wordsByLength = sentences.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     String::length,
-                    java.util.stream.Collectors.flatMapping(
-                            s -> java.util.Arrays.stream(s.split(" ")),
-                            java.util.stream.Collectors.toList()
+                    Collectors.flatMapping(
+                            s -> Arrays.stream(s.split(" ")),
+                            Collectors.toList()
                     )
             ));
     
@@ -1292,10 +1292,10 @@ void main() {
     );
     
     var minPrices = sales.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     Sale::product,
-                    java.util.stream.Collectors.minBy(
-                            java.util.Comparator.comparing(Sale::amount)
+                    Collectors.minBy(
+                            Comparator.comparing(Sale::amount)
                     )
             ));
     
@@ -1320,9 +1320,9 @@ void main() {
                         "avocado", "blueberry");
     
     var counts = words.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     s -> s.charAt(0),
-                    java.util.stream.Collectors.counting()
+                    Collectors.counting()
             ));
     
     counts.forEach((letter, count) -> 
@@ -1351,9 +1351,9 @@ void main() {
     );
     
     var totals = orders.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     Order::customer,
-                    java.util.stream.Collectors.summingDouble(Order::amount)
+                    Collectors.summingDouble(Order::amount)
             ));
     
     totals.forEach((customer, total) -> 
@@ -1376,9 +1376,9 @@ void main() {
                         "cherry");
     
     var grouped = words.stream()
-            .collect(java.util.stream.Collectors.groupingBy(
+            .collect(Collectors.groupingBy(
                     s -> s.charAt(0),
-                    java.util.stream.Collectors.joining(", ")
+                    Collectors.joining(", ")
             ));
     
     grouped.forEach((letter, joined) -> 
@@ -1398,10 +1398,10 @@ This example demonstrates thread-safe collection.
 ```java
 void main() {
 
-    var numbers = java.util.stream.IntStream.rangeClosed(1, 100)
+    var numbers = IntStream.rangeClosed(1, 100)
             .parallel()
             .boxed()
-            .collect(java.util.stream.Collectors.groupingByConcurrent(
+            .collect(Collectors.groupingByConcurrent(
                     n -> n % 10
             ));
     
@@ -1423,14 +1423,14 @@ This example shows chaining with custom logic.
 ```java
 void main() {
 
-    var numbers = java.util.stream.IntStream.rangeClosed(1, 20)
+    var numbers = IntStream.rangeClosed(1, 20)
             .filter(n -> n % 2 == 0)
             .filter(n -> n % 3 == 0)
             .map(n -> n * n)
             .limit(3)
             .toArray();
     
-    IO.println(java.util.Arrays.toString(numbers));
+    IO.println(Arrays.toString(numbers));
 }
 ```
 
@@ -1477,11 +1477,11 @@ void main() {
     var words = List.of("banana", "apple", "cherry", "date");
     
     var sorted = words.stream()
-            .collect(java.util.stream.Collectors.toMap(
+            .collect(Collectors.toMap(
                     s -> s,
                     String::length,
                     (v1, v2) -> v1,
-                    java.util.TreeMap::new
+                    TreeMap::new
             ));
     
     sorted.forEach((word, length) -> 
@@ -1504,7 +1504,7 @@ void main() {
     var items = List.of("apple", null, "banana", null, "cherry");
     
     var nonNull = items.stream()
-            .filter(java.util.Objects::nonNull)
+            .filter(Objects::nonNull)
             .toList();
     
     IO.println(nonNull);
@@ -1528,7 +1528,7 @@ void main() {
             .filter(s -> s.length() > 5)
             .toArray(String[]::new);
     
-    IO.println(java.util.Arrays.toString(array));
+    IO.println(Arrays.toString(array));
 }
 ```
 
@@ -1546,7 +1546,7 @@ void main() {
 
     var numbers = List.of(1, 2, 3, 4, 5);
     var reversed = numbers.stream()
-            .sorted(java.util.Comparator.reverseOrder())
+            .sorted(Comparator.reverseOrder())
             .toList();
     
     IO.println(reversed);
@@ -1566,11 +1566,11 @@ This example shows creating streams from pattern matches.
 void main() {
 
     var text = "The quick brown fox jumps over the lazy dog";
-    var pattern = java.util.regex.Pattern.compile("\\w+");
+    var pattern = regex.Pattern.compile("\\w+");
     
     var words = pattern.matcher(text)
             .results()
-            .map(java.util.regex.MatchResult::group)
+            .map(regex.MatchResult::group)
             .toList();
     
     IO.println(words);
@@ -1636,11 +1636,11 @@ This example demonstrates creating numeric ranges.
 ```java
 void main() {
 
-    var range1 = java.util.stream.IntStream.range(1, 10).toArray();
-    IO.println("Exclusive: " + java.util.Arrays.toString(range1));
+    var range1 = IntStream.range(1, 10).toArray();
+    IO.println("Exclusive: " + Arrays.toString(range1));
     
-    var range2 = java.util.stream.IntStream.rangeClosed(1, 10).toArray();
-    IO.println("Inclusive: " + java.util.Arrays.toString(range2));
+    var range2 = IntStream.rangeClosed(1, 10).toArray();
+    IO.println("Inclusive: " + Arrays.toString(range2));
 }
 ```
 
@@ -1656,8 +1656,8 @@ This example shows controlling infinite stream size.
 ```java
 void main() {
 
-    var random = new java.util.Random();
-    var randomNumbers = java.util.stream.Stream
+    var random = new Random();
+    var randomNumbers = Stream
             .generate(random::nextInt)
             .limit(10)
             .toList();
@@ -1678,12 +1678,12 @@ This example demonstrates concatenating streams.
 ```java
 void main() {
 
-    var stream1 = java.util.stream.Stream.of(1, 2, 3);
-    var stream2 = java.util.stream.Stream.of(4, 5, 6);
-    var stream3 = java.util.stream.Stream.of(7, 8, 9);
+    var stream1 = Stream.of(1, 2, 3);
+    var stream2 = Stream.of(4, 5, 6);
+    var stream3 = Stream.of(7, 8, 9);
     
-    var merged = java.util.stream.Stream.concat(
-            java.util.stream.Stream.concat(stream1, stream2),
+    var merged = Stream.concat(
+            Stream.concat(stream1, stream2),
             stream3
     ).toList();
     
@@ -1702,12 +1702,12 @@ This example shows creating and handling empty streams.
 ```java
 void main() {
 
-    var empty = java.util.stream.Stream.<String>empty();
+    var empty = Stream.<String>empty();
     var count = empty.count();
     
     IO.println("Empty stream count: " + count);
     
-    var result = java.util.stream.Stream.<Integer>empty()
+    var result = Stream.<Integer>empty()
             .findFirst()
             .orElse(-1);
     
@@ -1727,7 +1727,7 @@ This example demonstrates building streams incrementally.
 ```java
 void main() {
 
-    var builder = java.util.stream.Stream.<String>builder();
+    var builder = Stream.<String>builder();
     builder.add("apple");
     builder.add("banana");
     builder.add("cherry");
