@@ -1,1086 +1,886 @@
+# Java Arrays
 
-<h1>Java array</h1>
+This document provides comprehensive coverage of Java arrays using modern  
+Java 25 syntax, including compact source files, instance main methods, and  
+implicit imports.  
 
-<p class="last_mod">
-last modified February 23, 2024
-</p>
- 
-<p>
-In this article we cover arrays. An array is a container object that holds a
-fixed number of values of a single type. The length of an array is established
-when the array is created. After creation, its length is fixed.
-</p>
+Arrays are fundamental data structures that hold a fixed number of values of  
+a single type. Unlike scalar variables that store only one value, arrays can  
+store multiple items called elements. Each element is accessed by its index,  
+with array indices starting at zero. Once created, an array's length is fixed  
+and cannot be changed, making arrays ideal for situations where the number of  
+elements is known in advance.  
 
-<p>
-A scalar variable can hold only one item at a time. Arrays can hold multiple
-items. These items are called elements of the array. Arrays store data of the
-<em>same data type</em>. Each element can be referred to by an index. Arrays are
-zero based. The index of the first element is zero.
-</p>
+Java arrays are objects, allocated on the heap, and accessed through  
+references. They provide fast constant-time access to elements by index,  
+making them efficient for random access operations. Arrays can store both  
+primitive types (int, double, char, etc.) and reference types (String,  
+custom objects). Multi-dimensional arrays are supported through arrays of  
+arrays, enabling representation of matrices, tables, and complex data  
+structures.  
 
+The `Arrays` class in `java.util` provides numerous utility methods for  
+working with arrays, including sorting, searching, comparing, filling, and  
+copying. Modern Java encourages using the `var` keyword for type inference  
+and the `IO` class for simplified input/output. While arrays are powerful,  
+collections like `ArrayList` offer more flexibility for dynamic data  
+structures, though arrays remain essential for performance-critical code and  
+interoperability with legacy systems.  
 
-<h2>Array definition</h2>
+## Creating arrays with new keyword
 
-<p>
-Arrays are used to store data of our applications. We declare arrays to be of a
-certain data type. We specify their length. And we initialize arrays with data.
-We have several methods for working with arrays. We can modify the elements,
-sort them, copy them or search for them.
-</p>
+This example demonstrates creating an array with the new keyword and  
+initializing it element by element.  
 
-<pre class="compact">
-int[] ages;
-String[] names;
-float[] weights;
-</pre>
-
-<p>
-We have three array declarations. The declaration consists of two parts: the
-type of the array and the array name. The type of an array has a data type
-that determines the types of the elements within an array (<code>int</code>,
-<code>String</code>, <code>float</code> in our case) and a pair of square brackets
-<code>[]</code>. The brackets indicate that we have an array.
-</p>
-
-<p>
-<em>Collections</em> serve a similar purpose like arrays. They are more powerful
-than arrays. They will be described later in a separate chapter.
-</p>
-
-
-<h2>Initializing arrays</h2>
-
-<p>
-There are several ways how we can initialize an array in Java. In the first
-example, an array is created and initialized in two steps.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
+```java
 void main() {
 
-    int[] a = new int[5];
-
-    a[0] = 1;
-    a[1] = 2;
-    a[2] = 3;
-    a[3] = 4;
-    a[4] = 5;
-
-    System.out.println(Arrays.toString(a));
+    var numbers = new int[5];
+    
+    numbers[0] = 1;
+    numbers[1] = 2;
+    numbers[2] = 3;
+    numbers[3] = 4;
+    numbers[4] = 5;
+    
+    IO.println(Arrays.toString(numbers));
 }
-</pre>
+```
 
-<p>
-We create and initialize a numerical array. The contents of the array are
-printed to the console.
-</p>
+Arrays are created using the `new` keyword followed by the type and size in  
+brackets. Each element is then assigned a value using its zero-based index.  
+The `Arrays.toString` method converts the array to a readable string format,  
+which is useful for debugging and displaying array contents.  
 
-<pre class="explanation">
-int[] a = new int[5];
-</pre>
+## Array literal initialization
 
-<p>
-Here we create an array which can contain five elements. The statement allocates
-memory for five integers.  The square brackets are used for declaring an array,
-the type (<code>int</code> in our case) tells us what type of values the array
-will hold. An array is an object and therefore it is created with the
-<code>new</code>
-keyword.
-</p>
+This example shows how to create and initialize an array in one statement  
+using array literals.  
 
-<pre class="explanation">
-a[0] = 1;
-a[1] = 2;
-a[2] = 3;
-a[3] = 4;
-a[4] = 5;
-</pre>
-
-<p>
-We initialize the array with some data. This is assignment initialization.
-The indexes are in the square brackets. Number 1 is going to be the first
-element of the array, number 2 is the second etc.
-</p>
-
-<pre class="explanation">
-System.out.println(Arrays.toString(a));
-</pre>
-
-<p>
-The <code>Arrays</code> class is a helper class which  contains various methods
-for manipulating arrays. The <code>toString</code> method returns a string
-representation of the contents of the specified array. This method is helpful in
-debugging.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[1, 2, 3, 4, 5]
-</pre>
-
-
-<p>
-We can declare and initialize an array in one statement.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
+```java
 void main() {
 
-    int[] a = new int[] { 2, 4, 5, 6, 7, 3, 2 };
-
-    System.out.println(Arrays.toString(a));
+    var values = new int[] { 2, 4, 5, 6, 7, 3, 2 };
+    IO.println(Arrays.toString(values));
+    
+    var simplified = { 10, 20, 30, 40, 50 };
+    IO.println(Arrays.toString(simplified));
 }
-</pre>
+```
 
-<p>
-This is a modified version of the previous program.
-</p>
+Array literals use curly braces to specify elements at creation time. The  
+first form explicitly states the type with `new int[]`, while the simplified  
+form omits this when the type can be inferred. Both approaches create the  
+array in a single statement, making the code more concise and readable.  
 
-<pre class="explanation">
-int[] array = new int[] { 2, 4, 5, 6, 7, 3, 2 };
-</pre>
+## Accessing array elements
 
-<p>
-An array is created and initialized in one step. The elements are specified in
-curly brackets. We did not specify the length of the array. The compiler will do
-it for us.
-</p>
+This example demonstrates accessing individual array elements by their index.  
 
-<p>
-The one step creation and initialization can be further simplified by only
-specifying the numbers between the curly brackets.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
+```java
 void main() {
 
-    int[] a = { 2, 4, 5, 6, 7, 3, 2 };
-
-    System.out.println(Arrays.toString(a));
+    var names = new String[] {"Jane", "Thomas", "Lucy", "David"};
+    
+    IO.println(names[0]);
+    IO.println(names[1]);
+    IO.println(names[2]);
+    IO.println(names[3]);
 }
-</pre>
+```
 
-<p>
-An array of integers is created using the most simple way
-of array creation.
-</p>
+Array elements are accessed using square brackets with a zero-based index.  
+The first element is at index 0, the second at index 1, and so on. Attempting  
+to access an index outside the valid range (0 to length-1) throws an  
+`ArrayIndexOutOfBoundsException`.  
 
-<pre class="explanation">
-int[] a = { 2, 4, 5, 6, 7, 3, 2 };
-</pre>
+## Modifying array elements
 
-<p>
-The <code>new int[]</code> construct can be omitted. The right side of the
-statement is an <em>array literal</em> notation. It resembles the C/C++ style of
-array initialization. Even if we drop the <code>new</code> keyword, the array is
-created the same way as in previous two examples. This is just a convenient
-shorthand notation.
-</p>
+This example shows how to change values stored in an array.  
 
-
-<h2>Accessing array elements</h2>
-
-<p>
-After the array is created, its elements can be accessed by their index. The
-index is a number placed inside square brackets which follow the array name.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 void main() {
 
-    String[] names = {"Jane", "Thomas", "Lucy", "David"};
-
-    System.out.println(names[0]);
-    System.out.println(names[1]);
-    System.out.println(names[2]);
-    System.out.println(names[3]);
+    var values = new int[] { 1, 2, 3 };
+    
+    values[0] *= 2;
+    values[1] *= 2;
+    values[2] *= 2;
+    
+    IO.println(Arrays.toString(values));
 }
-</pre>
+```
 
-<p>
-In the example, we create an array of string names. We access each of the
-elements by its index and print them to the terminal.
-</p>
+Array elements are mutable and can be modified after creation. Using index  
+notation, each element is accessed and updated with a new value. This example  
+demonstrates in-place modification by doubling each value, showing that  
+arrays support both read and write operations.  
 
-<pre class="explanation">
-String[] names = {"Jane", "Thomas", "Lucy", "David"};
-</pre>
+## Traversing with for loop
 
-<p>
-An array of strings is created.
-</p>
+This example shows how to iterate through an array using a traditional for  
+loop and an enhanced for-each loop.  
 
-<pre class="explanation">
-System.out.println(names[0]);
-System.out.println(names[1]);
-System.out.println(names[2]);
-System.out.println(names[3]);
-</pre>
-
-<p>
-Each of the elements of the array is printed to the console. With the
-<code>names[0]</code> construct, we refer to the first element of the names
-array.
-</p>
-
-<pre class="compact">
-$ java Main.java
-Jane
-Thomas
-Lucy
-David
-</pre>
-
-<p>
-Running the example we get the above output.
-</p>
-
-<p>
-It is possible to change the elements of an array. The elements are not
-immutable.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
+```java
 void main() {
 
-    int[] vals = { 1, 2, 3 };
-
-    vals[0] *= 2;
-    vals[1] *= 2;
-    vals[2] *= 2;
-
-    System.out.println(Arrays.toString(vals));
-}
-</pre>
-
-<p>
-We have an array of three integers. Each of the values will be multiplied by
-two.
-</p>
-
-<pre class="explanation">
-int[] vals = { 1, 2, 3 };
-</pre>
-
-<p>
-An array of three integers is created.
-</p>
-
-<pre class="explanation">
-vals[0] *= 2;
-vals[1] *= 2;
-vals[2] *= 2;
-</pre>
-
-<p>
-Using the element access, we multiply each value in the array by two.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[2, 4, 6]
-</pre>
-
-
-<h2>Traversing arrays</h2>
-
-<p>
-We often need to go through all elements of an array. We show two common methods
-for traversing an array.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-void main() {
-
-    String[] planets = { "Mercury", "Venus", "Mars", "Earth", "Jupiter",
-            "Saturn", "Uranus", "Neptune", "Pluto" };
-
-    for (int i = 0; i &lt; planets.length; i++) {
-
-        System.out.println(planets[i]);
+    var planets = new String[] { "Mercury", "Venus", "Mars", "Earth", 
+            "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto" };
+    
+    for (int i = 0; i < planets.length; i++) {
+        IO.println(planets[i]);
     }
-
-    for (String planet : planets) {
-
-        System.out.println(planet);
+    
+    IO.println("---");
+    
+    for (var planet : planets) {
+        IO.println(planet);
     }
 }
-</pre>
+```
 
-<p>
-An array of planet names is created. We use the for loop to print all the
-values.
-</p>
+The traditional for loop uses an index variable to access each element,  
+leveraging the array's `length` property. The enhanced for-each loop provides  
+a more concise syntax for iteration, automatically handling the index. The  
+for-each loop is preferred when you don't need the index value itself.  
 
-<pre class="explanation">
-for (int i=0; i &lt; planets.length; i++) {
+## Passing arrays to functions
 
-    System.out.println(planets[i]);
-}
-</pre>
+This example demonstrates passing an array to a function and returning a new  
+array.  
 
-<p>
-In this loop, we utilize the fact that we can get the number of elements from
-the array object. The number of elements is stored in the <code>length</code>
-constant.
-</p>
-
-<pre class="explanation">
-for (String planet : planets) {
-
-    System.out.println(planet);
-}
-</pre>
-
-<p>
-An enhanced for keyword can be used to make the code more compact when
-traversing arrays or other collections. In each cycle, the planet variable is
-passed the next value from the planets array.
-</p>
-
-
-<h2>Passing arrays to methods</h2>
-
-<p>
-In the next example, we pass an array to a method.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
+```java
 void main() {
 
-    int[] a = { 3, 4, 5, 6, 7 };
-    int[] r = reverseArray(a);
-
-    System.out.println(Arrays.toString(a));
-    System.out.println(Arrays.toString(r));
+    var original = new int[] { 3, 4, 5, 6, 7 };
+    var reversed = reverseArray(original);
+    
+    IO.println(Arrays.toString(original));
+    IO.println(Arrays.toString(reversed));
 }
 
-int[] reverseArray(int[] b) {
+int[] reverseArray(int[] input) {
 
-    int[] c = new int[b.length];
-
-    for (int i = b.length - 1, j = 0; i &gt;= 0; i--, j++) {
-
-        c[j] = b[i];
+    var result = new int[input.length];
+    
+    for (int i = input.length - 1, j = 0; i >= 0; i--, j++) {
+        result[j] = input[i];
     }
-
-    return c;
+    
+    return result;
 }
-</pre>
+```
 
-<p>
-The example reorders the elements of an array. For this task, a
-<code>reverseArray</code> method is created.
-</p>
+Arrays can be passed to functions as parameters and returned as results.  
+When an array is passed, the function receives a reference to the original  
+array, not a copy. This example creates a new array to avoid modifying the  
+original, demonstrating defensive programming when reversing elements.  
 
-<pre class="explanation">
-int[] reverseArray(int[] b) {
-</pre>
+## Two-dimensional arrays
 
-<p>
-The <code>reverseArray</code> method takes an array as a parameter and returns
-an array. The method takes a copy of the passed array.
-</p>
+This example demonstrates creating and traversing a two-dimensional array.  
 
-<pre class="explanation">
-int[] c = new int[b.length];
-</pre>
-
-<p>
-Inside the body of the method, a new array is created; it will contain the newly
-ordered elements.
-</p>
-
-<pre class="explanation">
-for (int i = b.length - 1, j = 0; i &gt;= 0; i--, j++) {
-
-    c[j] = b[i];
-}
-</pre>
-
-<p>
-In this for loop, we fill the new array with the elements of the copied array.
-The elements are reversed.
-</p>
-
-<pre class="explanation">
-return c;
-</pre>
-
-<p>
-The newly formed array is returned back to the caller.
-</p>
-
-<pre class="explanation">
-System.out.println(Arrays.toString(a));
-System.out.println(Arrays.toString(r));
-</pre>
-
-<p>
-We print the elements of the original and the reversed array.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[3, 4, 5, 6, 7]
-[7, 6, 5, 4, 3]
-</pre>
-
-
-<h2>Multidimensional arrays</h2>
-
-<p>
-So far we have been working with one-dimensional arrays. In Java, we can create
-multidimensional arrays. A multidimensional array is an array of arrays. In such
-an array, the elements are themselves arrays. In multidimensional arrays, we use
-two or more sets of brackets.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 void main() {
 
-    int[][] twodim = new int[][] { { 1, 2, 3 }, { 1, 2, 3 } };
-
-    int d1 = twodim.length;
-    int d2 = twodim[1].length;
-
-    for (int i = 0; i &lt; d1; i++) {
-
-        for (int j = 0; j &lt; d2; j++) {
-
-            System.out.println(twodim[i][j]);
+    var matrix = new int[][] { { 1, 2, 3 }, { 4, 5, 6 } };
+    
+    var rows = matrix.length;
+    var cols = matrix[0].length;
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            IO.print(matrix[i][j] + " ");
         }
+        IO.println();
     }
 }
-</pre>
+```
 
-<p>
-In this example, we create a two-dimensional array of integers.
-</p>
+Two-dimensional arrays are arrays of arrays, creating a matrix-like structure.  
+Each element is accessed using two indices: the first for the row and the  
+second for the column. Nested loops are commonly used to iterate through all  
+elements in a 2D array.  
 
-<pre class="explanation">
-int[][] twodim = new int[][] { { 1, 2, 3 }, { 1, 2, 3 } };
-</pre>
+## Three-dimensional arrays
 
-<p>
-Two pairs of square brackets are used to declare a two-dimensional array. Inside
-the curly brackets, we have additional two pairs of curly brackets. They
-represent two inner arrays.
-</p>
+This example shows how to work with three-dimensional arrays.  
 
-<pre class="explanation">
-int d1 = twodim.length;
-int d2 = twodim[1].length;
-</pre>
-
-<p>
-We determine the length of the outer array that
-holds other two arrays and the second inner array.
-</p>
-
-<pre class="explanation">
-for (int i = 0; i &lt; d1; i++) {
-
-    for (int j = 0; j &lt; d2; j++) {
-
-        System.out.println(twodim[i][j]);
-    }
-}
-</pre>
-
-<p>
-Two for loops are used to print all the six values from the two-dimensional
-array. The first index of the <code>twodim[i][j]</code> array refers to one of
-the inner arrays. The second index refers to the element of the chosen inner
-array.
-</p>
-
-<pre class="compact">
-$ java Main.java
-1
-2
-3
-1
-2
-3
-</pre>
-
-
-<p>
-In a similar fashion, we create a three-dimensional array of
-integers.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 void main() {
 
-    int[][][] n3 = {
-            { { 12, 2, 8 }, { 0, 2, 1 } },
-            { { 14, 5, 2 }, { 0, 5, 4 } },
-            { { 3, 26, 9 }, { 8, 7, 1 } },
-            { { 4, 11, 2 }, { 0, 9, 6 } }
+    var cube = new int[][][] {
+        { { 12, 2, 8 }, { 0, 2, 1 } },
+        { { 14, 5, 2 }, { 0, 5, 4 } },
+        { { 3, 26, 9 }, { 8, 7, 1 } },
+        { { 4, 11, 2 }, { 0, 9, 6 } }
     };
-
-    int d1 = n3.length;
-    int d2 = n3[0].length;
-    int d3 = n3[0][0].length;
-
-    for (int i = 0; i &lt; d1; i++) {
-
-        for (int j = 0; j &lt; d2; j++) {
-
-            for (int k = 0; k &lt; d3; k++) {
-
-                System.out.print(n3[i][j][k] + " ");
+    
+    var dim1 = cube.length;
+    var dim2 = cube[0].length;
+    var dim3 = cube[0][0].length;
+    
+    for (int i = 0; i < dim1; i++) {
+        for (int j = 0; j < dim2; j++) {
+            for (int k = 0; k < dim3; k++) {
+                IO.print(cube[i][j][k] + " ");
             }
         }
     }
+    IO.println();
 }
-</pre>
+```
 
-<p>
-A variable that holds a three-dimensional array is declared with three pairs of
-square brackets. The values are place inside three pairs of curly brackets.
-</p>
+Three-dimensional arrays extend the concept further, creating cube-like  
+structures useful for representing 3D space, RGB color data, or complex  
+scientific datasets. Three nested loops are required to access all elements,  
+with each index representing a different dimension of the data structure.  
 
-<pre class="explanation">
-int[][][] n3 = {
-    { { 12, 2, 8 }, { 0, 2, 1 } },
-    { { 14, 5, 2 }, { 0, 5, 4 } },
-    { { 3, 26, 9 }, { 8, 7, 1 } },
-    { { 4, 11, 2 }, { 0, 9, 6 } }
-};
-</pre>
+## Jagged arrays
 
-<p>
-Three-dimensional array <code>n3</code> is created. It is an array that has
-elements which are themselves arrays of arrays.
-</p>
+This example demonstrates creating arrays with rows of different lengths.  
 
-<pre class="explanation">
-int d1 = n3.length;
-int d2 = n3[0].length;
-int d3 = n3[0][0].length;
-</pre>
-
-<p>
-We get the length of all three dimensions.
-</p>
-
-<pre class="explanation">
-for (int i = 0; i &lt; d1; i++) {
-
-    for (int j = 0; j &lt; d2; j++) {
-
-        for (int k = 0; k &lt; d3; k++) {
-
-            System.out.print(n3[i][j][k] + " ");
-        }
-    }
-}
-</pre>
-
-<p>
-We need three for loops to traverse a three dimensional array.
-</p>
-
-<pre class="compact">
-$ java Main.java
-12 2 8 0 2 1 14 5 2 0 5 4 3 26 9 8 7 1 4 11 2 0 9 6
-</pre>
-
-
-<h2>Irregular arrays</h2>
-
-<p>
-Arrays that have elements of the same size are called rectangular arrays. It is
-possible to create irregular arrays where the arrays have a different size. In
-C# such arrays are called <em>jagged arrays</em>.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
+```java
 void main() {
 
-    int[][] ir = new int[][] {
-            { 1, 2 },
-            { 1, 2, 3 },
-            { 1, 2, 3, 4 }
-    };
-
-    for (int[] a : ir) {
-        for (int e : a) {
-            System.out.print(e + " ");
-        }
-    }
-}
-</pre>
-
-<p>
-This is an example of an irregular array.
-</p>
-
-<pre class="explanation">
-int[][] ir = new int[][] {
+    var jagged = new int[][] {
         { 1, 2 },
         { 1, 2, 3 },
         { 1, 2, 3, 4 }
-};
-</pre>
-
-<p>
-This is a declaration and initialization of an irregular array. The three inner
-arrays have 2, 3, and 4 elements.
-</p>
-
-<pre class="explanation">
-for (int[] a : ir) {
-    for (int e : a) {
-        System.out.print(e + " ");
-    }
-}
-</pre>
-
-<p>
-The enhanced for loop is used to go through all the
-elements of the array.
-</p>
-
-<pre class="compact">
-$ java Main.java
-1 2 1 2 3 1 2 3 4
-</pre>
-
-
-<h2>Array methods</h2>
-
-<p>
-The <code>Arrays</code> class, available in the <code>java.util</code>
-package, is a helper class that contains methods for working with arrays. These
-methods can be used for modifying, sorting, copying, or searching data. These
-methods that we use are static methods of the <code>Array</code> class. (Static
-methods are methods that can be called without creating an instance of a class.)
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
-void main() {
-
-    int[] a = { 5, 2, 4, 3, 1 };
-
-    Arrays.sort(a);
-
-    System.out.println(Arrays.toString(a));
-
-    Arrays.fill(a, 8);
-    System.out.println(Arrays.toString(a));
-
-    int[] b = Arrays.copyOf(a, 5);
-
-    if (Arrays.equals(a, b)) {
-
-        System.out.println("Arrays a, b are equal");
-    } else {
-
-        System.out.println("Arrays a, b are not equal");
-    }
-}
-</pre>
-
-<p>
-In the code example, we present five methods of the <code>Arrays</code> class.
-</p>
-
-<pre class="explanation">
-import java.util.Arrays;
-</pre>
-
-<p>
-We will use the shorthand notation for the <code>Arrays</code> class.
-</p>
-
-<pre class="explanation">
-int[] a = { 5, 2, 4, 3, 1 };
-</pre>
-
-<p>
-We have an array of five integers.
-</p>
-
-<pre class="explanation">
-Arrays.sort(a);
-</pre>
-
-<p>
-The <code>sort</code> method sorts the integers in an ascending order.
-</p>
-
-<pre class="explanation">
-System.out.println(Arrays.toString(a));
-</pre>
-
-<p>
-The <code>toString</code> method returns a string representation
-of the contents of the specified array.
-</p>
-
-<pre class="explanation">
-Arrays.fill(a, 8);
-</pre>
-
-<p>
-The <code>fill</code> method assigns the specified integer value to
-each element of the array.
-</p>
-
-<pre class="explanation">
-int[] b = Arrays.copyOf(a, 5);
-</pre>
-
-<p>
-The <code>copyOf</code> method copies the specified number of elements
-to a new array.
-</p>
-
-<pre class="explanation">
-if (Arrays.equals(a, b)) {
-
-    System.out.println("Arrays a, b are equal");
-} else {
-
-    System.out.println("Arrays a, b are not equal");
-}
-</pre>
-
-<p>
-The <code>equals</code> method compares the two arrays. Two arrays are equal
-if they contain the same elements in the same order.
-</p>
-
-<pre class="compact">
-$ java Main.java
-[1, 2, 3, 4, 5]
-[8, 8, 8, 8, 8]
-Arrays a, b are equal
-</pre>
-
-
-<h2>Comparing arrays</h2>
-
-<p>
-There are two methods for comparing arrays. The <code>equals</code> method and
-the <code>deepEquals</code> method. The <code>deepEquals</code> method
-also compares references to arrays inside arrays.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
-void main() {
-
-    int[] a = { 1, 1, 2, 1, 1 };
-    int[] b = { 0, 0, 3, 0, 0 };
-
-    int[][] c = {
-            { 1, 1, 2, 1, 1 },
-            { 0, 0, 3, 0, 0 }
     };
-
-    int[][] d = {
-            a,
-            b
-    };
-
-    System.out.print("equals() method: ");
-
-    if (Arrays.equals(c, d)) {
-
-        System.out.println("Arrays c, d are equal");
-    } else {
-
-        System.out.println("Arrays c, d are not equal");
-    }
-
-    System.out.print("deepEquals() method: ");
-
-    if (Arrays.deepEquals(c, d)) {
-
-        System.out.println("Arrays c, d are equal");
-    } else {
-
-        System.out.println("Arrays c, d are not equal");
-    }
-}
-</pre>
-
-<p>
-The example explains the difference between the two methods.
-</p>
-
-<pre class="explanation">
-int[] a = { 1, 1, 2, 1, 1 };
-int[] b = { 0, 0, 3, 0, 0 };
-</pre>
-
-<p>
-We have two arrays of integers.
-</p>
-
-<pre class="explanation">
-int[][] c = {
-    { 1, 1, 2, 1, 1 },
-    { 0, 0, 3, 0, 0 }
-};
-</pre>
-
-<p>
-The c array has two inner arrays. The elements of the inner arrays are equal
-to the <code>a</code> and <code>b</code> arrays.
-</p>
-
-<pre class="explanation">
-int[][] d = {
-    a,
-    b
-};
-</pre>
-
-<p>
-The <code>d</code> array contains references to <code>a</code> and
-<code>b</code> arrays.
-</p>
-
-<pre class="explanation">
-System.out.print("equals() method: ");
-
-if (Arrays.equals(c, d)) {
-
-    System.out.println("Arrays c, d are equal");
-} else {
-
-    System.out.println("Arrays c, d are not equal");
-}
-
-System.out.print("deepEquals() method: ");
-
-if (Arrays.deepEquals(c, d)) {
-
-    System.out.println("Arrays c, d are equal");
-} else {
-
-    System.out.println("Arrays c, d are not equal");
-}
-</pre>
-
-<p>
-Now the <code>c</code> and <code>d</code> arrays are compared using both
-methods. For the <code>equals</code> method, the arrays are not equal. The
-<code>deepEquals</code> method goes deeper in the referenced arrays and
-retrieves their elements for comparison. For this method, the <code>c</code> and
-<code>d</code> arrays are equal.
-</p>
-
-<pre class="compact">
-$ java Main.java
-equals() method: Arrays c, d are not equal
-deepEquals() method: Arrays c, d are equal
-</pre>
-
-
-<h2>Searching arrays</h2>
-
-<p>
-The <code>Arrays</code> class has a simple method for searching elements in an
-array. It is called the <code>binarySearch</code>. The method searches for
-elements using a binary search algorithm. The <code>binarySearch</code> method
-only works on sorted arrays.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.util.Arrays;
-
-void main() {
-
-    String[] planets = { "Mercury", "Venus", "Mars", "Earth", "Jupiter",
-            "Saturn", "Uranus", "Neptune", "Pluto" };
-
-    Arrays.sort(planets);
-
-    String p = "Earth";
-    int r = Arrays.binarySearch(planets, p);
-
-    String msg = "";
-
-    if (r &gt;= 0) {
-        msg = STR."\{p} was found at position \{r} of the sorted array";
-    } else {
-        msg = STR."\{p} was not found";
-    }
-
-    System.out.println(msg);
-}
-</pre>
-
-<p>
-In the example, we search for the "Earth" string in an array of planets.
-</p>
-
-<pre class="explanation">
-Arrays.sort(planets);
-</pre>
-
-<p>
-Since the algorithm only works on sorted arrays, we must sort the array first.
-</p>
-
-<pre class="explanation">
-String p = "Earth";
-</pre>
-
-<p>
-We will be searching for the "Earth" element.
-</p>
-
-<pre class="explanation">
-int r = Arrays.binarySearch(planets, p);
-</pre>
-
-<p>
-The <code>binarySearch</code> method is called. The first parameter is the array
-name, the second the element we are looking for. If the element is found, the
-return value is greater or equal to zero. In such a case, it is the index of the
-element in the sorted array.
-</p>
-
-<pre class="explanation">
-if (r &gt;= 0) {
-    msg = STR."\{p} was found at position \{r} of the sorted array";
-} else {
-    msg = STR."\{p} was not found";
-}
-</pre>
-
-<p>
-Depending on the returned value, we create a message.
-</p>
-
-<pre class="compact">
-$ java Main.java
-Earth was found at position 0 of the sorted array
-</pre>
-
-
-<h2>Download image</h2>
-
-<p>
-In the next example, we show how to download an image.
-</p>
-
-<div class="codehead">Main.java
-  <i class="fas fa-copy copy-icon" onclick="copyCode(this)"></i>
-</div>
-<pre class="code">
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-void main() throws IOException, URISyntaxException {
-
-    String imageUrl = "https://something.com/favicon.ico";
-    String destinationFile = "favicon.ico";
-
-    var url = new URI(imageUrl).toURL();
-
-    try (var is = url.openStream();
-            var fos = new FileOutputStream(destinationFile)) {
-
-        byte[] buf = new byte[1024];
-        int noOfBytes;
-
-        while ((noOfBytes = is.read(buf)) != -1) {
-
-            fos.write(buf, 0, noOfBytes);
+    
+    for (var row : jagged) {
+        for (var element : row) {
+            IO.print(element + " ");
         }
+        IO.println();
     }
 }
-</pre>
+```
 
-<p>
-The example downloads a small <code>favicon.ico</code> image.
-</p>
+Jagged arrays (also called irregular arrays) have rows of varying lengths,  
+unlike rectangular arrays where all rows have the same size. This is possible  
+because Java implements multi-dimensional arrays as arrays of arrays, allowing  
+each sub-array to have its own independent length.  
 
-<pre class="explanation">
-byte[] buf = new byte[1024];
-</pre>
+## Sorting arrays
 
-<p>
-An image is an array of bytes. We create an empty array of <code>byte</code>
-values big enough to hold the icon.
-</p>
+This example shows how to sort array elements in ascending order.  
 
-<pre class="explanation">
-while ((noOfBytes = is.read(buf)) != -1) {
+```java
+void main() {
 
-    fos.write(buf, 0, noOfBytes);
+    var numbers = new int[] { 5, 2, 4, 3, 1 };
+    
+    Arrays.sort(numbers);
+    IO.println(Arrays.toString(numbers));
+    
+    var words = new String[] { "zebra", "apple", "mango", "cherry" };
+    Arrays.sort(words);
+    IO.println(Arrays.toString(words));
 }
-</pre>
+```
 
-<p>
-We read the binary data and write it to the file.
-</p>
+The `Arrays.sort` method arranges elements in ascending natural order. For  
+numbers, this means from smallest to largest; for strings, it means  
+alphabetical order. The sort happens in-place, modifying the original array  
+without creating a new one.  
 
+## Filling arrays
 
+This example demonstrates filling an array with a specific value.  
 
+```java
+void main() {
 
-</html>
+    var data = new int[10];
+    
+    Arrays.fill(data, 7);
+    IO.println(Arrays.toString(data));
+    
+    Arrays.fill(data, 2, 5, 99);
+    IO.println(Arrays.toString(data));
+}
+```
+
+The `Arrays.fill` method sets all elements to a specified value. The  
+overloaded version allows filling a specific range by specifying start  
+(inclusive) and end (exclusive) indices. This is useful for initializing  
+arrays with default values or resetting portions of an array.  
+
+## Copying arrays
+
+This example shows different ways to copy array data.  
+
+```java
+void main() {
+
+    var original = new int[] { 1, 2, 3, 4, 5 };
+    
+    var copy1 = Arrays.copyOf(original, 5);
+    IO.println(Arrays.toString(copy1));
+    
+    var copy2 = Arrays.copyOf(original, 8);
+    IO.println(Arrays.toString(copy2));
+    
+    var copy3 = Arrays.copyOfRange(original, 1, 4);
+    IO.println(Arrays.toString(copy3));
+}
+```
+
+The `Arrays.copyOf` method creates a new array with the specified length,  
+copying elements from the source. If the new length exceeds the original,  
+extra positions are filled with default values (0 for integers). The  
+`copyOfRange` method copies a specific portion of the array.  
+
+## Comparing arrays
+
+This example demonstrates comparing arrays for equality.  
+
+```java
+void main() {
+
+    var arr1 = new int[] { 1, 2, 3, 4, 5 };
+    var arr2 = new int[] { 1, 2, 3, 4, 5 };
+    var arr3 = new int[] { 5, 4, 3, 2, 1 };
+    
+    IO.println("arr1 equals arr2: " + Arrays.equals(arr1, arr2));
+    IO.println("arr1 equals arr3: " + Arrays.equals(arr1, arr3));
+}
+```
+
+The `Arrays.equals` method compares two arrays element by element, returning  
+true only if both arrays have the same length and all corresponding elements  
+are equal. This is different from using `==`, which only checks if both  
+variables reference the exact same array object.  
+
+## Deep comparison of nested arrays
+
+This example shows how to compare multi-dimensional arrays.  
+
+```java
+void main() {
+
+    var array1 = new int[][] { { 1, 1, 2 }, { 0, 0, 3 } };
+    var refs = new int[] { 1, 1, 2 };
+    var refs2 = new int[] { 0, 0, 3 };
+    var array2 = new int[][] { refs, refs2 };
+    
+    IO.println("equals: " + Arrays.equals(array1, array2));
+    IO.println("deepEquals: " + Arrays.deepEquals(array1, array2));
+}
+```
+
+The `Arrays.deepEquals` method recursively compares nested arrays, checking  
+the actual element values rather than just array references. This is essential  
+for multi-dimensional arrays where `equals` only compares the first level of  
+references, not the actual contained data.  
+
+## Binary search in sorted arrays
+
+This example demonstrates searching for elements using binary search.  
+
+```java
+void main() {
+
+    var planets = new String[] { "Mercury", "Venus", "Mars", "Earth", 
+            "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto" };
+    
+    Arrays.sort(planets);
+    
+    var target = "Earth";
+    var index = Arrays.binarySearch(planets, target);
+    
+    if (index >= 0) {
+        IO.println(target + " found at index " + index);
+    } else {
+        IO.println(target + " not found");
+    }
+}
+```
+
+The `Arrays.binarySearch` method efficiently searches sorted arrays using the  
+binary search algorithm, which has O(log n) time complexity. The array must be  
+sorted before searching. If found, it returns the element's index; otherwise,  
+it returns a negative value indicating the insertion point.  
+
+## Array length property
+
+This example shows how to get the size of an array.  
+
+```java
+void main() {
+
+    var colors = new String[] { "red", "green", "blue", "yellow" };
+    
+    IO.println("Array length: " + colors.length);
+    
+    var matrix = new int[][] { { 1, 2, 3 }, { 4, 5, 6 } };
+    IO.println("Rows: " + matrix.length);
+    IO.println("Columns: " + matrix[0].length);
+}
+```
+
+Arrays have a `length` property (not a method) that returns the number of  
+elements. For multi-dimensional arrays, each level has its own length. This  
+is commonly used in loops to iterate through all elements without hardcoding  
+the size.  
+
+## Converting arrays to strings
+
+This example demonstrates different ways to display array contents.  
+
+```java
+void main() {
+
+    var numbers = new int[] { 10, 20, 30, 40, 50 };
+    
+    IO.println(Arrays.toString(numbers));
+    
+    var matrix = new int[][] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+    IO.println(Arrays.deepToString(matrix));
+}
+```
+
+The `Arrays.toString` method creates a readable string representation of a  
+one-dimensional array. For multi-dimensional arrays, use `deepToString` to  
+recursively convert nested arrays. These methods are invaluable for debugging  
+and logging array contents.  
+
+## Finding minimum and maximum values
+
+This example shows how to find the smallest and largest elements in an array.  
+
+```java
+void main() {
+
+    var values = new int[] { 23, 7, 42, 15, 8, 91, 33 };
+    
+    var min = Arrays.stream(values).min().getAsInt();
+    var max = Arrays.stream(values).max().getAsInt();
+    
+    IO.println("Minimum: " + min);
+    IO.println("Maximum: " + max);
+}
+```
+
+Using streams, we can efficiently find minimum and maximum values. The  
+`Arrays.stream` method converts an array to a stream, enabling functional  
+operations like `min` and `max`. The `getAsInt` method extracts the value from  
+the OptionalInt result.  
+
+## Checking if array contains element
+
+This example demonstrates searching for a specific value in an array.  
+
+```java
+void main() {
+
+    var fruits = new String[] { "apple", "banana", "cherry", "date" };
+    
+    var searchTerm = "banana";
+    var found = Arrays.asList(fruits).contains(searchTerm);
+    
+    IO.println("Contains " + searchTerm + ": " + found);
+}
+```
+
+Converting an array to a list with `Arrays.asList` provides access to the  
+`contains` method for simple existence checks. Alternatively, streams can be  
+used with `anyMatch` for more complex conditions. This approach is simpler  
+than manually looping through the array.  
+
+## Summing array elements
+
+This example shows how to calculate the sum of array elements.  
+
+```java
+void main() {
+
+    var numbers = new int[] { 10, 20, 30, 40, 50 };
+    
+    var sum = Arrays.stream(numbers).sum();
+    IO.println("Sum: " + sum);
+    
+    var average = Arrays.stream(numbers).average().getAsDouble();
+    IO.println("Average: " + average);
+}
+```
+
+Streams provide convenient methods for numeric operations. The `sum` method  
+adds all elements, while `average` computes the mean value. These functional  
+approaches are more concise and expressive than traditional loop-based  
+calculations.  
+
+## Filtering array elements
+
+This example demonstrates selecting elements that match a condition.  
+
+```java
+void main() {
+
+    var numbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    
+    var evens = Arrays.stream(numbers)
+        .filter(n -> n % 2 == 0)
+        .toArray();
+    
+    IO.println(Arrays.toString(evens));
+}
+```
+
+The `filter` method creates a stream containing only elements matching the  
+predicate. This example extracts even numbers using a lambda expression. The  
+`toArray` method converts the filtered stream back to an array. Stream  
+filtering is more readable than manual loop-based selection.  
+
+## Mapping array elements
+
+This example shows how to transform each element in an array.  
+
+```java
+void main() {
+
+    var numbers = new int[] { 1, 2, 3, 4, 5 };
+    
+    var squared = Arrays.stream(numbers)
+        .map(n -> n * n)
+        .toArray();
+    
+    IO.println(Arrays.toString(squared));
+}
+```
+
+The `map` method applies a transformation function to each element, creating a  
+new stream with the transformed values. This example squares each number. The  
+functional approach separates the transformation logic from the iteration  
+mechanism, improving code clarity.  
+
+## Creating arrays with default values
+
+This example demonstrates initializing arrays with computed default values.  
+
+```java
+void main() {
+
+    var sequence = new int[10];
+    for (int i = 0; i < sequence.length; i++) {
+        sequence[i] = i * 2;
+    }
+    IO.println(Arrays.toString(sequence));
+    
+    var powers = IntStream.range(0, 5)
+        .map(i -> (int) Math.pow(2, i))
+        .toArray();
+    IO.println(Arrays.toString(powers));
+}
+```
+
+Arrays can be initialized with computed values using loops or streams. The  
+traditional loop approach provides direct index access, while the stream  
+approach using `IntStream.range` offers a more functional style. Both methods  
+are useful depending on the complexity of the initialization logic.  
+
+## Reversing array elements
+
+This example shows how to reverse the order of elements in an array.  
+
+```java
+void main() {
+
+    var letters = new String[] { "a", "b", "c", "d", "e" };
+    
+    var reversed = IntStream.rangeClosed(1, letters.length)
+        .mapToObj(i -> letters[letters.length - i])
+        .toArray(String[]::new);
+    
+    IO.println(Arrays.toString(reversed));
+}
+```
+
+Reversing an array can be done by iterating from the end to the beginning.  
+This stream-based approach uses `rangeClosed` to generate indices in reverse  
+order. The `mapToObj` method maps each index to the corresponding element,  
+creating a reversed copy without modifying the original.  
+
+## Removing duplicates from arrays
+
+This example demonstrates creating an array with only unique elements.  
+
+```java
+void main() {
+
+    var numbers = new int[] { 1, 2, 2, 3, 3, 3, 4, 4, 5 };
+    
+    var unique = Arrays.stream(numbers)
+        .distinct()
+        .toArray();
+    
+    IO.println(Arrays.toString(unique));
+}
+```
+
+The `distinct` method removes duplicate elements, keeping only the first  
+occurrence of each value. This uses the element's `equals` method to determine  
+equality. The result maintains the original order of first occurrences,  
+providing a clean way to eliminate redundancy.  
+
+## Partitioning arrays
+
+This example shows how to split an array into chunks of a specific size.  
+
+```java
+void main() {
+
+    var data = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    var chunkSize = 3;
+    
+    for (int i = 0; i < data.length; i += chunkSize) {
+        var end = Math.min(i + chunkSize, data.length);
+        var chunk = Arrays.copyOfRange(data, i, end);
+        IO.println(Arrays.toString(chunk));
+    }
+}
+```
+
+Partitioning divides an array into smaller segments of a specified size. The  
+loop advances by the chunk size, using `copyOfRange` to extract each segment.  
+The `Math.min` ensures the last chunk doesn't exceed the array bounds. This  
+is useful for batch processing or pagination.  
+
+## Concatenating arrays
+
+This example demonstrates combining multiple arrays into one.  
+
+```java
+void main() {
+
+    var first = new int[] { 1, 2, 3 };
+    var second = new int[] { 4, 5, 6 };
+    
+    var combined = IntStream.concat(
+        Arrays.stream(first),
+        Arrays.stream(second)
+    ).toArray();
+    
+    IO.println(Arrays.toString(combined));
+}
+```
+
+The `IntStream.concat` method merges two streams sequentially. This creates a  
+new array containing all elements from both source arrays in order. For  
+concatenating more than two arrays, nest `concat` calls or use `flatMap` with  
+a stream of streams.  
+
+## Rotating array elements
+
+This example shows how to rotate array elements by a specified number of  
+positions.  
+
+```java
+void main() {
+
+    var items = new String[] { "a", "b", "c", "d", "e" };
+    var rotations = 2;
+    
+    var rotated = IntStream.range(0, items.length)
+        .mapToObj(i -> items[(i + rotations) % items.length])
+        .toArray(String[]::new);
+    
+    IO.println(Arrays.toString(rotated));
+}
+```
+
+Rotation shifts elements cyclically by a specified number of positions. The  
+modulo operator wraps indices around when they exceed the array length. This  
+technique is useful in circular buffers, scheduling algorithms, and various  
+data processing tasks.  
+
+## Swapping array elements
+
+This example demonstrates exchanging the positions of two elements.  
+
+```java
+void main() {
+
+    var values = new int[] { 10, 20, 30, 40, 50 };
+    
+    var index1 = 1;
+    var index2 = 3;
+    
+    var temp = values[index1];
+    values[index1] = values[index2];
+    values[index2] = temp;
+    
+    IO.println(Arrays.toString(values));
+}
+```
+
+Swapping requires a temporary variable to hold one value while the exchange  
+occurs. This is a fundamental operation used in sorting algorithms and data  
+manipulation. The three-step process ensures neither value is lost during the  
+swap.  
+
+## Finding array index of element
+
+This example shows how to find the position of a specific value.  
+
+```java
+void main() {
+
+    var colors = new String[] { "red", "green", "blue", "yellow" };
+    var search = "blue";
+    
+    var index = IntStream.range(0, colors.length)
+        .filter(i -> colors[i].equals(search))
+        .findFirst()
+        .orElse(-1);
+    
+    IO.println("Index of " + search + ": " + index);
+}
+```
+
+Finding an element's index requires iterating until a match is found. This  
+stream-based approach uses `filter` to find matching indices and `findFirst`  
+to get the first occurrence. The `orElse(-1)` provides a default value when  
+the element isn't found, following common convention.  
+
+## Counting occurrences in arrays
+
+This example demonstrates counting how many times a value appears.  
+
+```java
+void main() {
+
+    var letters = new String[] { "a", "b", "a", "c", "a", "b" };
+    var target = "a";
+    
+    var count = Arrays.stream(letters)
+        .filter(s -> s.equals(target))
+        .count();
+    
+    IO.println("Occurrences of " + target + ": " + count);
+}
+```
+
+The `filter` method selects matching elements, and `count` returns the number  
+of elements in the filtered stream. This provides an elegant way to count  
+occurrences without manually maintaining a counter variable in a loop.  
+
+## Shuffling array elements
+
+This example shows how to randomly reorder array elements.  
+
+```java
+void main() {
+
+    var cards = new String[] { "A", "2", "3", "4", "5", "6", "7", "8", 
+            "9", "10", "J", "Q", "K" };
+    
+    var list = Arrays.asList(cards);
+    java.util.Collections.shuffle(list);
+    
+    IO.println(Arrays.toString(cards));
+}
+```
+
+Shuffling randomizes element order, useful for games, random sampling, and  
+testing. Since arrays don't have a built-in shuffle method, we convert to a  
+list, shuffle using `Collections.shuffle`, and the original array is modified  
+since `asList` returns a view backed by the array.  
+
+## Merging sorted arrays
+
+This example demonstrates combining two sorted arrays into one sorted array.  
+
+```java
+void main() {
+
+    var arr1 = new int[] { 1, 3, 5, 7 };
+    var arr2 = new int[] { 2, 4, 6, 8 };
+    
+    var merged = IntStream.concat(
+        Arrays.stream(arr1),
+        Arrays.stream(arr2)
+    ).sorted().toArray();
+    
+    IO.println(Arrays.toString(merged));
+}
+```
+
+Merging sorted arrays can be done by concatenating them and then sorting. For  
+better efficiency with large arrays, a manual merge algorithm that takes  
+advantage of the pre-sorted order would be faster. This approach prioritizes  
+simplicity and readability.  
+
+## Array as function parameter with varargs
+
+This example shows using variable-length argument lists.  
+
+```java
+void main() {
+
+    printValues(1, 2, 3);
+    printValues(10, 20, 30, 40, 50);
+    
+    var array = new int[] { 100, 200, 300 };
+    printValues(array);
+}
+
+void printValues(int... numbers) {
+
+    IO.println("Count: " + numbers.length);
+    IO.println(Arrays.toString(numbers));
+}
+```
+
+Varargs (variable arguments) allow passing any number of arguments of the same  
+type. Java treats them as arrays internally. This provides flexibility for  
+functions that need to accept varying numbers of parameters without requiring  
+explicit array creation at the call site.  
+
+## Cloning arrays
+
+This example demonstrates creating a shallow copy of an array.  
+
+```java
+void main() {
+
+    var original = new int[] { 1, 2, 3, 4, 5 };
+    var cloned = original.clone();
+    
+    cloned[0] = 99;
+    
+    IO.println("Original: " + Arrays.toString(original));
+    IO.println("Cloned: " + Arrays.toString(cloned));
+}
+```
+
+The `clone` method creates a shallow copy of an array. For primitive arrays,  
+this creates an independent copy. For arrays of objects, only the references  
+are copied, not the objects themselves. Modifying the cloned array doesn't  
+affect the original (for primitives).  
+
+## Working with byte arrays
+
+This example shows operations specific to byte arrays.  
+
+```java
+void main() {
+
+    var text = "Hello, World!";
+    var bytes = text.getBytes();
+    
+    IO.println("Byte array length: " + bytes.length);
+    IO.println(Arrays.toString(bytes));
+    
+    var decoded = new String(bytes);
+    IO.println("Decoded: " + decoded);
+}
+```
+
+Byte arrays are commonly used for binary data, file I/O, and network  
+communication. Strings can be converted to byte arrays using `getBytes`, and  
+byte arrays can be converted back to strings using the String constructor.  
+This is essential for character encoding operations.  
 
