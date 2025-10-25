@@ -7,12 +7,14 @@ timezones, and durations. The API replaces the legacy `Date` and `Calendar`
 classes with a cleaner design based on ISO-8601 standards.  
 
 ## Current date
+
 This example shows how to get the current date using LocalDate.
 
 ```java
 void main() {
 
     var today = LocalDate.now();
+    
     IO.println("Today: " + today);
 }
 ```
@@ -22,12 +24,14 @@ the default timezone. `LocalDate` represents a date without time or timezone
 information, making it ideal for birthdays, anniversaries, and calendar dates.  
 
 ## Specific date
+
 This example demonstrates creating a date with specific year, month, and day.
 
 ```java
 void main() {
 
     var date = LocalDate.of(2024, 12, 25);
+
     IO.println("Date: " + date);
 }
 ```
@@ -37,12 +41,14 @@ and day. The month can be specified as an integer (1-12) or using the `Month`
 enum for better readability and type safety.  
 
 ## Date from string
+
 This example shows how to parse a date from a string.
 
 ```java
 void main() {
 
     var date = LocalDate.parse("2024-03-15");
+
     IO.println("Parsed date: " + date);
 }
 ```
@@ -52,12 +58,14 @@ converts it to a `LocalDate` object. This is useful when reading dates from
 configuration files, user input, or external APIs.  
 
 ## Current time
+
 This example demonstrates getting the current time.
 
 ```java
 void main() {
 
     var now = LocalTime.now();
+
     IO.println("Current time: " + now);
 }
 ```
@@ -67,12 +75,14 @@ The `LocalTime.now` method returns the current time from the system clock.
 that occur daily at the same time, like alarm clocks or schedules.  
 
 ## Specific time
+
 This example shows creating a time with specific hour, minute, and second.
 
 ```java
 void main() {
 
     var time = LocalTime.of(14, 30, 45);
+
     IO.println("Time: " + time);
 }
 ```
@@ -82,12 +92,14 @@ An optional nanosecond parameter is also available for precise timing. This
 method uses 24-hour format for hours (0-23).  
 
 ## Time from string
+
 This example demonstrates parsing time from a string.
 
 ```java
 void main() {
 
     var time = LocalTime.parse("09:30:00");
+
     IO.println("Parsed time: " + time);
 }
 ```
@@ -97,12 +109,14 @@ The `parse` method converts an ISO-8601 time string (HH:mm:ss) into a
 fractional seconds are supported using a decimal point.  
 
 ## Current datetime
+
 This example shows getting the current date and time.
 
 ```java
 void main() {
 
     var now = LocalDateTime.now();
+
     IO.println("Now: " + now);
 }
 ```
@@ -112,12 +126,14 @@ The `LocalDateTime.now` method combines date and time from the system clock.
 events that are timezone-independent or in a single location.  
 
 ## Specific datetime
+
 This example demonstrates creating a specific date and time.
 
 ```java
 void main() {
 
     var datetime = LocalDateTime.of(2024, 6, 15, 10, 30, 0);
+
     IO.println("DateTime: " + datetime);
 }
 ```
@@ -127,12 +143,14 @@ minute, and second values. You can also create it by combining a `LocalDate`
 and `LocalTime` using the `atTime` and `atDate` methods.  
 
 ## Datetime from string
+
 This example shows parsing datetime from a string.
 
 ```java
 void main() {
 
     var datetime = LocalDateTime.parse("2024-03-15T14:30:00");
+
     IO.println("Parsed: " + datetime);
 }
 ```
@@ -142,6 +160,7 @@ between the date and time parts. This format is widely used in APIs and
 data interchange formats like JSON.  
 
 ## Add days to date
+
 This example demonstrates adding days to a date.
 
 ```java
@@ -149,6 +168,7 @@ void main() {
 
     var today = LocalDate.now();
     var nextWeek = today.plusDays(7);
+
     IO.println("Today: " + today);
     IO.println("Next week: " + nextWeek);
 }
@@ -159,6 +179,7 @@ days added. All datetime classes are immutable, so operations always return
 new instances rather than modifying the original object.  
 
 ## Subtract days from date
+
 This example shows subtracting days from a date.
 
 ```java
@@ -166,6 +187,7 @@ void main() {
 
     var today = LocalDate.now();
     var lastWeek = today.minusDays(7);
+
     IO.println("Today: " + today);
     IO.println("Last week: " + lastWeek);
 }
@@ -176,6 +198,7 @@ days subtracted. Similar methods exist for other units like weeks, months,
 and years, providing flexible date arithmetic.  
 
 ## Add months to date
+
 This example demonstrates adding months to a date.
 
 ```java
@@ -183,6 +206,7 @@ void main() {
 
     var date = LocalDate.of(2024, 1, 31);
     var nextMonth = date.plusMonths(1);
+
     IO.println("Original: " + date);
     IO.println("Plus 1 month: " + nextMonth);
 }
@@ -193,6 +217,7 @@ day doesn't exist in the target month (like February 31st), the date is
 adjusted to the last valid day of that month (February 29th or 28th).  
 
 ## Add years to date
+
 This example shows adding years to a date.
 
 ```java
@@ -200,6 +225,7 @@ void main() {
 
     var date = LocalDate.of(2024, 2, 29);
     var nextYear = date.plusYears(1);
+
     IO.println("Original: " + date);
     IO.println("Plus 1 year: " + nextYear);
 }
@@ -210,6 +236,7 @@ The `plusYears` method adds years to a date. Leap year dates like February
 February 28th to maintain validity.  
 
 ## Add hours to time
+
 This example demonstrates adding hours to a time.
 
 ```java
@@ -217,6 +244,7 @@ void main() {
 
     var time = LocalTime.of(14, 30);
     var later = time.plusHours(3);
+
     IO.println("Original: " + time);
     IO.println("Plus 3 hours: " + later);
 }
@@ -227,6 +255,7 @@ wraps around midnight, so adding hours to 23:00 will correctly move into
 the next day's hours without changing the date (since LocalTime has no date).  
 
 ## Add minutes to time
+
 This example shows adding minutes to a time.
 
 ```java
@@ -234,6 +263,7 @@ void main() {
 
     var time = LocalTime.of(10, 15);
     var later = time.plusMinutes(45);
+
     IO.println("Original: " + time);
     IO.println("Plus 45 minutes: " + later);
 }
@@ -244,6 +274,7 @@ hours, minutes wrap around at 60, and the calculation correctly handles
 overflow into hours and potentially across midnight.  
 
 ## Compare dates
+
 This example demonstrates comparing two dates.
 
 ```java
@@ -263,6 +294,7 @@ comparisons. These methods are preferred over using `compareTo` when you only
 need to check ordering relationships.  
 
 ## Check if date is in past
+
 This example shows checking if a date is in the past.
 
 ```java
@@ -280,6 +312,7 @@ pattern is commonly used for validating expiration dates, checking if events
 have occurred, or filtering historical data.  
 
 ## Check if date is in future
+
 This example demonstrates checking if a date is in the future.
 
 ```java
@@ -297,6 +330,7 @@ event is upcoming. This is useful for scheduling, planning applications,
 and validating future-dated transactions.  
 
 ## Get year from date
+
 This example shows extracting the year from a date.
 
 ```java
@@ -304,6 +338,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var year = date.getYear();
+
     IO.println("Year: " + year);
 }
 ```
@@ -313,6 +348,7 @@ of a date can be extracted using similar methods like `getMonthValue`,
 `getDayOfMonth`, `getDayOfWeek`, and `getDayOfYear`.  
 
 ## Get month from date
+
 This example demonstrates extracting the month from a date.
 
 ```java
@@ -332,6 +368,7 @@ returns an integer (1-12). The enum provides additional methods for month
 manipulation and is more type-safe than raw integers.  
 
 ## Get day of month
+
 This example shows getting the day of the month.
 
 ```java
@@ -339,6 +376,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var day = date.getDayOfMonth();
+
     IO.println("Day of month: " + day);
 }
 ```
@@ -348,6 +386,7 @@ is distinct from `getDayOfWeek` which returns the weekday, and `getDayOfYear`
 which returns the day number within the year (1-365 or 366).  
 
 ## Get day of week
+
 This example demonstrates getting the day of the week.
 
 ```java
@@ -355,6 +394,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var dayOfWeek = date.getDayOfWeek();
+
     IO.println("Day of week: " + dayOfWeek);
 }
 ```
@@ -364,6 +404,7 @@ etc.). The enum provides utility methods like `getValue` to get the ISO day
 number (1=Monday, 7=Sunday) and methods for day arithmetic.  
 
 ## Get day of year
+
 This example shows getting the day number within the year.
 
 ```java
@@ -371,6 +412,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var dayOfYear = date.getDayOfYear();
+
     IO.println("Day of year: " + dayOfYear);
 }
 ```
@@ -380,6 +422,7 @@ years). This is useful for calculations involving Julian dates or tracking
 progress through the year.  
 
 ## Check if leap year
+
 This example demonstrates checking if a year is a leap year.
 
 ```java
@@ -387,6 +430,7 @@ void main() {
 
     var date = LocalDate.of(2024, 1, 1);
     var isLeap = date.isLeapYear();
+
     IO.println("2024 is leap year: " + isLeap);
 }
 ```
@@ -396,6 +440,7 @@ The `isLeapYear` method returns true if the year follows leap year rules
 the number of days in February and the year.  
 
 ## Length of month
+
 This example shows getting the number of days in a month.
 
 ```java
@@ -403,6 +448,7 @@ void main() {
 
     var date = LocalDate.of(2024, 2, 15);
     var length = date.lengthOfMonth();
+
     IO.println("Days in February 2024: " + length);
 }
 ```
@@ -412,6 +458,7 @@ and whether it's a leap year. This is useful for iterating through all days
 in a month or validating date ranges.  
 
 ## Length of year
+
 This example demonstrates getting the number of days in a year.
 
 ```java
@@ -419,6 +466,7 @@ void main() {
 
     var date = LocalDate.of(2024, 1, 1);
     var length = date.lengthOfYear();
+
     IO.println("Days in 2024: " + length);
 }
 ```
@@ -428,6 +476,7 @@ leap year. This is particularly useful for calculations involving annual
 periods or pro-rating values across a year.  
 
 ## Format date with pattern
+
 This example shows formatting a date with a custom pattern.
 
 ```java
@@ -436,6 +485,7 @@ void main() {
     var date = LocalDate.of(2024, 6, 15);
     var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
     var formatted = date.format(formatter);
+
     IO.println("Formatted: " + formatted);
 }
 ```
@@ -445,18 +495,16 @@ pattern using symbols like 'dd' for day, 'MM' for month, and 'yyyy' for year.
 The `format` method then applies this pattern to produce a string.  
 
 ## Format date with style
+
 This example demonstrates formatting a date with predefined styles.
 
 ```java
 void main() {
 
     var date = LocalDate.of(2024, 6, 15);
-    var short = date.format(format.DateTimeFormatter.ofLocalizedDate(
-        format.FormatStyle.SHORT));
-    var medium = date.format(format.DateTimeFormatter.ofLocalizedDate(
-        format.FormatStyle.MEDIUM));
-    var long = date.format(format.DateTimeFormatter.ofLocalizedDate(
-        format.FormatStyle.LONG));
+    var short = date.format(format.DateTimeFormatter.ofLocalizedDate(format.FormatStyle.SHORT));
+    var medium = date.format(format.DateTimeFormatter.ofLocalizedDate(format.FormatStyle.MEDIUM));
+    var long = date.format(format.DateTimeFormatter.ofLocalizedDate(format.FormatStyle.LONG));
     
     IO.println("Short: " + short);
     IO.println("Medium: " + medium);
@@ -469,6 +517,7 @@ the default locale, producing culturally appropriate date representations.
 This is essential for internationalized applications.  
 
 ## Format time with pattern
+
 This example shows formatting time with a custom pattern.
 
 ```java
@@ -477,6 +526,7 @@ void main() {
     var time = LocalTime.of(14, 30, 45);
     var formatter = format.DateTimeFormatter.ofPattern("HH:mm:ss");
     var formatted = time.format(formatter);
+
     IO.println("Formatted: " + formatted);
 }
 ```
@@ -486,6 +536,7 @@ format, 'mm' for minutes, and 'ss' for seconds. Additional symbols like 'a'
 for AM/PM and 'SSS' for milliseconds provide fine-grained control.  
 
 ## Parse date with pattern
+
 This example demonstrates parsing a date using a custom pattern.
 
 ```java
@@ -494,6 +545,7 @@ void main() {
     var dateString = "15/06/2024";
     var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
     var date = LocalDate.parse(dateString, formatter);
+
     IO.println("Parsed date: " + date);
 }
 ```
@@ -503,6 +555,7 @@ that matches the input string's pattern. The parser is strict by default,
 throwing exceptions for invalid dates.  
 
 ## Parse time with pattern
+
 This example shows parsing time using a custom pattern.
 
 ```java
@@ -511,6 +564,7 @@ void main() {
     var timeString = "02:30:45 PM";
     var formatter = format.DateTimeFormatter.ofPattern("hh:mm:ss a");
     var time = LocalTime.parse(timeString, formatter);
+
     IO.println("Parsed time: " + time);
 }
 ```
@@ -520,6 +574,7 @@ The parsed time is always stored internally in 24-hour format, regardless
 of the input format used.  
 
 ## With methods for date
+
 This example demonstrates using with methods to change date components.
 
 ```java
@@ -538,6 +593,7 @@ with specific components changed. These are more readable than using plus/minus
 operations when you need to set rather than adjust values.  
 
 ## With methods for time
+
 This example shows using with methods to change time components.
 
 ```java
@@ -556,6 +612,7 @@ Similar to dates, times can be modified using `withHour`, `withMinute`,
 to change multiple components in a single expression.  
 
 ## Start of day
+
 This example demonstrates getting the start of a day as a datetime.
 
 ```java
@@ -572,6 +629,7 @@ the time set to 00:00:00. This is useful for datetime range queries where
 you need the first moment of a day.  
 
 ## End of day
+
 This example shows creating the end of a day as a datetime.
 
 ```java
@@ -579,6 +637,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var endOfDay = date.atTime(23, 59, 59, 999999999);
+
     IO.println("End of day: " + endOfDay);
 }
 ```
@@ -588,6 +647,7 @@ minutes, seconds, and nanoseconds. This pattern is common for inclusive range
 queries that should capture all events on a specific date.  
 
 ## Combine date and time
+
 This example demonstrates combining a date and time.
 
 ```java
@@ -606,6 +666,7 @@ The `atTime` method on `LocalDate` accepts a `LocalTime` to create a
 separation allows flexible composition of date and time components.  
 
 ## Extract date from datetime
+
 This example shows extracting the date part from a datetime.
 
 ```java
@@ -613,6 +674,7 @@ void main() {
 
     var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
     var date = datetime.toLocalDate();
+
     IO.println("Date: " + date);
 }
 ```
@@ -622,6 +684,7 @@ This is useful when you need to group or compare events by date without
 considering the time of day.  
 
 ## Extract time from datetime
+
 This example demonstrates extracting the time part from a datetime.
 
 ```java
@@ -629,6 +692,7 @@ void main() {
 
     var datetime = LocalDateTime.of(2024, 6, 15, 14, 30);
     var time = datetime.toLocalTime();
+
     IO.println("Time: " + time);
 }
 ```
@@ -638,6 +702,7 @@ This is useful for analyzing patterns based solely on time of day, such as
 peak hours or daily schedules.  
 
 ## Duration between times
+
 This example shows calculating duration between two times.
 
 ```java
@@ -658,6 +723,7 @@ objects. It represents the duration in seconds and nanoseconds, with methods
 to convert to hours, minutes, or other units.  
 
 ## Duration between datetimes
+
 This example demonstrates calculating duration between two datetimes.
 
 ```java
@@ -677,6 +743,7 @@ ideal for measuring elapsed time in processes, calculating work hours, or
 determining time remaining until an event.  
 
 ## Period between dates
+
 This example shows calculating the period between two dates.
 
 ```java
@@ -697,6 +764,7 @@ months, and days. Unlike `Duration` which measures precise time, `Period`
 handles calendar-based differences, accounting for varying month lengths.  
 
 ## Days between dates
+
 This example demonstrates calculating the number of days between dates.
 
 ```java
@@ -715,6 +783,7 @@ The `ChronoUnit` enum offers similar methods for other units like WEEKS,
 MONTHS, and YEARS, giving flexible temporal arithmetic.  
 
 ## Create duration
+
 This example shows creating a duration with specific values.
 
 ```java
@@ -735,6 +804,7 @@ static factory methods. Multiple durations can be added or subtracted to
 build complex time periods.  
 
 ## Create period
+
 This example demonstrates creating a period with specific values.
 
 ```java
@@ -755,6 +825,7 @@ years, months, and days together, while individual methods create periods
 of single units like days or weeks.  
 
 ## Add duration to time
+
 This example shows adding a duration to a time.
 
 ```java
@@ -774,6 +845,7 @@ flexible than using specific methods like `plusMinutes` when the duration is
 calculated dynamically or represents multiple units.  
 
 ## Add period to date
+
 This example demonstrates adding a period to a date.
 
 ```java
@@ -793,6 +865,7 @@ Periods handle calendar arithmetic correctly, adjusting for varying month
 lengths and leap years automatically.  
 
 ## ZonedDateTime creation
+
 This example shows creating a datetime with timezone information.
 
 ```java
@@ -810,6 +883,7 @@ It's essential for applications that need timezone-aware operations like
 scheduling across regions or displaying times in local timezones.  
 
 ## Current ZonedDateTime
+
 This example demonstrates getting the current datetime with timezone.
 
 ```java
@@ -828,13 +902,13 @@ timezone, or in a specified timezone when provided. This shows how the same
 moment appears differently across timezones.  
 
 ## Convert between timezones
+
 This example shows converting a datetime between timezones.
 
 ```java
 void main() {
 
-    var paris = ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0,
-        ZoneId.of("Europe/Paris"));
+    var paris = ZonedDateTime.of(2024, 6, 15, 14, 30, 0, 0, ZoneId.of("Europe/Paris"));
     var tokyo = paris.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
     
     IO.println("Paris: " + paris);
@@ -847,13 +921,13 @@ preserving the absolute instant in time. The displayed time changes to
 reflect the local time in the new timezone.  
 
 ## Get timezone offset
+
 This example demonstrates getting the UTC offset for a timezone.
 
 ```java
 void main() {
 
-    var zonedDateTime = ZonedDateTime.now(
-        ZoneId.of("America/New_York"));
+    var zonedDateTime = ZonedDateTime.now(ZoneId.of("America/New_York"));
     var offset = zonedDateTime.getOffset();
     
     IO.println("Offset: " + offset);
@@ -865,6 +939,7 @@ offset can vary throughout the year due to daylight saving time transitions,
 making timezone-aware types essential for accurate time calculations.  
 
 ## List available timezones
+
 This example shows getting all available timezone IDs.
 
 ```java
@@ -878,6 +953,7 @@ void main() {
         count++;
         if (count >= 10) break;
     }
+
     IO.println("... (showing first 10 of " + zones.size() + " zones)");
 }
 ```
@@ -887,12 +963,14 @@ by the system. These follow the IANA timezone database format like
 "America/New_York" or "Europe/London".  
 
 ## Instant creation
+
 This example demonstrates creating an instant representing a point in time.
 
 ```java
 void main() {
 
     var instant = Instant.now();
+
     IO.println("Current instant: " + instant);
 }
 ```
@@ -902,12 +980,14 @@ nanoseconds from the Unix epoch (1970-01-01T00:00:00Z). It's ideal for
 timestamps and measuring machine time.  
 
 ## Instant from epoch
+
 This example shows creating an instant from epoch seconds.
 
 ```java
 void main() {
 
     var instant = Instant.ofEpochSecond(1717257600);
+
     IO.println("Instant: " + instant);
 }
 ```
@@ -917,6 +997,7 @@ since the Unix epoch. An optional nanosecond adjustment parameter provides
 sub-second precision when needed.  
 
 ## Convert instant to datetime
+
 This example demonstrates converting an instant to a local datetime.
 
 ```java
@@ -936,6 +1017,7 @@ instant is UTC-based while local datetime depends on the timezone. The
 `ofInstant` method performs this conversion.  
 
 ## Convert datetime to instant
+
 This example shows converting a datetime to an instant.
 
 ```java
@@ -955,6 +1037,7 @@ information using `atZone`, then call `toInstant`. This two-step process
 makes the timezone dependency explicit.  
 
 ## Instant arithmetic
+
 This example demonstrates adding duration to an instant.
 
 ```java
@@ -973,6 +1056,7 @@ Since instants represent absolute time, only time-based durations (not
 date-based periods) can be added.  
 
 ## Compare instants
+
 This example shows comparing two instants.
 
 ```java
@@ -991,6 +1075,7 @@ are absolute points in time, comparisons are unambiguous regardless of
 timezone considerations.  
 
 ## Get epoch milliseconds
+
 This example demonstrates getting milliseconds since the epoch.
 
 ```java
@@ -998,6 +1083,7 @@ void main() {
 
     var instant = Instant.now();
     var millis = instant.toEpochMilli();
+
     IO.println("Epoch milliseconds: " + millis);
 }
 ```
@@ -1007,6 +1093,7 @@ Unix epoch. This format is commonly used in databases, APIs, and for
 interoperability with legacy Java date code.  
 
 ## Get epoch seconds
+
 This example shows getting seconds since the epoch.
 
 ```java
@@ -1014,6 +1101,7 @@ void main() {
 
     var instant = Instant.now();
     var seconds = instant.getEpochSecond();
+
     IO.println("Epoch seconds: " + seconds);
 }
 ```
@@ -1023,6 +1111,7 @@ timestamp. The `getNano` method can be used to get the nanosecond part
 for full precision.  
 
 ## TemporalAdjuster first day of month
+
 This example demonstrates using an adjuster to get the first day of a month.
 
 ```java
@@ -1030,6 +1119,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var firstDay = date.with(temporal.TemporalAdjusters.firstDayOfMonth());
+
     IO.println("First day of month: " + firstDay);
 }
 ```
@@ -1039,6 +1129,7 @@ or last day of a month or year. The `with` method applies these adjusters
 to modify dates in meaningful ways.  
 
 ## TemporalAdjuster last day of month
+
 This example shows using an adjuster to get the last day of a month.
 
 ```java
@@ -1046,6 +1137,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var lastDay = date.with(temporal.TemporalAdjusters.lastDayOfMonth());
+
     IO.println("Last day of month: " + lastDay);
 }
 ```
@@ -1055,14 +1147,15 @@ leap years. This eliminates the need for manual calendar arithmetic when
 finding month boundaries.  
 
 ## TemporalAdjuster next weekday
+
 This example demonstrates finding the next occurrence of a weekday.
 
 ```java
 void main() {
 
     var date = LocalDate.of(2024, 6, 15);
-    var nextMonday = date.with(
-        temporal.TemporalAdjusters.next(DayOfWeek.MONDAY));
+    var nextMonday = date.with(temporal.TemporalAdjusters.next(DayOfWeek.MONDAY));
+
     IO.println("Next Monday: " + nextMonday);
 }
 ```
@@ -1072,6 +1165,7 @@ Similar methods like `previous`, `nextOrSame`, and `previousOrSame` provide
 flexible weekday navigation.  
 
 ## TemporalAdjuster first day of year
+
 This example shows getting the first day of the year.
 
 ```java
@@ -1079,6 +1173,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var firstDay = date.with(temporal.TemporalAdjusters.firstDayOfYear());
+
     IO.println("First day of year: " + firstDay);
 }
 ```
@@ -1088,6 +1183,7 @@ This is useful for year-to-date calculations or resetting dates to year
 boundaries.  
 
 ## TemporalAdjuster last day of year
+
 This example demonstrates getting the last day of the year.
 
 ```java
@@ -1095,6 +1191,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var lastDay = date.with(temporal.TemporalAdjusters.lastDayOfYear());
+
     IO.println("Last day of year: " + lastDay);
 }
 ```
@@ -1104,6 +1201,7 @@ Combined with `atStartOfDay` or `atTime`, this creates year-end timestamps
 for reporting and analysis.  
 
 ## Clock for testing
+
 This example shows using Clock for testable time-based code.
 
 ```java
@@ -1112,6 +1210,7 @@ void main() {
     var fixedClock = Clock.fixed(
         Instant.parse("2024-06-15T10:30:00Z"),
         ZoneId.of("UTC"));
+
     var date = LocalDate.now(fixedClock);
     
     IO.println("Fixed date: " + date);
@@ -1123,6 +1222,7 @@ testable. A fixed clock always returns the same instant, while other
 implementations can offset or adjust the system clock.  
 
 ## Clock with offset
+
 This example demonstrates creating a clock with an offset.
 
 ```java
@@ -1145,12 +1245,14 @@ for simulating future scenarios or testing time-sensitive logic without
 changing the system clock.  
 
 ## YearMonth creation
+
 This example shows working with year-month combinations.
 
 ```java
 void main() {
 
     var yearMonth = YearMonth.of(2024, 6);
+
     IO.println("Year-Month: " + yearMonth);
     IO.println("Length: " + yearMonth.lengthOfMonth() + " days");
 }
@@ -1161,6 +1263,7 @@ for monthly billing periods, credit card expiration dates, or any scenario
 where you need month-level precision.  
 
 ## MonthDay creation
+
 This example demonstrates working with month-day combinations.
 
 ```java
@@ -1179,12 +1282,14 @@ annual events like birthdays and holidays. It can be combined with a year
 to create a full date.  
 
 ## Year creation
+
 This example shows working with just a year.
 
 ```java
 void main() {
 
     var year = Year.of(2024);
+
     IO.println("Year: " + year);
     IO.println("Is leap: " + year.isLeap());
     IO.println("Length: " + year.length() + " days");
@@ -1196,6 +1301,7 @@ leap year checking. It can be combined with month and day to create a full
 date when needed.  
 
 ## Format with locale
+
 This example demonstrates formatting dates with different locales.
 
 ```java
@@ -1217,14 +1323,14 @@ same date appears differently based on cultural conventions for date
 ordering and month names.  
 
 ## Custom formatter with symbols
+
 This example shows creating formatters with custom symbols.
 
 ```java
 void main() {
 
     var datetime = LocalDateTime.of(2024, 6, 15, 14, 30, 45);
-    var formatter = format.DateTimeFormatter.ofPattern(
-        "yyyy-MM-dd'T'HH:mm:ss");
+    var formatter = format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
     var formatted = datetime.format(formatter);
     
     IO.println("Formatted: " + formatted);
@@ -1236,6 +1342,7 @@ escape literal characters in patterns. Common symbols include 'y' for year,
 'M' for month, 'd' for day, 'H' for hour, and 'm' for minute.  
 
 ## ISO formatters
+
 This example demonstrates using predefined ISO formatters.
 
 ```java
@@ -1257,6 +1364,7 @@ ideal for APIs, data exchange, and persistence because they're unambiguous
 and widely supported.  
 
 ## Parse with strict resolver
+
 This example shows using strict date parsing.
 
 ```java
@@ -1266,6 +1374,7 @@ void main() {
         var formatter = format.DateTimeFormatter.ofPattern("dd/MM/yyyy")
             .withResolverStyle(format.ResolverStyle.STRICT);
         var date = LocalDate.parse("31/02/2024", formatter);
+
         IO.println("Date: " + date);
     } catch (Exception e) {
         IO.println("Parse error: " + e.getMessage());
@@ -1278,6 +1387,7 @@ resolver (default) would adjust such dates, while lenient accepts almost
 anything. Strict mode ensures data integrity.  
 
 ## Truncate to unit
+
 This example demonstrates truncating datetime to a specific unit.
 
 ```java
@@ -1296,6 +1406,7 @@ unit. Truncating to hours sets minutes, seconds, and nanoseconds to zero,
 useful for grouping or comparing times by hour.  
 
 ## Between with ChronoUnit
+
 This example shows calculating differences using ChronoUnit.
 
 ```java
@@ -1319,14 +1430,14 @@ units. It provides an alternative to `Duration` and `Period` when you only
 need a single unit of measurement.  
 
 ## OffsetDateTime creation
+
 This example demonstrates creating a datetime with UTC offset.
 
 ```java
 void main() {
 
     var offset = ZoneOffset.ofHours(-5);
-    var offsetDateTime = OffsetDateTime.of(
-        2024, 6, 15, 14, 30, 0, 0, offset);
+    var offsetDateTime = OffsetDateTime.of(2024, 6, 15, 14, 30, 0, 0, offset);
     
     IO.println("OffsetDateTime: " + offsetDateTime);
 }
@@ -1337,6 +1448,7 @@ void main() {
 database storage or when offset is known but timezone is not.  
 
 ## OffsetTime creation
+
 This example shows creating a time with UTC offset.
 
 ```java
@@ -1354,6 +1466,7 @@ void main() {
 with timezone context but without a specific date.  
 
 ## Date range check
+
 This example demonstrates checking if a date falls within a range.
 
 ```java
@@ -1364,6 +1477,7 @@ void main() {
     var end = LocalDate.of(2024, 6, 30);
     
     var inRange = !date.isBefore(start) && !date.isAfter(end);
+
     IO.println("Date in range: " + inRange);
 }
 ```
@@ -1373,6 +1487,7 @@ handles edge cases where the date equals the start or end boundaries,
 making the range inclusive on both ends.  
 
 ## Week of year
+
 This example shows getting the week number of the year.
 
 ```java
@@ -1380,6 +1495,7 @@ void main() {
 
     var date = LocalDate.of(2024, 6, 15);
     var weekOfYear = date.get(temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+
     IO.println("Week of year: " + weekOfYear);
 }
 ```
@@ -1389,6 +1505,7 @@ ISO weeks start on Monday and the first week contains the year's first
 Thursday, which may differ from calendar weeks.  
 
 ## Quarter of year
+
 This example demonstrates getting the quarter of the year.
 
 ```java
@@ -1405,6 +1522,7 @@ This is useful for financial reporting and business analytics that operate
 on quarterly periods.  
 
 ## Day of quarter
+
 This example shows getting the day number within the quarter.
 
 ```java
@@ -1421,6 +1539,7 @@ the current quarter. This helps track progress through quarterly periods
 or calculate quarter-to-date metrics.  
 
 ## Working with TemporalQuery
+
 This example demonstrates using temporal queries for custom extractions.
 
 ```java
@@ -1438,6 +1557,7 @@ a functional approach. Predefined queries like `precision`, `zoneId`, and
 `chronology` provide metadata about the temporal object.  
 
 ## Custom TemporalAdjuster
+
 This example shows creating a custom temporal adjuster.
 
 ```java
@@ -1462,6 +1582,7 @@ skips weekends to find the next workday, demonstrating how complex calendar
 rules can be encapsulated in reusable adjusters.  
 
 ## Min and max dates
+
 This example demonstrates finding the minimum and maximum of multiple dates.
 
 ```java
@@ -1489,6 +1610,7 @@ This pattern is common in scheduling, deadline tracking, and determining
 valid date ranges from multiple sources.  
 
 ## Until method for ranges
+
 This example shows using until to calculate temporal amounts.
 
 ```java
@@ -1498,9 +1620,11 @@ void main() {
     var end = LocalDate.of(2024, 12, 31);
     
     var period = start.until(end);
+
     IO.println("Period: " + period);
     
     var days = start.until(end, temporal.ChronoUnit.DAYS);
+
     IO.println("Days: " + days);
 }
 ```
@@ -1536,8 +1660,7 @@ This example shows converting between timezone-aware types.
 ```java
 void main() {
 
-    var zonedDateTime = ZonedDateTime.now(
-        ZoneId.of("America/New_York"));
+    var zonedDateTime = ZonedDateTime.now(ZoneId.of("America/New_York"));
     var offsetDateTime = zonedDateTime.toOffsetDateTime();
     
     IO.println("ZonedDateTime: " + zonedDateTime);
@@ -1550,6 +1673,7 @@ The `toOffsetDateTime` method converts from `ZonedDateTime` to
 This is useful for persistence or when timezone rules aren't needed.  
 
 ## Midnight detection
+
 This example demonstrates checking if a time is midnight.
 
 ```java
@@ -1568,6 +1692,7 @@ against this constant or checking hours/minutes/seconds for zero determines
 if a time represents the start of day.  
 
 ## Noon detection
+
 This example shows checking if a time is noon.
 
 ```java
@@ -1586,6 +1711,7 @@ code that needs to reference midday, common in scheduling and time-based
 business logic.  
 
 ## Era handling
+
 This example demonstrates working with calendar eras.
 
 ```java
@@ -1620,6 +1746,7 @@ Java supports multiple calendar systems through the chronology API. The
 implementations support Japanese, Thai Buddhist, and other calendars.  
 
 ## Date equals with different types
+
 This example demonstrates comparing dates across temporal types.
 
 ```java
@@ -1638,6 +1765,7 @@ represent the same date. Extract the date component first for meaningful
 comparison across types like `LocalDate` and `LocalDateTime`.  
 
 ## Parse ISO instant
+
 This example shows parsing an instant from an ISO-8601 string.
 
 ```java
@@ -1645,6 +1773,7 @@ void main() {
 
     var instantString = "2024-06-15T14:30:00Z";
     var instant = Instant.parse(instantString);
+
     IO.println("Parsed instant: " + instant);
 }
 ```
@@ -1654,6 +1783,7 @@ suffix indicating UTC. This format is commonly used in APIs, logs, and
 database timestamps for its unambiguous representation.  
 
 ## Parse ZonedDateTime
+
 This example demonstrates parsing a zoned datetime from a string.
 
 ```java
@@ -1669,6 +1799,7 @@ The parser handles both the offset (+02:00) and timezone identifier
 information is preserved when serializing and deserializing datetimes.  
 
 ## Plus temporal amount
+
 This example shows adding a temporal amount to a date.
 
 ```java
@@ -1724,6 +1855,7 @@ For DAY_OF_MONTH, this shows the valid days (1-30 or 1-31) based on the
 specific month and year, accounting for leap years.  
 
 ## Is supported field
+
 This example demonstrates checking if a temporal field is supported.
 
 ```java
@@ -1744,6 +1876,7 @@ field or unit. `LocalDate` doesn't support time fields, while `LocalTime`
 doesn't support date fields, making this check essential for generic code.  
 
 ## From temporal accessor
+
 This example shows creating temporal objects from TemporalAccessor.
 
 ```java
@@ -1763,6 +1896,7 @@ that contains the required fields. This pattern enables converting between
 compatible temporal types in a type-safe manner.  
 
 ## Temporal unit operations
+
 This example demonstrates adding temporal units to a date.
 
 ```java
