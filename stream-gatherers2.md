@@ -166,31 +166,6 @@ List<List<String>> gthree(List<String> words) {
 }
 ```
 
----
-
-```java
-
-import java.util.stream.Stream;
-import java.util.stream.Gatherers;
-
-
-void main(String[] args) {
-        Stream<String> names = Stream.of("Alice", "Bob", "Charlie", "David", "Eve");
-
-        // Create a Gatherer for groups of 3 elements
-        var groupByThree = Stream.generate(() -> "").<String, ?, String>collect(
-                        Gatherers.windowed(3, 1, (s1, s2) -> s1 + ", " + s2)
-                );
-
-        // Apply the gatherer to the stream
-        var resultList = names.collect(groupByThree);
-
-        resultList.forEach(System.out::println);
-        // Output:
-        // Alice, Bob, Charlie
-        // David, Eve
-    }
-```
 
 ## Running sum
 
