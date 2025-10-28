@@ -36,6 +36,116 @@ Gatherer<Integer, int[], Integer> runningMaxGatherer() {
 }
 ```
 
+## Distinct
+
+```java
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Gatherer;
+import java.util.stream.Stream;
+
+public class Main {
+    public static void main(String[] args) {
+        var words = Stream.of("apple", "banana", "cherry", "date", "fig", "grape", "kiwi");
+
+        var distinctByLength = Gatherer.of(
+            HashSet<Integer>::new,
+            Gatherer.Integrator.<Set<Integer>, String, String>ofGreedy(
+                (Set<Integer> seenLengths, String element, Gatherer.Downstream<? super String> downstream) -> {
+                    if (seenLengths.add(element.length())) {
+                        downstream.accept(element);  // Use accept(), not push()
+                    }
+                }
+            ),
+            (set1, set2) -> {
+                set1.addAll(set2);
+                return set1;
+            },
+            Gatherer.defaultFinisher()
+        );
+
+        List<String> result = words.gather(distinctByLength).toList();
+
+        System.out.println(result);
+    }
+}
+```
+
+## Scan 
+
+```java
+
+import java.util.List;
+import java.util.stream.Gatherers;
+
+class Count {
+
+    private int positive;
+    private int negative;
+
+    public Count() {
+
+    }
+
+    public Count(int pos, int neg) {
+        this.positive = pos;
+        this.negative = neg;
+    }
+}
+
+void main() {
+
+    var numbers = List.of(1, -2, 3, -4, 5, -3, 4, -9, 8);
+
+    // Count positive and negative elements
+    var count = numbers.stream()
+            .gather(Gatherers.scan(Count::new, (c, elem) -> {
+
+                // System.out.println(elem);
+                // System.out.println(c);
+
+                // return c;
+                c.positive += elem > 0 ? 1 : 0;
+                c.negative += elem < 0 ? 1 : 0;
+                return c;
+            })).reduce((c1, c2) -> new Count(c1.positive + c2.positive, c1.negative + c2.negative)).get();
+
+    System.out.println("Positive Count: " + count.positive);
+    System.out.println("Negative Count: " + count.negative);
+}
+```
+
+## Pairwise
+
+```java
+import java.util.stream.Gatherers;
+import java.util.stream.Stream;
+
+void main(String[] args) {
+
+    Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6);
+    String pairs = numbers
+            .gather(Gatherers.windowFixed(2))
+            .filter(list -> list.size() == 2) // Ensure only pairs are processed
+            // .map(list -> "(" + list.get(0) + "," + list.get(1) + ")")
+            .collect(Collector.of(
+                    () -> new StringJoiner(" | "),
+                    (joiner, list) -> {
+                        if (list.size() == 2) {
+                            joiner.add("(" + list.get(0) + "," + list.get(1) + ")");
+                        }
+                    },
+                    StringJoiner::merge))
+            .toString();
+
+    // .toList();
+    System.out.println(pairs); // Output: [(1,2), (3,4)]
+}
+```
+
+
+
 ## Window
 
 ```java
@@ -57,7 +167,32 @@ List<List<String>> gthree(List<String> words) {
         .gather(Gatherers.windowFixed(3))  // ⟵ Intermediate operation
         .toList();                         // ⟵ Terminal operation
 }
+```
 
+---
+
+```java
+
+import java.util.stream.Stream;
+import java.util.stream.Gatherers;
+
+
+void main(String[] args) {
+        Stream<String> names = Stream.of("Alice", "Bob", "Charlie", "David", "Eve");
+
+        // Create a Gatherer for groups of 3 elements
+        var groupByThree = Stream.generate(() -> "").<String, ?, String>collect(
+                        Gatherers.windowed(3, 1, (s1, s2) -> s1 + ", " + s2)
+                );
+
+        // Apply the gatherer to the stream
+        var resultList = names.collect(groupByThree);
+
+        resultList.forEach(System.out::println);
+        // Output:
+        // Alice, Bob, Charlie
+        // David, Eve
+    }
 ```
 
 ## Running sum
@@ -595,6 +730,34 @@ Gatherer<String, HashSet<String>, String> deduplicationGatherer() {
 }
 ```
 
+---
+
+```java
+import java.util.stream.Gatherer;
+import java.util.stream.Stream;
+
+class State {
+    String previous;
+}
+
+void main() {
+
+    Gatherer<String, State, String> deduplicate = Gatherer.ofSequential(
+            State::new, // Initial state (no previous element)
+            (state, element, downstream) -> {
+                if (state.previous == null || !state.previous.equals(element)) {
+                    downstream.push(element); // Push if different from previous
+                }
+                state.previous = element; // Update state to current element
+                return true; // Continue processing
+            },
+            Gatherer.defaultFinisher());
+
+    Stream<String> words = Stream.of("a", "a", "b", "b", "c", "a");
+    var result = words.gather(deduplicate).toList();
+    System.out.println(result); // Output: [a, b, c, a]
+}
+```
 
 ## Ratelimit
 
