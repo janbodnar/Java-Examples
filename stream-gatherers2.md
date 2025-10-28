@@ -69,9 +69,11 @@ void main() {
     // Sample list of integers with both positive and negative values
     var numbers = List.of(1, -2, 3, -4, 5, -3, 4, -9, 8);
 
-    // Count positive and negative elements using Gatherers.scan; reuses a
-    // mutable Count object for memory efficiency, though scan produces
-    // intermediate stream elements
+    // Gatherers.scan applies the function cumulatively: starts with initial
+    // Count(0,0), then updates it for each element, producing intermediate
+    // states in the stream Count positive and negative elements using
+    // Gatherers.scan; reuses a mutable Count object for memory efficiency,
+    // though scan produces intermediate stream elements
     var count = numbers.stream()
             .gather(Gatherers.scan(Count::new, (c, elem) -> {
                 c.positive += elem > 0 ? 1 : 0;
@@ -80,8 +82,8 @@ void main() {
             })).collect(Collectors.toList()).getFirst();
 
     // Output the final counts
-    System.out.println("Positive count: " + count.positive);
-    System.out.println("Negative count: " + count.negative);
+    IO.println("Positive count: " + count.positive);
+    IO.println("Negative count: " + count.negative);
 }
 ```
 
