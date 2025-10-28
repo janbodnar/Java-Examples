@@ -3,6 +3,7 @@
 
 ## Links
 
+- https://github.com/tginsberg/gatherers4j/tree/main
 - https://docs.oracle.com/en/java/javase/22/core/stream-gatherers.html#GUID-9A9B143F-8EA8-4A48-88FF-C00E46B9D1C4
 - https://www.infoq.com/news/2023/12/stream-api-evolution/
 - https://softwaremill.com/stream-gatherers-in-practice-part-1/
@@ -25,12 +26,18 @@ void main() {
     System.out.println("Running Maximum: " + runningMax);
 }
 
+// Gatherer<InputType, StateType, OutputType>
+// InputType: Integer (elements processed)
+// StateType: int[] (internal state for running max)
+// OutputType: Integer (values emitted downstream)
 Gatherer<Integer, int[], Integer> runningMaxGatherer() {
     return Gatherer.ofSequential(
             () -> new int[]{Integer.MIN_VALUE}, // Use an array to store state
+            // integrator: updates state and emits results
+            // downstream: receives values emitted by the gatherer for further processing or collection
             (state, element, downstream) -> {
                 state[0] = Math.max(state[0], element); // Compute max
-                downstream.push(state[0]); // Emit running max
+                downstream.push(state[0]); // Emit running max to downstream
                 return true;
             });
 }
