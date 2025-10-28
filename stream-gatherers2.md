@@ -47,18 +47,16 @@ Gatherer<Integer, int[], Integer> runningMaxGatherer() {
 ## Scan 
 
 ```java
-
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Gatherers;
 
+// Simple class to hold the counts of positive and negative numbers
 class Count {
+    public int positive;
+    public int negative;
 
-    private int positive;
-    private int negative;
-
-    public Count() {
-
-    }
+    public Count() {}
 
     public Count(int pos, int neg) {
         this.positive = pos;
@@ -66,27 +64,57 @@ class Count {
     }
 }
 
+// Main method demonstrating counting positives and negatives using Gatherers.scan
 void main() {
-
+    // Sample list of integers with both positive and negative values
     var numbers = List.of(1, -2, 3, -4, 5, -3, 4, -9, 8);
 
-    // Count positive and negative elements
+    // Count positive and negative elements using Gatherers.scan; reuses a
+    // mutable Count object for memory efficiency, though scan produces
+    // intermediate stream elements
     var count = numbers.stream()
             .gather(Gatherers.scan(Count::new, (c, elem) -> {
-
-                // System.out.println(elem);
-                // System.out.println(c);
-
-                // return c;
                 c.positive += elem > 0 ? 1 : 0;
                 c.negative += elem < 0 ? 1 : 0;
                 return c;
-            })).reduce((c1, c2) -> new Count(c1.positive + c2.positive, c1.negative + c2.negative)).get();
+            })).collect(Collectors.toList()).getFirst();
 
-    System.out.println("Positive Count: " + count.positive);
-    System.out.println("Negative Count: " + count.negative);
+    // Output the final counts
+    System.out.println("Positive count: " + count.positive);
+    System.out.println("Negative count: " + count.negative);
 }
 ```
+
+Alternative using `reduce`.
+
+```java
+import java.util.List;
+
+// Immutable record to hold the counts of positive and negative numbers
+record Count(int positive, int negative) {}
+
+// Main method demonstrating counting positives and negatives using Stream.reduce
+void main() {
+    // Sample list of integers with both positive and negative values
+    var numbers = List.of(1, -2, 3, -4, 5, -3, 4, -9, 8);
+
+    // Use reduce to accumulate counts of positive and negative numbers into a final Count object
+    var count = numbers.stream()
+            .reduce(new Count(0, 0), 
+                // Accumulator: for each element, increment positive or negative count
+                (c, elem) -> new Count(
+                    c.positive + (elem > 0 ? 1 : 0),
+                    c.negative + (elem < 0 ? 1 : 0)
+                ), 
+                // Combiner: merge counts from parallel sub-streams (not used in sequential streams)
+                (c1, c2) -> new Count(c1.positive + c2.positive, c1.negative + c2.negative));
+
+    // Output the final counts
+    System.out.println("Positive count: " + count.positive);
+    System.out.println("Negative count: " + count.negative);
+}
+```
+
 
 ## Pairwise
 
