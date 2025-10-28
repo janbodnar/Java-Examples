@@ -196,6 +196,52 @@ Gatherer<Integer, int[], Integer> runningSumGatherer() {
 }
 ```
 
+with peek:
+
+```java
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+// Main class demonstrating custom Gatherer usage for calculating running sums
+// with peek functionality
+void main() {
+    // Example: Calculate running sums of numbers 1-10, with peek to observe each
+    // element
+    List<Integer> runningSums = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            .gather(runningSumGatherer(System.out::println)) // Apply gatherer with peek that prints each element
+            .toList(); // Collect results into a list
+    IO.println("Running Sums: " + runningSums);
+}
+
+/**
+ * Creates a Gatherer that computes running sums while allowing observation of
+ * elements via peek.
+ * 
+ * @param peek A Consumer that will be called for each element, allowing side
+ *             effects like logging
+ * @return A Gatherer that accumulates running sums
+ */
+Gatherer<Integer, int[], Integer> runningSumGatherer(Consumer<Integer> peek) {
+    return Gatherer.ofSequential(
+            // Initializer: Creates state to hold the current sum, starting at 0
+            () -> new int[] { 0 },
+
+            // Integrator: Processes each element, updates state, and pushes result
+            // downstream
+            (state, element, downstream) -> {
+                peek.accept(state[0]); // Perform peek action on the current state (e.g., print it)
+                state[0] += element; // Add current element to the running sum
+                downstream.push(state[0]); // Push the updated sum to the downstream consumer
+                return true; // Continue processing (return false to short-circuit)
+            },
+
+            // Finisher: Default finisher handles any final state cleanup (none needed here)
+            Gatherer.defaultFinisher());
+}
+```
+
+
 ### Sliding pairs
 
 ```java
