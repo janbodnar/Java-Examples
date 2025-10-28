@@ -336,98 +336,80 @@ BiFunction<Integer, Integer, Integer> addFun = (x, y) -> x + y;
 void main() {
 
     // var res = Stream.iterate(0, i -> i + 1)
-    //     .gather(Gatherers.windowFixed(3))
-    //     .limit(100)
-    //     .collect(Collectors.toList());
+    // .gather(Gatherers.windowFixed(3))
+    // .limit(100)
+    // .collect(Collectors.toList());
 
-    // System.out.println(res);    
-
+    // System.out.println(res);
 
     var res11 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).stream()
-        .gather(Gatherers.windowFixed(2))
-        .gather(Gatherers.fold(() -> 0, (total, next) -> total + next.get(0) * next.get(1)))
-        .findFirst().orElse(0);
-
+            .gather(Gatherers.windowFixed(2))
+            .gather(Gatherers.fold(() -> 0, (total, next) -> total + next.get(0) * next.get(1)))
+            .findFirst().orElse(0);
 
     System.out.println(res11);
 
-
-    List<String> words = List.of("the", "be", "two", "of", "and", "a", "war", "in", "that");
-    // var res2 = words.stream()                  
-    //     .gather(Gatherers.windowFixed(3))  
-    //     .toList(); 
+    List<String> words = List.of("the", "be", "two", "of", "and",
+            "a", "war", "in", "that");
+    // var res2 = words.stream()
+    // .gather(Gatherers.windowFixed(3))
+    // .toList();
 
     // System.out.println(res2);
-,
+
     var res3 = words.stream()
-        .gather(takeWhile(e -> !e.startsWith("w")))
-        .toList();
+            .gather(takeWhile(e -> !e.startsWith("w")))
+            .toList();
 
     System.out.println(res3);
+
+    // Example using custom mapping gatherer and toLengths
+    var lengths = toLengths(words);
+    System.out.println("Word lengths: " + lengths);
+
+    // Example demonstrating custom Integrator and Downstream interfaces
+    var upperCased = words.stream()
+            .gather(mapping(String::toUpperCase))
+            .toList();
+    System.out.println("Uppercased: " + upperCased);
 }
 
 // Predicate<String> p = e -> !e.startsWith("w");
 
 <T> Gatherer<T, ?, T> takeWhile(Predicate<? super T> predicate) {
     return Gatherer.ofSequential(
-        (nothing, e, downstream) ->
-            predicate.test(e) && downstream.push(e)
-    );
+            () -> null,
+            (nothing, e, downstream) -> predicate.test(e) && downstream.push(e),
+            // (l, r) -> l,
+            // (l, r) -> l,
+            (nothing, downstream) -> {
+            });
 }
-
-
-
-// <T> Gatherer<T, ?, T> takeWhile(Predicate<? super T> predicate) {
-//     return Gatherer.ofSequential(
-//         () -> null,
-//         (nothing, e, downstream) ->
-//             predicate.test(e) && downstream.push(e),
-//         // (l, r) -> l,
-//         // (l, r) -> l,
-//         (nothing, downstream) -> {}
-//     );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // @FunctionalInterface
 // public interface Integrator<A, T, R> {
-//   boolean integrate(A state, T element, Downstream<? super R> downstream);
+//     boolean integrate(A state, T element, Downstream<? super R> downstream);
 // }
 
 // @FunctionalInterface
 // public interface Downstream<T> {
-//   boolean push(T element);
+//     boolean push(T element);
 // }
 
-// public <T, R> Gatherer<T, Void, R> mapping(Function<T, R> mapper) {
-//   return Gatherer.of(
-//       Integrator.ofGreedy(
-//           (state, element, downstream) -> {
-//             R mappedElement = mapper.apply(element);
-//             return downstream.push(mappedElement);
-//           }));
-// }
+public <T, R> Gatherer<T, Void, R> mapping(Function<T, R> mapper) {
+    return Gatherer.ofSequential(
+            Gatherer.Integrator.ofGreedy(
+                    (_, element, downstream) -> {
+                        R mappedElement = mapper.apply(element);
+                        return downstream.push(mappedElement);
+                    }));
+}
 
-// public List<Integer> toLengths(List<String> words) {
-//   return words.stream()
-//       .gather(mapping(String::length))
-//       .toList();
-// }
+public List<Integer> toLengths(List<String> words) {
+    return words.stream()
+            .gather(mapping(String::length))
+            .toList();
+}
 
 ```
 
