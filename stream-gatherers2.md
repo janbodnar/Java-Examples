@@ -121,28 +121,23 @@ void main() {
 ## Pairwise
 
 ```java
+vimport java.util.stream.Collectors;
 import java.util.stream.Gatherers;
 import java.util.stream.Stream;
 
+// Example demonstrating how to create pairwise combinations from a stream using
+// Gatherers.windowFixed
 void main(String[] args) {
 
+    // Create a stream of integers
     Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6);
-    String pairs = numbers
-            .gather(Gatherers.windowFixed(2))
-            .filter(list -> list.size() == 2) // Ensure only pairs are processed
-            // .map(list -> "(" + list.get(0) + "," + list.get(1) + ")")
-            .collect(Collector.of(
-                    () -> new StringJoiner(" | "),
-                    (joiner, list) -> {
-                        if (list.size() == 2) {
-                            joiner.add("(" + list.get(0) + "," + list.get(1) + ")");
-                        }
-                    },
-                    StringJoiner::merge))
-            .toString();
 
-    // .toList();
-    System.out.println(pairs); // Output: [(1,2), (3,4)]
+    // Use windowFixed(2) to group elements into pairs, then format each pair as a string
+    String pairs = numbers.gather(Gatherers.windowFixed(2))
+        .map(list -> "(" + list.get(0) + "," + list.get(1) + ")") // Format each pair as (a,b)
+        .collect(Collectors.joining(" | ")); // Join all formatted pairs with " | "
+
+    IO.println(pairs); // Output: (1,2) | (3,4) | (5,6)
 }
 ```
 
