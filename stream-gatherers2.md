@@ -43,41 +43,6 @@ Gatherer<Integer, int[], Integer> runningMaxGatherer() {
 }
 ```
 
-## Distinct
-
-```java
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Gatherer;
-import java.util.stream.Stream;
-
-public class Main {
-    public static void main(String[] args) {
-        var words = Stream.of("apple", "banana", "cherry", "date", "fig", "grape", "kiwi");
-
-        var distinctByLength = Gatherer.of(
-            HashSet<Integer>::new,
-            Gatherer.Integrator.<Set<Integer>, String, String>ofGreedy(
-                (Set<Integer> seenLengths, String element, Gatherer.Downstream<? super String> downstream) -> {
-                    if (seenLengths.add(element.length())) {
-                        downstream.accept(element);  // Use accept(), not push()
-                    }
-                }
-            ),
-            (set1, set2) -> {
-                set1.addAll(set2);
-                return set1;
-            },
-            Gatherer.defaultFinisher()
-        );
-
-        List<String> result = words.gather(distinctByLength).toList();
-
-        System.out.println(result);
-    }
-}
-```
 
 ## Scan 
 
