@@ -15,6 +15,30 @@
 - https://www.youtube.com/watch?v=epgJm2dZTSg
 - https://blog.payara.fish/introducing-stream-gatherers-jep-461-for-enhanced-java-stream-operations
 
+## Sum
+
+```java
+
+void main() {
+  // Create a gatherer that accumulates the sum using a custom approach
+  Gatherer<Integer, ?, Integer> sumGatherer = Gatherer
+      .ofSequential(
+          () -> new AtomicInteger(0),
+          (state, element, downstream) -> {
+            // Accumulate the sum in state
+            state.addAndGet(element);
+            return !downstream.isRejecting();
+          },
+          (state, downstream) -> {
+            // Finisher: push the final sum downstream
+            downstream.push(state.get());
+          });
+
+  List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+  numbers.stream().gather(sumGatherer).findFirst().ifPresent(IO::println);
+}
+```
+
 ## Running max
 
 ```java
