@@ -502,7 +502,6 @@ applies a downstream collector to each group. `Function.identity` returns each
 element as its own key, and `counting` counts occurrences. This is useful for  
 frequency analysis and data aggregation.  
 
-Now I'll add 60 more diverse stream examples to reach the required total. Let me continue with more examples:
 
 ## Parallel streams
 
