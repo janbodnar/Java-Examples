@@ -488,7 +488,7 @@ void main() {
     
     var result = items.stream()
             .collect(Collectors.groupingBy(
-                    function.Function.identity(),
+                    Function.identity(),
                     Collectors.counting()
             ));
     
