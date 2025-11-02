@@ -45,9 +45,9 @@ void main() {
 }
 ```
 
-The `Calculator` class includes an `add` method that takes two integers,
-sums them, and returns the result. An instance of the calculator is used to
-call the method and display the output.
+The `Calculator` class includes an `add` method that takes two integers,  
+sums them, and returns the result. An instance of the calculator is used to  
+call the method and display the output.  
 
 ## Constructor basics
 
