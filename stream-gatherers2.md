@@ -1185,30 +1185,29 @@ showcasing the flexibility of mapMulti for complex transformations.
 This example implements a zip operation to combine two streams.  
 
 ```java
+record Pair<T, U>(T first, U second) {
+}
+
 void main() {
 
-    var numbers = List.of(1, 2, 3, 4, 5);
-    var letters = List.of("a", "b", "c", "d", "e");
-    
-    record Pair<T, U>(T first, U second) {}
-    
-    var zipped = numbers.stream()
-            .gather(zip(letters.iterator()))
-            .toList();
-    
-    zipped.forEach(IO::println);
+  var numbers = List.of(1, 2, 3, 4, 5);
+  var letters = List.of("a", "b", "c", "d", "e");
+
+  var zipped = numbers.stream().gather(zip(letters.iterator()))
+      .toList();
+
+  zipped.forEach(IO::println);
 }
 
 <T, U> Gatherer<T, ?, Pair<T, U>> zip(Iterator<U> other) {
-    return Gatherer.ofSequential(
-            () -> other,
-            Gatherer.Integrator.ofGreedy((state, element, downstream) -> {
-                if (state.hasNext()) {
-                    downstream.push(new Pair<>(element, state.next()));
-                    return true;
-                }
-                return false;
-            }));
+  return Gatherer.ofSequential(() -> other,
+      Gatherer.Integrator.ofGreedy((state, element, downstream) -> {
+        if (state.hasNext()) {
+          downstream.push(new Pair<>(element, state.next()));
+          return true;
+        }
+        return false;
+      }));
 }
 ```
 
