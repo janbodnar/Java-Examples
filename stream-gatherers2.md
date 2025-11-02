@@ -1,19 +1,7 @@
 # Stream gatherers
 
 
-## Links
 
-- https://github.com/tginsberg/gatherers4j/tree/main
-- https://docs.oracle.com/en/java/javase/22/core/stream-gatherers.html#GUID-9A9B143F-8EA8-4A48-88FF-C00E46B9D1C4
-- https://www.infoq.com/news/2023/12/stream-api-evolution/
-- https://softwaremill.com/stream-gatherers-in-practice-part-1/
-- https://download.java.net/java/early_access/jdk23/docs/api/java.base/java/util/stream/Gatherers.html#scan(java.util.function.Supplier,java.util.function.BiFunction)
-- https://www.morling.dev/blog/zipping-gatherer/
-- https://cr.openjdk.org/~vklang/Gatherers.html
-- https://openjdk.org/jeps/461
-- https://www.happycoders.eu/java/stream-gatherers/
-- https://www.youtube.com/watch?v=epgJm2dZTSg
-- https://blog.payara.fish/introducing-stream-gatherers-jep-461-for-enhanced-java-stream-operations
 
 ## Sum
 
@@ -986,4 +974,18 @@ void main() {
 }
 ```
 
+
+## Links
+
+- https://github.com/tginsberg/gatherers4j/tree/main
+- https://docs.oracle.com/en/java/javase/22/core/stream-gatherers.html#GUID-9A9B143F-8EA8-4A48-88FF-C00E46B9D1C4
+- https://www.infoq.com/news/2023/12/stream-api-evolution/
+- https://softwaremill.com/stream-gatherers-in-practice-part-1/
+- https://download.java.net/java/early_access/jdk23/docs/api/java.base/java/util/stream/Gatherers.html#scan(java.util.function.Supplier,java.util.function.BiFunction)
+- https://www.morling.dev/blog/zipping-gatherer/
+- https://cr.openjdk.org/~vklang/Gatherers.html
+- https://openjdk.org/jeps/461
+- https://www.happycoders.eu/java/stream-gatherers/
+- https://www.youtube.com/watch?v=epgJm2dZTSg
+- https://blog.payara.fish/introducing-stream-gatherers-jep-461-for-enhanced-java-stream-operations
 
