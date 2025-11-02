@@ -2,3 +2,38 @@
 
 To goal of this repository is to provide Java code examples to learn the Java basics  
 quickly. It uses modern Java features. 
+
+
+Set the libraries for VS Code to recognize them in simple Java examples. 
+
+```json
+{
+    "java.project.referencedLibraries": [
+        "jsoup-1.21.2.jar",
+        "sdk-1.10.0.jar",
+        "gson-2.10.1.jar"
+    ]
+}
+```
+
+## Eclipse Java formatter
+
+The formatter is set in the `settings.json`:
+
+`"java.format.settings.url": "file:///home/jano/Documents/eclipse-java-formatter.xml",`
+
+The file:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles version="12">
+    <profile kind="CodeFormatterProfile" name="2-space-indent" version="12">
+        <setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="space"/>
+        <setting id="org.eclipse.jdt.core.formatter.tabulation.size" value="2"/>
+        <setting id="org.eclipse.jdt.core.formatter.indentation.size" value="2"/>
+        <setting id="org.eclipse.jdt.core.formatter.continuation_indentation" value="2"/>
+        <setting id="org.eclipse.jdt.core.formatter.lineSplit" value="80"/>
+        <setting id="org.eclipse.jdt.core.formatter.alignment_for_arguments_in_method_invocation" value="16"/>
+    </profile>
+</profiles>
+```
