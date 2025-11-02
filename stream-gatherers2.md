@@ -2249,27 +2249,23 @@ This example counts element frequencies.
 ```java
 void main() {
 
-    var letters = List.of("a", "b", "a", "c", "b", "a", "d");
-    
-    var frequencies = letters.stream()
-            .gather(countFrequencies())
-            .findFirst()
-            .orElse(Map.of());
-    
-    frequencies.forEach((letter, count) -> 
-            IO.println(letter + ": " + count));
+  var letters = List.of("a", "b", "a", "c", "b", "a", "d");
+
+  var frequencies = letters.stream().gather(countFrequencies())
+      .findFirst().orElse(Map.of());
+
+  frequencies
+      .forEach((letter, count) -> IO.println(letter + ": " + count));
 }
 
 <T> Gatherer<T, ?, Map<T, Integer>> countFrequencies() {
-    return Gatherer.ofSequential(
-            HashMap::new,
-            (map, element, downstream) -> {
-                map.merge(element, 1, Integer::sum);
-                return true;
-            },
-            (map, downstream) -> {
-                downstream.push(new HashMap<>(map));
-            });
+  return Gatherer.ofSequential(() -> new HashMap<T, Integer>(),
+      (map, element, downstream) -> {
+        map.merge(element, 1, Integer::sum);
+        return true;
+      }, (map, downstream) -> {
+        downstream.push(map);
+      });
 }
 ```
 
