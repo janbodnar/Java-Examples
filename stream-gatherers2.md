@@ -1808,32 +1808,38 @@ This example counts elements matching different predicates.
 ```java
 void main() {
 
-    var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    
-    record Counts(int even, int odd, int greaterThan5) {}
-    
-    var counts = numbers.stream()
-            .gather(countBy())
-            .findFirst()
-            .orElse(null);
-    
-    IO.println(counts);
+  var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+  var counts = numbers.stream().gather(countBy()).findFirst()
+      .orElse(null);
+
+  IO.println(counts);
 }
 
 Gatherer<Integer, ?, Counts> countBy() {
-    record State(int even, int odd, int greaterThan5) {}
-    
-    return Gatherer.ofSequential(
-            () -> new State(0, 0, 0),
-            (state, element, downstream) -> {
-                return new State(
-                        state.even + (element % 2 == 0 ? 1 : 0),
-                        state.odd + (element % 2 != 0 ? 1 : 0),
-                        state.greaterThan5 + (element > 5 ? 1 : 0));
-            },
-            (state, downstream) -> {
-                downstream.push(new Counts(state.even, state.odd, state.greaterThan5));
-            });
+
+  return Gatherer.ofSequential(() -> new State(0, 0, 0),
+      (state, element, downstream) -> {
+        state.even += (element % 2 == 0 ? 1 : 0);
+        state.odd += (element % 2 != 0 ? 1 : 0);
+        state.greaterThan5 += (element > 5 ? 1 : 0);
+        return true;
+      }, (state, downstream) -> {
+        downstream.push(
+            new Counts(state.even, state.odd, state.greaterThan5));
+      });
+}
+
+record Counts(int even, int odd, int greaterThan5) {
+}
+
+class State {
+  int even, odd, greaterThan5;
+  State(int even, int odd, int greaterThan5) {
+    this.even = even;
+    this.odd = odd;
+    this.greaterThan5 = greaterThan5;
+  }
 }
 ```
 
