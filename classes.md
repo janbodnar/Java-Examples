@@ -12,10 +12,12 @@ data and operations are bundled, making programs easier to understand and mainta
 
 | Component | Description |
 |-----------|-------------|
-| Fields | Variables that store data, such as instance variables unique to each object or static ones shared across all. |
+| Fields | Variables that store data, such as instance variables unique to each object  
+  or static ones shared across all. |
 | Methods | Functions that define behaviors, including actions performed on the object's data. |
 | Constructors | Special methods called when creating an object to initialize its state. |
-| Access Modifiers | Keywords like public or private that control visibility and access to class members. |
+| Access Modifiers | Keywords like public or private that control visibility and  
+  access to class members. |
 
 To use a class, you instantiate it by creating an object, which then allows access  
 to its fields and methods. This process enables multiple objects from the same class,  
