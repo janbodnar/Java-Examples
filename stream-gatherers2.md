@@ -2546,40 +2546,67 @@ is useful for offset calculations or maintaining running balances.
 This example splits the stream into two based on a predicate.  
 
 ```java
+
 void main() {
 
-    var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    
-    record Split<T>(List<T> before, List<T> after) {}
-    
-    var split = numbers.stream()
-            .gather(splitOn(n -> n == 5))
-            .findFirst()
-            .orElse(null);
-    
-    IO.println("Before: " + split.before());
-    IO.println("After: " + split.after());
+  var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+  var split = numbers.stream().gather(splitOn(n -> n == 5))
+      .findFirst().orElse(null);
+
+  IO.println("Before: " + split.before());
+  IO.println("After: " + split.after());
 }
 
 <T> Gatherer<T, ?, Split<T>> splitOn(Predicate<T> splitter) {
-    record State<T>(List<T> before, List<T> after, boolean afterSplit) {}
-    
-    return Gatherer.ofSequential(
-            () -> new State<>(new ArrayList<>(), new ArrayList<>(), false),
-            (state, element, downstream) -> {
-                if (!state.afterSplit && splitter.test(element)) {
-                    return new State<>(state.before, state.after, true);
-                }
-                if (state.afterSplit) {
-                    state.after.add(element);
-                } else {
-                    state.before.add(element);
-                }
-                return new State<>(state.before, state.after, state.afterSplit);
-            },
-            (state, downstream) -> {
-                downstream.push(new Split<>(state.before, state.after));
-            });
+
+  return Gatherer.ofSequential(
+      () -> new State<T>(new ArrayList<T>(), new ArrayList<T>(), false),
+      (state, element, downstream) -> {
+        if (state.afterSplit) {
+          state.after.add(element);
+        } else {
+          state.before.add(element);
+          if (splitter.test(element)) {
+            state.afterSplit = true;
+          }
+        }
+        return true;
+      }, (state, downstream) -> {
+        downstream.push(new Split<T>(state.before, state.after));
+      });
+}
+
+class State<T> {
+
+  private List<T> before;
+  private List<T> after;
+  private boolean afterSplit;
+
+  public State(List<T> before, List<T> after, boolean afterSplit) {
+    this.before = before;
+    this.after = after;
+    this.afterSplit = afterSplit;
+  }
+}
+
+class Split<T> {
+  private List<T> before;
+  private List<T> after;
+
+  public Split(List<T> before, List<T> after) {
+
+    this.before = before;
+    this.after = after;
+  }
+
+  public List<T> before() {
+    return before;
+  }
+
+  public List<T> after() {
+    return after;
+  }
 }
 ```
 
