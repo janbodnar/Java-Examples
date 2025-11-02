@@ -16,6 +16,53 @@ Set the libraries for VS Code to recognize them in simple Java examples.
 }
 ```
 
+## VS Code settings
+
+VS Code settings related to Java:
+
+```json
+{
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "Cascadia Code",
+  "chat.fontSize": 16,
+  "chat.editor.fontSize": 15,
+  "editor.fontSize": 16,
+  "editor.stickyScroll.enabled": false,
+  "terminal.integrated.stickyScroll.enabled": false,
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-25",
+      "path": "/home/jano/.sdkman/candidates/java/25-amzn/",
+      "default": true
+    }
+  ],
+  "java.inlayHints.parameterTypes.enabled": false,
+  "java.format.settings.url": "file:///home/jano/Documents/eclipse-java-formatter.xml",
+  "java.format.settings.profile": "2-space-indent",
+  "[java]": {
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.indentSize": 2,
+    "editor.wrappingIndent": "none",
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "java": true
+  },
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.indentSize": 2,
+  "editor.wrappingIndent": "none",
+  "editor.formatOnPaste": true,
+  "sonarlint.focusOnNewCode": false
+}
+```
+
 ## Eclipse Java formatter
 
 The formatter is set in the `settings.json`:
