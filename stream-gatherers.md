@@ -48,28 +48,25 @@ This example demonstrates creating a custom gatherer for summing integers.
 ```java
 void main() {
   // Create a gatherer that accumulates the sum using a custom approach
-  Gatherer<Integer, ?, Integer> sumGatherer = Gatherer
-      .ofSequential(
-          () -> new AtomicInteger(0),
-          (state, element, downstream) -> {
-            // Accumulate the sum in state
-            state.addAndGet(element);
-            return !downstream.isRejecting();
-          },
-          (state, downstream) -> {
-            // Finisher: push the final sum downstream
-            downstream.push(state.get());
-          });
+  Gatherer<Integer, ?, Integer> sumGatherer = Gatherer.ofSequential(
+      () -> new AtomicInteger(0), // Supplier for initial state
+      (state, element, downstream) -> { // Integrator for processing each
+                                        // element
+        // Accumulate the sum in state
+        state.addAndGet(element);
+        return true; // Continue processing
+      }, (state, downstream) -> { // Finisher to finalize the result
+        // push the final sum downstream
+        downstream.push(state.get());
+      });
 
   List<Integer> numbers = List.of(1, 2, 3, 4, 5);
-  numbers.stream().gather(sumGatherer).findFirst().ifPresent(IO::println);
+  numbers.stream().gather(sumGatherer).limit(1).forEach(IO::println);
 }
 ```
 
 The custom sum gatherer uses `AtomicInteger` for mutable state accumulation.  
-The integrator adds each element to the state, and the finisher pushes the  
-final sum downstream. This demonstrates the basic structure of a gatherer with  
-initialization, integration, and finalization phases.  
+The integrator adds each element to the state and returns `true` to continue processing all elements,  ensuring the sum is complete before finalization. The finisher pushes the final sum downstream. This  demonstrates the basic structure of a gatherer with initialization, integration, and finalization  phases.
 
 ## Running maximum
 
