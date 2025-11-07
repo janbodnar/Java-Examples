@@ -68,6 +68,61 @@ void main() {
 The custom sum gatherer uses `AtomicInteger` for mutable state accumulation.  
 The integrator adds each element to the state and returns `true` to continue processing all elements,  ensuring the sum is complete before finalization. The finisher pushes the final sum downstream. This  demonstrates the basic structure of a gatherer with initialization, integration, and finalization  phases.
 
+
+## Short-Circuiting in Stream Processing
+  
+Short-circuiting is an optimization technique in Java streams where certain  
+terminal operations terminate the stream pipeline early as soon as a result is  
+determined, avoiding unnecessary processing of remaining elements. Operations  
+like `findFirst`, `findAny`, `anyMatch`, `allMatch`, `noneMatch`, and `limit`  
+exhibit short-circuiting behavior—for instance, `findFirst` stops after finding  
+the first matching element, while limit(n) halts after collecting `n` elements.
+
+In the context of gatherers, this concept extends to the integrator function,  
+which can check `downstream.isRejecting` to detect if the downstream consumer  
+has signaled it no longer needs more data, allowing the gatherer to stop    
+processing prematurely and improve performance in scenarios where full stream  
+traversal isn't required. This adaptive mechanism ensures gatherers remain  
+efficient and composable across different pipeline configurations.   
+
+
+```java
+Gatherer<Integer, ?, Integer> findFirstNegative = Gatherer.ofSequential(
+    () -> new AtomicInteger(0), // Supplier for initial state
+    (_, element, downstream) -> { // Integrator for processing each
+                                  // element
+      if (element < 0) {
+        downstream.push(element);
+      }
+      return !downstream.isRejecting(); // Continue processing
+    }, (state, downstream) -> { // Finisher to finalize the result
+      // push the final sum downstream
+      downstream.push(state.get());
+    });
+
+void main() {
+
+  var vals = List.of(3, 4, -2, 5, -7, 8);
+
+  vals.stream().gather(findFirstNegative).findFirst().ifPresent(IO::println);
+}
+```
+
+While it is possible to do short-circuiting with:
+
+```java
+if (element < 0) {
+  downstream.push(element);
+  return false; // Stop processing further elements
+} else {
+  return true;
+} // Continue processing
+```
+
+this approach is not optimal. It violates the gatherer contract: Gatherers should adapt to  downstream behavior, not dictate it. This hard-codes an assumption about short-circuiting,  
+leading to incorrect behavior in flexible pipelines.  
+
+
 ## Running maximum
 
 This example tracks the maximum value seen so far in the stream.  
