@@ -94,7 +94,7 @@ Gatherer<Integer, ?, Integer> findFirstNegative = Gatherer.ofSequential(
       if (element < 0) {
         downstream.push(element);
       }
-      return !downstream.isRejecting(); // Continue processing
+      return !downstream.isRejecting(); // Continue only if downstream does not reject
     }, (state, downstream) -> { // Finisher to finalize the result
       // push the final sum downstream
       downstream.push(state.get());
