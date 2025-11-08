@@ -3,6 +3,15 @@
 To goal of this repository is to provide Java code examples to learn the Java basics  
 quickly. It uses modern Java features. 
 
+Repeat with formatted:
+
+```java
+void main() {
+
+  IO.println("hello %s%n".repeat(3).formatted("Jan", "Eva", "Mia"));
+}
+```
+
 
 Set the libraries for VS Code to recognize them in simple Java examples. 
 
