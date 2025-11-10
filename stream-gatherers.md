@@ -66,7 +66,10 @@ void main() {
 ```
 
 The custom sum gatherer uses `AtomicInteger` for mutable state accumulation.  
-The integrator adds each element to the state and returns `true` to continue processing all elements,  ensuring the sum is complete before finalization. The finisher pushes the final sum downstream. This  demonstrates the basic structure of a gatherer with initialization, integration, and finalization  phases.
+The integrator adds each element to the state and returns `true` to continue  
+processing all elements,  ensuring the sum is complete before finalization.  
+The finisher pushes the final sum downstream. This  demonstrates the basic  
+structure of a gatherer with initialization, integration, and finalization phases.
 
 
 ## Short-Circuiting in Stream Processing
@@ -266,12 +269,12 @@ void main() throws IOException {
   users.add(new User(2, "Roger", "Roe", "driver"));
   users.add(new User(3, "Robert", "Novotny", "teacher"));
   users.add(new User(4, "Paul", "Novak", "gardener"));
-  users.add(new User(5, "Lucia", "Smith", "teacher"));
+  users.add(new User(5, "Lucia", "Smith", "chef"));
   users.add(new User(6, "Anna", "Johnson", "nurse"));
-  users.add(new User(7, "Michael", "Brown", "engineer"));
+  users.add(new User(7, "Michael", "Brown", "gardener"));
   users.add(new User(8, "Sarah", "Davis", "doctor"));
   users.add(new User(9, "David", "Wilson", "programmer"));
-  users.add(new User(10, "Emily", "Taylor", "artist"));
+  users.add(new User(10, "Emily", "Taylor", "teacher"));
   users.add(new User(11, "James", "Anderson", "chef"));
 
   users.forEach(IO::println);
