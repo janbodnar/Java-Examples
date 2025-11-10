@@ -321,45 +321,56 @@ list and prints each occupation with its user count and details.
 ```java
 void main() {
 
-  List<User> users = List.of(
-      new User(1, "John", "Doe", "Engineer"),
+  // Create an immutable list of User objects with sample data
+  List<User> users = List.of(new User(1, "John", "Doe", "Engineer"),
       new User(2, "Jane", "Smith", "Doctor"),
       new User(3, "Bob", "Johnson", "Engineer"),
       new User(4, "Alice", "Brown", "Teacher"),
       new User(5, "Charlie", "Wilson", "Engineer"),
-      new User(6, "Diana", "Davis", "Doctor"),
+      new User(6, "Diana", "Davis", "Chef"),
       new User(7, "Eve", "Miller", "Teacher"),
       new User(8, "Frank", "Garcia", "Engineer"),
       new User(9, "Grace", "Martinez", "Doctor"),
       new User(10, "Henry", "Anderson", "Teacher"),
-      new User(10, "Paul", "Novak", "Programmer")
-  );
+      new User(11, "Paul", "Novak", "Programmer"),
+      new User(12, "Roman", "Sobieski", "Doctor"));
 
+  // Group users by occupation using a two-stage gathering process
   var groupedUsers = users.stream().gather(Gatherer
+      // First gatherer: group users by occupation into a Map<String,
+      // List<User>>
       .<User, Map<String, List<User>>, Map<String, List<User>>>ofSequential(
-          HashMap::new, (state, element, downstream) -> {
+          HashMap::new, // Initial state is an empty HashMap
+          (state, element, downstream) -> {
+            // Add each user to the appropriate occupation list
             state.putIfAbsent(element.occupation(),
                 new ArrayList<>());
             state.get(element.occupation()).add(element);
             return !downstream.isRejecting();
           }, (state, downstream) -> downstream.push(state)))
       .gather(
+          // Second gatherer: filter and sort the grouped results
           Gatherer.<Map<String, List<User>>, Map.Entry<String, List<User>>>ofSequential(
-              (Void state, Map<String, List<User>> map, Gatherer.Downstream<? super Map.Entry<String, List<User>>> downstream) -> {
-                // Only emit occupations with more than 2 users
+              (state, map, downstream) -> {
+                // Only emit occupations with more than 2 users, sorted
+                // alphabetically
                 map.entrySet().stream()
                     .filter(entry -> entry.getValue().size() > 2)
-                    .sorted(Map.Entry.comparingByKey())
+                    .sorted(Map.Entry.comparingByKey()) // Sort by occupation name
                     .forEach(downstream::push);
                 return true;
               }))
-      .toList();
+      .toList(); // Collect results into a List
 
+  // Print the filtered and sorted grouped results
   groupedUsers.forEach(entry -> {
+    // Print occupation name with user count
     IO.println("%s (%d users):".formatted(entry.getKey(),
         entry.getValue().size()));
+    // Print each user in this occupation
     entry.getValue().forEach(IO::println);
   });
+
 }
 
 record User(int id, String firstName, String lastName,
