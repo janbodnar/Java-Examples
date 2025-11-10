@@ -354,11 +354,13 @@ void main() {
               (state, map, downstream) -> {
                 // Only emit occupations with more than 2 users, sorted
                 // alphabetically
-                map.entrySet().stream()
-                    .filter(entry -> entry.getValue().size() > 2)
-                    .sorted(Map.Entry.comparingByKey()) // Sort by occupation name
-                    .forEach(downstream::push);
-                return true;
+
+                for (var entry : map.entrySet()) {
+                  if (entry.getValue().size() > 2) {
+                    downstream.push(entry);
+                  }
+                }
+                return !downstream.isRejecting();
               }))
       .toList(); // Collect results into a List
 
