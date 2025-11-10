@@ -310,6 +310,62 @@ record User(int id, String firstName, String lastName,
 }
 ```
 
+## Chaining gatherers
+
+This Java example creates an immutable list of 12 User records and uses a two-stage  
+Stream Gatherer process to group users by occupation. The first gatherer builds  
+a `Map<String, List<User>>`, while the second filters for occupations with more  
+than 2 users and sorts them alphabetically. It then collects the results into a  
+list and prints each occupation with its user count and details.
+
+```java
+void main() {
+
+  List<User> users = List.of(
+      new User(1, "John", "Doe", "Engineer"),
+      new User(2, "Jane", "Smith", "Doctor"),
+      new User(3, "Bob", "Johnson", "Engineer"),
+      new User(4, "Alice", "Brown", "Teacher"),
+      new User(5, "Charlie", "Wilson", "Engineer"),
+      new User(6, "Diana", "Davis", "Doctor"),
+      new User(7, "Eve", "Miller", "Teacher"),
+      new User(8, "Frank", "Garcia", "Engineer"),
+      new User(9, "Grace", "Martinez", "Doctor"),
+      new User(10, "Henry", "Anderson", "Teacher"),
+      new User(10, "Paul", "Novak", "Programmer")
+  );
+
+  var groupedUsers = users.stream().gather(Gatherer
+      .<User, Map<String, List<User>>, Map<String, List<User>>>ofSequential(
+          HashMap::new, (state, element, downstream) -> {
+            state.putIfAbsent(element.occupation(),
+                new ArrayList<>());
+            state.get(element.occupation()).add(element);
+            return !downstream.isRejecting();
+          }, (state, downstream) -> downstream.push(state)))
+      .gather(
+          Gatherer.<Map<String, List<User>>, Map.Entry<String, List<User>>>ofSequential(
+              (Void state, Map<String, List<User>> map, Gatherer.Downstream<? super Map.Entry<String, List<User>>> downstream) -> {
+                // Only emit occupations with more than 2 users
+                map.entrySet().stream()
+                    .filter(entry -> entry.getValue().size() > 2)
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEach(downstream::push);
+                return true;
+              }))
+      .toList();
+
+  groupedUsers.forEach(entry -> {
+    IO.println("%s (%d users):".formatted(entry.getKey(),
+        entry.getValue().size()));
+    entry.getValue().forEach(IO::println);
+  });
+}
+
+record User(int id, String firstName, String lastName,
+    String occupation) {
+}
+```
 
 ## Pairwise combinations
 
