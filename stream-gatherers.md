@@ -119,7 +119,8 @@ if (element < 0) {
 } // Continue processing
 ```
 
-this approach is not optimal. It violates the gatherer contract: Gatherers should adapt to  downstream behavior, not dictate it. This hard-codes an assumption about short-circuiting,  
+this approach is not optimal. It violates the gatherer contract: Gatherers should adapt to  
+downstream behavior, not dictate it. This hard-codes an assumption about short-circuiting,  
 leading to incorrect behavior in flexible pipelines.  
 
 
@@ -246,6 +247,66 @@ Using `reduce` instead of scan provides the final result only, without
 intermediate states. The immutable record approach with reduce is more  
 functional, creating new Count instances rather than mutating state. This  
 comparison shows different approaches to stateful stream operations.  
+
+## Grouping
+
+This Java program creates a list of 11 User records with ID, name, and occupation,  
+then prints them. It uses a custom Gatherer in the Stream API to group users by  
+occupation into a `Map<String, List<User>>`. Finally, it prints each occupation and  
+its associated users, demonstrating advanced data aggregation via streams.
+
+```java
+void main() throws IOException {
+
+  // Create a list to hold User objects
+  List<User> users = new ArrayList<>();
+
+  // Add users to the list with their id, first name, last name, and occupation
+  users.add(new User(1, "John", "Doe", "gardener"));
+  users.add(new User(2, "Roger", "Roe", "driver"));
+  users.add(new User(3, "Robert", "Novotny", "teacher"));
+  users.add(new User(4, "Paul", "Novak", "gardener"));
+  users.add(new User(5, "Lucia", "Smith", "teacher"));
+  users.add(new User(6, "Anna", "Johnson", "nurse"));
+  users.add(new User(7, "Michael", "Brown", "engineer"));
+  users.add(new User(8, "Sarah", "Davis", "doctor"));
+  users.add(new User(9, "David", "Wilson", "programmer"));
+  users.add(new User(10, "Emily", "Taylor", "artist"));
+  users.add(new User(11, "James", "Anderson", "chef"));
+
+  users.forEach(IO::println);
+
+  // Group users by occupation using a custom Gatherer
+  // This creates a Map<String, List<User>> where the key is the occupation
+  var groupedUsers = users.stream().gather(Gatherer
+      .<User, Map<String, List<User>>, Map<String, List<User>>>ofSequential(
+          HashMap::new,  // Initial state is an empty HashMap
+
+          // Accumulator function: adds each user to the appropriate occupation list
+          (state, user, downstream) -> {
+            state.putIfAbsent(user.occupation(), new ArrayList<>());  // Create list if occupation doesn't exist
+            state.get(user.occupation()).add(user);  // Add user to the occupation's list
+            return !downstream.isRejecting();
+          },
+
+          // Finisher function: returns the final grouped map
+          (state, downstream) -> downstream.push(state)))
+      .findFirst().orElse(Map.of());  // Get the result or empty map if no users
+
+  // Print the grouped results
+  groupedUsers.forEach((k, v) -> {
+    IO.println("%s:".formatted(k));
+    v.forEach(IO::println);
+  });
+
+
+}
+
+record User(int id, String firstName, String lastName,
+    String occupation) {
+}
+```
+
 
 ## Pairwise combinations
 
