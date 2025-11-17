@@ -56,3 +56,26 @@ String getText() {
   return "an old falton in the rain";
 }
 ```
+
+## Comparing empty list
+
+```java
+void main() {
+
+    List<Integer> vals1 = List.of(); // returns a shared immutable empty list
+    List<Integer> vals2 = List.of();
+
+    IO.println(vals1 == vals2);
+
+    IO.println(System.identityHashCode(vals1));
+    IO.println(System.identityHashCode(vals2));
+
+    List<Integer> vals3 = Collections.emptyList();
+    List<Integer> vals4 = Collections.emptyList();
+
+    IO.println(vals3 == vals4); // true, shared instance
+
+    IO.println(System.identityHashCode(vals3));
+    IO.println(System.identityHashCode(vals4));
+}
+```
