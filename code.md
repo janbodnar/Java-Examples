@@ -48,10 +48,17 @@ List<String> cutToWords(String text) {
 String getText() {
 
   try {
-    Thread.sleep(Duration.ofMillis(1500));
+    TimeUnit.MILLISECONDS.sleep(1500);
   } catch (InterruptedException e) {
     e.printStackTrace();
   }
+
+  // try {
+  //   Thread.sleep(Duration.ofMillis(1500));
+  // } catch (InterruptedException e) {
+  //   // TODO Auto-generated catch block
+  //   e.printStackTrace();
+  // }
 
   return "an old falton in the rain";
 }
