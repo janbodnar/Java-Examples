@@ -64,6 +64,22 @@ String getText() {
 }
 ```
 
+## List JAR contents
+
+```java
+void main() {
+
+  String jarFileName = "app.jar";
+
+  try (JarFile jarFile = new JarFile(jarFileName)) {
+    jarFile.stream()
+        .forEach(entry -> IO.println(entry.getName()));
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+}
+```
+
 ## Comparing empty list
 
 ```java
