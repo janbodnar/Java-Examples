@@ -8,30 +8,29 @@ Java 25 syntax.
 This example declares an integer variable to store a whole number.
 ```java
 void main() {
-    var age = 30;
+    int age = 30;
     IO.println("Age: " + age);
 }
 ```
-The `var` keyword infers the type of `age` as `int`, which is a 32-bit signed
-integer. This is the most common data type for representing whole numbers in Java.
+The `int` type declares a 32-bit signed integer, which is the most common data  
+type for representing whole numbers in Java.
 
 ## Basic double type
 This example declares a variable to store a floating-point number.
 ```java
 void main() {
-    var pi = 3.14159;
+    double pi = 3.14159;
     IO.println("Pi: " + pi);
 }
 ```
-The `var` keyword infers the type of `pi` as `double`, a 64-bit floating-point
-number used for decimal values. It provides a high degree of precision for
-mathematical calculations.
+The `double` type declares a 64-bit floating-point number used for decimal  
+values. It provides a high degree of precision for mathematical calculations.
 
 ## Basic boolean type
 This example declares a boolean variable that can hold either `true` or `false`.
 ```java
 void main() {
-    var isActive = true;
+    boolean isActive = true;
     IO.println("Active: " + isActive);
 }
 ```
@@ -42,7 +41,7 @@ conditional statements like `if` and loops to make decisions based on their valu
 This example declares a character variable to hold a single character.
 ```java
 void main() {
-    var initial = 'J';
+    char initial = 'J';
     IO.println("Initial: " + initial);
 }
 ```
@@ -53,7 +52,7 @@ to store individual letters or symbols.
 This example declares a `String` variable to store a sequence of characters.
 ```java
 void main() {
-    var name = "Java";
+    String name = "Java";
     IO.println("Name: " + name);
 }
 ```
@@ -64,16 +63,16 @@ of the most commonly used types in Java for handling and manipulating text.
 This example demonstrates declaring several different primitive types.
 ```java
 void main() {
-    var age = 30;
-    var price = 19.99;
-    var isAvailable = true;
-    var grade = 'A';
+    int age = 30;
+    double price = 19.99;
+    boolean isAvailable = true;
+    char grade = 'A';
     IO.println(age + ", " + price + ", " + isAvailable + ", " + grade);
 }
 ```
-This code showcases how `var` can infer different primitive types like `int`,
-`double`, `boolean`, and `char`. It highlights Java's ability to handle various
-kinds of data in a single program.
+This code showcases different primitive types: `int`, `double`, `boolean`, and  
+`char`. It highlights Java's ability to handle various kinds of data in a single  
+program.
 
 ## Byte type
 This example shows the `byte` data type for small integer values.
@@ -101,7 +100,7 @@ as a middle ground between the `byte` and `int` types in terms of memory and ran
 This example shows the `long` data type for very large integers.
 ```java
 void main() {
-    var largeNumber = 9876543210L;
+    long largeNumber = 9876543210L;
     IO.println("Long value: " + largeNumber);
 }
 ```
@@ -112,7 +111,7 @@ an `int` is not large enough to hold the value, such as for timestamps or large 
 This example demonstrates the `float` data type for single-precision decimals.
 ```java
 void main() {
-    var temperature = 36.6f;
+    float temperature = 36.6f;
     IO.println("Temperature: " + temperature);
 }
 ```
@@ -124,7 +123,7 @@ where precision is not the top priority.
 This example shows the `Integer` wrapper class for the `int` primitive.
 ```java
 void main() {
-    var num = Integer.valueOf(42);
+    Integer num = Integer.valueOf(42);
     IO.println("Integer object: " + num);
 }
 ```
@@ -135,7 +134,7 @@ primitive values to be used in contexts that require objects, such as in collect
 This example demonstrates the `Double` wrapper class for the `double` primitive.
 ```java
 void main() {
-    var value = Double.valueOf(3.14);
+    Double value = Double.valueOf(3.14);
     IO.println("Double object: " + value);
 }
 ```
@@ -146,7 +145,7 @@ Wrapper classes provide utility methods and constants related to their primitive
 This example shows the `Boolean` wrapper class for the `boolean` primitive.
 ```java
 void main() {
-    var flag = Boolean.valueOf(true);
+    Boolean flag = Boolean.valueOf(true);
     IO.println("Boolean object: " + flag);
 }
 ```
@@ -157,7 +156,7 @@ This is necessary for storing booleans in generic collections like `List<Boolean
 This example demonstrates the `Character` wrapper class for the `char` primitive.
 ```java
 void main() {
-    var letter = Character.valueOf('X');
+    Character letter = Character.valueOf('X');
     IO.println("Character object: " + letter);
 }
 ```
@@ -192,8 +191,8 @@ Unboxing simplifies operations where a primitive value is needed but an object i
 This example demonstrates explicit type casting from an `int` to a `double`.
 ```java
 void main() {
-    var intValue = 10;
-    var doubleValue = (double) intValue;
+    int intValue = 10;
+    double doubleValue = (double) intValue;
     IO.println("Casted: " + doubleValue);
 }
 ```
@@ -204,8 +203,8 @@ While often implicit, an explicit cast can be used to make the conversion clear.
 This example shows explicit type casting from a `double` to an `int`.
 ```java
 void main() {
-    var doubleValue = 9.99;
-    var intValue = (int) doubleValue;
+    double doubleValue = 9.99;
+    int intValue = (int) doubleValue;
     IO.println("Truncated: " + intValue);
 }
 ```
@@ -243,8 +242,8 @@ value is outside the smaller type's range.
 This example shows how to convert a `String` to an `int`.
 ```java
 void main() {
-    var str = "123";
-    var num = Integer.parseInt(str);
+    String str = "123";
+    int num = Integer.parseInt(str);
     IO.println("Parsed: " + num);
 }
 ```
@@ -255,8 +254,8 @@ This is a common operation when reading user input or data from files.
 This example demonstrates converting a `String` to a `double`.
 ```java
 void main() {
-    var str = "3.14";
-    var num = Double.parseDouble(str);
+    String str = "3.14";
+    double num = Double.parseDouble(str);
     IO.println("Parsed: " + num);
 }
 ```
@@ -268,8 +267,8 @@ is not a valid number.
 This example shows how to convert an `int` to a `String`.
 ```java
 void main() {
-    var num = 42;
-    var str = String.valueOf(num);
+    int num = 42;
+    String str = String.valueOf(num);
     IO.println("String: " + str);
 }
 ```
@@ -313,7 +312,7 @@ This indicates that the variable does not yet refer to an actual object.
 This example demonstrates creating an array of integers.
 ```java
 void main() {
-    var numbers = new int[]{1, 2, 3, 4, 5};
+    int[] numbers = new int[]{1, 2, 3, 4, 5};
     IO.println("First: " + numbers[0]);
 }
 ```
@@ -324,7 +323,7 @@ initializes an integer array and accesses its first element using an index.
 This example shows how to create an array of `String` objects.
 ```java
 void main() {
-    var words = new String[]{"Hello", "World"};
+    String[] words = new String[]{"Hello", "World"};
     IO.println("Words: " + words[0] + " " + words[1]);
 }
 ```
@@ -335,7 +334,7 @@ reference to a `String` object.
 This example shows how to get the number of elements in an array.
 ```java
 void main() {
-    var numbers = new int[]{10, 20, 30};
+    int[] numbers = new int[]{10, 20, 30};
     IO.println("Array length: " + numbers.length);
 }
 ```
@@ -346,7 +345,7 @@ final field accessed directly on the array object.
 This example demonstrates a two-dimensional array, or an array of arrays.
 ```java
 void main() {
-    var matrix = new int[][]{{1, 2}, {3, 4}};
+    int[][] matrix = new int[][]{{1, 2}, {3, 4}};
     IO.println("Element: " + matrix[0][1]);
 }
 ```
@@ -357,7 +356,7 @@ using two indices, one for the row and one for the column.
 This example shows how to create an immutable list of integers.
 ```java
 void main() {
-    var numbers = List.of(1, 2, 3, 4, 5);
+    List<Integer> numbers = List.of(1, 2, 3, 4, 5);
     IO.println("First: " + numbers.get(0));
 }
 ```
@@ -368,43 +367,43 @@ a convenient way to define a small collection of data that should not change.
 This example demonstrates creating an immutable list of strings.
 ```java
 void main() {
-    var names = List.of("Alice", "Bob", "Charlie");
+    List<String> names = List.of("Alice", "Bob", "Charlie");
     IO.println("Names: " + names);
 }
 ```
 This shows that `List.of()` can be used with any object type, including `String`.
 The resulting list is compact and efficient for read-only access.
 
-## ArrayList with type inference
-This example shows how to create a mutable `ArrayList` using `var`.
+## ArrayList of integers
+This example shows how to create a mutable `ArrayList` of integers.
 ```java
 void main() {
-    var list = new ArrayList<Integer>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
     list.add(10);
     list.add(20);
     IO.println("List: " + list);
 }
 ```
-An `ArrayList` is a resizable array that can grow as new elements are added.
-Using `var` with the diamond operator (`<>`) simplifies the declaration while
-maintaining type safety.
+An `ArrayList` is a resizable array that can grow as new elements are added.  
+Using a typed declaration with the diamond operator (`<>`) simplifies the  
+declaration while maintaining type safety.
 
-## Map with type inference
+## Map
 This example demonstrates creating an immutable `Map`.
 ```java
 void main() {
-    var map = Map.of("one", 1, "two", 2);
+    Map<String, Integer> map = Map.of("one", 1, "two", 2);
     IO.println("Value: " + map.get("one"));
 }
 ```
 The `Map.of()` factory method creates a fixed-size map from a series of key-value
 pairs. It is a concise way to define a small, unmodifiable lookup table.
 
-## HashMap with type inference
+## HashMap
 This example shows how to create a mutable `HashMap`.
 ```java
 void main() {
-    var map = new HashMap<String, Integer>();
+    HashMap<String, Integer> map = new HashMap<String, Integer>();
     map.put("age", 25);
     IO.println("Age: " + map.get("age"));
 }
@@ -417,7 +416,7 @@ structures in Java.
 This example demonstrates creating a `Set` that stores unique elements.
 ```java
 void main() {
-    var numbers = Set.of(1, 2, 3, 2, 1);
+    Set<Integer> numbers = Set.of(1, 2, 3, 2, 1);
     IO.println("Unique: " + numbers);
 }
 ```
@@ -452,7 +451,7 @@ points to an object. This is crucial for avoiding `NullPointerException`.
 This example shows how to create an empty `Optional`.
 ```java
 void main() {
-    var optional = java.util.Optional.empty();
+    Optional<Object> optional = java.util.Optional.empty();
     IO.println("Present: " + optional.isPresent());
 }
 ```
@@ -463,7 +462,7 @@ of a value. It is a safer alternative to using `null` references.
 This example demonstrates creating an `Optional` that contains a value.
 ```java
 void main() {
-    var optional = java.util.Optional.of(42);
+    Optional<Integer> optional = java.util.Optional.of(42);
     IO.println("Value: " + optional.get());
 }
 ```
@@ -475,7 +474,7 @@ This example shows how to create an `Optional` from a potentially null value.
 ```java
 void main() {
     String text = null;
-    var optional = java.util.Optional.ofNullable(text);
+    Optional<String> optional = java.util.Optional.ofNullable(text);
     IO.println("Present: " + optional.isPresent());
 }
 ```
@@ -487,8 +486,8 @@ an `Optional` containing the value.
 This example demonstrates providing a default value for an empty `Optional`.
 ```java
 void main() {
-    var optional = java.util.Optional.<String>empty();
-    var result = optional.orElse("default");
+    Optional<String> optional = java.util.Optional.<String>empty();
+    String result = optional.orElse("default");
     IO.println("Result: " + result);
 }
 ```
@@ -500,8 +499,8 @@ safely handling potentially missing data.
 This example shows how to compare primitive integer values.
 ```java
 void main() {
-    var a = 10;
-    var b = 20;
+    int a = 10;
+    int b = 20;
     IO.println("Equal: " + (a == b));
     IO.println("Less: " + (a < b));
 }
@@ -513,8 +512,8 @@ These comparisons are straightforward and evaluate to a `boolean` result.
 This example demonstrates the correct way to compare strings for equality.
 ```java
 void main() {
-    var s1 = "hello";
-    var s2 = "hello";
+    String s1 = "hello";
+    String s2 = "hello";
     IO.println("Equals: " + s1.equals(s2));
 }
 ```
@@ -525,8 +524,8 @@ Using `==` would compare their memory addresses, which is usually not the intend
 This example highlights the difference between value and reference equality.
 ```java
 void main() {
-    var s1 = new String("hello");
-    var s2 = new String("hello");
+    String s1 = new String("hello");
+    String s2 = new String("hello");
     IO.println("Same ref: " + (s1 == s2));
     IO.println("Equal: " + s1.equals(s2));
 }
@@ -539,8 +538,8 @@ compares the actual character sequences.
 This example shows how to compare `Integer` wrapper objects.
 ```java
 void main() {
-    var n1 = Integer.valueOf(100);
-    var n2 = Integer.valueOf(100);
+    Integer n1 = Integer.valueOf(100);
+    Integer n2 = Integer.valueOf(100);
     IO.println("Equals: " + n1.equals(n2));
 }
 ```
@@ -553,7 +552,7 @@ This example demonstrates a safe comparison with a `null` reference.
 ```java
 void main() {
     String text = null;
-    var isNull = text == null;
+    boolean isNull = text == null;
     IO.println("Is null: " + isNull);
 }
 ```
@@ -566,7 +565,7 @@ This example shows how to check the runtime type of an object.
 ```java
 void main() {
     Object obj = "Hello";
-    var isString = obj instanceof String;
+    boolean isString = obj instanceof String;
     IO.println("Is String: " + isString);
 }
 ```
@@ -588,19 +587,19 @@ This enhanced `instanceof` combines the type check and the cast into one step.
 If `obj` is an `Integer`, it is automatically cast to the new variable `num`,
 making the code more concise and safe.
 
-## Var with explicit type bounds
-This example shows `var` used with a generic collection.
+## ArrayList of strings
+This example shows `ArrayList` declared with a `String` type parameter.
 ```java
 void main() {
-    var list = new ArrayList<String>();
+    ArrayList<String> list = new ArrayList<String>();
     list.add("Java");
     String first = list.get(0);
     IO.println("First: " + first);
 }
 ```
-The `var` keyword infers the type of `list` as `ArrayList<String>`, including its
-generic type parameter. This maintains full type safety while reducing boilerplate
-code in the declaration.
+Declaring `list` as `ArrayList<String>` makes the type explicit, including its  
+generic type parameter. This maintains full type safety while keeping the  
+declaration clear and readable.
 
 ## Number superclass
 This example demonstrates using the `Number` superclass to hold different numeric types.
@@ -631,7 +630,7 @@ define the range of values that their corresponding primitive types can hold.
 This example demonstrates creating and using a `byte` array.
 ```java
 void main() {
-    var bytes = new byte[]{65, 66, 67};
+    byte[] bytes = new byte[]{65, 66, 67};
     IO.println("Bytes: " + bytes[0] + ", " + bytes[1] + ", " + bytes[2]);
 }
 ```
@@ -642,8 +641,8 @@ streams. In this example, the byte values correspond to the ASCII characters 'A'
 This example shows how to create a `String` from a character array.
 ```java
 void main() {
-    var chars = new char[]{'J', 'a', 'v', 'a'};
-    var str = new String(chars);
+    char[] chars = new char[]{'J', 'a', 'v', 'a'};
+    String str = new String(chars);
     IO.println("String: " + str);
 }
 ```
@@ -654,8 +653,8 @@ a straightforward way to build a string from its individual characters.
 This example demonstrates converting a `String` into a character array.
 ```java
 void main() {
-    var str = "Hello";
-    var chars = str.toCharArray();
+    String str = "Hello";
+    char[] chars = str.toCharArray();
     IO.println("First char: " + chars[0]);
 }
 ```
@@ -670,7 +669,7 @@ void main() {
 }
 
 void printNumbers(int... numbers) {
-    for (var num : numbers) {
+    for (int num : numbers) {
         IO.println(num);
     }
 }
@@ -682,7 +681,7 @@ arguments of the specified type. Inside the method, the arguments are treated as
 This example demonstrates a generic method with a bounded type parameter.
 ```java
 void main() {
-    var result = max(10, 20);
+    Integer result = max(10, 20);
     IO.println("Max: " + result);
 }
 
@@ -698,9 +697,9 @@ can be called safely.
 This example shows parsing strings into different wrapper types.
 ```java
 void main() {
-    var intVal = Integer.parseInt("100");
-    var longVal = Long.parseLong("1000000");
-    var boolVal = Boolean.parseBoolean("true");
+    int intVal = Integer.parseInt("100");
+    long longVal = Long.parseLong("1000000");
+    boolean boolVal = Boolean.parseBoolean("true");
     IO.println(intVal + ", " + longVal + ", " + boolVal);
 }
 ```
@@ -724,8 +723,8 @@ subtle bugs in numeric calculations.
 This example highlights the difference between integer and floating-point division.
 ```java
 void main() {
-    var intResult = 5 / 2;
-    var doubleResult = 5.0 / 2;
+    int intResult = 5 / 2;
+    double doubleResult = 5.0 / 2;
     IO.println("Int: " + intResult + ", Double: " + doubleResult);
 }
 ```
@@ -737,8 +736,8 @@ floating-point number.
 This example uses `BigInteger` for calculations involving extremely large numbers.
 ```java
 void main() {
-    var big = new java.math.BigInteger("12345678901234567890");
-    var result = big.add(big);
+    java.math.BigInteger big = new java.math.BigInteger("12345678901234567890");
+    java.math.BigInteger result = big.add(big);
     IO.println("Result: " + result);
 }
 ```
@@ -750,9 +749,9 @@ that require arbitrary-precision arithmetic.
 This example uses `BigDecimal` for precise decimal calculations.
 ```java
 void main() {
-    var a = new java.math.BigDecimal("0.1");
-    var b = new java.math.BigDecimal("0.2");
-    var sum = a.add(b);
+    java.math.BigDecimal a = new java.math.BigDecimal("0.1");
+    java.math.BigDecimal b = new java.math.BigDecimal("0.2");
+    java.math.BigDecimal sum = a.add(b);
     IO.println("Precise sum: " + sum);
 }
 ```
@@ -763,7 +762,7 @@ should be used for financial or other calculations where exact decimal precision
 This example demonstrates defining and using an `enum` type.
 ```java
 void main() {
-    var day = Day.MONDAY;
+    Day day = Day.MONDAY;
     IO.println("Day: " + day);
 }
 
@@ -778,7 +777,7 @@ type safety and is more expressive than using integer constants for the same pur
 This example introduces the `record` type for creating immutable data objects.
 ```java
 void main() {
-    var point = new Point(10, 20);
+    Point point = new Point(10, 20);
     IO.println("X: " + point.x() + ", Y: " + point.y());
 }
 
@@ -808,7 +807,7 @@ This example uses an enhanced `switch` with type patterns for cleaner type dispa
 ```java
 void main() {
     Object obj = 42;
-    var result = switch (obj) {
+    String result = switch (obj) {
         case Integer i -> "Integer: " + i;
         case String s -> "String: " + s;
         case null -> "Null value";
@@ -825,7 +824,7 @@ compared to a traditional `if-else if` chain.
 This example demonstrates a primitive stream for efficient operations on numbers.
 ```java
 void main() {
-    var sum = java.util.stream.IntStream.of(1, 2, 3, 4, 5)
+    int sum = java.util.stream.IntStream.of(1, 2, 3, 4, 5)
         .sum();
     IO.println("Sum: " + sum);
 }
@@ -838,7 +837,7 @@ of boxing and unboxing values.
 This example illustrates the automatic boxing and unboxing in collections.
 ```java
 void main() {
-    var list = new ArrayList<Integer>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
     list.add(1);
     list.add(2);
     int sum = list.get(0) + list.get(1);
@@ -853,12 +852,12 @@ back to an `int`.
 This example uses a generic wildcard to create a flexible method.
 ```java
 void main() {
-    var list = List.of(1, 2, 3);
+    List<Integer> list = List.of(1, 2, 3);
     printList(list);
 }
 
 void printList(List<?> list) {
-    for (var item : list) {
+    for (Object item : list) {
         IO.println(item);
     }
 }
@@ -871,8 +870,8 @@ accept a list of any type. This makes the method more reusable, as it can operat
 This example shows type inference for parameters in a lambda expression.
 ```java
 void main() {
-    var list = List.of(1, 2, 3, 4, 5);
-    var evens = list.stream()
+    List<Integer> list = List.of(1, 2, 3, 4, 5);
+    List<Integer> evens = list.stream()
         .filter(n -> n % 2 == 0)
         .toList();
     IO.println("Evens: " + evens);
@@ -886,7 +885,7 @@ functional code.
 This example uses the `Comparable` interface to define a natural sorting order.
 ```java
 void main() {
-    var list = new ArrayList<>(List.of(3, 1, 2));
+    ArrayList<Integer> list = new ArrayList<>(List.of(3, 1, 2));
     list.sort(Integer::compareTo);
     IO.println("Sorted: " + list);
 }
@@ -913,7 +912,7 @@ though you lose type-specific information.
 This example shows a pattern for creating a type-safe container for different types.
 ```java
 void main() {
-    var map = new HashMap<Class<?>, Object>();
+    HashMap<Class<?>, Object> map = new HashMap<Class<?>, Object>();
     map.put(Integer.class, 42);
     map.put(String.class, "Hello");
     IO.println("Int: " + map.get(Integer.class));
@@ -928,9 +927,9 @@ than simply using a `Map<String, Object>`.
 This example demonstrates creating wrapper objects from strings using `valueOf`.
 ```java
 void main() {
-    var i = Integer.valueOf("100");
-    var d = Double.valueOf("3.14");
-    var b = Boolean.valueOf("true");
+    Integer i = Integer.valueOf("100");
+    Double d = Double.valueOf("3.14");
+    Boolean b = Boolean.valueOf("true");
     IO.println(i + ", " + d + ", " + b);
 }
 ```
@@ -942,10 +941,10 @@ improving performance for frequently used values.
 This example shows using the `Math` class for type-related conversions.
 ```java
 void main() {
-    var value = 3.9;
-    var rounded = Math.round(value);
-    var floor = Math.floor(value);
-    var ceil = Math.ceil(value);
+    double value = 3.9;
+    long rounded = Math.round(value);
+    double floor = Math.floor(value);
+    double ceil = Math.ceil(value);
     IO.println("Round: " + rounded + ", Floor: " + floor + ", Ceil: " + ceil);
 }
 ```
@@ -957,8 +956,8 @@ subtle differences in type handling.
 This example contrasts immutable and mutable collection types.
 ```java
 void main() {
-    var immutable = List.of(1, 2, 3);
-    var mutable = new ArrayList<>(immutable);
+    List<Integer> immutable = List.of(1, 2, 3);
+    ArrayList<Integer> mutable = new ArrayList<>(immutable);
     mutable.add(4);
     IO.println("Immutable: " + immutable);
     IO.println("Mutable: " + mutable);
@@ -972,8 +971,8 @@ between them depends on whether the collection's data needs to change.
 This example demonstrates operations that are specific to certain data types.
 ```java
 void main() {
-    var str = "Hello";
-    var num = 42;
+    String str = "Hello";
+    int num = 42;
     IO.println("String length: " + str.length());
     IO.println("Int bitCount: " + Integer.bitCount(num));
 }
@@ -987,7 +986,7 @@ This example shows how to perform null-safe operations using `Optional`.
 ```java
 void main() {
     String value = null;
-    var length = java.util.Optional.ofNullable(value)
+    int length = java.util.Optional.ofNullable(value)
         .map(String::length)
         .orElse(0);
     IO.println("Length: " + length);
@@ -1001,8 +1000,8 @@ the code more readable.
 This example demonstrates the concept of type erasure in Java generics.
 ```java
 void main() {
-    var stringList = new ArrayList<String>();
-    var intList = new ArrayList<Integer>();
+    ArrayList<String> stringList = new ArrayList<String>();
+    ArrayList<Integer> intList = new ArrayList<Integer>();
     IO.println("Same class: " + 
         (stringList.getClass() == intList.getClass()));
 }
@@ -1015,7 +1014,8 @@ methods return the same `Class` object.
 This example introduces atomic types for thread-safe programming.
 ```java
 void main() {
-    var counter = new java.util.concurrent.atomic.AtomicInteger(0);
+    java.util.concurrent.atomic.AtomicInteger counter =
+        new java.util.concurrent.atomic.AtomicInteger(0);
     counter.incrementAndGet();
     counter.addAndGet(5);
     IO.println("Counter: " + counter.get());
