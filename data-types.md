@@ -374,8 +374,8 @@ void main() {
 This shows that `List.of()` can be used with any object type, including `String`.
 The resulting list is compact and efficient for read-only access.
 
-## ArrayList with explicit types
-This example shows how to create a mutable `ArrayList` with explicit types.
+## ArrayList of integers
+This example shows how to create a mutable `ArrayList` of integers.
 ```java
 void main() {
     ArrayList<Integer> list = new ArrayList<Integer>();
@@ -388,7 +388,7 @@ An `ArrayList` is a resizable array that can grow as new elements are added.
 Using a typed declaration with the diamond operator (`<>`) simplifies the  
 declaration while maintaining type safety.
 
-## Map with explicit types
+## Map
 This example demonstrates creating an immutable `Map`.
 ```java
 void main() {
@@ -399,7 +399,7 @@ void main() {
 The `Map.of()` factory method creates a fixed-size map from a series of key-value
 pairs. It is a concise way to define a small, unmodifiable lookup table.
 
-## HashMap with explicit types
+## HashMap
 This example shows how to create a mutable `HashMap`.
 ```java
 void main() {
@@ -587,8 +587,8 @@ This enhanced `instanceof` combines the type check and the cast into one step.
 If `obj` is an `Integer`, it is automatically cast to the new variable `num`,
 making the code more concise and safe.
 
-## ArrayList with explicit type parameter
-This example shows `ArrayList` declared with an explicit type parameter.
+## ArrayList of strings
+This example shows `ArrayList` declared with a `String` type parameter.
 ```java
 void main() {
     ArrayList<String> list = new ArrayList<String>();
