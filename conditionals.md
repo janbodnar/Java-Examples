@@ -560,29 +560,27 @@ The `Optional` type is a container that may or may not hold a value. Using
 access it, preventing `NullPointerException`.
 
 ## Conditional variable initialization
+
 This example demonstrates initializing a variable using a conditional expression.
+
 ```java
 void main() {
 
     var temperature = 18;
-    
-    var clothing = if (temperature < 10) {
-        yield "heavy coat";
-    } else if (temperature < 20) {
-        yield "light jacket";
-    } else {
-        yield "t-shirt";
+
+    var clothing = switch (temperature < 10) {
+        case true -> "heavy coat";
+        case false -> "light jacket";
     };
-    
+
     IO.println("Wear: " + clothing);
 }
 ```
 
-This feature is not yet available in Java. The example shows a hypothetical
-use of an `if` expression to assign a value, which would be a more powerful
-alternative to the ternary operator for complex initializations.
+
 
 ## Range checking with conditionals
+
 This example shows how to check if a value falls within a specific range.
 ```java
 void main() {
